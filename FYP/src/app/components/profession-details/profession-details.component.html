@@ -1,0 +1,104 @@
+<section style="background-color: #d3d3d3 mar" (submit)="personal_detail_to_home()">
+  <div class="container my-5 py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col col-xl-6">
+        <div class="card" style="border-radius: 2rem">
+          <div class="row g-0">
+            <!-- set col-lg-12 to view full lenght of input name gmail -->
+            <div class="col-md-6 col-lg-12 d-flex align-items-center">
+              <div class="card-body p-4 p-lg-5 text-black">
+                <!-- style="margin-left: 30%;" to give left marginn to input boxes of form -->
+                <form style="margin: 0% 10% 0% 10%">
+                  <h5 class="fw-normal mb-3 pb-3 fs-1" style="letter-spacing: 1px">
+                    Professional Details
+                  </h5>
+
+                  <div class="row">
+                    <label class="fw-bold my-1 py-1" for="f">Your Occupation</label>
+                    <div class="form-outline mb-4 mb-4 col-md-4 col-lg-4">
+                      <select class="form-select" class="form-control form-control-lg">
+                        <option selected>occupation</option>
+                        <option value="1">programming tech</option>
+                        <option value="2">web developer</option>
+                      </select>
+                    </div>
+                    <div class="form-outline mb-4 mb-4 col-md-4 col-lg-4">
+                      <select class="form-select" class="form-control form-control-lg">
+                        <option selected>from...</option>
+                        <option value="1">20202</option>
+                        <option value="2">2021</option>
+                      </select>
+                    </div>
+
+                    <div class="form-outline mb-4 mb-4 col-md-4 col-lg-4">
+                      <select class="form-select" class="form-control form-control-lg">
+                        <option selected>To</option>
+                        <option value="1">2020</option>
+                        <option value="2">2021</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="form-outline mb-4">
+                    <label class="fw-bold my-1 py-1" for="f">Chosse skills</label>
+                    <div class="row">
+                      <label class="checkbox-inline col-md-4 col-lg-4">
+                        <input type="checkbox" value="" />Ai algo
+                      </label>
+                      <label class="checkbox-inline col-md-4 col-lg-4">
+                        <input type="checkbox" value="" />web dev
+                      </label>
+                      <label class="checkbox-inline col-md-4 col-lg-4">
+                        <input type="checkbox" value="" />mobileapps
+                      </label>
+                      <label class="checkbox-inline col-md-4 col-lg-4">
+                        <input type="checkbox" value="" />frontenddev
+                      </label>
+                    </div>
+                  </div>
+                  <div>
+                    <label class="fw-bold my-1 py-1" for="f">Education</label>
+                    <div class="form-outline mb-4">
+                      <select class="form-select" class="form-control form-control-lg">
+                        <option selected>Select University..</option>
+                        <option value="1">UER</option>
+                        <option value="2">Fast</option>
+                      </select>
+                    </div>
+                    <div class="form-outline mb-4">
+                      <select class="form-select" class="form-control form-control-lg">
+                        <option selected>Select college name...</option>
+                        <option value="1">Pgc</option>
+                        <option value="2">Ict</option>
+                      </select>
+                    </div>
+
+                    <div class="form-outline mb-4">
+                      <select class="form-select" class="form-control form-control-lg">
+                        <option selected>Degree...</option>
+                        <option value="1">BS CS</option>
+                        <option value="2">BS It</option>
+                      </select>
+                    </div>
+                    <div class="form-outline mb-4">
+                      <label class="col-md-4 col" for="myfile">Select certificate:
+                      </label>
+                      <input type="file" class="form-control-file col-md-4" id="exampleFormControlFile1"
+                        placeholder="Certification or reward" />
+                    </div>
+                  </div>
+
+                  <div class="pt-1 mb-4">
+                    <button class="btn btn-dark btn-lg btn-block" type="submit">
+                     Submit
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

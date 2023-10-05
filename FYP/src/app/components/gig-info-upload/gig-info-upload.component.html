@@ -1,0 +1,66 @@
+<section style="background-color: #d3d3d3 mar">
+    <div class="container my-5 py-5 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col col-xl-6">
+                <div class="card" style="border-radius: 2rem">
+                    <div class="row g-0">
+                        <!-- set col-lg-12 to view full lenght of input name gmail -->
+                        <div class="col-md-6 col-lg-12 d-flex align-items-center">
+                            <div class="card-body p-4 p-lg-5 text-black">
+                                <!-- style="margin-left: 30%;" to give left marginn to input boxes of form -->
+                                <form style="margin: 0% 10% 0% 10%">
+                                    <h5 class="fw-normal mb-3 pb-3 fs-1" style="letter-spacing: 1px">
+                                        Gig pics & previous work
+                                    </h5>
+                                    <div class="form-outline mb-4">
+                                        <label class="fw-bold col-md-4 col" for="myfile">Images ( up to 3 )
+                                        </label>
+                                        <input type="file" class="form-control-file col-md-4" id="exampleFormControlFile1"
+                                           />
+                                      </div>
+
+                                    <div class="row">
+                                        <label class="fw-bold my-1 py-1" for="f">Documents</label>
+                                        <div class="form-outline mb-4 mb-4 col-sm-6 col-md-6 col-lg-6">
+                                            <select class="form-select" class="form-control form-control-lg">
+                                                <option selected>Doc1</option>
+                                                <option value="1">programming tech</option>
+                                                <option value="2">web developer</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-outline mb-4 mb-4 col-sm-6 col-md-6 col-lg-6">
+                                            <select class="form-select" class="form-control form-control-lg">
+                                                <option selected>Doc2</option>
+                                                <option value="1">20202</option>
+                                                <option value="2">2021</option>
+                                            </select>
+                                        </div>
+
+                                        
+                                    </div>
+
+                                    <div class="form-outline mb-4">
+                                       
+                                        <div class="row">
+                                            <label class="checkbox-inline col-md-12 col-lg-12">
+                                                <input type="checkbox" value="" /> I Declare that these material by myself
+                                            </label>
+                                            
+                                        </div>
+                                    </div>
+                                 
+
+                                    <div class="pt-1 mb-4">
+                                        <button class="btn btn-dark btn-lg btn-block" href="#" [routerLink]="['/gig-pricing']" type="button">
+                                            Next
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

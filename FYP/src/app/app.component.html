@@ -1,0 +1,15 @@
+<app-header-before-login *ngIf="!isUserLoggedIn()"></app-header-before-login>
+<app-header *ngIf="isUserLoggedIn()"></app-header>
+
+<router-outlet></router-outlet>
+<!-- <app-profile></app-profile>
+<app-profession-details></app-profession-details>
+<app-gig-page></app-gig-page>
+<app-gig-pricing></app-gig-pricing>
+<app-gig-info-upload></app-gig-info-upload> 
+<app-setting-teacher></app-setting-teacher>
+<app-profile-teacher></app-profile-teacher> 
+-->
+<app-aboutus></app-aboutus>
+
+<app-footer></app-footer>

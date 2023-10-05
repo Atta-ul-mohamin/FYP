@@ -1,0 +1,81 @@
+<html>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container px-5">
+            <a class="navbar-brand" href="#" [routerLink]="['/home']">Skill Mentor</a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#"
+                            [routerLink]="['/home-after-login']">Home</a>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="#">About</a></li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" [routerLink]="['/contactus']">Contact</a>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="#">Services</a></li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" [routerLink]="['/gig-page']">Offer Skill</a>
+                    </li>
+                </ul>
+                <img src="assets\images\profile_dropdown_logo\user.png" clickOutside (clickOutside)="clickedOutside()"
+                    class="user_pic" (click)="toggleMenu()" />
+
+                <div class="sub-menu-wrap" *ngIf="isMenuOpened" id="subMenu">
+                    <div class="sub-menu">
+                        <div class="user-inform">
+                            <img src="assets\images\profile_dropdown_logo\user.png" />
+                            <h3>Mohamin</h3>
+                        </div>
+
+                        <!--horizental row-->
+                        <hr />
+                        <!--now links-->
+
+                        <a href="#" [routerLink]="['/profile-teacher']" class="sub-menu-linking">
+                            <img src="assets\images\profile_dropdown_logo\profile.png" />
+                            <p>MY Profile</p>
+                            <span>></span>
+                        </a>
+                        <a href="#" [routerLink]="['/earning']" class="sub-menu-linking">
+                            <i class="bi bi-cash"></i>
+                            <p>Earnings</p>
+                            <span>></span>
+                        </a>
+                        <a href="#" class="sub-menu-linking">
+                            <i class="bi bi-file-ruled"></i>
+                            <p>Manage Gigs</p>
+                            <span>></span>
+                        </a>
+                        <!-- <a href="#" class="sub-menu-linking">
+                            <i class="bi bi-envelope"></i>
+                            <p>Invite Friends</p>
+                            <span>></span>
+                        </a> -->
+
+                        <a href="#" [routerLink]="['/setting-teacher']" class="sub-menu-linking">
+                            <i class="bi bi-gear"></i>
+                            <p>Settings</p>
+                            <span>></span>
+                        </a>
+
+                        <a href="#" [routerLink]="['/home']" class="sub-menu-linking">
+                            <img src="assets\images\profile_dropdown_logo\logout.png" />
+                            <p>Logout</p>
+                            <span>></span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+</body>
+
+</html>

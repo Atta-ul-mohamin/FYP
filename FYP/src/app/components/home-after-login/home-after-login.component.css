@@ -1,0 +1,52 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+.boxes_globall{
+    position: relative;
+    width: 100%;
+    padding: 20px;
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+   
+    
+   
+}
+
+.boxes_globall .card{
+    position: relative;
+    background: white;
+    padding: 30px;
+    box-shadow: 0 7px 25px rgba(0,0,0,0.08);
+    border-radius: 20px;
+    display: flex;
+    justify-content: space-between;
+    cursor: pointer;
+    
+}
+.boxes_globall .card .numbers{
+    position: relative;
+    font-weight: 500;
+    font-size: 2.5rem;
+    color: rgb(113, 117, 111);
+    
+}
+
+.boxes_globall .card .name{
+    color: var(--black2);
+    font-size: 1.1rem;
+    margin-top: 5px;
+}
+.boxes_globall .card .iconbox{
+    font-size: 3.5rem;
+    color: var(--blue);
+}
+.boxes_globall .card:hover{
+    background:rgb(105, 105, 108);
+}
+.boxes_globall .card :hover.numbers,
+.boxes_globall .card :hover.name,
+.boxes_globall .card :hover.iconbox{
+    color:white;
+}

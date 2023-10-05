@@ -1,0 +1,62 @@
+table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  table tr {
+    border-bottom: 1px solid #dee2e6;
+  }
+
+  table th, table td {
+    padding: 10px;
+  }
+
+  table th:last-child, table td:last-child {
+    text-align: right;
+  }
+
+  a {
+    text-decoration: none;
+    color: #000;
+  }
+
+  .hover-blue:hover {
+    text-decoration: underline;
+    color: #007bff;
+  }
+
+
+  .collapse-text {
+    max-height: 6em;
+    overflow: hidden;
+  }
+
+  .collapsed::after {
+    content: "See More";
+    color: blue;
+    cursor: pointer;
+  }
+
+  .icon {
+    font-size: 3rem;
+    color: lightgray;
+  }
+ 
+  .from-location {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: -0.5rem;
+  }
+
+  .from-text {
+    font-size: 0.8rem;
+    color: lightgray;
+    margin: 0;
+  }
+
+  .location-text {
+    font-size: 1rem;
+   
+    margin: 0;
+  }

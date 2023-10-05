@@ -1,0 +1,33 @@
+version: '3'
+services:
+  parse:
+    image: parseplatform/parse-server
+    environment:
+      PARSE_SERVER_APPLICATION_ID: myAppId
+      PARSE_SERVER_MASTER_KEY: myMasterKey
+      PARSE_SERVER_DATABASE_URI: postgresql://postgres:myPassword@postgres-db:5432/myDatabase
+      PARSE_SERVER_SERVER_URL: http://localhost:1337/parse
+      PARSE_SERVER_MASTER_KEY_IPS: 0.0.0.0/0
+    ports:
+      - 1337:1337
+    depends_on:
+      - postgres-db
+  postgres-db:
+    image: postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: myPassword
+      POSTGRES_DB: myDatabase
+  parse-dashboard:
+    image: parseplatform/parse-dashboard
+    environment:
+      PARSE_DASHBOARD_ALLOW_INSECURE_HTTP: true
+      PARSE_DASHBOARD_SERVER_URL: http://localhost:1337/parse
+      PARSE_DASHBOARD_APP_ID: myAppId
+      PARSE_DASHBOARD_MASTER_KEY: myMasterKey
+      PARSE_DASHBOARD_USER_ID: admin
+      PARSE_DASHBOARD_USER_PASSWORD: admin
+    ports:
+      - 4040:4040
+    depends_on:
+      - parse
