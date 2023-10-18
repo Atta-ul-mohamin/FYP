@@ -14,10 +14,11 @@
    
 }
 
+
 .boxes_globall .card{
     position: relative;
     background: white;
-    padding: 30px;
+    padding: 15px;
     box-shadow: 0 7px 25px rgba(0,0,0,0.08);
     border-radius: 20px;
     display: flex;
@@ -28,18 +29,18 @@
 .boxes_globall .card .numbers{
     position: relative;
     font-weight: 500;
-    font-size: 2.5rem;
+    font-size: 1.5rem;
     color: rgb(113, 117, 111);
     
 }
 
 .boxes_globall .card .name{
     color: var(--black2);
-    font-size: 1.1rem;
+    font-size: 0.8rem;
     margin-top: 5px;
 }
 .boxes_globall .card .iconbox{
-    font-size: 3.5rem;
+    font-size: 2rem;
     color: var(--blue);
 }
 .boxes_globall .card:hover{

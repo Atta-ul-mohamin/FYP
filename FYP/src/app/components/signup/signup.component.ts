@@ -13,11 +13,14 @@ export class SignupComponent {
 
 constructor(private service:ParseService  ,private authService: AuthService, private router: Router){}
 
-async signup(firstname:string, email:string , password:string){
+async signup(firstnameElement: HTMLInputElement, emailElement: HTMLInputElement, passwordElement: HTMLInputElement){
+  const firstname = firstnameElement.value;
+  const email = emailElement.value;
+  const password = passwordElement.value;
 
-  await this.service.signup(firstname,email, password)
+  await this.service.signup(firstname, email, password);
   return true;
- }
+}
 
  
  onsignup() {

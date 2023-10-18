@@ -78,6 +78,31 @@ body {
     border-radius: 50px;
   }
 }
+@media screen and (max-width: 576px) {
+  .fs-2 {
+      font-size: 1.5rem;
+  }
+
+  .fs-5 {
+      font-size: 1rem;
+  }
+
+  .btn.icon-container {
+      font-size: 1rem;
+  }
+
+  .icon-container {
+      margin-bottom: 1rem;
+  }
+
+  .col-lg-5 {
+      text-align: center;
+  }
+
+  .col-lg-5 img {
+      max-width: 100%;
+  }
+}
 
 /* body section */
 .icon-height {

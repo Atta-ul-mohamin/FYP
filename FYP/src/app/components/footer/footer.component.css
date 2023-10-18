@@ -1,3 +1,35 @@
-body {
+/* body {
     background: #3A3E4B;
-}
+} */
+       /* Custom styles for the footer */
+       .footer {
+        background-color:  #3A3E4B;
+        color: #fff;
+        padding: 10px 0;
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+    }
+
+    .footer a {
+        color: #fff;
+    }
+
+    .footer-icons {
+        text-align: center;
+    }
+
+    .footer-icons i {
+        font-size: 20px;
+        margin-left: 10px;
+    }
+
+    .footer-icons i:first-child {
+        margin-left: 0;
+    }
+
+    /* Add padding to the bottom of the body to account for the fixed footer */
+    body {
+        padding-bottom: 70px; 
+        /* Adjust this value as needed */
+    }

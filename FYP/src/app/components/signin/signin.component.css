@@ -1,0 +1,15 @@
+/* Custom CSS for responsiveness */
+
+/* Logo image style */
+.logo-img {
+    max-width: 50px; /* Adjust as needed */
+    height: auto;
+  }
+  
+  /* Adjust padding for small screens */
+  @media screen and (max-width: 576px) {
+    .card-body {
+      padding: 2rem 1.5rem;
+    }
+  }
+  
