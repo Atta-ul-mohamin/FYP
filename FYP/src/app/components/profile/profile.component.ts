@@ -29,7 +29,7 @@ export class ProfileComponent {
     const city = cityElement.value;
     const location = locationElement.value;
     const gender = genderElement.value;
-    const Age_profile= Age_profileElement.value;  // Make sure this extracts the selected value from the dropdown
+    const Age_profile = Age_profileElement.value;
     const language = languageElement.value;
     const discription = discriptionElement.value;
   

@@ -7,7 +7,7 @@ Parse.Cloud.define("profileuser", async (request) => {
     user.set("city", request.params.city);
     user.set("location", request.params.location);
     user.set("gender", request.params.gender);
-    user.set("Age_profile", request.params.age);
+    user.set("Age_profile", request.params.Age_profile);
     user.set("language", request.params.language);
     user.set("discription", request.params.discription);
     const result = await user.save();

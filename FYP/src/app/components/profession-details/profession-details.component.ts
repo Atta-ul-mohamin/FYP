@@ -33,7 +33,7 @@ export class ProfessionDetailsComponent implements AfterViewInit {
   onFileSelected(type: 'degree' | 'certificates', event: Event) {
     const inputElement = event.target as HTMLInputElement;
     const fileList = inputElement.files;
-
+  
     if (fileList && fileList.length > 0) {
       if (type === 'degree') {
         this.degree = fileList[0];
@@ -42,6 +42,7 @@ export class ProfessionDetailsComponent implements AfterViewInit {
       }
     }
   }
+  
 
   async submit_proffesion(
     occupation: string,
@@ -59,22 +60,22 @@ export class ProfessionDetailsComponent implements AfterViewInit {
     const degreeFile = degreeInput.files?.[0];
     const certificatesFile = certificatesInput.files?.[0];
 
-    // if (degreeFile && certificatesFile) {
-    //   await this.service.submit_proffesion(
-    //     occupation,
-    //     start_date,
-    //     end_date,
-    //     skills,
-    //     university,
-    //     college,
-    //     degreeFile,
-    //     certificatesFile
-    //   );
-    //   return true;
-    // } else {
-    //   console.error('No files selected');
-    //   return false;
-    // }
+    if (degreeFile && certificatesFile) {
+      await this.service.submit_proffesion(
+        occupation,
+        start_date,
+        end_date,
+        skills,
+        university,
+        college,
+        degreeFile,
+        certificatesFile
+      );
+      return true;
+    } else {
+      console.error('No files selected');
+      return false;
+    }
   }
 
   personal_detail_to_home() {

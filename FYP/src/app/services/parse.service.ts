@@ -19,10 +19,10 @@ export class ParseService {
     await Parse.Cloud.run("profileuser",params)
    }
   
-  //  async submit_proffesion(occupation:string,start_date:Date,end_date:Date,skills:string,university:string,college:string,degreeFile:File, certificatesFile:File){
+   async submit_proffesion(occupation:string,start_date:Date,end_date:Date,skills:string,university:string,college:string,degreeFile:File, certificatesFile:File){
 
-  //   const params = {occupation,start_date,end_date,skills,university,college,degreeFile, certificatesFile}
-  //   await Parse.Cloud.run("addUser",params)
+    const params = {occupation,start_date,end_date,skills,university,college,degreeFile, certificatesFile}
+    await Parse.Cloud.run("userprofession",params)
     
-  //  }
+   }
 }
