@@ -1,4 +1,4 @@
-<section  (submit)="onLogin()">
+<section  (submit)="onLogin(email.value, password.value)">
   <div class="container py-5">
     <div class="row d-flex justify-content-center align-items-center">
       <div class="col-md-8 col-lg-6">
@@ -13,16 +13,16 @@
 
             <form>
               <div class="form-outline mb-4">
-                <input type="email" id="email" class="form-control form-control-lg" />
+                <input type="email" id="email" class="form-control form-control-lg"  #email/>
                 <label class="form-label" for="email">Email address</label>
               </div>
 
               <div class="form-outline mb-4">
-                <input type="password" id="password" class="form-control form-control-lg" />
+                <input type="password" id="password" class="form-control form-control-lg" #password/>
                 <label class="form-label" for="password">Password</label>
               </div>
 
-              <button class="btn btn-dark btn-lg btn-block" type="submit">Login</button>
+              <button type="button" class="btn btn-dark btn-lg btn-block" (click)="onLogin(email.value, password.value)">Login</button>
 
 
               <a class="small text-muted" href="#" [routerLink]="['/forget-pin']">Forgot password?</a>

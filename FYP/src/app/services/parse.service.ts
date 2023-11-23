@@ -13,6 +13,24 @@ export class ParseService {
     const params = {firstname, email, password};
     await Parse.Cloud.run("addUser",params)
    }
+
+   async login(email: string, password: string) {
+    const params ={email,password};
+    const response = await Parse.Cloud.run("login" , params);
+    if(response.status === 1) {
+      this.currentUser = response;
+    }
+    return response.status;
+  }
+  private currentUser: any;
+
+  get user() {
+    return this.currentUser;
+  }
+  
+  set user(value: any) {
+    this.currentUser = value;
+  }
    async submit_profile(firstname:string,lasttname:string, email:string , city:string, location:string,gender:string ,Age_profile:string,language:string,discription:string){
 
     const params = {firstname,lasttname,email, city,location,gender,Age_profile,language,discription}
@@ -25,4 +43,42 @@ export class ParseService {
     await Parse.Cloud.run("userprofession",params)
     
    }
+
+
+
+
+
+
+
+
+   
+   async next_to_img(params: {
+    gigtitle: string, 
+    category: string, 
+    discription: string, 
+    images?: globalThis.File,  // Using globalThis.File for browser's File type
+    sampledocument?: globalThis.File,  // Using globalThis.File for browser's File type
+    pricediscription: string, 
+    dileverytime: string, 
+    price: number
+  }) {
+    let parseImage: Parse.File | undefined;
+    let parseSampleDocument: Parse.File | undefined;
+
+    if (params.images) {
+      parseImage = new Parse.File(params.images.name, params.images);
+      await parseImage.save();
+    }
+
+    if (params.sampledocument) {
+      parseSampleDocument = new Parse.File(params.sampledocument.name, params.sampledocument);
+      await parseSampleDocument.save();
+    }
+
+    await Parse.Cloud.run("giginfo", {
+      ...params,
+      images: parseImage,
+      sampledocument: parseSampleDocument
+    });
+  }
 }
