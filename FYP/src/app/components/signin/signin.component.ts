@@ -16,7 +16,7 @@ export class SigninComponent {
 
   async onLogin(email: string, password: string) {
     // Call the login() method from the AuthService
-    // this.authService.login();
+    this.authService.login();
     // this.router.navigate(['/home-after-login']);
 
     // Navigate to the desired page after login
@@ -25,7 +25,7 @@ export class SigninComponent {
     const user = await this.parseService.login(email, password);
     if (user == 1) {
       alert('Login successful ');
-      this.router.navigate(['/home']);
+      this.router.navigate(['/home-after-login']);
 
     } if (user == 0) {
       // handle login failure

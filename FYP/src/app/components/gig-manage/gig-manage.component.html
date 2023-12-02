@@ -1,1 +1,25 @@
-<p>gig-manage works!</p>
+<!-- gig-management.html -->
+<div class="gig-management">
+    <h1>Gig Management Dashboard</h1>
+  
+    <!-- List of Gigs -->
+    <div class="gig-list">
+      <!-- Individual Gig -->
+      <div *ngFor="let gig of gigs" class="gig">
+        <img [src]="gig.images" alt="Gig" class="gig-image">
+        <h1>Gig Management Dashboard</h1>
+        
+        <div class="gig-info">
+          <h2>{{ gig.gigtitle }}</h2>
+          <p>{{ gig.discription }}</p>
+        
+          <span class="gig-price">{{ gig.price }}</span>
+        </div>
+        <div class="gig-actions">
+          <button>Edit</button>
+          <button>Delete</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
