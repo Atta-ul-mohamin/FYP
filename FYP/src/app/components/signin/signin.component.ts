@@ -16,7 +16,7 @@ export class SigninComponent {
 
   async onLogin(email: string, password: string) {
     // Call the login() method from the AuthService
-    // this.authService.login();
+    this.authService.login();
     // this.router.navigate(['/home-after-login']);
 
     // Navigate to the desired page after login

@@ -1,0 +1,82 @@
+
+/* body {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+    background: #f4f4f4;
+}
+
+.gig-management {
+    max-width: 800px;
+    margin: auto;
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.gig-list {
+    margin-bottom: 30px;
+}
+
+.gig {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+.gig:last-child {
+    border-bottom: none;
+}
+
+.gig-image {
+    width: 80px;
+    height: 80px;
+    margin-right: 20px;
+    border-radius: 8px;
+    object-fit: cover;
+}
+
+.gig-info {
+    flex-grow: 1;
+}
+
+.gig-price {
+    font-weight: bold;
+}
+
+.gig-actions button {
+    padding: 5px 15px;
+    margin-right: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.gig-actions button:nth-child(1) {
+    background-color: #ffc107;
+    color: #fff;
+}
+
+.gig-actions button:nth-child(2) {
+    background-color: #dc3545;
+    color: #fff;
+}
+
+.new-gig-form input[type="text"],
+.new-gig-form textarea,
+.new-gig-form input[type="number"] {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+}
+
+.new-gig-form input[type="submit"] {
+    padding: 10px 20px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+} */

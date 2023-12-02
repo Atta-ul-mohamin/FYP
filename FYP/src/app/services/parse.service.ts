@@ -83,4 +83,19 @@ export class ParseService {
       sampledocument: parseSampleDocument
     });
   }
+
+
+  async getGigs(): Promise<any[]> {
+    const query = new Parse.Query('create_gig');
+    const results = await query.find();
+
+    // Convert Parse Objects to a simple array
+    return results.map(result => ({
+      gigtitle: result.get('gigtitle'),
+      category: result.get('category'),
+      discription: result.get('discription'),
+      images: result.get('images') ? result.get('images').url() : null,
+      // ... other properties ...
+    }));
+  }
 }

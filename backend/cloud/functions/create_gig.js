@@ -13,3 +13,17 @@ Parse.Cloud.define("giginfo", async (request) => {
     const result = await user.save();
     return result;
     });
+
+
+Parse.Cloud.define("getGigs", async (request) => {
+  const query = new Parse.Query('create_gig');
+  const results = await query.find();
+
+  return results.map(result => ({
+    gigtitle: result.get('gigtitle'),
+    category: result.get('category'),
+    discription: result.get('discription'),
+    images: result.get('images') ? result.get('images').url() : null,
+    // ... other properties ...
+  }));
+});

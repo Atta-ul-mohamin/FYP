@@ -24,10 +24,17 @@ const routes: Routes = [
   component:HomeComponent
 
   },
+<<<<<<< HEAD
   {path:"gigmanage",
   component:GigManageComponent
   },
 
+=======
+  {path:"gig-manage",
+  component: GigManageComponent
+
+  },
+>>>>>>> ea229d4df74cb05bead1ddd37d60ccfb152e816b
   {path:"signup",
   component:SignupComponent
 
