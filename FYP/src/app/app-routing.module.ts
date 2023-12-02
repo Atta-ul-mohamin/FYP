@@ -16,6 +16,7 @@ import { EarningComponent } from './components/earning/earning.component';
 import { GigPageComponent } from './components/gig-page/gig-page.component';
 import { GigInfoUploadComponent } from './components/gig-info-upload/gig-info-upload.component';
 import { GigPricingComponent } from './components/gig-pricing/gig-pricing.component';
+import { GigManageComponent } from './components/gig-manage/gig-manage.component';
 
 const routes: Routes = [
 
@@ -23,6 +24,10 @@ const routes: Routes = [
   component:HomeComponent
 
   },
+  {path:"gigmanage",
+  component:GigManageComponent
+  },
+
   {path:"signup",
   component:SignupComponent
 

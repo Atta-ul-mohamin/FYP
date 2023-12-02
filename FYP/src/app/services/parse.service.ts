@@ -31,6 +31,8 @@ export class ParseService {
   set user(value: any) {
     this.currentUser = value;
   }
+
+  
    async submit_profile(firstname:string,lasttname:string, email:string , city:string, location:string,gender:string ,Age_profile:string,language:string,discription:string){
 
     const params = {firstname,lasttname,email, city,location,gender,Age_profile,language,discription}

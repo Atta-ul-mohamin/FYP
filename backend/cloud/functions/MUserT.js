@@ -1,7 +1,7 @@
 Parse.Cloud.define("addUser", async (request) => {
 
-    const MUser = Parse.Object.extend("MUser");
-    const user = new MUser();
+    const MUserT = Parse.Object.extend("MUserT");
+    const user = new MUserT();
     user.set("firstname", request.params.firstname);
     user.set("email", request.params.email);
     user.set("password", request.params.password);
@@ -12,7 +12,7 @@ Parse.Cloud.define("addUser", async (request) => {
     Parse.Cloud.define("login", async (request) => {
         const { email, password } = request.params;
       
-        const query = new Parse.Query("MUser");
+        const query = new Parse.Query("MUserT");
         query.equalTo("email", email);
         query.equalTo("password", password);
       

@@ -5,7 +5,9 @@
     <div class="card text-white bg-secondary my-5 py-4 text-center">
         <div class="card-body">
             <p class="text-white m-0">Welcome atta ul mohamin Find important messages, tips, and links to helpful
-                resources here:</p>
+                resources here:     <div *ngIf="user">
+                    <h1>Welcome, {{ user.firstname }}!</h1>
+                  </div> 
         </div>
     </div>
 
