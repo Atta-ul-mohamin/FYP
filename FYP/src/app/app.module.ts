@@ -29,6 +29,7 @@ import { ServicesPageComponent } from './components/services-page/services-page.
 import { OrderComponent } from './components/order/order.component';
 import { GigManageComponent } from './components/gig-manage/gig-manage.component';
 import { MeassageManageComponent } from './components/meassage-manage/meassage-manage.component';
+import { PrivacypolicyComponent } from './components/privacypolicy/privacypolicy.component';
 
 
 @NgModule({
@@ -60,6 +61,7 @@ import { MeassageManageComponent } from './components/meassage-manage/meassage-m
          OrderComponent,
          GigManageComponent,
          MeassageManageComponent,
+         PrivacypolicyComponent,
        
   ],
   imports: [

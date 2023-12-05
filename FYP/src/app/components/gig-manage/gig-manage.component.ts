@@ -8,17 +8,25 @@ import { ParseService } from 'src/app/services/parse.service';
 })
 export class GigManageComponent implements OnInit {
   gigs: any[] = []; // Using any for simplicity
+  user:any;
+  constructor(private parseService: ParseService) {
+    console.log('inside constructor');
+  }
 
-  constructor(private parseService: ParseService) {}
+ 
 
   ngOnInit() {
+    console.log('inside oninit');
     this.loadGigs();
+    this.user = this.parseService.user;
   }
 
   async loadGigs() {
     try {
+      console.log('inside function');
       this.gigs = await this.parseService.getGigs();
       console.log(this.gigs);
+      console.log('inside function q');
     } catch (error) {
       console.error('Error loading gigs', error);
     }

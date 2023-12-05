@@ -47,55 +47,53 @@ export class ParseService {
    }
 
 
-
-
-
+   async gig_info_add(gigtitle:string, category:string , discription:string , pricediscription:string, dileverytime:string , price:number){
+    const params = {gigtitle, category, discription,pricediscription,dileverytime,price};
+    await Parse.Cloud.run("giginfo",params)
+   }
 
 
 
    
-   async next_to_img(params: {
-    gigtitle: string, 
-    category: string, 
-    discription: string, 
-    images?: globalThis.File,  // Using globalThis.File for browser's File type
-    sampledocument?: globalThis.File,  // Using globalThis.File for browser's File type
-    pricediscription: string, 
-    dileverytime: string, 
-    price: number
-  }) {
-    let parseImage: Parse.File | undefined;
-    let parseSampleDocument: Parse.File | undefined;
+  //  async next_to_img(params: {
+  //   gigtitle: string, 
+  //   category: string, 
+  //   discription: string, 
+  //   images?: globalThis.File,  // Using globalThis.File for browser's File type
+  //   sampledocument?: globalThis.File,  // Using globalThis.File for browser's File type
+  //   pricediscription: string, 
+  //   dileverytime: string, 
+  //   price: number
+  // }) {
+  //   let parseImage: Parse.File | undefined;
+  //   let parseSampleDocument: Parse.File | undefined;
 
-    if (params.images) {
-      parseImage = new Parse.File(params.images.name, params.images);
-      await parseImage.save();
-    }
+  //   if (params.images) {
+  //     parseImage = new Parse.File(params.images.name, params.images);
+  //     await parseImage.save();
+  //   }
 
-    if (params.sampledocument) {
-      parseSampleDocument = new Parse.File(params.sampledocument.name, params.sampledocument);
-      await parseSampleDocument.save();
-    }
+  //   if (params.sampledocument) {
+  //     parseSampleDocument = new Parse.File(params.sampledocument.name, params.sampledocument);
+  //     await parseSampleDocument.save();
+  //   }
 
-    await Parse.Cloud.run("giginfo", {
-      ...params,
-      images: parseImage,
-      sampledocument: parseSampleDocument
-    });
-  }
+  //   await Parse.Cloud.run("giginfo", {   ...params,
+  //     images: parseImage,
+  //     sampledocument: parseSampleDocument
+  //   });
+  // }
 
 
   async getGigs(): Promise<any[]> {
-    const query = new Parse.Query('create_gig');
-    const results = await query.find();
+    try {
+        const results = await Parse.Cloud.run("getGigs");
+        console.log('Results from Cloud Code:', results);
 
-    // Convert Parse Objects to a simple array
-    return results.map(result => ({
-      gigtitle: result.get('gigtitle'),
-      category: result.get('category'),
-      discription: result.get('discription'),
-      images: result.get('images') ? result.get('images').url() : null,
-      // ... other properties ...
-    }));
-  }
+        return results;
+    } catch (error) {
+        console.error('Error fetching gigs from Cloud Code', error);
+        throw error; // Propagate the error to the calling code if needed
+    }
+}
 }

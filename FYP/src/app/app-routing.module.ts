@@ -17,24 +17,28 @@ import { GigPageComponent } from './components/gig-page/gig-page.component';
 import { GigInfoUploadComponent } from './components/gig-info-upload/gig-info-upload.component';
 import { GigPricingComponent } from './components/gig-pricing/gig-pricing.component';
 import { GigManageComponent } from './components/gig-manage/gig-manage.component';
+import { AboutusComponent } from './components/aboutus/aboutus.component';
+import { PrivacypolicyComponent } from './components/privacypolicy/privacypolicy.component';
 
 const routes: Routes = [
 
+  {path:"privacypolicy",
+  component:PrivacypolicyComponent
+
+  },
+
+  {path:"aboutus",
+  component:AboutusComponent
+
+  },
   {path:"home",
   component:HomeComponent
 
   },
-<<<<<<< HEAD
   {path:"gigmanage",
   component:GigManageComponent
   },
 
-=======
-  {path:"gig-manage",
-  component: GigManageComponent
-
-  },
->>>>>>> ea229d4df74cb05bead1ddd37d60ccfb152e816b
   {path:"signup",
   component:SignupComponent
 
