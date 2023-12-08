@@ -1,29 +1,39 @@
 Parse.Cloud.define("giginfo", async (request) => {
-    const create_gig= Parse.Object.extend("create_gig");
-    const user = new create_gig();
-    user.set("gigtitle", request.params.gigtitle);
-    user.set("category", request.params.category);
-    user.set("discription", request.params.discription);
-    user.set("images", request.params.images);
-    user.set("sampledocument", request.params.sampledocument);
-    user.set("pricediscription", request.params.pricediscription);
-    user.set("dileverytime", request.params.dileverytime);
-    user.set("price", request.params.price);
-  
-    const result = await user.save();
+  const { gigtitle, category, discription, pricediscription, dileverytime, price, userId } = request.params;
+
+  try {
+    const userPointer = Parse.User.createWithoutData(userId);
+    console.log(userPointer);
+    console.log(userId);
+    const create_gig = Parse.Object.extend("create_gig");
+    const gig = new create_gig();
+    
+    gig.set("gigtitle", gigtitle);
+    gig.set("category", category);
+    gig.set("discription", discription);
+    gig.set("pricediscription", pricediscription);
+    gig.set("dileverytime", dileverytime);
+    gig.set("price", price);
+    
+    gig.set("userId", userId); // Associate gig with the user
+
+    const result = await gig.save();
     return result;
-    });
+  } catch (error) {
+    console.error("Error creating gig:", error);
+    throw new Error("Failed to create gig");
+  }
+});
 
 
 Parse.Cloud.define("getGigs", async (request) => {
-  const query = new Parse.Query('create_gig');
-  const results = await query.find();
+    console.log('inside backend');
+    const query = new Parse.Query('create_gig');
+    const results = await query.find();
 
-  return results.map(result => ({
-    gigtitle: result.get('gigtitle'),
-    category: result.get('category'),
-    discription: result.get('discription'),
-    images: result.get('images') ? result.get('images').url() : null,
-    // ... other properties ...
-  }));
+    return results.map(result => ({
+        gigtitle: result.get('gigtitle'),
+        price: result.get('price'),
+        discription: result.get('discription'),
+    }));
 });

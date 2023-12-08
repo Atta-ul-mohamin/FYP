@@ -1,6 +1,6 @@
 
   <section style="background-color: #d3d3d3 mar">
-  <div class="container my-5 py-5 h-100">
+   <div class="container my-5 py-5 h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
       <div class="col col-xl-6">
         <div class="card" style="border-radius: 2rem">
@@ -71,25 +71,20 @@
                   <div class="form-outline mb-4">
                       <select class="form-select" class="form-control form-control-lg" #dileverytime>
                           <option selected>select..</option>
-                          <option value="1">5days</option>
-                          <option value="2">3days</option>
+                          <option value="5">5days</option>
+                          <option value="3">3days</option>
                       </select>
                       <label class="form-label" for="f">Dilevery time</label>
                   </div>
                   <div class="form-outline mb-4">
                       <input type="price" id="f" class="form-control form-control-lg" #price/>
                       <label class="form-label" for="f">Enter Price</label>
-                  </div>
-
-                    
+                  </div>                 
                 </div>
-
-
                   <div class="pt-1 mb-4">
                     <button class="btn btn-dark btn-lg btn-block" type="button"
-                    (click)="gigInfoAdd(gigtitle.value,category.value,discription.value,pricediscription.value,dileverytime.value, price.value)">
-                    
-                      submit>>
+                    (click)="gigInfoAdd(gigtitle.value,category.value,discription.value,pricediscription.value,dileverytime.value, price.value)">                    
+                      submit
                     </button>
                   </div>
                 </form>

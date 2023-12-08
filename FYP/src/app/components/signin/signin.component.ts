@@ -1,4 +1,4 @@
-// signin.component.ts
+
 import { Component } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 import { ParseService } from 'src/app/services/parse.service';
@@ -18,7 +18,6 @@ export class SigninComponent {
     // Call the login() method from the AuthService
     this.authService.login();
     // this.router.navigate(['/home-after-login']);
-
     // Navigate to the desired page after login
     // (e.g., navigate to 'home-after-login')
     // This should be handled based on your routing setup
@@ -26,22 +25,8 @@ export class SigninComponent {
     if (user == 1) {
       alert('Login successful ');
       this.router.navigate(['/home-after-login']);
-
     } if (user == 0) {
-      // handle login failure
       alert('incorrect name or password');
     }
-    // this.parseService.login(email, password).then((user:any) => {
-    // console.log("Function called");
-    // console.log(user);
-    //   if(user==1){
-    //     alert('Login successful ');
-    //     this.router.navigate(['/home']);
-    //   }
-    //   if(user==0){
-
-    //   };
-    // })
   }
 }
-

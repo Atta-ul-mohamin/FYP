@@ -11,7 +11,6 @@ import * as Parse from 'parse';
 })
 export class GigPageComponent {
 [x: string]: any;
-
   constructor(private service: ParseService, private authService: AuthService, private router: Router) { }
 
   // async next_to_img(
@@ -52,9 +51,8 @@ export class GigPageComponent {
     await this.service.gig_info_add(gigtitle,category,discription,pricediscription,dileverytime, numericPrice);
     return true;
   }
-  
-
   // gig_to_img() {
   //   this.router.navigate(['/home-after-login']);
   // }
+
 }

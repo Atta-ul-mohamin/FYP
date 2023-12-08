@@ -19,6 +19,7 @@ export class ParseService {
     const response = await Parse.Cloud.run("login" , params);
     if(response.status === 1) {
       this.currentUser = response;
+      console.log(this.currentUser.objectId);
     }
     return response.status;
   }
@@ -48,7 +49,9 @@ export class ParseService {
 
 
    async gig_info_add(gigtitle:string, category:string , discription:string , pricediscription:string, dileverytime:string , price:number){
-    const params = {gigtitle, category, discription,pricediscription,dileverytime,price};
+    const params = {gigtitle, category, discription,pricediscription,dileverytime,price,  userId :this.currentUser.objectId };
+    console.log(this.currentUser.objectId);
+    console.log(this.currentUser);
     await Parse.Cloud.run("giginfo",params)
    }
 
