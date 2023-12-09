@@ -4,10 +4,16 @@ import * as Parse from 'parse' ;
   providedIn: 'root'
 })
 export class ParseService {
-
+  private readonly USER_KEY = 'currentUser';
   constructor() {
     Parse.initialize('myAppId', 'myMasterKey');
     (Parse as any).serverURL = 'http://localhost:1336/parse';
+
+        // Retrieve the user from local storage on service initialization
+        const storedUser = localStorage.getItem(this.USER_KEY);
+        if (storedUser) {
+          this.currentUser = JSON.parse(storedUser);
+        }
    }
    async signup(firstname:string, email:string , password:string){
     const params = {firstname, email, password};
@@ -19,7 +25,9 @@ export class ParseService {
     const response = await Parse.Cloud.run("login" , params);
     if(response.status === 1) {
       this.currentUser = response;
-      console.log(this.currentUser.objectId);
+          // Save user to local storage on successful login
+          localStorage.setItem(this.USER_KEY, JSON.stringify(response));
+      console.log(this.currentUser);
     }
     return response.status;
   }
@@ -57,46 +65,29 @@ export class ParseService {
 
 
 
-   
-  //  async next_to_img(params: {
-  //   gigtitle: string, 
-  //   category: string, 
-  //   discription: string, 
-  //   images?: globalThis.File,  // Using globalThis.File for browser's File type
-  //   sampledocument?: globalThis.File,  // Using globalThis.File for browser's File type
-  //   pricediscription: string, 
-  //   dileverytime: string, 
-  //   price: number
-  // }) {
-  //   let parseImage: Parse.File | undefined;
-  //   let parseSampleDocument: Parse.File | undefined;
+//   async getGigs(sessionToken: string): Promise<any[]> {
+//     try {
+//         const results = await Parse.Cloud.run("getGigs", {}, { sessionToken });
+//         console.log('Results from Cloud Code:', results);
 
-  //   if (params.images) {
-  //     parseImage = new Parse.File(params.images.name, params.images);
-  //     await parseImage.save();
-  //   }
+//         return results;
+//     } catch (error) {
+//         console.error('Error fetching gigs from Cloud Code', error);
+//         throw error; // Propagate the error to the calling code if needed
+//     }
+// }
 
-  //   if (params.sampledocument) {
-  //     parseSampleDocument = new Parse.File(params.sampledocument.name, params.sampledocument);
-  //     await parseSampleDocument.save();
-  //   }
-
-  //   await Parse.Cloud.run("giginfo", {   ...params,
-  //     images: parseImage,
-  //     sampledocument: parseSampleDocument
-  //   });
-  // }
-
-
-  async getGigs(): Promise<any[]> {
-    try {
-        const results = await Parse.Cloud.run("getGigs");
-        console.log('Results from Cloud Code:', results);
-
-        return results;
-    } catch (error) {
-        console.error('Error fetching gigs from Cloud Code', error);
-        throw error; // Propagate the error to the calling code if needed
-    }
+async getGigs(): Promise<any[]> {
+  try {
+      console.log(this.user.objectId);
+      const params = {userId: this.user.objectId}
+      const results = await Parse.Cloud.run("getGigs", params);
+      console.log('Results from Cloud Code:', results);
+      
+      return results;
+  } catch (error) {
+      console.error('Error fetching gigs from Cloud Code', error);
+      throw error; // Propagate the error to the calling code if needed
+  }
 }
 }

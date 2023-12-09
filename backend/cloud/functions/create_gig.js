@@ -26,9 +26,12 @@ Parse.Cloud.define("giginfo", async (request) => {
 });
 
 
+
 Parse.Cloud.define("getGigs", async (request) => {
-    console.log('inside backend');
+
+    const {userId} = request.params; // Get the current user's objectId
     const query = new Parse.Query('create_gig');
+    query.equalTo('userId', userId); // Add a filter to get gigs only for the current user
     const results = await query.find();
 
     return results.map(result => ({
