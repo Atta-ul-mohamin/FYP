@@ -9,27 +9,47 @@ import { Router } from '@angular/router';
   styleUrls: ['./signup.component.css']
 })
 export class SignupComponent {
-    //yaha par jo parse service lagana he yaha ae ga or authentication b neche construtor pass akre ge 
+  constructor(private service: ParseService, private authService: AuthService, private router: Router) {}
 
-constructor(private service:ParseService  ,private authService: AuthService, private router: Router){}
+  onsignup(event: Event, firstnameElement: HTMLInputElement, emailElement: HTMLInputElement, passwordElement: HTMLInputElement, termsCheckbox: HTMLInputElement) {
+    // Prevent the default form submission
+    event.preventDefault();
+  
+    // Get the values from the input elements
+    const firstname = firstnameElement.value.trim();
+    const email = emailElement.value.trim();
+    const password = passwordElement.value.trim();
+  
+    // Check if any field is empty
+    if (!firstname || !email || !password) {
+      // Show an error message or handle the validation as needed
+      alert('Please fill in all the fields.');
+      return;
+    }
+  
+    // Check if the checkbox is checked
+    if (!termsCheckbox.checked) {
+      // Show an error message or handle the validation as needed
+      alert('Please agree to the terms and conditions before signing up.');
+      return;
+    }
+  
+    // Call the signup method from ParseService
+    this.service.signup(firstname, email, password)
+      .then(() => {
+        // If signup is successful, proceed with login and navigation
+        // Call the login() method from the AuthService
+        this.authService.login();
+  
+        // Navigate to the profile page
+        this.router.navigate(['/profile']);
+      })
+      .catch((error) => {
+        // Handle any error that might occur during signup
+        console.error('Signup failed:', error);
+      });
+  }
+  
 
-async signup(firstnameElement: HTMLInputElement, emailElement: HTMLInputElement, passwordElement: HTMLInputElement){
-  const firstname = firstnameElement.value;
-  const email = emailElement.value;
-  const password = passwordElement.value;
-  await this.service.signup(firstname, email, password);
-  return true;
-}
-
- 
- onsignup() {
-  // Call the login() method from the AuthService
-  this.authService.login();
-  this.router.navigate(['/profile']);
-
-
-  // Navigate to the desired page after login
-  // (e.g., navigate to 'home-after-login')
-  // This should be handled based on your routing setup
-}
+  
 }

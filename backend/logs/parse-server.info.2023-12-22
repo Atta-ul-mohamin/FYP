@@ -1,0 +1,1 @@
+{"functionName":"login","level":"info","message":"Ran cloud function login for user undefined with:\n  Input: {\"email\":\"ali@gmail.com\",\"password\":\"********\"}\n  Result: {\"status\":1,\"firstname\":\"ali\",\"objectId\":\"DCGZECqnU7\"}","params":{"email":"ali@gmail.com","password":"********"},"timestamp":"2023-12-22T16:06:22.553Z"}

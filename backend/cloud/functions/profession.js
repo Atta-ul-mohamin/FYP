@@ -1,15 +1,12 @@
-Parse.Cloud.define("userprofession", async (request) => {
+
+Parse.Cloud.define("education_proffesion", async (request) => {
     const profession = Parse.Object.extend("profession");
     const user = new profession();
-    user.set("occupation", request.params.occupation);
-    user.set("start_date", request.params.start_date);
-    user.set("end_date", request.params.end_date);
-    user.set("skills", request.params.skills);
-    user.set("university", request.params.university);
-    user.set("college", request.params.college);
-    user.set("degree", request.params.degree);
-    user.set("certificates", request.params.certificates);
+    user.set("nameSchool", request.params.nameSchool);
+    user.set("field", request.params.field);
+    user.set("subjectsToTeach", request.params.subjectsToTeach);
+    user.set("category", request.params.category);
+    user.set("userId", request.params.userId); 
     const result = await user.save();
     return result;
     });
-

@@ -30,6 +30,7 @@ import { OrderComponent } from './components/order/order.component';
 import { GigManageComponent } from './components/gig-manage/gig-manage.component';
 import { MeassageManageComponent } from './components/meassage-manage/meassage-manage.component';
 import { PrivacypolicyComponent } from './components/privacypolicy/privacypolicy.component';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -68,7 +69,8 @@ import { PrivacypolicyComponent } from './components/privacypolicy/privacypolicy
     BrowserModule,
     AppRoutingModule,
     NgbModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    FormsModule
 
     
   ],

@@ -42,16 +42,25 @@ export class ParseService {
   }
 
   
-   async submit_profile(firstname:string,lasttname:string, email:string , city:string, location:string,gender:string ,Age_profile:string,language:string,discription:string){
-
-    const params = {firstname,lasttname,email, city,location,gender,Age_profile,language,discription}
+   async submit_profile( city:string, location:string,gender:string ,Age_profile:string,language:string,discription:string,file: File | null){
+    let parseFile: Parse.File | null = null;
+    if (file) {
+      parseFile = new Parse.File(file.name, file);
+      console.log(file);
+      console.log('reached');
+      console.log(parseFile);
+      await parseFile.save();
+    }
+    console.log(file);
+   
+    const params = { city,location,gender,Age_profile,language,discription, userId :this.currentUser.objectId, image: parseFile}
     await Parse.Cloud.run("profileuser",params)
    }
   
-   async submit_proffesion(occupation:string,start_date:Date,end_date:Date,skills:string,university:string,college:string,degreeFile:File, certificatesFile:File){
+   async submit_education_proffesion(nameSchool:string,field:string,subjectsToTeach:string,category:string){
 
-    const params = {occupation,start_date,end_date,skills,university,college,degreeFile, certificatesFile}
-    await Parse.Cloud.run("userprofession",params)
+    const params = {nameSchool,field,subjectsToTeach,category,userId :this.currentUser.objectId}
+    await Parse.Cloud.run("education_proffesion",params)
     
    }
 
@@ -65,17 +74,6 @@ export class ParseService {
 
 
 
-//   async getGigs(sessionToken: string): Promise<any[]> {
-//     try {
-//         const results = await Parse.Cloud.run("getGigs", {}, { sessionToken });
-//         console.log('Results from Cloud Code:', results);
-
-//         return results;
-//     } catch (error) {
-//         console.error('Error fetching gigs from Cloud Code', error);
-//         throw error; // Propagate the error to the calling code if needed
-//     }
-// }
 
 async getGigs(): Promise<any[]> {
   try {

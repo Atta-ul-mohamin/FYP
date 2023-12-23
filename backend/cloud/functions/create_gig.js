@@ -14,7 +14,6 @@ Parse.Cloud.define("giginfo", async (request) => {
     gig.set("pricediscription", pricediscription);
     gig.set("dileverytime", dileverytime);
     gig.set("price", price);
-    
     gig.set("userId", userId); // Associate gig with the user
 
     const result = await gig.save();
