@@ -11,48 +11,35 @@ import * as Parse from 'parse';
 })
 export class GigPageComponent {
 [x: string]: any;
+selectedCategory: string = '';
+selectedType: string = '';
+title : string = '';
+description_about_work : string = '';
+description_about_price: string = '';
+min_days: string = '';
+max_days: string = '';
+price : string = '';
+
   constructor(private service: ParseService, private authService: AuthService, private router: Router) { }
 
-  // async next_to_img(
-  //   gigtitle: HTMLInputElement,
-  //   category: HTMLSelectElement,
-  //   discription :HTMLTextAreaElement,
-  //   pricediscription: HTMLTextAreaElement,
-  //   dileverytime:HTMLSelectElement,
-  //   price: HTMLInputElement
-  // ) {
+  onCategoryChange(category: string) {
+    this.selectedCategory = category;
+  }
 
-  //   await this.service.gig_info_add({
-  //     gigtitle: gigtitle.value,
-  //     category: category.value,
-  //     discription: discription.value,
-    
-  //     pricediscription: pricediscription.value,
-  //     dileverytime: dileverytime.value,
-  //     price: +price.value  // convert string to number using the unary plus operator
-  //   });
-  // }
+  onTypeChange(type: string) {
+    this.selectedType = type;
+  }
 
-  // async gigInfoAdd(gigtitle: HTMLInputElement, category: HTMLInputElement, discription: HTMLInputElement,pricediscription:HTMLInputElement,dileverytime:HTMLInputElement,price:HTMLInputElement){
-  //   const gig_title = gigtitle.value;
-  //   const categoryies = category.value;
-  //   const discriptions = discription.value;
-  //   const pricediscriptions = pricediscription.value;
-  //   const dilevery_time = dileverytime.value;
-  //   const prices = price.value;
-  
-  //   await this.service.gig_info_add(gig_title,categoryies,discriptions,pricediscriptions,dilevery_time,prices);
-  //   return true;
-  // }
 
-  async gigInfoAdd(gigtitle: string, category:string, discription: string,pricediscription:string,dileverytime:string,price:string){
+ 
+
+  async gigInfoAdd(category:string,gigtitle: string,  discription_about_work: string,price:string,discription_about_price: string, type:string, min_price:string,max_price:string  ){
     alert('gig created successfully');
-    const numericPrice: number = parseFloat(price);
-    await this.service.gig_info_add(gigtitle,category,discription,pricediscription,dileverytime, numericPrice);
+    
+    await this.service.gig_info_add(category,gigtitle,discription_about_work,price,discription_about_price,type, min_price , max_price);
     return true;
   }
-  // gig_to_img() {
-  //   this.router.navigate(['/home-after-login']);
-  // }
 
+
+  
 }

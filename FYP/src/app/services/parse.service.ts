@@ -49,7 +49,13 @@ export class ParseService {
       console.log(file);
       console.log('reached');
       console.log(parseFile);
-      await parseFile.save();
+      try {
+        await parseFile.save();
+      } catch (error) {
+        console.error('Error saving file to Parse:', error);
+        // Optionally, handle the error or return from the function
+        return;
+      }
     }
     console.log(file);
    
@@ -65,11 +71,12 @@ export class ParseService {
    }
 
 
-   async gig_info_add(gigtitle:string, category:string , discription:string , pricediscription:string, dileverytime:string , price:number){
-    const params = {gigtitle, category, discription,pricediscription,dileverytime,price,  userId :this.currentUser.objectId };
+   async gig_info_add(category:string , gigtitle:string, discription_about_work:string ,  price : string ,discription_about_price:string ,  type:string ,min_days:string, max_days:string  ){
+    const params = {category , gigtitle , discription_about_work , price ,discription_about_price,type,min_days,max_days,  userId :this.currentUser.objectId };
     console.log(this.currentUser.objectId);
     console.log(this.currentUser);
     await Parse.Cloud.run("giginfo",params)
+    await Parse.Cloud.run("createCardsForGigs",params)
    }
 
 
