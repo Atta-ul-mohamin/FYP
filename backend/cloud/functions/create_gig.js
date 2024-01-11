@@ -36,9 +36,9 @@ Parse.Cloud.define("getGigs", async (request) => {
     const results = await query.find();
 
     return results.map(result => ({
-        gigtitle: result.get('gigtitle'),
+        gigtitle: result.get('title'),
         price: result.get('price'),
-        discription: result.get('discription'),
+        discription: result.get('discription_about_work'),
     }));
 });
 
@@ -78,7 +78,7 @@ Parse.Cloud.define("createCardsForGigs", async () => {
                 const card = new Card();
 
                 card.set("name", user.get("firstname"));
-                card.set("title", gig.get("gigtitle"));
+                card.set("title", gig.get("title"));
                 card.set("price", gig.get("price"));
                 card.set("category", gig.get("category"));
                 card.set("object_Id_Of_Gig", gigId);

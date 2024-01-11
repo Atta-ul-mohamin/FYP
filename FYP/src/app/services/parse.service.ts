@@ -58,7 +58,6 @@ export class ParseService {
       }
     }
     console.log(file);
-   
     const params = { city,location,gender,Age_profile,language,discription, userId :this.currentUser.objectId, image: parseFile}
     await Parse.Cloud.run("profileuser",params)
    }
