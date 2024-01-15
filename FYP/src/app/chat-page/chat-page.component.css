@@ -1,0 +1,79 @@
+.chat-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background-color: #f7f7f7;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
+  
+  .chat-header {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    text-align: left;
+  }
+  
+  .chat-messages {
+    flex-grow: 1;
+    padding: 20px;
+    overflow-y: auto;
+  }
+  
+  .message {
+    margin-bottom: 10px;
+  }
+  
+  .message-content {
+    display: inline-block;
+    padding: 10px;
+    border-radius: 15px;
+    max-width: 60%;
+    word-wrap: break-word;
+  }
+  
+  .sent {
+    background-color: #dcf8c6;
+    margin-left: auto;
+    margin-right: 0;
+  }
+  
+  .received {
+    background-color: #ffffff;
+    margin-left: 0;
+    margin-right: auto;
+  }
+  
+  .chat-input {
+    display: flex;
+    padding: 10px;
+  }
+  
+  textarea {
+    flex-grow: 1;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    resize: none;
+  }
+  
+  button {
+    margin-left: 10px;
+    padding: 10px 20px;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #0056b3;
+  }
+  
+
+  .message-time {
+    display: block; /* Make time appear on a new line */
+    font-size: 0.8em; /* Smaller font size for timestamp */
+    color: #666; /* Grey color for timestamp */
+    margin-top: 5px; /* Space between message text and timestamp */
+  }

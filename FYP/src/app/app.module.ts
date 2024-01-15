@@ -31,6 +31,8 @@ import { GigManageComponent } from './components/gig-manage/gig-manage.component
 import { MeassageManageComponent } from './components/meassage-manage/meassage-manage.component';
 import { PrivacypolicyComponent } from './components/privacypolicy/privacypolicy.component';
 import { FormsModule } from '@angular/forms';
+import { MessageTableComponent } from './message-table/message-table.component';
+import { ChatPageComponent } from './chat-page/chat-page.component';
 
 
 @NgModule({
@@ -63,6 +65,8 @@ import { FormsModule } from '@angular/forms';
          GigManageComponent,
          MeassageManageComponent,
          PrivacypolicyComponent,
+         MessageTableComponent,
+         ChatPageComponent,
        
   ],
   imports: [

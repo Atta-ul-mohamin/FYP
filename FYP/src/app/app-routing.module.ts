@@ -19,18 +19,32 @@ import { GigPricingComponent } from './components/gig-pricing/gig-pricing.compon
 import { GigManageComponent } from './components/gig-manage/gig-manage.component';
 import { AboutusComponent } from './components/aboutus/aboutus.component';
 import { PrivacypolicyComponent } from './components/privacypolicy/privacypolicy.component';
+import { MessageTableComponent } from './message-table/message-table.component';
+import { ChatPageComponent } from './chat-page/chat-page.component';
+
+// import { StudentNamesResolver } from './services/student_names.resolver';
+
 
 const routes: Routes = [
 
+  {path:"chat-page/:id",
+  component:ChatPageComponent
+  },
+
+
+  {path:"message_table",
+  component :MessageTableComponent,
+  // resolve: { studentNames: StudentNamesResolver }
+  },
+
   {path:"privacypolicy",
   component:PrivacypolicyComponent
-
   },
 
   {path:"aboutus",
   component:AboutusComponent
-
   },
+
   {path:"home",
   component:HomeComponent
 

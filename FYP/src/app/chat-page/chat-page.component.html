@@ -1,0 +1,28 @@
+<br>
+
+<div class="chat-container">
+    <!-- Chat Header with Name -->
+    <div class="chat-header">
+        <h2>{{ studentName }}</h2>
+    </div>
+
+    <!-- Messages Container -->
+    <!-- <div class="chat-messages" #scrollContainer>
+        <div *ngFor="let message of messages" class="message" [ngClass]="{
+        sent: isMessageSentByCurrentUser(message),
+        received: !isMessageSentByCurrentUser(message)
+      }">
+            <div class="message-content">
+                {{ message.text }}
+                <div class="message-time">
+                    {{ message.createdAt | date : "medium" }}
+                </div>
+            </div>
+        </div>
+    </div> -->
+
+    <div class="chat-input">
+        <textarea [(ngModel)]="messageText" placeholder="Type a message"></textarea>
+        <button (click)="onSendMessage(messageText)">Send</button>
+    </div>
+</div>

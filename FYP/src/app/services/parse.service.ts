@@ -94,4 +94,62 @@ async getGigs(): Promise<any[]> {
       throw error; // Propagate the error to the calling code if needed
   }
 }
+
+
+  // In parse.service.ts
+
+  // In parse.service.ts
+
+async getStudentIdsByTeacherId(teacherId: string): Promise<string[]> {
+  const params = { teacherId };
+  const studentIds = await Parse.Cloud.run('getStudentIdsByTeacher', params);
+  // Filter out any null or undefined values just in case
+  // return studentIds.filter(id => id != null && id !== undefined);
+  // In parse.service.ts
+
+  return studentIds;
 }
+
+
+
+  
+  
+  // In parse.service.ts
+  
+  async getStudentNamesByIds(studentIds: string[]): Promise<string[]> {
+    const params = { studentIds };
+    const response = await Parse.Cloud.run('getStudentNamesByIds', params);
+    console.log(response, 'name gets in parse')
+    return response;
+  }
+
+  async getStudentById(id: string): Promise<any> {
+    try {
+      const response = await Parse.Cloud.run('getStudentDataByIds', { id });
+      return response;
+    } catch (error) {
+      console.error('Error fetching card by ID from Cloud Code', error);
+      throw error;
+    }
+  }
+  
+
+  async sendMessage(senderId: string, receiverId: string, text: string) {
+    try {
+      const message = await Parse.Cloud.run('sendMessage', { senderId, receiverId, text });
+      return message;
+    } catch (error) {
+      console.error('Error sending message', error);
+      throw error;
+    }
+  }
+
+
+  
+}
+
+
+
+
+// In your Parse Server JavaScript file
+
