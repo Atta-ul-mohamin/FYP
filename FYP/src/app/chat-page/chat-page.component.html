@@ -6,11 +6,12 @@
         <h2>{{ studentName }}</h2>
     </div>
 
-    <!-- Messages Container -->
-    <!-- <div class="chat-messages" #scrollContainer>
+ 
+     <div class="chat-messages" >
         <div *ngFor="let message of messages" class="message" [ngClass]="{
-        sent: isMessageSentByCurrentUser(message),
-        received: !isMessageSentByCurrentUser(message)
+               sent: isMessageSentByCurrentUser(message),
+                received: !isMessageSentByCurrentUser(message)  
+
       }">
             <div class="message-content">
                 {{ message.text }}
@@ -19,10 +20,13 @@
                 </div>
             </div>
         </div>
-    </div> -->
+    </div>
+
 
     <div class="chat-input">
         <textarea [(ngModel)]="messageText" placeholder="Type a message"></textarea>
         <button (click)="onSendMessage(messageText)">Send</button>
     </div>
 </div>
+
+   

@@ -1,5 +1,9 @@
 require('./functions/MUserT.js');
 require('./functions/profile.js');
 require('./functions/profession.js');
-require('./functions/create_gig.js');
-
+require('./functions/gig_and_cards.js');
+require('./functions/messageS.js');
+require('./functions/MUserS.js');
+require('./functions/favouriteS.js');
+require('./functions/CardS.js');
+require('./functions/messageT.js');

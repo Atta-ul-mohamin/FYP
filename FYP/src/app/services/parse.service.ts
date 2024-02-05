@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import * as Parse from 'parse' ;
+import { Message } from '../chat-page/message.model';
 @Injectable({
   providedIn: 'root'
 })
@@ -17,12 +18,12 @@ export class ParseService {
    }
    async signup(firstname:string, email:string , password:string){
     const params = {firstname, email, password};
-    await Parse.Cloud.run("addUser",params)
+    await Parse.Cloud.run("addUserTeacher",params)
    }
 
    async login(email: string, password: string) {
     const params ={email,password};
-    const response = await Parse.Cloud.run("login" , params);
+    const response = await Parse.Cloud.run("loginTeacher" , params);
     if(response.status === 1) {
       this.currentUser = response;
           // Save user to local storage on successful login
@@ -136,7 +137,7 @@ async getStudentIdsByTeacherId(teacherId: string): Promise<string[]> {
 
   async sendMessage(senderId: string, receiverId: string, text: string) {
     try {
-      const message = await Parse.Cloud.run('sendMessage', { senderId, receiverId, text });
+      const message = await Parse.Cloud.run('sendMessageTeacher', { senderId, receiverId, text });
       return message;
     } catch (error) {
       console.error('Error sending message', error);
@@ -144,6 +145,23 @@ async getStudentIdsByTeacherId(teacherId: string): Promise<string[]> {
     }
   }
 
+  async getConversationID(TeacherID: string, StudentID: string) {
+    const params = { TeacherID, StudentID };
+    const response = await Parse.Cloud.run('getConversationIDTeacher', params);
+    return response.objectId;
+  }
+
+
+  async getMessages(conversationId: string): Promise<Message[]> {
+    try {
+      const messages = await Parse.Cloud.run('getMessagesTeacher', { conversationId });
+      console.log(messages);
+      return messages;
+    } catch (error) {
+      console.error('Error getting messages', error);
+      throw error;
+    }
+  }
 
   
 }

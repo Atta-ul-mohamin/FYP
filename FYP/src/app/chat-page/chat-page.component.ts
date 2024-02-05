@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ParseService } from '../services/parse.service';
+import { Message } from '../chat-page/message.model';
+
 
 @Component({
   selector: 'app-chat-page',
@@ -8,6 +10,7 @@ import { ParseService } from '../services/parse.service';
   styleUrls: ['./chat-page.component.css']
 })
 export class ChatPageComponent {
+  messages: Message[] = [];
   messageText: string = '';
   recieverid_studentId: string = '';
   studentName: string = '';
@@ -31,33 +34,40 @@ export class ChatPageComponent {
     });
   }
 
+  async loadMessages() {
+    if (!this.conversationId) return;
+    this.messages = await this.parseService.getMessages(this.conversationId);
+    console.log('messages load', this.messages , this.conversationId);
+    console.log(this.messages);
+  }
 
+
+
+  isMessageSentByCurrentUser(message: Message): boolean {
+    
+    return message.senderId === this.senderId_teacher; 
+    
+   
+  }
 
   async getStudentDetails() {
     try {
       console.log(this.recieverid_studentId);
       const StudentDetails = await this.parseService.getStudentById(this.recieverid_studentId);
-      if (StudentDetails.status === 1) {
        
         this.studentName = StudentDetails.data.get("name");
-        // this.TeacherID = cardDetails.data.get("object_Id_Of_signUpTeacher");
-        // this.StudentID = await this.parseService.user.objectId;
-      // const conversationResult = await this.getConversationID(this.TeacherID, this.StudentID);
-      // if(conversationResult){
-      //   this.conversationId = conversationResult;
-      //   console.log(this.conversationId,'123','successs');
-      //   await this.loadMessages();
+        this.senderId_teacher = await this.parseService.user.objectId;
+        const conversationResult = await this.getConversationID(this.senderId_teacher, this.recieverid_studentId);
+      if(conversationResult){
+        this.conversationId = conversationResult;
+        console.log(this.conversationId,'123','successs');
+        await this.loadMessages();
 
-      // }
-      // else {
-      //   console.log('No conversation found');
-      // }
-
-        // Handle other card details
-      } else {
-        console.log(StudentDetails);
-        console.log('Error loading student details');
       }
+      else {
+        console.log('No conversation found');
+      }
+
     } catch (error) {
       console.error('Error loading student details', error);
       // Handle the error
@@ -79,5 +89,14 @@ export class ChatPageComponent {
       // Handle the error here
     }
   }
+
+
+  
+  async getConversationID(TeacherID : string ,  StudentID :  string ){
+    const id_get = await this.parseService.getConversationID(TeacherID, StudentID);
+    console.log(id_get);
+      return id_get;
+  }
+  
 
 }

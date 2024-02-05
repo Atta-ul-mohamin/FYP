@@ -36,12 +36,14 @@
     background-color: #dcf8c6;
     margin-left: auto;
     margin-right: 0;
+    text-align: right;
   }
   
   .received {
     background-color: #ffffff;
     margin-left: 0;
     margin-right: auto;
+    text-align: left;
   }
   
   .chat-input {
@@ -76,4 +78,5 @@
     font-size: 0.8em; /* Smaller font size for timestamp */
     color: #666; /* Grey color for timestamp */
     margin-top: 5px; /* Space between message text and timestamp */
+    text-align: center;/* Space between message text and timestamp */
   }
