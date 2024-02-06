@@ -43,30 +43,32 @@ export class ParseService {
   }
 
   
-   async submit_profile( city:string, location:string,gender:string ,Age_profile:string,language:string,discription:string,file: File | null){
-    let parseFile: Parse.File | null = null;
-    if (file) {
-      parseFile = new Parse.File(file.name, file);
-      console.log(file);
-      console.log('reached');
-      console.log(parseFile);
-      try {
-        await parseFile.save();
-      } catch (error) {
-        console.error('Error saving file to Parse:', error);
-        // Optionally, handle the error or return from the function
-        return;
-      }
-    }
-    console.log(file);
-    const params = { city,location,gender,Age_profile,language,discription, userId :this.currentUser.objectId, image: parseFile}
-    await Parse.Cloud.run("profileuser",params)
+   async submit_profile( phone:string, gender:string,age:string ,location:string,language:string,description:string){
+    // let parseFile: Parse.File | null = null;
+    // if (file) {
+    //   parseFile = new Parse.File(file.name, file);
+    //   console.log(file);
+    //   console.log('reached');
+    //   console.log(parseFile);
+    //   try {
+    //     await parseFile.save();
+    //   } catch (error) {
+    //     console.error('Error saving file to Parse:', error);
+    //     // Optionally, handle the error or return from the function
+    //     return;
+    //   }
+    // }
+    // console.log(file);
+    const params = { phone,gender,age,location,language, description ,userId :this.currentUser.objectId}
+     const result = await Parse.Cloud.run("profileuser",params)
+     return result;
    }
   
-   async submit_education_proffesion(nameSchool:string,field:string,subjectsToTeach:string,category:string){
+   async submit_education_proffesion(schoolName: string , schoolClass : string , schoolType : string , collegeName : string , collegeClass : string , collegeType : string , universityName: string , universityDegree: string  , skills : string , hobbies : string){
 
-    const params = {nameSchool,field,subjectsToTeach,category,userId :this.currentUser.objectId}
-    await Parse.Cloud.run("education_proffesion",params)
+    const params = {schoolName,schoolClass , schoolType , collegeName , collegeClass , collegeType, universityName, universityDegree , skills, hobbies,userId :this.currentUser.objectId}
+    const result = await Parse.Cloud.run("education_proffesion",params)
+    return result
     
    }
 

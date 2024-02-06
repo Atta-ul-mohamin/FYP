@@ -1,0 +1,9 @@
+.btn-light-orange {
+    color: #ffffff; /* Text color */
+    background-color: orange; /* Light Orange background color */
+    border-color: orange; /* Border color */
+}
+
+.btn-light-orange.active {
+    background-color: orange; /* Active state background color */
+}

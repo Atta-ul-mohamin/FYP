@@ -1,16 +1,26 @@
-Parse.Cloud.define("addUserStudent" , async (request) => {
+Parse.Cloud.define("addUserStudent", async (request) => {
     const MUser = Parse.Object.extend("MUser");
     const user = new MUser(); 
 
-    user.set("name" , request.params.name);
-    user.set("email" , request.params.email);
-    user.set("password" , request.params.password);
-    
+    user.set("name", request.params.name);
+    user.set("email", request.params.email);
+    user.set("password", request.params.password);
 
-    const reuslt = await user.save();
-    return reuslt;
+    // Perform a query to check if the email already exists in the dashboard
+    const query = new Parse.Query(MUser);
+    query.equalTo("email", request.params.email);
+    const existingUser = await query.first();
 
+    if (existingUser) {
+        // Email already exists, return status 0
+        return { status: 0, message: "Email already exists." };
+    } else {
+        // Email does not exist, save the new user
+        const result = await user.save();
+        return result;
+    }
 });
+
 
 
 

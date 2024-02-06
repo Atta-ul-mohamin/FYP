@@ -13,6 +13,8 @@ export class ProfessionDetailsComponent  {
  
   selectedCategory: string = '';
   schoolName: string = '';
+  schoolLevel: string = '';
+  collegelevel: string = '';
   field: string = '';
   subjectsToTeach: string = '';
 
@@ -28,7 +30,7 @@ export class ProfessionDetailsComponent  {
 
 
 
-  async proffesionEducation(nameSchool: string , field : string , subjectsToTeach:string , category:string ) {
+  async proffesionEducation(schoolName: string , schoolClass : string , schoolType : string , collegeName : string , collegeClass : string , collegeType : string , universityName: string , universityDegree: string  , skills : string , hobbies : string) {
     // if (!this.schoolName || !this.field || !this.subjectsToTeach) {
 
     //   alert('Please fill in all fields');
@@ -39,9 +41,14 @@ export class ProfessionDetailsComponent  {
 
       
     // this.router.navigate(['/login']);
-    await this.service.submit_education_proffesion(nameSchool, field, subjectsToTeach , category);
-    console.log(nameSchool,field,category);
-    return true;
+   const result =   await this.service.submit_education_proffesion(schoolName,schoolClass , schoolType , collegeName , collegeClass , collegeType, universityName, universityDegree , skills, hobbies  );
+   if (result.status===1)
+   {
+alert('proffesional details successfuly upload')
+   } 
+    else{
+      alert('error coming in uploading proffesional details')
+    }
   }
  
   // personal_detail_to_home() {

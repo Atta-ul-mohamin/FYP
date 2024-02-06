@@ -2,7 +2,8 @@ import { Component } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
 import { ParseService } from 'src/app/services/parse.service';
-import * as Parse from 'parse';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms'; 
+
 
 @Component({
   selector: 'app-gig-page',
@@ -19,7 +20,7 @@ description_about_price: string = '';
 min_days: string = '';
 max_days: string = '';
 price : string = '';
-
+selectedLevel: string = '';
   constructor(private service: ParseService, private authService: AuthService, private router: Router) { }
 
   onCategoryChange(category: string) {
