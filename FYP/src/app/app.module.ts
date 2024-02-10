@@ -33,6 +33,7 @@ import { PrivacypolicyComponent } from './components/privacypolicy/privacypolicy
 import { FormsModule } from '@angular/forms';
 import { MessageTableComponent } from './message-table/message-table.component';
 import { ChatPageComponent } from './chat-page/chat-page.component';
+import { AccountControllComponent } from './components/account-controll/account-controll.component';
 
 
 @NgModule({
@@ -67,6 +68,7 @@ import { ChatPageComponent } from './chat-page/chat-page.component';
          PrivacypolicyComponent,
          MessageTableComponent,
          ChatPageComponent,
+         AccountControllComponent,
        
   ],
   imports: [
