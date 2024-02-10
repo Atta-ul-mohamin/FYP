@@ -1,5 +1,5 @@
 Parse.Cloud.define("giginfo", async (request) => {
-  const {  category, gigtitle , discription_about_work , price , discription_about_price, type , min_days , max_days , userId } = request.params;
+  const {  title , year_Of_Experience  , type, skillLevel , level  , level_1_Description  ,  level_1_Price, level_2_Description , level_2_Price  ,  level_3_Description , level_3_Price , homePrice ,userId } = request.params;
 
   try {
     const userPointer = Parse.User.createWithoutData(userId);
@@ -7,19 +7,32 @@ Parse.Cloud.define("giginfo", async (request) => {
     console.log(userId);
     const create_gig = Parse.Object.extend("create_gig");
     const gig = new create_gig();
-    
-    gig.set("title", gigtitle);
-    gig.set("category", category);
-    gig.set("discription_about_work", discription_about_work);
-    gig.set("price", price);
-    gig.set("discription_about_price", discription_about_price);
+    gig.set("userId", { "__type": "Pointer", "className": "MUserT", "objectId": userId });
+    gig.set("title", title);
+    gig.set("year_Of_Experience", year_Of_Experience);
     gig.set("type", type);
-    gig.set("min_days" , min_days)
-    gig.set("max_days" , max_days)
-    gig.set("userId", userId); // Associate gig with the user
+    gig.set("skillLevel", skillLevel);
+    gig.set("level", level);
+    gig.set("level_1_Description", level_1_Description);
+    gig.set("level_1_Price" , level_1_Price)
+    gig.set("level_2_Description" , level_2_Description)
+    gig.set("level_2_Price", level_2_Price);
+    gig.set("level_3_Description" , level_3_Description)
+    gig.set("level_3_Price", level_3_Price);
+    gig.set("homePrice", homePrice);
+     // Associate gig with the user
 
     const result = await gig.save();
-    return result;
+    if( result){
+        return{
+            status:1
+        }
+    }
+    else{
+        return{
+            status:0
+        }
+    }
   } catch (error) {
     console.error("Error creating gig:", error);
     throw new Error("Failed to create gig");
@@ -37,8 +50,8 @@ Parse.Cloud.define("getGigs", async (request) => {
 
     return results.map(result => ({
         gigtitle: result.get('title'),
-        price: result.get('price'),
-        discription: result.get('discription_about_work'),
+        price: result.get('homePrice'),
+        type: result.get('type'),
     }));
 });
 
@@ -76,7 +89,7 @@ Parse.Cloud.define("createCardsForGigs", async () => {
                 // Create a new card object
                 const Card = Parse.Object.extend("Card");
                 const card = new Card();
-
+               
                 card.set("name", user.get("firstname"));
                 card.set("title", gig.get("title"));
                 card.set("price", gig.get("price"));
