@@ -76,7 +76,8 @@ Parse.Cloud.define("getGigById", async (request) => {
       level_1_Description: card.get("level_1_Description"),
       level_2_Description: card.get("level_2_Description"),
       level_3_Description: card.get("level_3_Description"),
-    
+      category : card.get("selectedCategory1"),
+      subcategory : card.get("selectedSubcategory"),
     };
 
     // Include user data if it exists

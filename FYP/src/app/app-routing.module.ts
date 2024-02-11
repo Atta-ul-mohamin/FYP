@@ -21,11 +21,16 @@ import { AboutusComponent } from './components/aboutus/aboutus.component';
 import { PrivacypolicyComponent } from './components/privacypolicy/privacypolicy.component';
 import { MessageTableComponent } from './message-table/message-table.component';
 import { ChatPageComponent } from './chat-page/chat-page.component';
+import { UpdateGigComponent } from './update-gig/update-gig.component';
 
 // import { StudentNamesResolver } from './services/student_names.resolver';
 
 
 const routes: Routes = [
+
+  {path:"edit_gig/:id",
+  component:UpdateGigComponent
+},
 
   {path:"chat-page/:id",
   component:ChatPageComponent

@@ -78,7 +78,27 @@ Parse.Cloud.define("updateUserStudent", async (request) => {
   if (user) {
     user.set("name", name);
     await user.save(null, { useMasterKey: true });
-    return { status: 1 }; // Indicate success
+    return { 
+      status: 1 
+     }; // Indicate success
+  } else {
+    return { status: 0 }; // User not found
+  }
+});
+
+Parse.Cloud.define("current_user_name", async (request) => {
+  const { objectId  } = request.params;
+  const query = new Parse.Query("MUser");
+  query.equalTo("objectId", objectId);
+
+  const user = await query.first();
+  
+  if (user) {
+    
+    return { 
+      status: 1,
+      name: user.get('name'),
+     }; // Indicate success
   } else {
     return { status: 0 }; // User not found
   }
