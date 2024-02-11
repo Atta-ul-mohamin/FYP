@@ -21,6 +21,7 @@ import { AboutusComponent } from './components/aboutus/aboutus.component';
 import { PrivacypolicyComponent } from './components/privacypolicy/privacypolicy.component';
 import { MessageTableComponent } from './message-table/message-table.component';
 import { ChatPageComponent } from './chat-page/chat-page.component';
+import { AccountControllComponent } from './components/account-controll/account-controll.component';
 import { UpdateGigComponent } from './update-gig/update-gig.component';
 
 // import { StudentNamesResolver } from './services/student_names.resolver';
@@ -127,6 +128,10 @@ const routes: Routes = [
     path:"gig-pricing",
     component:GigPricingComponent
 
+  },
+  {
+    path:"account_controll",
+    component:AccountControllComponent
   }
 
 

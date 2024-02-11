@@ -33,6 +33,7 @@ import { PrivacypolicyComponent } from './components/privacypolicy/privacypolicy
 import { FormsModule } from '@angular/forms';
 import { MessageTableComponent } from './message-table/message-table.component';
 import { ChatPageComponent } from './chat-page/chat-page.component';
+import { AccountControllComponent } from './components/account-controll/account-controll.component';
 import { UpdateGigComponent } from './update-gig/update-gig.component';
 
 
@@ -69,6 +70,7 @@ import { UpdateGigComponent } from './update-gig/update-gig.component';
          PrivacypolicyComponent,
          MessageTableComponent,
          ChatPageComponent,
+         AccountControllComponent,
          UpdateGigComponent,
        
   ],

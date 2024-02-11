@@ -1,0 +1,69 @@
+.user-inform h3{
+    font-weight: 500;
+}
+.user-inform img{
+    width: 60px;  
+    border-radius: 50%;
+    margin-right: 15px;
+    margin-top: 120px;
+}
+.sub-menu hr{
+    border: 1;
+    height: 1px;
+    width: 100%;
+    background: #ccc;
+    margin: 15px 0 10 px;
+
+}
+.sub-menu-linking{
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #525252;
+    margin: 12px 0;     /* margin from top and bottom is 12 px */
+
+}
+
+/* submenu linking */
+
+.sub-menu-linking p{
+    width: 100%;
+}
+.sub-menu-linking img{
+    width: 40px;
+    background: #e5e5e5;
+    border-radius: 50%;
+    padding: 8px;
+    margin-right: 15px;
+}
+.sub-menu-linking i{
+    width: 40px;
+    background: #e5e5e5;
+    border-radius: 50%;
+    padding: 8px;
+    margin-right: 15px;
+}
+.sub-menu-linking span{
+    font-size: 22px;
+     transition: transform 0.5s; /* waha transition ho gi jab ham profile submenu pe hover le jae ge tu waha 0.5s slow ho ga or pyara lage ga */
+
+   
+}
+.sub-menu-linking:hover span{
+    transform: translateX(5px);
+    
+}
+.sub-menu-linking:hover p{ /* font weight mota ho ga */
+
+    font-weight: 600;
+}
+
+
+
+
+
+
+
+
+
+
