@@ -73,19 +73,26 @@ export class ParseService {
    }
 
 
-   async gig_info_add(title : string , year_Of_Experience: string  , type: string, skillLevel: string , level: string   , level_1_Description: string  ,  level_1_Price: string  , level_2_Description: string  , level_2_Price: string  ,  level_3_Description: string  , level_3_Price: string , homePrice:string){
-    const params = {title , year_Of_Experience  , type, skillLevel , level  , level_1_Description  ,  level_1_Price, level_2_Description , level_2_Price  ,  level_3_Description , level_3_Price , homePrice, userId :this.currentUser.objectId };
+   async gig_info_add(title : string , year_Of_Experience: string  , type: string, skillLevel: string , level: string   , level_1_Description: string  ,  level_1_Price: string  , level_2_Description: string  , level_2_Price: string  ,  level_3_Description: string  , level_3_Price: string , homePrice:string , selectedCategory1: string, selectedSubcategory: string ){
+    const params = {title , year_Of_Experience  , type, skillLevel , level  , level_1_Description  ,  level_1_Price, level_2_Description , level_2_Price  ,  level_3_Description , level_3_Price , homePrice, selectedCategory1 , selectedSubcategory, userId :this.currentUser.objectId  };
+    console.log(title);
     console.log(this.currentUser.objectId);
     console.log(this.currentUser);
     const result = await Parse.Cloud.run("giginfo",params)
-    await Parse.Cloud.run("createCardsForGigs",params)
+    return result;
+   }
+
+   async update_gig_info_add(gigId : string ,title : string , year_Of_Experience: string  , type: string, skillLevel: string , level: string   , level_1_Description: string  ,  level_1_Price: string  , level_2_Description: string  , level_2_Price: string  ,  level_3_Description: string  , level_3_Price: string , homePrice:string , selectedCategory1: string, selectedSubcategory: string ){
+    const params = {gigId ,title , year_Of_Experience  , type, skillLevel , level  , level_1_Description  ,  level_1_Price, level_2_Description , level_2_Price  ,  level_3_Description , level_3_Price , homePrice, selectedCategory1 , selectedSubcategory, userId :this.currentUser.objectId  };
+    console.log(title);
+    console.log(this.currentUser.objectId);
+    console.log(this.currentUser);
+    const result = await Parse.Cloud.run("updateGiginfo",params)
     return result;
    }
 
 
-
-
-async getGigs(): Promise<any[]> {
+ async getGigs(): Promise<any[]> {
   try {
       console.log(this.user.objectId);
       const params = {userId: this.user.objectId}
@@ -99,7 +106,29 @@ async getGigs(): Promise<any[]> {
   }
 }
 
+async deleteGig( gigId : string) {
 
+  if (this.currentUser && this.currentUser.objectId) {
+    console.log(this.currentUser.id);
+    const params = {gigId}
+     const result =await  Parse.Cloud.run('deleteGig', params); 
+     return result ;
+    // Remove user from local storage on logout
+    
+  } else {
+    alert('No user is currently logged in.');
+  }
+}
+
+async getGigById(id: string): Promise<any> {
+  try {
+    const response = await Parse.Cloud.run('getGigById', { id });
+    return response;
+  } catch (error) {
+    console.error('Error fetching card by ID from Cloud Code', error);
+    throw error;
+  }
+}
   // In parse.service.ts
 
   // In parse.service.ts
@@ -121,6 +150,7 @@ async getStudentIdsByTeacherId(teacherId: string): Promise<string[]> {
   // In parse.service.ts
   
   async getStudentNamesByIds(studentIds: string[]): Promise<string[]> {
+
     const params = { studentIds };
     const response = await Parse.Cloud.run('getStudentNamesByIds', params);
     console.log(response, 'name gets in parse')

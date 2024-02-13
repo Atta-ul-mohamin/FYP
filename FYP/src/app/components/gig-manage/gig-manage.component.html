@@ -40,8 +40,8 @@ ok
                   <td>{{ gig.gigtitle}}</td>
                   <td>{{ gig.type }}</td>
                   <td>{{ gig.price }}</td>
-                  <td class="text-center"><button>Edit</button></td>
-                  <td class="text-center"><button>Delete</button></td>
+                  <td class="text-center"><button [routerLink]="['/edit_gig', gig.objectId]">Edit</button></td>
+                  <td class="text-center"><button (click)="deleteGig(gig.objectId)">Delete</button></td>
                 </tr>
               </tbody>
             </table>

@@ -1,5 +1,5 @@
 Parse.Cloud.define("giginfo", async (request) => {
-  const {  title , year_Of_Experience  , type, skillLevel , level  , level_1_Description  ,  level_1_Price, level_2_Description , level_2_Price  ,  level_3_Description , level_3_Price , homePrice ,userId } = request.params;
+  const {  title , year_Of_Experience  , type, skillLevel , level  , level_1_Description  ,  level_1_Price, level_2_Description , level_2_Price  ,  level_3_Description , level_3_Price , homePrice , selectedCategory1, selectedSubcategory,userId } = request.params;
 
   try {
     const userPointer = Parse.User.createWithoutData(userId);
@@ -20,6 +20,8 @@ Parse.Cloud.define("giginfo", async (request) => {
     gig.set("level_3_Description" , level_3_Description)
     gig.set("level_3_Price", level_3_Price);
     gig.set("homePrice", homePrice);
+    gig.set("selectedCategory1", selectedCategory1);
+    gig.set("selectedSubcategory", selectedSubcategory);
      // Associate gig with the user
 
     const result = await gig.save();
@@ -40,6 +42,60 @@ Parse.Cloud.define("giginfo", async (request) => {
 });
 
 
+Parse.Cloud.define("updateGiginfo", async (request) => {
+    const {  gigId ,title , year_Of_Experience  , type, skillLevel , level  , level_1_Description  ,  level_1_Price, level_2_Description , level_2_Price  ,  level_3_Description , level_3_Price , homePrice , selectedCategory1, selectedSubcategory,userId } = request.params;
+  
+
+    
+
+        const query = new Parse.Query("create_gig");
+        const gig = await query.get(gigId, { useMasterKey: true });
+      
+        if (gig) {
+        //   gig.set("name", name);
+        gig.set("userId", { "__type": "Pointer", "className": "MUserT", "objectId": userId });
+        gig.set("title", title);
+        gig.set("year_Of_Experience", year_Of_Experience);
+        gig.set("type", type);
+        gig.set("skillLevel", skillLevel);
+        gig.set("level", level);
+        gig.set("level_1_Description", level_1_Description);
+        gig.set("level_1_Price" , level_1_Price)
+        gig.set("level_2_Description" , level_2_Description)
+        gig.set("level_2_Price", level_2_Price);
+        gig.set("level_3_Description" , level_3_Description)
+        gig.set("level_3_Price", level_3_Price);
+        gig.set("homePrice", homePrice);
+        gig.set("selectedCategory1", selectedCategory1);
+        gig.set("selectedSubcategory", selectedSubcategory);
+          await gig.save(null, { useMasterKey: true });
+          return { 
+            status: 1 
+           }; // Indicate success
+        } else {
+          return { status: 0 }; // User not found
+        }
+
+      
+  });
+  
+
+  Parse.Cloud.define("deleteGig", async (request) => {
+    const gigId = request.params.gigId;
+    const query = new Parse.Query("create_gig");
+    console.log(query);
+    query.equalTo("objectId", gigId);
+     
+    const user = await query.first({ useMasterKey: true });
+    console.log(user);
+    if (user) {
+      await user.destroy({ useMasterKey: true });
+      return { status: 1 }; // Indicate success
+    } else {
+      return { status: 0 }; // User not found
+    }
+  });
+
 
 Parse.Cloud.define("getGigs", async (request) => {
 
@@ -52,6 +108,7 @@ Parse.Cloud.define("getGigs", async (request) => {
         gigtitle: result.get('title'),
         price: result.get('homePrice'),
         type: result.get('type'),
+        objectId : result.id,
     }));
 });
 

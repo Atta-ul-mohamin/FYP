@@ -34,10 +34,12 @@ import { FormsModule } from '@angular/forms';
 import { MessageTableComponent } from './message-table/message-table.component';
 import { ChatPageComponent } from './chat-page/chat-page.component';
 import { AccountControllComponent } from './components/account-controll/account-controll.component';
+import { UpdateGigComponent } from './update-gig/update-gig.component';
 
 
 @NgModule({
   declarations: [
+   
     AppComponent,
     HeaderComponent,
     FooterComponent,
@@ -69,6 +71,7 @@ import { AccountControllComponent } from './components/account-controll/account-
          MessageTableComponent,
          ChatPageComponent,
          AccountControllComponent,
+         UpdateGigComponent,
        
   ],
   imports: [
