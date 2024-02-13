@@ -17,10 +17,7 @@ export class SigninComponent {
   async onLogin(email: string, password: string) {
     // Call the login() method from the AuthService
     this.authService.login();
-    // this.router.navigate(['/home-after-login']);
-    // Navigate to the desired page after login
-    // (e.g., navigate to 'home-after-login')
-    // This should be handled based on your routing setup
+    
     const user = await this.parseService.login(email, password);
     if (user == 1) {
       alert('Login successful ');
@@ -29,4 +26,12 @@ export class SigninComponent {
       alert('incorrect name or password');
     }
   }
+  onGoogleLogin() {
+    this.authService.googleLogin().then(() => {
+      this.router.navigate(['/home-after-login']);
+    }).catch((error: any) => {
+      console.error('Google Sign-In error:', error);
+    });
+  }
+  
 }
