@@ -1,3 +1,20 @@
+<!-- Google Sign-In button and One Tap sign-in -->
+<div id="g_id_onload"
+     data-client_id="97636471110-ul294qidbi6pnruhcn01p7123k8duoh8.apps.googleusercontent.com"
+     data-context="signin"
+     data-ux_mode="popup"
+     data-login_uri="http://localhost:4200/path-to-your-backend-google-auth-handler"
+     data-auto_prompt="false">
+</div>
+
+<div class="g_id_signin"
+     data-type="standard"
+     data-shape="rectangular"
+     data-theme="filled_blue"
+     data-text="signin_with"
+     data-size="large"
+     data-logo_alignment="left">
+</div>
 <section  (submit)="onLogin(email.value, password.value)">
   <div class="container py-5">
     <div class="row d-flex justify-content-center align-items-center">
@@ -23,7 +40,7 @@
               </div>
 
               <button type="button" class="btn btn-dark btn-lg btn-block" (click)="onLogin(email.value, password.value)">Login</button>
-
+                <button (click)="onGoogleLogin()" class="btn btn-google btn-lg btn-block">Sign in with Google</button>
 
               <a class="small text-muted" href="#" [routerLink]="['/forget-pin']">Forgot password?</a>
               <p class="mb-3" style="color: #0d1785;">Don't have an account?

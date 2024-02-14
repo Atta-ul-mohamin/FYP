@@ -19,6 +19,7 @@ export class SigninComponent {
 
   
     this.authService.login();
+    
    
   
    
@@ -36,6 +37,12 @@ export class SigninComponent {
    
     }
   }
-
-
+  onGoogleLogin() {
+    this.authService.googleLogin().then(() => {
+      this.router.navigate(['/home-after-login']);
+    }).catch((error: any) => {
+      console.error('Google Sign-In error:', error);
+    });
+  }
+  
 }
