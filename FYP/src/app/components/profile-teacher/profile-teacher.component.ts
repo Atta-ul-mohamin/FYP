@@ -50,12 +50,10 @@ export class ProfileTeacherComponent {
       }
     } catch (error) {
       console.error('Error loading card details', error);
-      // Handle the error
+     
     }
       
-      // this.currentName = result.name;
-      // console.log(this.currentName);
-       // Set the current name if fetched
+
     }
 
 }

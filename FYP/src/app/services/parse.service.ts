@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import * as Parse from 'parse' ;
 import { Message } from '../chat-page/message.model';
+import { HttpClient } from '@angular/common/http';
 @Injectable({
   providedIn: 'root'
 })
 export class ParseService {
   private readonly USER_KEY = 'currentUser';
-  constructor() {
+  constructor(private http: HttpClient) {
     Parse.initialize('myAppId', 'myMasterKey');
     (Parse as any).serverURL = 'http://localhost:1336/parse';
 
@@ -43,7 +44,7 @@ export class ParseService {
   }
 
   
-   async submit_profile( phone:string, gender:string,age:string ,location:string,language:string,description:string){
+   async submit_profile( phone:number, gender:string,age:number ,location:string,language:string,description:string){
    
     const params = { phone,gender,age,location,language, description ,userId :this.currentUser.objectId}
      const result = await Parse.Cloud.run("profileuser",params)

@@ -125,10 +125,10 @@ export class AuthService {
       });
     });
   }
-
+  // googleUser: gapi.auth2.GoogleUser
   googleLogin(): Promise<void> {
     return new Promise((resolve, reject) => {
-      gapi.auth2.getAuthInstance().signIn().then((googleUser: gapi.auth2.GoogleUser) => {
+      gapi.auth2.getAuthInstance().signIn().then(() => {
         // Here you can use googleUser.getBasicProfile() and googleUser.getAuthResponse() to get user details and the token
         this.loggedInStatus.next(true);
         localStorage.setItem(this.isLoggedInKey, 'true');

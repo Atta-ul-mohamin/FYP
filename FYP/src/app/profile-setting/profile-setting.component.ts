@@ -1,6 +1,6 @@
 
 import { Component } from '@angular/core';
-import { AuthService } from 'src/app/services/auth.service';
+
 import { ActivatedRoute } from '@angular/router';
 import { ParseService } from 'src/app/services/parse.service';
 import { Router } from '@angular/router';
@@ -23,7 +23,7 @@ export class ProfileSettingComponent  {
   selectedgender:string ="";
   profileId:string="";
   //yaha par jo parse service lagana he yaha ae ga or authentication b
-  constructor(private service: ParseService, private authService: AuthService, private route: ActivatedRoute , private router: Router) { }
+  constructor(private service: ParseService, private route: ActivatedRoute , private router: Router) { }
  
   ngOnInit() {
     this.teacherID = this.route.snapshot.paramMap.get('id') as string;
