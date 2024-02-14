@@ -20,7 +20,7 @@ export class ProfileComponent {
   selectedgender:string ="";
   //yaha par jo parse service lagana he yaha ae ga or authentication b
   constructor(private service: ParseService, private authService: AuthService, private router: Router) { }
- 
+  
 
   getLocation() {
     if (navigator.geolocation) {

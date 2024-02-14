@@ -150,10 +150,6 @@ filteredSubcategories: string[] = [];
       const fullTitle = `I will ${this.title}`;
       // Now use fullTitle for your submission or processing logic
     }
-  
-
-
-  
 
   }
 
