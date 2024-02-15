@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import * as Parse from 'parse' ;
 import { Message } from '../chat-page/message.model';
+import { HttpClient } from '@angular/common/http';
 @Injectable({
   providedIn: 'root'
 })
 export class ParseService {
   private readonly USER_KEY = 'currentUser';
-  constructor() {
+  constructor(private http: HttpClient) {
     Parse.initialize('myAppId', 'myMasterKey');
     (Parse as any).serverURL = 'http://localhost:1336/parse';
 
@@ -43,24 +44,17 @@ export class ParseService {
   }
 
   
-   async submit_profile( phone:string, gender:string,age:string ,location:string,language:string,description:string){
-    // let parseFile: Parse.File | null = null;
-    // if (file) {
-    //   parseFile = new Parse.File(file.name, file);
-    //   console.log(file);
-    //   console.log('reached');
-    //   console.log(parseFile);
-    //   try {
-    //     await parseFile.save();
-    //   } catch (error) {
-    //     console.error('Error saving file to Parse:', error);
-    //     // Optionally, handle the error or return from the function
-    //     return;
-    //   }
-    // }
-    // console.log(file);
+   async submit_profile( phone:number, gender:string,age:number ,location:string,language:string,description:string){
+   
     const params = { phone,gender,age,location,language, description ,userId :this.currentUser.objectId}
      const result = await Parse.Cloud.run("profileuser",params)
+     return result;
+   }
+
+   async update_submit_profile( profileId : string, teacherid: string ,phone:string, gender:string,age:string ,location:string,language:string,description:string){
+   
+    const params = { profileId,teacherid,phone,gender,age,location,language, description ,userId :this.currentUser.objectId}
+     const result = await Parse.Cloud.run("update_profileuser",params)
      return result;
    }
   
@@ -120,6 +114,20 @@ async deleteGig( gigId : string) {
   }
 }
 
+async deleteProfile( ProfileId : string) {
+
+  if (this.currentUser && this.currentUser.objectId) {
+    console.log(this.currentUser.id);
+    const params = {ProfileId}
+     const result =await  Parse.Cloud.run('deleteProfile', params); 
+     return result ;
+    // Remove user from local storage on logout
+    
+  } else {
+    alert('No user is currently logged in.');
+  }
+}
+
 async getGigById(id: string): Promise<any> {
   try {
     const response = await Parse.Cloud.run('getGigById', { id });
@@ -129,7 +137,17 @@ async getGigById(id: string): Promise<any> {
     throw error;
   }
 }
-  // In parse.service.ts
+
+async getProfileById(id: string): Promise<any> {
+  try {
+    const response = await Parse.Cloud.run('getProfileById', { id });
+    return response;
+  } catch (error) {
+    console.error('Error fetching card by ID from Cloud Code', error);
+    throw error;
+  }
+}
+
 
   // In parse.service.ts
 

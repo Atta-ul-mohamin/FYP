@@ -23,6 +23,7 @@ import { MessageTableComponent } from './message-table/message-table.component';
 import { ChatPageComponent } from './chat-page/chat-page.component';
 import { AccountControllComponent } from './components/account-controll/account-controll.component';
 import { UpdateGigComponent } from './update-gig/update-gig.component';
+import { ProfileSettingComponent } from './profile-setting/profile-setting.component';
 
 // import { StudentNamesResolver } from './services/student_names.resolver';
 
@@ -31,6 +32,9 @@ const routes: Routes = [
 
   {path:"edit_gig/:id",
   component:UpdateGigComponent
+},
+{path:"profile_setting/:id",
+component:ProfileSettingComponent
 },
 
   {path:"chat-page/:id",

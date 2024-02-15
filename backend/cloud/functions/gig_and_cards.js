@@ -52,7 +52,7 @@ Parse.Cloud.define("updateGiginfo", async (request) => {
         const gig = await query.get(gigId, { useMasterKey: true });
       
         if (gig) {
-        //   gig.set("name", name);
+ 
         gig.set("userId", { "__type": "Pointer", "className": "MUserT", "objectId": userId });
         gig.set("title", title);
         gig.set("year_Of_Experience", year_Of_Experience);

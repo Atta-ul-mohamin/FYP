@@ -35,8 +35,9 @@ import { MessageTableComponent } from './message-table/message-table.component';
 import { ChatPageComponent } from './chat-page/chat-page.component';
 import { AccountControllComponent } from './components/account-controll/account-controll.component';
 import { UpdateGigComponent } from './update-gig/update-gig.component';
-
-
+import { ProfileSettingComponent } from './profile-setting/profile-setting.component';
+import { HttpClientModule } from '@angular/common/http';
+import { ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
    
@@ -72,6 +73,7 @@ import { UpdateGigComponent } from './update-gig/update-gig.component';
          ChatPageComponent,
          AccountControllComponent,
          UpdateGigComponent,
+         ProfileSettingComponent,
        
   ],
   imports: [
@@ -79,8 +81,9 @@ import { UpdateGigComponent } from './update-gig/update-gig.component';
     AppRoutingModule,
     NgbModule,
     FontAwesomeModule,
-    FormsModule
-
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule
     
   ],
   providers: [],
