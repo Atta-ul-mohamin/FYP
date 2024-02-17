@@ -37,14 +37,13 @@ export class ProfessionDetailsComponent  {
     //   return false;
     // }
 
-    alert(' teacher proffesion  created successfully');
 
       
     // this.router.navigate(['/login']);
    const result =   await this.service.submit_education_proffesion(schoolName,schoolClass , schoolType , collegeName , collegeClass , collegeType, universityName, universityDegree , skills, hobbies  );
    if (result.status===1)
    {
-alert('proffesional details successfuly upload')
+     alert('proffesional details successfuly upload')
    } 
     else{
       alert('error coming in uploading proffesional details')

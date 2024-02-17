@@ -1,0 +1,203 @@
+
+<!-- <section style="background-color: #d3d3d3;" (submit)="personal_detail_to_home()"> -->
+    <section style="background-color: #d3d3d3;" >
+        <div class="container my-5 py-5 h-100">
+          <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col col-xl-6">
+              <div class="card" style="border-radius: 2rem;">
+                <div class="row g-0">
+                  <div class="col-md-6 col-lg-12 d-flex align-items-center">
+                    <div class="card-body p-4 p-lg-5 text-black">
+                      <form style="margin: 0% 10% 0% 10%;">
+                        <h5 class="fw-normal mb-3 pb-3 fs-1" style="letter-spacing: 1px;">
+                          Professional Details
+                        </h5>
+      
+                        <div class="custom-box1"  >
+                            <div  class="form-outline mb-4">
+                              <label class="fw-bold my-1 py-1">School Name</label>
+                              <input type="text" id="f" class="form-control form-control-lg" [(ngModel)]="schoolName" placeholder="write full form of your school"  name="schoolname" >
+                            </div>
+      
+                            <div class="form-group mb-4">
+                              <label class="fw-bold my-1 py-1">Choose Class </label>
+                              <br>
+                              <div class="btn-group" data-toggle="buttons-level">
+                                  <label class="btn btn-light-orange">
+                                      <input type="radio" name="schoollevel" [(ngModel)]="schoolLevel" value="8 or less"> 8 or less
+                                  </label>
+                                  <label class="btn btn-light-orange">
+                                      <input type="radio" name="schoollevel" [(ngModel)]="schoolLevel" value="9" > 9
+                                  </label>
+                                  <label class="btn btn-light-orange">
+                                      <input type="radio" name="schoollevel" [(ngModel)]="schoolLevel" value="10" > 10 
+                                    </label>
+                                   
+                                    <label class="btn btn-light-orange">
+                                      <input type="radio" name="schoollevel" [(ngModel)]="schoolLevel"  > other
+                                    </label>
+                                   
+                              </div>
+                          </div>
+                          
+                          <fieldset [disabled]="schoolLevel === '8 or less'">
+                          <div  class="form-outline mb-4" >
+                            <label class="fw-bold my-1 py-1" >Type</label>
+                            <input type="schoolname" id="f" class="form-control form-control-lg"  [(ngModel)]="schoolType" placeholder="medical/ O level etc"  name="schoolType" >
+                          </div>
+                        </fieldset>
+                          </div>
+      
+                          <br>
+                          <br>
+       
+                          <fieldset [disabled]="schoolLevel === '8 or less' || schoolLevel === '9'">
+                          <div class="custom-box2"  >
+                            <div  class="form-outline mb-4">
+                              <label class="fw-bold my-1 py-1">College Name</label>
+                              <input type="text" id="f" class="form-control form-control-lg" [(ngModel)]="collegeName" placeholder="write full form of your college"  name="collegelname" >
+                            </div>
+      
+                            <div class="form-group mb-4">
+                              <label class="fw-bold my-1 py-1">Choose Class</label>
+                              <br>
+                              <div class="btn-group" data-toggle="buttons-level">
+                                  <label class="btn btn-light-orange">
+                                      <input type="radio" name="collegelevel"  [(ngModel)]="collegelevel" value="11" > 11
+                                  </label>
+                                  <label class="btn btn-light-orange">
+                                      <input type="radio" name="collegelevel"  [(ngModel)]="collegelevel" value="12" > 12
+                                  </label>
+                                  <label class="btn btn-light-orange">
+                                    <input type="radio" name="schoollevel" [(ngModel)]="schoolLevel" value="other" > other
+                                  </label>
+                              </div>
+                          </div>
+      
+                          <div  class="form-outline mb-4">
+                            <label class="fw-bold my-1 py-1">Type</label>
+                            <input type="text" id="f" class="form-control form-control-lg" [(ngModel)]="collegeType" placeholder="pre-medical / A level etc"  name="collegetype" >
+                          </div>
+      
+                          </div>
+                        </fieldset>
+      
+                         <br>
+                         <br>
+      
+                         <fieldset [disabled]="schoolLevel === '8 or less' || schoolLevel === '9' || collegelevel === '11'">
+                          <div class="custom-box3"  >
+                            <div  class="form-outline mb-4">
+                              <label class="fw-bold my-1 py-1">University Name</label>
+                              <input type="schoolname" id="f" class="form-control form-control-lg" placeholder="write full form of your university" [(ngModel)]="universityName" name="universityname" >
+                            </div>
+      
+      
+                          <div  class="form-outline mb-4">
+                            <label class="fw-bold my-1 py-1">Degree Name</label>
+                            <input type="schoolname" id="f" class="form-control form-control-lg" placeholder="bachelore in .. etc"  name="universitydegree" [(ngModel)]="universityDegree">
+                          </div>
+      
+                          </div>category
+                        </fieldset>
+       <br>
+       <br>
+                        <fieldset >
+                          <div class="custom-box3"  >
+                            <div  class="form-outline mb-4">
+                              <label class="fw-bold my-1 py-1">Skills</label>
+                              <input type="text" id="f" class="form-control form-control-lg" placeholder="like video editor , graphic designer etc"  name="Skills" [(ngModel)]="skills">
+                            </div>
+      
+      
+                          <div  class="form-outline mb-4">
+                            <label class="fw-bold my-1 py-1">hobbies</label>
+                            <input type="text" id="f" class="form-control form-control-lg" placeholder="like reading , swimming etc"  name="Hobbies" [(ngModel)]="hobbies">
+                          </div>
+      
+      
+                            <div class="form-outline mb-4">
+                              <label class="fw-bold my-1 py-1">Skills Certificate</label>
+                              <input type="file" id="skillsCertificate" accept=".pdf" name="skillscertificate" >
+                             
+                            </div>
+                            
+                         
+                          </div>
+                          
+                       
+                        </fieldset>
+      
+                 <br>
+                 <br>
+                      
+                           
+                            <div  class="pt-1 mb-4">
+                              <button  class="btn btn-dark btn-lg btn-block"  type="edit" (click)="proffesionEducation(schoolName , schoolLevel , schoolType , collegeName , collegelevel , collegeType, universityName , universityDegree, skills, hobbies)">
+                                Submit
+                              </button>
+
+                              <button class="btn btn-dark btn-lg btn-block " 
+                              (click)="deleteProfession(teacherID)">
+                              
+                                      Delete
+                              </button>
+                            </div>
+      
+      
+                        <div class="pt-1 mb-4">
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+                        
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <!-- 
+      
+      <div class="form-outline mb-4">
+        <label class="fw-bold my-1 py-1" for="categorySelect">Choose Category</label>
+      
+          <select class="form-select form-control form-control-lg"
+                  [(ngModel)]="selectedCategory"
+                  (ngModelChange)="onCategoryChange($event)"
+                  name="categorySelect">
+            <option value="" disabled selected>Choose Category...</option>
+            <option value="education">education</option>
+            <option value="medical">medical</option>
+            <option value="mechanic">mechanic</option>
+          </select>
+        </div>
+        
+          <div *ngIf="selectedCategory === 'education'" class="form-outline mb-4">
+            <label class="fw-bold my-1 py-1" for="educationSelect">Education Level</label>
+            <select class="form-select form-control form-control-lg"
+                    [(ngModel)]="selectedEducationLevel"
+                    (ngModelChange)="onEducationLevelChange($event)"
+                    name="educationSelect">
+              <option value="" disabled selected>Choose Education Level...</option>
+              <option value="matric">Matric</option>
+              <option value="fsc">FSC</option>
+              <option value="university">University</option>
+            </select>
+          </div> -->

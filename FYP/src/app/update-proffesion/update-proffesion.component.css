@@ -1,0 +1,27 @@
+.btn-light-orange {
+    color: #ffffff; /* Text color */
+    background-color: orange; /* Light Orange background color */
+    border-color: orange; /* Border color */
+}
+
+.btn-light-orange.active {
+    background-color: orange; /* Active state background color */
+}
+
+.custom-box1 {
+    border: 2px solid rgba(255, 166, 0, 0.599); /* Add an orange border with 2px width */
+    padding: 20px; /* Add padding for spacing inside the box */
+    border-radius: 10px;
+}
+
+.custom-box2 {
+    border: 2px solid rgba(255, 166, 0, 0.599); /* Add an orange border with 2px width */
+    padding: 20px; /* Add padding for spacing inside the box */
+    border-radius: 10px;
+}
+
+.custom-box3 {
+    border: 2px solid rgba(255, 166, 0, 0.599); /* Add an orange border with 2px width */
+    padding: 20px; /* Add padding for spacing inside the box */
+    border-radius: 10px;
+}

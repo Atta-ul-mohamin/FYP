@@ -24,8 +24,8 @@
                   <h5 class=" justify-content-between">
                     <span class="align-self-center">
                       <br>
-                      <p class="text-center">Mohamin786</p>
-                      <p style="color:darkgray ; font-size:small;"class="text-center m">@attaulmohamin</p>
+                      <p class="text-center">{{name}}</p>
+                      <p style="color:darkgray ; font-size:small;"class="text-center m">{{email}}</p>
                     </span>
                   </h5>     
                 </div>
@@ -49,13 +49,13 @@
                 </div>
 
 
-                <div class="col-3">
-                  <a href="">
+                <div class="col-3" [routerLink]="['/gigmanage']" >
+                  
                     <h6  class="hover-blue"> 
                       <br>
                       Gigs
                     </h6> 
-                  </a>                            
+                                            
                 </div>
 
 
@@ -103,7 +103,7 @@
                         <i class="bi bi-person icon ms-3"></i>
                         <div>
                           <p class="from-text ms-4">Member since</p>
-                          <p class="location-text ms-3">March 2023</p>
+                          <p class="location-text ms-3">{{created}}</p>
                         </div>
                       </div>
                     </div>

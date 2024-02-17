@@ -1,6 +1,5 @@
 
 import { Component } from '@angular/core';
-
 import { ActivatedRoute } from '@angular/router';
 import { ParseService } from 'src/app/services/parse.service';
 import { Router } from '@angular/router';

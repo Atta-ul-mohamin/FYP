@@ -33,3 +33,46 @@ Parse.Cloud.define("addUserTeacher", async (request) => {
         }
       });
 
+
+      Parse.Cloud.define("getSignupById", async (request) => {
+        const { id } = request.params;
+        const signup = Parse.Object.extend("MUserT");
+        const query = new Parse.Query(signup);
+      
+        // Adjust the query to match 'userId' field with the provided 'id'
+        query.equalTo("objectId", id); // This line is changed to search by userId
+      
+        try {
+          const Signup = await query.first(); // Use first() if you expect a single result for a given userId
+      
+          if (!Signup) {
+            // If no profile is found, return a message indicating that
+            return {
+              status: 0,
+              message: "Sign up teacher data not found",
+            };
+          }
+      
+          // Assuming profile exists, construct response data
+          const responseData = {
+            objectId: Signup.id,
+            name: Signup.get("firstname"),
+            email: Signup.get("email"),
+            created: Signup.get("createdAt"),
+           
+          };
+      
+          // Return the response data with status code indicating success
+          return {
+            status: 1,
+            data: responseData,
+          };
+        } catch (error) {
+          console.error('Error fetching Signup teacher data by ID', error);
+          return {
+            status: 0,
+            message: "Error fetching  Signup teacher data by ID",
+            error: error.message,
+          };
+        }
+      });

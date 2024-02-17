@@ -19,6 +19,9 @@ export class ProfileTeacherComponent {
  phone:string='';
  selectedgender:string ="";
  profileId:string="";
+ name:string="";
+ email:string="";
+ created:string=""
  constructor(private service: ParseService, private authService: AuthService, private route: ActivatedRoute , private router: Router) { }
 
 
@@ -27,15 +30,14 @@ export class ProfileTeacherComponent {
     this.teacherId = this.service.user.objectId;
     console.log(this.teacherId);
     this.fetchProfileData();
+    this.fetchSignupData();
   }
 
   async fetchProfileData() {
     
     try {
       const result = await this.service.getProfileById(this.teacherId);
-      
       if (result.status === 1) {
-
        console.log(result)
        this.language = result.data.language;
        this.phone = result.data.phone;
@@ -43,18 +45,32 @@ export class ProfileTeacherComponent {
        this.userLocation = result.data.location;
        this.age= result.data.age;
        this.selectedgender = result.data.gender;
-       this.profileId = result.data.objectId;
-       
+       this.profileId = result.data.objectId;  
       } else {
         // Handle the error case
       }
     } catch (error) {
-      console.error('Error loading card details', error);
-     
-    }
-      
-
+      console.error('Error loading card details', error);     
+    }   
     }
 
+    async fetchSignupData() {
+    
+      try {
+        const result = await this.service.getSignupById(this.teacherId);
+        if (result.status === 1) {
+  
+         console.log(result)
+         this.name = result.data.name;
+         this.email = result.data.email;
+         this.created = result.data.created;
+        
+        } else {
+          // Handle the error case
+        }
+      } catch (error) {
+        console.error('Error loading sign up details', error);     
+      }   
+      }
 }
 
