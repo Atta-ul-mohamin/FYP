@@ -29,7 +29,7 @@ export class SigninComponent {
    
       alert('Login successful ');
    
-      this.router.navigate(['/home-after-login']);
+      this.router.navigate(['/profile']);
    
     } if (user == 0) {
    

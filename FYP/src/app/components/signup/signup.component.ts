@@ -42,7 +42,7 @@ export class SignupComponent {
         this.authService.login();
   
         // Navigate to the profile page
-        this.router.navigate(['/profile']);
+        this.router.navigate(['/']);
       })
       .catch((error) => {
         // Handle any error that might occur during signup

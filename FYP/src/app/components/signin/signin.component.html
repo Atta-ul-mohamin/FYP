@@ -15,6 +15,9 @@
      data-size="large"
      data-logo_alignment="left">
 </div>
+
+<h1 class="text-center" style="color: orangered;"> STEP 1 of 3 </h1>
+
 <section  (submit)="onLogin(email.value, password.value)">
   <div class="container py-5">
     <div class="row d-flex justify-content-center align-items-center">
@@ -39,7 +42,7 @@
                 <label class="form-label" for="password">Password</label>
               </div>
 
-              <button type="button" class="btn btn-dark btn-lg btn-block" (click)="onLogin(email.value, password.value)">Login</button>
+              <button type="button" class="btn btn-dark btn-lg btn-block" (click)="onLogin(email.value, password.value)" style="background-color: orange;">Login</button>
                 <button (click)="onGoogleLogin()" class="btn btn-google btn-lg btn-block">Sign in with Google</button>
                  <!-- <button  class="btn btn-google btn-lg btn-block">Sign in with Google</button> -->
 

@@ -89,7 +89,7 @@ export class ProfileComponent {
 
 
     if (age === undefined || !Number.isInteger(age) || age < 0 || age > 120) {
-      alert('Please enter a valid age.');
+      alert('Please enter a valid age');
       return;
     }
 

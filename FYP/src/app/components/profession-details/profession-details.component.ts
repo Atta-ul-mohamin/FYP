@@ -43,14 +43,16 @@ export class ProfessionDetailsComponent  {
    const result =   await this.service.submit_education_proffesion(schoolName,schoolClass , schoolType , collegeName , collegeClass , collegeType, universityName, universityDegree , skills, hobbies  );
    if (result.status===1)
    {
-     alert('proffesional details successfuly upload')
+     alert('proffesional details successfuly upload'),
+     this.router.navigate(['/home-after-login']);
    } 
     else{
       alert('error coming in uploading proffesional details')
     }
+    
   }
  
-  // personal_detail_to_home() {
-  //   this.router.navigate(['/home-after-login']);
-  // }
+ 
+   
+  
 }
