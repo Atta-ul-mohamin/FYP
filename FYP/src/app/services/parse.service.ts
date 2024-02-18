@@ -22,6 +22,34 @@ export class ParseService {
     await Parse.Cloud.run("addUserTeacher",params)
    }
 
+   async submitProfileWithImage(phone: number, gender: string, age: number, location: string, language: string, description: string, file: File) {
+    const maxFileSizeAllowedInBytes = 10485760; // Example: 10 MB limit (in bytes)
+    if (file.size > maxFileSizeAllowedInBytes) {
+      throw new Error('File size exceeds the maximum limit allowed.');
+    }
+    try {
+      const parseFile = new Parse.File(file.name, file);
+      await parseFile.save();
+      const params = {
+        phone,
+        gender,
+        age,
+        location,
+        language,
+        description,
+        image: parseFile, // Pass the Parse.File object
+        userId: this.currentUser.objectId
+      };
+  
+      const result = await Parse.Cloud.run("profileuser", params);
+      return result;
+    } catch (error) {
+      console.error('Error while saving file:', error);
+      throw error; // Rethrow the error to propagate it to the caller
+    }
+  }
+  
+
    async login(email: string, password: string) {
     const params ={email,password};
     const response = await Parse.Cloud.run("loginTeacher" , params);

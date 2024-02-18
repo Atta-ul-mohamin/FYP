@@ -4,6 +4,7 @@ const ParseServer = require('parse-server').ParseServer;
 const app = express();
 const router = express.Router()
 const cors = require('cors');
+
 const api = ParseServer({
   databaseURI: process.env.databaseURI,
   cloud: __dirname + '/cloud/main.js', // Absolute path to your Cloud Code
