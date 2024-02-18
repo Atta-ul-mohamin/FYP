@@ -64,6 +64,7 @@ export class ProfileComponent {
 
 
 
+
   async submit_profile(phone: number, gender: string, age: number, location: string, language: string, description: string) {
 
     // for words
@@ -79,6 +80,11 @@ export class ProfileComponent {
     alert('Description should more than 100 characters.');
     return;
    }
+
+  
+    
+
+
 
     if (age === undefined || !Number.isInteger(age) || age < 0 || age > 120) {
       alert('Please enter a valid age.');
@@ -139,3 +145,4 @@ export class ProfileComponent {
 
 
 }
+
