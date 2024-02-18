@@ -13,12 +13,13 @@
                                     </h5>
                                    
                                     <div class="ms-auto">
-                                        <!-- <img  class="rounded-circle" alt="avatar1" src="assets\images\mahi.jpg " style="height: 20vh; width: 20vb;border-radius: 1rem 0 0 1rem; margin: 20px 0;margin-left: 35%;" /> -->
-                                       
-                                        <input type="file" class="form-control-file  " id="exampleFormControlFile1" style="margin-left: 35%;" #image>
-                                          
-                                        <!-- <input type="file" class="form-control-file  " id="exampleFormControlFile1" style="margin-left: 35%;" (change)="handleFileInput($event.target.files)"#image> -->
+                                         <img class="rounded-circle" alt="avatar1" src="assets\images\mahi.jpg " style="height: 20vh; width: 20vb;border-radius: 1rem 0 0 1rem; margin: 20px 0;margin-left: 35%;" />        
                                     </div>
+
+                                    <!-- <div class="form-outline mb-4">
+                                        <label class="fw-bold my-1 py-1">Profile Picture</label>
+                                        <input type="file" (change)="onFileChanged($event)" class="form-control form-control-lg">
+                                      </div> -->
                                       
                                    
                                     
@@ -61,10 +62,12 @@
                                       </div>
 
                                       <div class="form-outline mb-4">
-                                        <label  class="fw-bold my-1 py-1">Your Description (optional)</label>
-                                        <textarea class="form-control form-control-lg" name="languagesSpoken" placeholder="" rows="4" #description> </textarea>
-                                      </div>
-                                      
+                                        <label class="fw-bold my-1 py-1">Your Description</label>
+                                        <!-- <textarea class="form-control form-control-lg" name="languagesSpoken" placeholder="" rows="4" #description (input)="onDescriptionInput(description.value)" [disabled]="isDescriptionLimitReached"></textarea> -->
+                                        <textarea class="form-control form-control-lg" name="languagesSpoken" placeholder="" rows="4" #description (input)="onDescriptionInput(description.value)" ></textarea>
+                                        <div *ngIf="descriptionCount !== null" class="text-muted">{{ descriptionCount }}/350</div>
+                                    </div>
+                                    
                                  
                                   
                                     <br>

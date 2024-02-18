@@ -1,6 +1,9 @@
 Parse.Cloud.define("profileuser", async (request) => {
     const profile = Parse.Object.extend("profile");
     const user = new profile();
+    if (request.params.image) {
+      user.set("image", request.params.image); // Save the Parse.File object
+    }
     user.set("phone", request.params.phone);
     user.set("gender", request.params.gender);
     user.set("age", request.params.age);

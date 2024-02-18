@@ -59,7 +59,7 @@ component:UpdateProffesionComponent
   component:AboutusComponent
   },
 
-  {path:"home",
+  {path:"",
   component:HomeComponent
 
   },

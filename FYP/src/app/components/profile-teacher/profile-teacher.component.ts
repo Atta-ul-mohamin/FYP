@@ -59,18 +59,23 @@ export class ProfileTeacherComponent {
       try {
         const result = await this.service.getSignupById(this.teacherId);
         if (result.status === 1) {
-  
-         console.log(result)
-         this.name = result.data.name;
-         this.email = result.data.email;
-         this.created = result.data.created;
-        
+            console.log(result)
+            this.name = result.data.name;
+            this.email = result.data.email;
+            const createdParts = new Date(result.data.created).toString().split(' ').slice(1, 4).join(' ');
+            this.created = createdParts;
         } else {
-          // Handle the error case
+            // Handle the error case
         }
       } catch (error) {
         console.error('Error loading sign up details', error);     
-      }   
+      } 
       }
 }
+
+
+
+
+
+
 
