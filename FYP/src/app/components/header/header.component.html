@@ -19,7 +19,7 @@
                             [routerLink]="['/aboutus']">About</a></li>
                     <li class="nav-item"><a class="nav-link border-hover py-3 text-white" href="#"
                             [routerLink]="['/contactus']">Contact</a></li>
-                    <li class="nav-item"><a class="nav-link border-hover py-3 text-white" href="#">Services</a></li>
+                    <li class="nav-item"><a class="nav-link border-hover py-3 text-white" href="#" [routerLink]="['/services-page']">Services</a></li>
                     <li class="nav-item"  *ngIf="!isLoggedIn"><a class="nav-link border-hover py-3 text-white" href="#"
                             [routerLink]="['/signup']">Signup</a></li>
                     <li class="nav-item" *ngIf="isLoggedIn">

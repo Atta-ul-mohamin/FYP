@@ -25,7 +25,7 @@ import { AccountControllComponent } from './components/account-controll/account-
 import { UpdateGigComponent } from './update-gig/update-gig.component';
 import { ProfileSettingComponent } from './profile-setting/profile-setting.component';
 import { UpdateProffesionComponent } from './update-proffesion/update-proffesion.component';
-
+import { ServicesPageComponent } from './components/services-page/services-page.component';
 // import { StudentNamesResolver } from './services/student_names.resolver';
 
 
@@ -140,6 +140,10 @@ component:UpdateProffesionComponent
   {
     path:"account_controll",
     component:AccountControllComponent
+  },
+  {
+    path:"services-page",
+    component:ServicesPageComponent
   }
 
 
