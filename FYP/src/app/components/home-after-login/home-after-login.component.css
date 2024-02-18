@@ -1,4 +1,4 @@
-*{
+/* *{
     padding: 0;
     margin: 0;
     box-sizing: border-box;
@@ -50,4 +50,50 @@
 .boxes_globall .card :hover.name,
 .boxes_globall .card :hover.iconbox{
     color:white;
+} */
+
+
+
+/* Base styles for the card */
+.card {
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    transition: 0.3s;
+    width: 100%; /* Full width on smaller screens */
 }
+
+/* Base styles for the boxes container */
+.boxes_globall .col {
+    padding: 0 15px; /* Ensure some spacing on smaller screens */
+}
+
+/* Icon and numbers inside card */
+.iconbox {
+    font-size: 24px; /* Adjust based on preference */
+}
+.numbers {
+    font-size: 20px; /* Adjust based on preference */
+}
+
+/* Adjust card size and layout for medium devices (tablets) and up */
+@media (min-width: 768px) {
+    .boxes_globall .col {
+        flex: 0 0 auto; /* Flexbox adjustment for spacing */
+        max-width: 50%; /* Two cards per row on medium devices */
+    }
+}
+
+/* Adjust card size and layout for large devices (laptops/desktops) */
+@media (min-width: 992px) {
+    .boxes_globall .col {
+        max-width: 25%; /* Four cards per row on large devices */
+    }
+}
+
+/* Additional responsive tweaks */
+@media (max-width: 767px) {
+    /* Adjustments for smaller (mobile) screens */
+    .card {
+        margin-bottom: 20px; /* Space between cards on small screens */
+    }
+}
+
