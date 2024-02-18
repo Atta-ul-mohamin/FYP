@@ -60,11 +60,8 @@ export class ProfileComponent {
     
   
   async submit_profile( phone : number ,  gender:string , age:number , location:string , language:string , description:string) {
-<<<<<<< Updated upstream
 
-=======
   
->>>>>>> Stashed changes
  
     if (age === undefined || !Number.isInteger(age) || age < 0 || age > 120) {
       alert('Please enter a valid age.');
