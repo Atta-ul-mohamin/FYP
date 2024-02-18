@@ -23,22 +23,20 @@ Parse.Cloud.define("profileuser", async (request) => {
 
     Parse.Cloud.define("update_profileuser", async (request) => {
       const { profileId, teacherid,phone,gender,age,location,language, description ,userId  } = request.params;
-    
-  
-      
+ 
   
           const query = new Parse.Query("profile");
           const profile = await query.get(profileId, { useMasterKey: true });
         
           if (profile) {
    
-        profile.set("phone", phone);
+    profile.set("phone", phone);
     profile.set("gender", gender);
     profile.set("age", age);
     profile.set("location", location);
     profile.set("language", language);
     profile.set("description", description);
-    profile.set("userId", request.params.userId); 
+    profile.set("userId", userId); 
             await profile.save(null, { useMasterKey: true });
             return { 
               status: 1 

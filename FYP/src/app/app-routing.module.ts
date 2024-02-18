@@ -24,6 +24,7 @@ import { ChatPageComponent } from './chat-page/chat-page.component';
 import { AccountControllComponent } from './components/account-controll/account-controll.component';
 import { UpdateGigComponent } from './update-gig/update-gig.component';
 import { ProfileSettingComponent } from './profile-setting/profile-setting.component';
+import { UpdateProffesionComponent } from './update-proffesion/update-proffesion.component';
 
 // import { StudentNamesResolver } from './services/student_names.resolver';
 
@@ -35,6 +36,9 @@ const routes: Routes = [
 },
 {path:"profile_setting/:id",
 component:ProfileSettingComponent
+},
+{path:"edit_profession/:id",
+component:UpdateProffesionComponent
 },
 
   {path:"chat-page/:id",

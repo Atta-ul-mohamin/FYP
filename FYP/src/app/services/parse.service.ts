@@ -62,6 +62,16 @@ export class ParseService {
 
     const params = {schoolName,schoolClass , schoolType , collegeName , collegeClass , collegeType, universityName, universityDegree , skills, hobbies,userId :this.currentUser.objectId}
     const result = await Parse.Cloud.run("education_proffesion",params)
+    console.log(result)
+    return result
+    
+   }
+
+   async update_submit_education_proffesion(professionId:string,schoolName: string , schoolClass : string , schoolType : string , collegeName : string , collegeClass : string , collegeType : string , universityName: string , universityDegree: string  , skills : string , hobbies : string){
+
+    const params = {professionId,schoolName,schoolClass , schoolType , collegeName , collegeClass , collegeType, universityName, universityDegree , skills, hobbies,userId :this.currentUser.objectId}
+    const result = await Parse.Cloud.run("update_proffesionuser",params)
+    console.log(result)
     return result
     
    }
@@ -128,6 +138,21 @@ async deleteProfile( ProfileId : string) {
   }
 }
 
+async deleteProfession( userId : string) {
+
+  if (this.currentUser && this.currentUser.objectId) {
+    console.log(this.currentUser.id);
+    const params = {userId}
+     const result =await  Parse.Cloud.run('deleteprofession', params); 
+     return result ;
+    // Remove user from local storage on logout
+    
+  } else {
+    alert('No user is currently logged in.');
+  }
+}
+
+
 async getGigById(id: string): Promise<any> {
   try {
     const response = await Parse.Cloud.run('getGigById', { id });
@@ -141,6 +166,26 @@ async getGigById(id: string): Promise<any> {
 async getProfileById(id: string): Promise<any> {
   try {
     const response = await Parse.Cloud.run('getProfileById', { id });
+    return response;
+  } catch (error) {
+    console.error('Error fetching profile by ID from Cloud Code', error);
+    throw error;
+  }
+}
+
+async getProfessionById(id: string): Promise<any> {
+  try {
+    const response = await Parse.Cloud.run('getProfessionById', { id });
+    return response;
+  } catch (error) {
+    console.error('Error fetching profession by ID from Cloud Code', error);
+    throw error;
+  }
+}
+
+async getSignupById(id: string): Promise<any> {
+  try {
+    const response = await Parse.Cloud.run('getSignupById', { id });
     return response;
   } catch (error) {
     console.error('Error fetching card by ID from Cloud Code', error);
