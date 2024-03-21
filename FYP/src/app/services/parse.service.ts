@@ -53,13 +53,13 @@ export class ParseService {
    async login(email: string, password: string) {
     const params ={email,password};
     const response = await Parse.Cloud.run("loginTeacher" , params);
-    if(response.status === 1) {
+    if(response.status === 2  || response.status === 3 || response.status === 4   ) {
       this.currentUser = response;
           // Save user to local storage on successful login
           localStorage.setItem(this.USER_KEY, JSON.stringify(response));
-      console.log(this.currentUser);
+      console.log(this.currentUser.objectId);
     }
-    return response.status;
+    return response;
   }
   private currentUser: any;
 
@@ -75,6 +75,7 @@ export class ParseService {
    async submit_profile( phone:number, gender:string,age:number ,location:string,language:string,description:string){
    
     const params = { phone,gender,age,location,language, description ,userId :this.currentUser.objectId}
+    console.log(this.currentUser.objectId);
      const result = await Parse.Cloud.run("profileuser",params)
      return result;
    }

@@ -14,8 +14,10 @@ Parse.Cloud.define("addFavourite", async (request) => {
 
   // If no existing entry, create a new one
   const favourite = new Favourite();
-  favourite.set("CardId", CardObjectId);
-  favourite.set("userId", currentUserObjectId);
+  // favourite.set("CardId", CardObjectId);
+  favourite.set("userId", { "__type": "Pointer", "className": "MUser", "objectId": cardObjectId });
+  // favourite.set("userId", currentUserObjectId);
+  favourite.set("userId", { "__type": "Pointer", "className": "create_gig", "objectId": currentUserObjectId });
 
   await favourite.save();
   return { status: 1, message: ' Added to your favourites' };

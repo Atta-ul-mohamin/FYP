@@ -99,30 +99,10 @@ export class ProfileComponent {
       return;
     }
 
-    // if (this.selectedFile) {
-    //   const result = await this.service.submitProfileWithImage(phone, gender, age, location, language, description, this.selectedFile);
-    //   console.log("hello");
-    //   if (result.status === 1) {
-    //     alert('profile maded successfully');
-    //     this.router.navigate(['/profession-details']);
-    //   }
-  
-    //   else {
-    //     alert('error in making profile');
-    //   }
-    
-    // } else {
-    //   alert('file not seleced');
-
-    // }
-
-    
-
-
-
-    const result = await this.service.submit_profile(phone, gender, age, location, language, description)
-
-       if (result.status === 1) {
+    if (this.selectedFile) {
+      const result = await this.service.submitProfileWithImage(phone, gender, age, location, language, description, this.selectedFile);
+      console.log("hello");
+      if (result.status === 1) {
         alert('profile maded successfully');
         this.router.navigate(['/profession-details']);
       }
@@ -130,20 +110,40 @@ export class ProfileComponent {
       else {
         alert('error in making profile');
       }
+    
+    } else {
+      alert('file not seleced');
+
+    }
+
+    
+
+
+
+    // const result = await this.service.submit_profile(phone, gender, age, location, language, description)
+
+      //  if (result.status === 1) {
+      //   alert('profile maded successfully');
+      //   this.router.navigate(['/profession-details']);
+      // }
+  
+      // else {
+      //   alert('error in making profile');
+      // }
   
 
 
 
   }
 
-  // onFileChanged(event: Event) {
-  //   const input = event.target as HTMLInputElement;
-  //   if (!input.files || input.files.length === 0) {
-  //     this.selectedFile = null;
-  //   } else {
-  //     this.selectedFile = input.files[0];
-  //   }
-  // }
+  onFileChanged(event: Event) {
+    const input = event.target as HTMLInputElement;
+    if (!input.files || input.files.length === 0) {
+      this.selectedFile = null;
+    } else {
+      this.selectedFile = input.files[0];
+    }
+  }
 
 
 }

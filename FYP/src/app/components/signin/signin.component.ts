@@ -24,14 +24,31 @@ export class SigninComponent {
   
    
     const user = await this.parseService.login(email, password);
+    console.log(user);
    
-    if (user == 1) {
+    if (user.status == 2) {
+   
+      alert('Login successful ');
+   
+      this.router.navigate(['/home-after-login']);
+   
+    }
+    else if (user.status == 3) {
+   
+      alert('Login successful ');
+   
+      this.router.navigate(['/profession-details']);
+   
+    } 
+    
+    else if (user.status == 4) {
    
       alert('Login successful ');
    
       this.router.navigate(['/profile']);
    
-    } if (user == 0) {
+    } 
+     else if (user.status == 0) {
    
       alert('incorrect name or password');
    
