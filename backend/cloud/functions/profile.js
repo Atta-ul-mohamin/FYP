@@ -1,9 +1,7 @@
-Parse.Cloud.define("profileuser", async (request) => {
+Parse.Cloud.define("profileWithBinaryString", async (request) => {
   const profile = Parse.Object.extend("profile");
   const user = new profile();
-  if (request.params.image) {
-    user.set("image", request.params.image); // Save the Parse.File object
-  }
+  user.set("image" ,  request.params.binaryString);
   user.set("phone", request.params.phone);
   user.set("gender", request.params.gender);
   user.set("age", request.params.age);
@@ -23,6 +21,8 @@ Parse.Cloud.define("profileuser", async (request) => {
       status: 0
     }
 });
+
+
 
 Parse.Cloud.define("update_profileuser", async (request) => {
   const { profileId, teacherid, phone, gender, age, location, language, description, userId } = request.params;
@@ -76,7 +76,8 @@ Parse.Cloud.define("getProfileById", async (request) => {
       location: profile.get("location"),
       language: profile.get("language"),
       description: profile.get("description"),
-      userId: profile.get("userId"), // This should match the provided id
+      userId: profile.get("userId"),
+      pictur:profile.get("image") // This should match the provided id
     };
 
     // Return the response data with status code indicating success

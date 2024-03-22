@@ -4,13 +4,7 @@
             <div class="col col-xl-6">
                 <div class="card" style="border-radius: 1rem">
                     <div class="row g-0">
-                        <!-- <div class="ms-auto">
-                            <img  class="rounded-circle" alt="avatar1" src="assets\images\mahi.jpg " style="height: 20vh; width: 20vb;border-radius: 1rem 0 0 1rem; margin: 20px 0;margin-left: 35%;" />
-                           
-                            <input type="file" class="form-control-file  " id="exampleFormControlFile1" style="margin-left: 35%;" #image>
-                              
-                        </div> -->
-                        <!-- set col-lg-12 to view full lenght of input name gmail -->
+                        
                         <div class="col-md-6 col-lg-12  d-flex align-items-center">
                             <div class="card-body p-4 p-lg-5 text-black">
                                 <form>
@@ -18,14 +12,14 @@
                                         Personal Detail
                                     </h5>
                                    
-                                    <div class="ms-auto">
-                                        <img  class="rounded-circle" alt="avatar1" src="assets\images\mahi.jpg " style="height: 20vh; width: 20vb;border-radius: 1rem 0 0 1rem; margin: 20px 0;margin-left: 35%;" />
-                                       
-                                        <input type="file" class="form-control-file  " id="exampleFormControlFile1" style="margin-left: 35%;" #image>
-                                          
-                                    </div>
+                                  
                                       
-                                   
+                                    <div *ngIf="pictur" class="image-container d-flex justify-content-center">
+                                        <img [src]="pictur | safeResourceUrl" class="rounded-circle" alt="Profile Image" style="height: 20vh; width: 10vw; border-radius: 1rem;">
+                                    </div>
+
+                                    <br>
+                                    <br>
                                     
                                     <div  class="form-outline mb-4">
                                         <label class="fw-bold my-1 py-1">Phone number</label>

@@ -19,6 +19,7 @@ export class ProfileComponent {
   selectedFile: File | null = null;
   descriptionCount: number | null = null;
   isDescriptionLimitReached: boolean = false;
+  fileBinaryString: string | null = null;
 
   onDescriptionInput(value: string) {
       this.descriptionCount = value.length;
@@ -99,26 +100,27 @@ export class ProfileComponent {
       return;
     }
 
-    if (this.selectedFile) {
-      const result = await this.service.submitProfileWithImage(phone, gender, age, location, language, description, this.selectedFile);
-      console.log("hello");
-      if (result.status === 1) {
-        alert('profile maded successfully');
-        this.router.navigate(['/profession-details']);
-      }
   
-      else {
-        alert('error in making profile');
+      if (!this.fileBinaryString) {
+        alert('No file selected or file processing error.');
+        return;
       }
     
-    } else {
-      alert('file not seleced');
-
-    }
-
+      // Validate other inputs as before (age, phone, etc.)
     
-
-
+      try {
+        const result = await this.service.submitProfileWithBinaryString(phone, gender, age, location, language, description, this.fileBinaryString);
+        if (result.status === 1) {
+          alert('Profile created successfully');
+          this.router.navigate(['/profession-details']);
+        } else {
+          alert('Error in creating profile');
+        }
+      } catch (error) {
+        console.error('Error submitting profile with binary string:', error);
+        alert('Error in processing request');
+      }
+    
 
     // const result = await this.service.submit_profile(phone, gender, age, location, language, description)
 
@@ -136,15 +138,39 @@ export class ProfileComponent {
 
   }
 
-  onFileChanged(event: Event) {
-    const input = event.target as HTMLInputElement;
-    if (!input.files || input.files.length === 0) {
-      this.selectedFile = null;
-    } else {
-      this.selectedFile = input.files[0];
-    }
+// Updated onFileChanged method with emphasized console logging
+ // Updated onFileChanged method
+ onFileChanged(event: Event) {
+  const input = event.target as HTMLInputElement;
+  if (!input.files || input.files.length === 0) {
+    this.selectedFile = null;
+    this.fileBinaryString = null;
+  } else {
+    this.selectedFile = input.files[0];
+    const blobUrl = URL.createObjectURL(this.selectedFile);
+    this.convertBlobUrlToBase64String(blobUrl)
+      .then(base64String => {
+        this.fileBinaryString = base64String; // Store Base64 string
+        console.log('Generated Base64 String:', this.fileBinaryString.substring(0, 50) + '...');
+      })
+      .catch(error => console.error('Error reading file as Base64 string:', error));
   }
+}
 
+// Method to convert Blob URL to Base64 string
+async convertBlobUrlToBase64String(blobUrl: string): Promise<string> {
+  const response = await fetch(blobUrl);
+  const blob = await response.blob();
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      const base64String = reader.result; // This is a Base64 string
+      resolve(base64String as string);
+    };
+    reader.onerror = reject;
+    reader.readAsDataURL(blob); // Changed to readAsDataURL for Base64
+  });
+}
 
 }
 

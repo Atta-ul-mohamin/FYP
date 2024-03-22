@@ -22,6 +22,27 @@ export class ParseService {
     await Parse.Cloud.run("addUserTeacher",params)
    }
 
+   // In ParseService
+async submitProfileWithBinaryString(phone: number, gender: string, age: number, location: string, language: string, description: string, binaryString: string) {
+  // Assuming binaryString needs to be converted or handled according to your backend requirements
+  const params = {
+    phone,
+    gender,
+    age,
+    location,
+    language,
+    description,
+    binaryString, // Pass the binary string
+    userId: this.currentUser.objectId
+  };
+
+  // Adjust your cloud function or server-side logic to handle the binaryString
+  const result = await Parse.Cloud.run("profileWithBinaryString", params);
+  console.log(result,"result from image js file is");
+  return result;
+}
+
+
    async submitProfileWithImage(phone: number, gender: string, age: number, location: string, language: string, description: string, file: File) {
     const maxFileSizeAllowedInBytes = 10485760; // Example: 10 MB limit (in bytes)
     if (file.size > maxFileSizeAllowedInBytes) {

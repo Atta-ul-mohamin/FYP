@@ -39,6 +39,8 @@ import { ProfileSettingComponent } from './profile-setting/profile-setting.compo
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { UpdateProffesionComponent } from './update-proffesion/update-proffesion.component';
+import { OkComponent } from './ok/ok.component';
+import { SafeResourceUrlPipe } from './safe-resource-url.pipe';
 @NgModule({
   declarations: [
    
@@ -76,6 +78,8 @@ import { UpdateProffesionComponent } from './update-proffesion/update-proffesion
          UpdateGigComponent,
          ProfileSettingComponent,
          UpdateProffesionComponent,
+         OkComponent,
+         SafeResourceUrlPipe,
        
   ],
   imports: [

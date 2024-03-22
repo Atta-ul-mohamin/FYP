@@ -1,0 +1,1 @@
+{"functionName":"getTeacherIdsByStudent","level":"info","message":"Ran cloud function getTeacherIdsByStudent for user undefined with:\n  Input: {\"studentId\":\"FM5k6RAY0l\"}\n  Result: []","params":{"studentId":"FM5k6RAY0l"},"timestamp":"2024-02-29T18:42:32.134Z"}
