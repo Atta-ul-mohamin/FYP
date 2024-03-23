@@ -21,6 +21,7 @@ export class ProfileSettingComponent  {
   phone:string='';
   selectedgender:string ="";
   profileId:string="";
+  pictur:string="";
   //yaha par jo parse service lagana he yaha ae ga or authentication b
   constructor(private service: ParseService, private route: ActivatedRoute , private router: Router) { }
  
@@ -38,6 +39,8 @@ export class ProfileSettingComponent  {
       if (result.status === 1) {
 
        console.log(result)
+       this.pictur = result.data.pictur;
+       console.log(this.pictur);
        this.language = result.data.language;
        this.phone = result.data.phone;
        this.description = result.data.description;

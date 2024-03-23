@@ -2,8 +2,8 @@ Parse.Cloud.define("giginfo", async (request) => {
   const {  title , year_Of_Experience  , type, skillLevel , level  , level_1_Description  ,  level_1_Price, level_2_Description , level_2_Price  ,  level_3_Description , level_3_Price , homePrice , selectedCategory1, selectedSubcategory,userId } = request.params;
 
   try {
-    const userPointer = Parse.User.createWithoutData(userId);
-    console.log(userPointer);
+    // const userPointer = Parse.User.createWithoutData(userId);
+    // console.log(userPointer);
     console.log(userId);
     const create_gig = Parse.Object.extend("create_gig");
     const gig = new create_gig();

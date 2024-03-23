@@ -12,7 +12,8 @@ Parse.Cloud.define("education_proffesion", async (request) => {
     user.set("universityDegree", request.params.collegeClass);
     user.set("skills", request.params.skills);
     user.set("hobbies", request.params.hobbies); 
-    user.set("userId", request.params.userId)
+    // user.set("userId", request.params.userId)
+    user.set("userId", { "__type": "Pointer", "className": "MUserT", "objectId": request.params.userId });
     const result = await user.save();
     if (result)
     return{
@@ -96,7 +97,8 @@ Parse.Cloud.define("education_proffesion", async (request) => {
     profession.set("universityDegree", universityDegree);
     profession.set("skills", skills);
     profession.set("hobbies", hobbies); 
-    profession.set("userId", userId)
+    // profession.set("userId", userId)
+    profession.set("userId", { "__type": "Pointer", "className": "MUserT", "objectId": userId });
       
               await profession.save(null, { useMasterKey: true });
               return { 

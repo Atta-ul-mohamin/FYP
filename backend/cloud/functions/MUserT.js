@@ -9,29 +9,71 @@ Parse.Cloud.define("addUserTeacher", async (request) => {
     return result;
     });
 
-    Parse.Cloud.define("loginTeacher", async (request) => {
-        const { email, password } = request.params;
+    // Parse.Cloud.define("loginTeacher", async (request) => {
+    //     const { email, password } = request.params;
       
+    //     const query = new Parse.Query("MUserT");
+    //     query.equalTo("email", email);
+    //     query.equalTo("password", password);
+      
+    //     const user = await query.first();
+      
+    //     if (user) {
+
+    //       return {
+    //         status: 1,
+    //         firstname: user.get('firstname'),
+    //          objectId: user.id 
+    //       };
+    //     } else {
+    //       console.log('error 2');
+          
+    //       return {
+    //         status: 0
+    //       };
+    //     }
+    //   });
+
+
+      Parse.Cloud.define("loginTeacher", async (request) => {
+        const { email, password } = request.params;
+    
         const query = new Parse.Query("MUserT");
         query.equalTo("email", email);
         query.equalTo("password", password);
-      
+    
         const user = await query.first();
-      
+    
         if (user) {
-          return {
-            status: 1,
-            firstname: user.get('firstname'),
-             objectId: user.id 
-          };
+            // Initialize queries for profile and profession
+            const profileQuery = new Parse.Query("Profile");
+            const professionQuery = new Parse.Query("Profession");
+            console.log(user);
+            // Set queries to check for pointer to the MUserT object
+            profileQuery.equalTo("userId", user.id); // Assuming MUserTPtr is the pointer field in Profile
+            professionQuery.equalTo("userId", user.id); // Assuming MUserTPtr is the pointer field in Profession
+    
+            // Execute both queries concurrently
+            const [profile, profession] = await Promise.all([profileQuery.first(), professionQuery.first()]);
+    
+            // Determine the presence of MUserT in profile and profession
+            if (profile && profession) {
+                // Present in both
+                return { status: 2, firstname: user.get('firstname'), objectId: user.id };
+            } else if (profile && !profession) {
+                // Present only in profile
+                return { status: 3, firstname: user.get('firstname'), objectId: user.id };
+            } else if (!profile && !profession) {
+                // Not present in both
+                return { status: 4, firstname: user.get('firstname'), objectId: user.id };
+            }
         } else {
-          console.log('error 2');
-          // Login failed. You can return an error message.
-          return {
-            status: 0
-          };
+            console.log('error 2');
+            // Login failed. You can return an error message.
+            return { status: 0 };
         }
-      });
+    });
+    
 
 
       Parse.Cloud.define("getSignupById", async (request) => {
