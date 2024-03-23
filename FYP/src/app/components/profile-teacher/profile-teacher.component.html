@@ -14,9 +14,9 @@
               </div>
 
               <div class="row justify-content-center">
-                <div class="col-4 d-flex justify-content-center"> <!-- Add justify-content-center class to center the content -->
-                  <img src="attapic.jpeg" alt="Circular Image" class="rounded-circle img-fluid" style="height:70px ; width:70px" >
-                </div>
+                <div *ngIf="pictur" class="image-container d-flex justify-content-center">
+                  <img [src]="pictur | safeResourceUrl" class="rounded-circle" alt="Profile Image" style="height: 20vh; width: 10vw; border-radius: 1rem;">
+              </div>
               </div>
 
               <div class="row g-0">

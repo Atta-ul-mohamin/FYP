@@ -48,6 +48,15 @@ export class SigninComponent {
       this.router.navigate(['/profile']);
    
     } 
+
+     
+    else if (user.status == 5) {
+   
+      alert('Login successful ');
+   
+      this.router.navigate(['/profile']);
+   
+    } 
      else if (user.status == 0) {
    
       alert('incorrect name or password');

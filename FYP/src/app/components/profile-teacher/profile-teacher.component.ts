@@ -21,7 +21,8 @@ export class ProfileTeacherComponent {
  profileId:string="";
  name:string="";
  email:string="";
- created:string=""
+ created:string="";
+ pictur:string="";
  constructor(private service: ParseService, private authService: AuthService, private route: ActivatedRoute , private router: Router) { }
 
 
@@ -46,6 +47,7 @@ export class ProfileTeacherComponent {
        this.age= result.data.age;
        this.selectedgender = result.data.gender;
        this.profileId = result.data.objectId;  
+       this.pictur =  result.data.pictur;
       } else {
         // Handle the error case
       }

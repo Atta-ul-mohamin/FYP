@@ -46,8 +46,8 @@ Parse.Cloud.define("addUserTeacher", async (request) => {
     
         if (user) {
             // Initialize queries for profile and profession
-            const profileQuery = new Parse.Query("Profile");
-            const professionQuery = new Parse.Query("Profession");
+            const profileQuery = new Parse.Query("profile");
+            const professionQuery = new Parse.Query("profession");
             console.log(user);
             // Set queries to check for pointer to the MUserT object
             profileQuery.equalTo("userId", user.id); // Assuming MUserTPtr is the pointer field in Profile
@@ -60,10 +60,16 @@ Parse.Cloud.define("addUserTeacher", async (request) => {
             if (profile && profession) {
                 // Present in both
                 return { status: 2, firstname: user.get('firstname'), objectId: user.id };
-            } else if (profile && !profession) {
+            } 
+            else if (profile && !profession) {
                 // Present only in profile
                 return { status: 3, firstname: user.get('firstname'), objectId: user.id };
-            } else if (!profile && !profession) {
+            } 
+            else if (!profile && profession) {
+              // Present only in profile
+              return { status: 5, firstname: user.get('firstname'), objectId: user.id };
+          } 
+            else if (!profile && !profession) {
                 // Not present in both
                 return { status: 4, firstname: user.get('firstname'), objectId: user.id };
             }

@@ -10,10 +10,16 @@ import { ParseService } from 'src/app/services/parse.service';
 export class HomeAfterLoginComponent implements OnInit {
   user: any;
   userName!: string; 
+  teacherId:any;
+  pictur:string="";
 
-  constructor(private parseService: ParseService, private authService: AuthService) {}
+  constructor(private service: ParseService, private authService: AuthService) {}
 
   ngOnInit() {
+    this.teacherId = this.service.user.objectId;
+    console.log(this.teacherId);
+    this.fetchProfileData();
+
     // Subscribe to the userProfile observable to get the user's name
     this.authService.userProfile.subscribe(profile => {
       if (profile) {
@@ -22,30 +28,28 @@ export class HomeAfterLoginComponent implements OnInit {
     });
 
     // Assuming you're also fetching user data from ParseService
-    this.user = this.parseService.user;
+    this.user = this.service.user;
   }
+
+  async fetchProfileData() {
+    
+    try {
+      const result = await this.service.getProfileById(this.teacherId);
+      if (result.status === 1) {
+       console.log(result) 
+       this.pictur =  result.data.pictur;
+      } else {
+        // Handle the error case
+      }
+    } catch (error) {
+      console.error('Error loading card details', error);     
+    }   
+    }
+
+
+
+
 }
 
 
-
-// import { AuthService } from 'src/app/services/auth.service';
-
-// @Component({
-//   selector: 'app-home-after-login',
-//   templateUrl: './home-after-login.component.html',
-//   styleUrls: ['./home-after-login.component.css']
-// })
-// export class HomeAfterLoginComponent implements OnInit {
-//   userName!: string;
-
-//   constructor(private authService: AuthService) {}
-
-//   ngOnInit() {
-//     this.authService.userProfile.subscribe(profile => {
-//       if (profile) {
-//         this.userName = profile.name;
-//       }
-//     });
-//   }
-// }
 
