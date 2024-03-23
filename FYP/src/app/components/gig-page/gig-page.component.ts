@@ -80,6 +80,7 @@ updateSelectedPrice(priceLevel: string, event: Event) {
     const result = await this.service.gig_info_add( this.fullTitle , year_Of_Experience  , type  , skill  , level  , level_1_Description  ,  level_1_Price  , level_2_Description  , level_2_Price  ,  level_3_Description  , level_3_Price , this.homePrice , selectedCategory1, selectedSubcategory);
     if(result.status===1){
      alert('gig created successfuly')
+     this.router.navigate(['/gigmanage']);
     }
     else{
       alert('error created in gig')

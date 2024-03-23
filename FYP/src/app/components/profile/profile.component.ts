@@ -1,10 +1,13 @@
 
-
-import { Component } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
 import { ParseService } from 'src/app/services/parse.service';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
+import { Component, NgZone } from '@angular/core';
+import { MapsAPILoader } from '@agm/core';
+import { GeocodingService, GeocodeResponse } from 'src/app/services/geocoding.service';
+
+// import { google } from '@google/maps';
 
 
 @Component({
@@ -13,7 +16,7 @@ import { FormBuilder, Validators, FormGroup } from '@angular/forms';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent {
-
+  cnic: number | undefined = undefined;
   phone: number | undefined = undefined;
   age: number | undefined = undefined;
   selectedFile: File | null = null;
@@ -21,15 +24,11 @@ export class ProfileComponent {
   isDescriptionLimitReached: boolean = false;
 
   onDescriptionInput(value: string) {
-      this.descriptionCount = value.length;
-      this.isDescriptionLimitReached = this.descriptionCount >= 100;
+    this.descriptionCount = value.length;
+    this.isDescriptionLimitReached = this.descriptionCount >= 100;
   }
 
-
-
-
-
-
+  
   userLocation: string = ''; // Initialize the userLocation variable
 
   gender: string = '';
@@ -39,7 +38,7 @@ export class ProfileComponent {
   description: string = '';
   selectedgender: string = "";
   //yaha par jo parse service lagana he yaha ae ga or authentication b
-  constructor(private service: ParseService, private authService: AuthService, private router: Router, private fb: FormBuilder) {
+  constructor(private geocodingService: GeocodingService, private mapsAPILoader: MapsAPILoader, private ngZone: NgZone, private service: ParseService, private authService: AuthService, private router: Router, private fb: FormBuilder) {
 
 
   }
@@ -52,8 +51,15 @@ export class ProfileComponent {
         const latitude = position.coords.latitude;
         const longitude = position.coords.longitude;
 
-        // Here you can format and store the location as needed
-        this.userLocation = `Latitude: ${latitude}, Longitude: ${longitude}`;
+        // Use GeocodingService to get the address
+        this.geocodingService.getAdressByCoordinates(latitude, longitude).subscribe((data: GeocodeResponse) => {
+          const address = data['results'][0]?.formatted_address;
+          this.ngZone.run(() => { // Ensure UI update happens in Angular zone
+            this.userLocation = address ? address : `Latitude: ${latitude}, Longitude: ${longitude}`;
+          });
+        }, (error: any) => {
+          console.error('Error fetching address:', error);
+        });
       }, (error) => {
         console.error('Error fetching location:', error);
       });
@@ -75,16 +81,16 @@ export class ProfileComponent {
     //     alert('Description cannot exceed 100 words.');
     //     return;
     // }
-    
+
     // for character
     const descriptionLength = description.length;
-   if (descriptionLength < 100) {
-    alert('Description should more than 100 characters.');
-    return;
-   }
+    if (descriptionLength < 100) {
+      alert('Description should more than 100 characters.');
+      return;
+    }
 
-  
-    
+
+
 
 
 
@@ -106,31 +112,31 @@ export class ProfileComponent {
     //     alert('profile maded successfully');
     //     this.router.navigate(['/profession-details']);
     //   }
-  
+
     //   else {
     //     alert('error in making profile');
     //   }
-    
+
     // } else {
     //   alert('file not seleced');
 
     // }
 
-    
+
 
 
 
     const result = await this.service.submit_profile(phone, gender, age, location, language, description)
 
-       if (result.status === 1) {
-        alert('profile maded successfully');
-        this.router.navigate(['/profession-details']);
-      }
-  
-      else {
-        alert('error in making profile');
-      }
-  
+    if (result.status === 1) {
+      alert('profile maded successfully');
+      this.router.navigate(['/profession-details']);
+    }
+
+    else {
+      alert('error in making profile');
+    }
+
 
 
 
