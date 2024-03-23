@@ -1,99 +1,67 @@
-/* *{
+/* Base CSS for desktop screens */
+* {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-}
-.boxes_globall{
+  }
+  
+  .boxes_globall {
     position: relative;
     width: 100%;
     padding: 20px;
     display: grid;
-    grid-template-columns: repeat(4,1fr);
-   
-    
-   
-}
-
-
-.boxes_globall .card{
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Adjust column width */
+    gap: 20px;
+    justify-content: center; /* Center the grid horizontally */
+    align-items: center; /* Center the grid vertically */
+  }
+  
+  .boxes_globall .card {
     position: relative;
     background: white;
     padding: 15px;
-    box-shadow: 0 7px 25px rgba(0,0,0,0.08);
     border-radius: 20px;
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     cursor: pointer;
-    
-}
-.boxes_globall .card .numbers{
-    position: relative;
+    transition: all 0.3s ease;
+  }
+  
+  .boxes_globall .card .numbers {
     font-weight: 500;
     font-size: 1.5rem;
     color: rgb(113, 117, 111);
-    
-}
-
-.boxes_globall .card .name{
+  }
+  
+  .boxes_globall .card .name {
     color: var(--black2);
     font-size: 0.8rem;
     margin-top: 5px;
-}
-.boxes_globall .card .iconbox{
+  }
+  
+  .boxes_globall .card .iconbox {
     font-size: 2rem;
     color: var(--blue);
-}
-.boxes_globall .card:hover{
-    background:rgb(105, 105, 108);
-}
-.boxes_globall .card :hover.numbers,
-.boxes_globall .card :hover.name,
-.boxes_globall .card :hover.iconbox{
-    color:white;
-} */
-
-
-
-/* Base styles for the card */
-.card {
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    transition: 0.3s;
-    width: 100%; /* Full width on smaller screens */
-}
-
-/* Base styles for the boxes container */
-.boxes_globall .col {
-    padding: 0 15px; /* Ensure some spacing on smaller screens */
-}
-
-/* Icon and numbers inside card */
-.iconbox {
-    font-size: 24px; /* Adjust based on preference */
-}
-.numbers {
-    font-size: 20px; /* Adjust based on preference */
-}
-
-/* Adjust card size and layout for medium devices (tablets) and up */
-@media (min-width: 768px) {
-    .boxes_globall .col {
-        flex: 0 0 auto; /* Flexbox adjustment for spacing */
-        max-width: 50%; /* Two cards per row on medium devices */
+  }
+  
+  .boxes_globall .card:hover {
+    background: rgb(105, 105, 108);
+  }
+  
+  .boxes_globall .card:hover .numbers,
+  .boxes_globall .card:hover .name,
+  .boxes_globall .card:hover .iconbox {
+    color: white;
+  }
+  
+  /* Media query for mobile screens */
+  @media only screen and (max-width: 767px) {
+    .boxes_globall {
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Adjust column width for smaller screens */
+      gap: 10px; /* Adjust gap for smaller screens */
+      padding: 10px; /* Adjust padding for smaller screens */
     }
-}
-
-/* Adjust card size and layout for large devices (laptops/desktops) */
-@media (min-width: 992px) {
-    .boxes_globall .col {
-        max-width: 25%; /* Four cards per row on large devices */
-    }
-}
-
-/* Additional responsive tweaks */
-@media (max-width: 767px) {
-    /* Adjustments for smaller (mobile) screens */
-    .card {
-        margin-bottom: 20px; /* Space between cards on small screens */
-    }
-}
-
+  }
+  

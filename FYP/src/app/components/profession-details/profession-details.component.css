@@ -1,27 +1,27 @@
 .btn-light-orange {
-    color: #ffffff; /* Text color */
-    background-color: orange; /* Light Orange background color */
-    border-color: orange; /* Border color */
+    color: #0f0e0e; /* Text color */
+    background-color: rgb(228, 226, 222); /* Light Orange background color */
+    border-color:rgb(228, 226, 222); /* Border color */
 }
 
 .btn-light-orange.active {
-    background-color: orange; /* Active state background color */
+    background-color:rgb(135, 134, 131); /* Active state background color */
 }
 
 .custom-box1 {
-    border: 2px solid rgba(255, 166, 0, 0.599); /* Add an orange border with 2px width */
+    border: 2px solid rgba(34, 34, 34, 0.599); /* Add an orange border with 2px width */
     padding: 20px; /* Add padding for spacing inside the box */
     border-radius: 10px;
 }
 
 .custom-box2 {
-    border: 2px solid rgba(255, 166, 0, 0.599); /* Add an orange border with 2px width */
+    border: 2px solid  rgba(34, 34, 34, 0.599); /* Add an orange border with 2px width */
     padding: 20px; /* Add padding for spacing inside the box */
     border-radius: 10px;
 }
 
 .custom-box3 {
-    border: 2px solid rgba(255, 166, 0, 0.599); /* Add an orange border with 2px width */
+    border: 2px solid rgba(34, 34, 34, 0.599); /* Add an orange border with 2px width */
     padding: 20px; /* Add padding for spacing inside the box */
     border-radius: 10px;
 }

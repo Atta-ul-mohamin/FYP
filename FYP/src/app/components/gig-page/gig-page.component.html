@@ -17,40 +17,43 @@
                     <label class="fw-bold my-1 py-1">Gig Title</label>
                     <div class="input-group">
                       <span class="input-group-text">I will</span>
-                      <input type="text" id="title" class="form-control form-control-lg" name="title" [(ngModel)]="title">
+                      <input type="text" id="title" class="form-control form-control-lg" name="title"
+                        [(ngModel)]="title">
                     </div>
                   </div>
-                  
-        
+
+
                   <div class="form-outline mb-4">
                     <label class="fw-bold my-1 py-1">Year Of Experience</label>
-                    <input type="text" id="yearOfExperience" class="form-control form-control-lg" name="yearofexperience" [(ngModel)]="year_Of_Experience">
+                    <input type="text" id="yearOfExperience" class="form-control form-control-lg"
+                      name="yearofexperience" [(ngModel)]="year_Of_Experience">
                   </div>
 
 
                   <div class="custom-box1">
-                  <div class="row">
-                    <div class="col">
-                      <label class="fw-bold my-1 py-1">Category</label>
+                    <div class="row">
+                      <div class="col">
+                        <label class="fw-bold my-1 py-1">Category</label>
+                        <br>
+                        <select [(ngModel)]="selectedCategory1" name="selectedCategory1" (change)="onCategoryChange()">
+                          <option *ngFor="let cat of categoriesWithSub" [value]="cat.category">{{ cat.category }}
+                          </option>
+                        </select>
+                      </div>
+                      <label class="fw-bold my-1 py-1">Sub Category</label>
                       <br>
-                      <select [(ngModel)]="selectedCategory1" name="selectedCategory1" (change)="onCategoryChange()">
-                        <option *ngFor="let cat of categoriesWithSub" [value]="cat.category">{{ cat.category }}</option>
-                      </select>
+                      <div class="col" *ngIf="selectedCategory1">
+
+                        <select [(ngModel)]="selectedSubcategory" name="subCategorySelection">
+                          <option *ngFor="let subcat of filteredSubcategories" [value]="subcat">{{ subcat }}</option>
+                        </select>
+                      </div>
                     </div>
-                    <label class="fw-bold my-1 py-1">Sub Category</label>
-                    <br>
-                    <div class="col" *ngIf="selectedCategory1">
-                      
-                      <select [(ngModel)]="selectedSubcategory" name="subCategorySelection">
-                        <option *ngFor="let subcat of filteredSubcategories" [value]="subcat">{{ subcat }}</option>
-                      </select>
-                    </div>
-                  </div>
                   </div>
                   <br>
                   <br>
-                  
-                  
+
+
                   <div class="form-group mb-4">
                     <label class="fw-bold my-1 py-1">Choose Type</label>
                     <br>
@@ -74,15 +77,15 @@
                     <br>
                     <div class="btn-group" data-toggle="buttons-type">
                       <label class="btn btn-light-orange">
-                        <input type="radio" name="typeSelectSkillLevel" value="Begineer" [(ngModel)]="skillLevel" >
+                        <input type="radio" name="typeSelectSkillLevel" value="Begineer" [(ngModel)]="skillLevel">
                         Begineer
                       </label>
                       <label class="btn btn-light-orange">
-                        <input type="radio" name="typeSelectSkillLevel"  value="Moderate" [(ngModel)]="skillLevel">
+                        <input type="radio" name="typeSelectSkillLevel" value="Moderate" [(ngModel)]="skillLevel">
                         Moderate
                       </label>
                       <label class="btn btn-light-orange">
-                        <input type="radio" name="typeSelectSkillLevel" value="Expert" [(ngModel)]="skillLevel" > Expert
+                        <input type="radio" name="typeSelectSkillLevel" value="Expert" [(ngModel)]="skillLevel"> Expert
                       </label>
                     </div>
                   </div>
@@ -94,14 +97,14 @@
                     <br>
                     <div class="btn-group" data-toggle="buttons-type">
                       <label class="btn btn-light-orange">
-                        <input type="radio" name="typeSelectLevel" value="level1"  [(ngModel)]="selectedLevel" > low price
+                        <input type="radio" name="typeSelectLevel" value="level1" [(ngModel)]="selectedLevel"> low price
                       </label>
                       <label class="btn btn-light-orange">
-                        <input type="radio" name="typeSelectLevel" value="level2"  [(ngModel)]="selectedLevel" > low and
+                        <input type="radio" name="typeSelectLevel" value="level2" [(ngModel)]="selectedLevel"> low and
                         mid price
                       </label>
                       <label class="btn btn-light-orange">
-                        <input type="radio" name="typeSelectLevel"   value="level3" [(ngModel)]="selectedLevel"> low , mid
+                        <input type="radio" name="typeSelectLevel" value="level3" [(ngModel)]="selectedLevel"> low , mid
                         and high price </label>
                     </div>
                   </div>

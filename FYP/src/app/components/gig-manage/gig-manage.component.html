@@ -1,55 +1,47 @@
+<div *ngIf="user">
+  <h1>Welcome, {{ user.firstname }}!</h1>
+</div> 
 
-<br>
-<br>
-<br>
-<br>
-ok
-    <div *ngIf="user">
-      <h1>Welcome, {{ user.firstname }}!</h1>
-    </div> 
-   
+<div class="container mt-4">
+  <div class="row justify-content-center">
+    <div class="col-md-10">
 
-  <div class="container mt-4">
-    <div class="row justify-content-center">
-      <div class="col-md-10">
-  
-        <!-- Shadow Container -->
-        <div class="shadow p-3">
-  
-          <!-- Table -->
-          <div class="table-responsive">
-            <table class="table table-bordered table-hover">
-              <thead class="table-dark" >
-                <tr>
-                  <th colspan="6" class="text-center">Gig Management Dashboard</th>
-                </tr>
-                <tr class="fw-bold">
-                  <th>#</th>
-                  <th>Title</th>
-                  <th>Type</th>
-                  <th>Price</th>
-                  <th class="text-center">Edit</th>
-                  <th class="text-center">Delete</th>
-                </tr>
-              </thead>
-  
-              <tbody>
-                <tr *ngFor="let gig of gigs; let i = index">
+      <!-- Shadow Container -->
+      <div class="shadow p-3">
 
-                  <td>{{ i + 1 }}</td>
-                  <td>{{ gig.gigtitle}}</td>
-                  <td>{{ gig.type }}</td>
-                  <td>{{ gig.price }}</td>
-                  <td class="text-center"><button [routerLink]="['/edit_gig', gig.objectId]">Edit</button></td>
-                  <td class="text-center"><button (click)="deleteGig(gig.objectId)">Delete</button></td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-  
+        <!-- Table -->
+        <div class="table-responsive">
+          <table class="table table-bordered table-hover">
+            <thead class="table-dark">
+              <tr>
+                <th colspan="6" class="text-center">Gig Management Dashboard</th>
+              </tr>
+              <tr class="fw-bold">
+                <th>#</th>
+                <th>Title</th>
+                <th>Type</th>
+                <th>Price</th>
+                <th class="text-center">Edit</th>
+                <th class="text-center">Delete</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr *ngFor="let gig of gigs; let i = index">
+
+                <td>{{ i + 1 }}</td>
+                <td>{{ gig.gigtitle}}</td>
+                <td>{{ gig.type }}</td>
+                <td>{{ gig.price }}</td>
+                <td class="text-center"><button class="edit-btn" [routerLink]="['/edit_gig', gig.objectId]">Edit</button></td>
+                <td class="text-center"><button class="delete-btn" (click)="deleteGig(gig.objectId)">Delete</button></td>
+              </tr>
+            </tbody>
+          </table>
         </div>
-  
+
       </div>
+
     </div>
   </div>
-  
+</div>
