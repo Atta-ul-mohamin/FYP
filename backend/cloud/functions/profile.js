@@ -26,7 +26,7 @@ Parse.Cloud.define("profileWithBinaryString", async (request) => {
 
 
 Parse.Cloud.define("update_profileuser", async (request) => {
-  const { profileId, teacherid, phone, gender, age, location, language, description, userId } = request.params;
+  const { profileId, teacherid, phone, gender, age, location, language, description, stringImage ,userId } = request.params;
   const query = new Parse.Query("profile");
   const profile = await query.get(profileId, { useMasterKey: true });
   if (profile) {
@@ -36,8 +36,9 @@ Parse.Cloud.define("update_profileuser", async (request) => {
     profile.set("location", location);
     profile.set("language", language);
     profile.set("description", description);
-    profile.set("userId", userId);
-    // profile.set("userId", { "__type": "Pointer", "className": "MUserT", "objectId": userId });
+    profile.set("image",stringImage);
+    // profile.set("userId", userId);
+    profile.set("userId", { "__type": "Pointer", "className": "MUserT", "objectId": userId });
     await profile.save(null, { useMasterKey: true });
     return {
       status: 1

@@ -101,9 +101,9 @@ async submitProfileWithBinaryString(phone: number, gender: string, age: number, 
      return result;
    }
 
-   async update_submit_profile( profileId : string, teacherid: string ,phone:string, gender:string,age:string ,location:string,language:string,description:string){
+   async update_submit_profile( profileId : string, teacherid: string ,phone:string, gender:string,age:number,location:string,language:string,description:string,stringImage:string){
    
-    const params = { profileId,teacherid,phone,gender,age,location,language, description ,userId :this.currentUser.objectId}
+    const params = { profileId,teacherid,phone,gender,age,location,language, description ,stringImage ,userId :this.currentUser.objectId}
      const result = await Parse.Cloud.run("update_profileuser",params)
      return result;
    }

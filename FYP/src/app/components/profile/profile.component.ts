@@ -23,21 +23,17 @@ export class ProfileComponent {
   descriptionCount: number | null = null;
   isDescriptionLimitReached: boolean = false;
   fileBinaryString: string | null = null;
-
-  onDescriptionInput(value: string) {
-    this.descriptionCount = value.length;
-    this.isDescriptionLimitReached = this.descriptionCount >= 100;
-  }
-
-  
   userLocation: string = ''; // Initialize the userLocation variable
-
   gender: string = '';
-
   location: string = '';
   language: string = '';
   description: string = '';
   selectedgender: string = "";
+
+
+
+  
+
   //yaha par jo parse service lagana he yaha ae ga or authentication b
   constructor(private geocodingService: GeocodingService, private mapsAPILoader: MapsAPILoader, private ngZone: NgZone, private service: ParseService, private authService: AuthService, private router: Router, private fb: FormBuilder) {
 
@@ -45,6 +41,10 @@ export class ProfileComponent {
   }
 
 
+  onDescriptionInput(value: string) {
+    this.descriptionCount = value.length;
+    this.isDescriptionLimitReached = this.descriptionCount >= 100;
+  }
 
   getLocation() {
     if (navigator.geolocation) {
@@ -76,24 +76,12 @@ export class ProfileComponent {
 
   async submit_profile(phone: number, gender: string, age: number, location: string, language: string, description: string) {
 
-    // for words
-    // const descriptionWordCount = description.split(/\s+/).length;
-    // if (descriptionWordCount < 100) {
-    //     alert('Description cannot exceed 100 words.');
-    //     return;
-    // }
 
-    // for character
     const descriptionLength = description.length;
     if (descriptionLength < 100) {
       alert('Description should more than 100 characters.');
       return;
     }
-
-
-
-
-
 
     if (age === undefined || !Number.isInteger(age) || age < 0 || age > 120) {
       alert('Please enter a valid age');
@@ -106,26 +94,8 @@ export class ProfileComponent {
       return;
     }
 
-<<<<<<< HEAD
-    // if (this.selectedFile) {
-    //   const result = await this.service.submitProfileWithImage(phone, gender, age, location, language, description, this.selectedFile);
-    //   console.log("hello");
-    //   if (result.status === 1) {
-    //     alert('profile maded successfully');
-    //     this.router.navigate(['/profession-details']);
-    //   }
+  
 
-    //   else {
-    //     alert('error in making profile');
-    //   }
-
-    // } else {
-    //   alert('file not seleced');
-
-    // }
-
-
-=======
   
       if (!this.fileBinaryString) {
         alert('No file selected or file processing error.');
@@ -147,34 +117,9 @@ export class ProfileComponent {
         alert('Error in processing request');
       }
     
->>>>>>> 47b199caa797c882c3949ab831ede0b25830a75a
 
-    // const result = await this.service.submit_profile(phone, gender, age, location, language, description)
-
-<<<<<<< HEAD
-
-    const result = await this.service.submit_profile(phone, gender, age, location, language, description)
-
-    if (result.status === 1) {
-      alert('profile maded successfully');
-      this.router.navigate(['/profession-details']);
-    }
-
-    else {
-      alert('error in making profile');
-    }
-
-=======
-      //  if (result.status === 1) {
-      //   alert('profile maded successfully');
-      //   this.router.navigate(['/profession-details']);
-      // }
+   
   
-      // else {
-      //   alert('error in making profile');
-      // }
-  
->>>>>>> 47b199caa797c882c3949ab831ede0b25830a75a
 
 
 

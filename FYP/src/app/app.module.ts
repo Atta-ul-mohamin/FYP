@@ -39,13 +39,10 @@ import { ProfileSettingComponent } from './profile-setting/profile-setting.compo
 
 import { ReactiveFormsModule } from '@angular/forms';
 import { UpdateProffesionComponent } from './update-proffesion/update-proffesion.component';
-<<<<<<< HEAD
 import { HttpClientModule } from '@angular/common/http';
-import { AgmCoreModule } from '@agm/core';
-=======
+// import { AgmCoreModule } from '@agm/core';
 import { OkComponent } from './ok/ok.component';
 import { SafeResourceUrlPipe } from './safe-resource-url.pipe';
->>>>>>> 47b199caa797c882c3949ab831ede0b25830a75a
 @NgModule({
   declarations: [
    
@@ -95,9 +92,9 @@ import { SafeResourceUrlPipe } from './safe-resource-url.pipe';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyBamKmkAXbhYFW-cCxtAezM5xAON_-uv-0'
-    })
+    // AgmCoreModule.forRoot({
+    //   apiKey: 'AIzaSyBamKmkAXbhYFW-cCxtAezM5xAON_-uv-0'
+    // })
     
   ],
   providers: [],
