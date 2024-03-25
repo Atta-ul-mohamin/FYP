@@ -33,6 +33,7 @@
     return results.map(result => {
       // Access the user object from the pointer
       const user = result.get('userId');
+      
   
       return {
         objectId: result.id, 
