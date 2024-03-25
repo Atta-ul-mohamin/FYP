@@ -35,6 +35,7 @@ Parse.Cloud.define("addUserTeacher", async (request) => {
     //   });
 
 
+
       Parse.Cloud.define("loginTeacher", async (request) => {
         const { email, password } = request.params;
     
@@ -78,6 +79,59 @@ Parse.Cloud.define("addUserTeacher", async (request) => {
             // Login failed. You can return an error message.
             return { status: 0 };
         }
+    });
+
+    Parse.Cloud.define("current_user_data", async (request) => {
+      const { objectId  } = request.params;
+      const query = new Parse.Query("MUserT");
+      query.equalTo("objectId", objectId);
+    
+      const user = await query.first();
+      
+      if (user) {
+        
+        return { 
+          status: 1,
+          name: user.get('firstname'),
+          email: user.get('email'),
+         }; // Indicate success
+      } else {
+        return { status: 0 }; // User not found
+      }
+    });
+
+    Parse.Cloud.define("updateUserName", async (request) => {
+      const { objectId, name } = request.params;
+    
+      const query = new Parse.Query("MUserT");
+      const user = await query.get(objectId, { useMasterKey: true });
+    
+      if (user) {
+        user.set("firstname", name);
+        await user.save(null, { useMasterKey: true });
+        return { 
+          status: 1 
+         }; // Indicate success
+      } else {
+        return { status: 0 }; // User not found
+      }
+    });
+
+    Parse.Cloud.define("updateUserEmail", async (request) => {
+      const { objectId, email } = request.params;
+    
+      const query = new Parse.Query("MUserT");
+      const user = await query.get(objectId, { useMasterKey: true });
+    
+      if (user) {
+        user.set("email", email);
+        await user.save(null, { useMasterKey: true });
+        return { 
+          status: 1 
+         }; // Indicate success
+      } else {
+        return { status: 0 }; // User not found
+      }
     });
     
 

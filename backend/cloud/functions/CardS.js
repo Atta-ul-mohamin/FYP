@@ -22,7 +22,7 @@
 
   // return combinedData;
   Parse.Cloud.define("getGigData", async (request) => {
-    const {userId} = request.params; // Get the current user's objectId
+    const userId = request.params; // Get the current user's objectId
     const query = new Parse.Query('create_gig');
   
     // query.equalTo('userId', userId); // Add a filter to get gigs only for the current user

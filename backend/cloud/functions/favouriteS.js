@@ -15,9 +15,9 @@ Parse.Cloud.define("addFavourite", async (request) => {
   // If no existing entry, create a new one
   const favourite = new Favourite();
   // favourite.set("CardId", CardObjectId);
-  favourite.set("userId", { "__type": "Pointer", "className": "MUser", "objectId": cardObjectId });
+  favourite.set("userId", { "__type": "Pointer", "className": "MUser", "objectId": currentUserObjectId });
   // favourite.set("userId", currentUserObjectId);
-  favourite.set("userId", { "__type": "Pointer", "className": "create_gig", "objectId": currentUserObjectId });
+  favourite.set("cardId", { "__type": "Pointer", "className": "create_gig", "objectId": CardObjectId });
 
   await favourite.save();
   return { status: 1, message: ' Added to your favourites' };
@@ -32,7 +32,7 @@ Parse.Cloud.define("getFavorites", async (request) => {
   favoriteQuery.equalTo("userId", Parse.Object.extend("MUserT").createWithoutData(userId));
 
   const favorites = await favoriteQuery.find();
-  const cardIds = favorites.map(f => f.get("CardId"));
+  const cardIds = favorites.map(f => f.get("cardId"));
 
   // Query to get card details and include user data
   const Card = Parse.Object.extend("create_gig");
@@ -53,7 +53,7 @@ Parse.Cloud.define("getFavorites", async (request) => {
 
   // Map each favorite to its details and include the favorite's object ID, user's firstname, and the objectId of create_gig
   return favorites.map(favorite => {
-    const cardDetail = cardMap[favorite.get("CardId")];
+    const cardDetail = cardMap[favorite.get("cardId")];
     return {
       favoriteObjectId: favorite.id, // Returning the objectId of the favorite
       gigObjectId: cardDetail ? cardDetail.objectId : '', // Include the objectId of the create_gig

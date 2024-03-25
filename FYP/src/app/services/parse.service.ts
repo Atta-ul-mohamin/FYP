@@ -92,6 +92,34 @@ async submitProfileWithBinaryString(phone: number, gender: string, age: number, 
     this.currentUser = value;
   }
 
+  async getCurrentUserData() {
+    if (this.currentUser && this.currentUser.objectId) {
+      const params = { objectId: this.currentUser.objectId };
+      const result = await Parse.Cloud.run('current_user_data' , params)
+      return result;
+     
+  }
+}
+async updateCurrentUserName(name: string) {
+  if (this.currentUser && this.currentUser.objectId) {
+    const params = { objectId: this.currentUser.objectId , name};
+    alert('User name Updated Successfully !!!');
+    await Parse.Cloud.run('updateUserName', params);
+  } else {
+    alert('No user is currently logged in.');
+  }
+}
+
+async updateCurrentUserEmail(email: string) {
+  if (this.currentUser && this.currentUser.objectId) {
+    const params = { objectId: this.currentUser.objectId , email};
+    alert('email  Updated Successfully !!!');
+    await Parse.Cloud.run('updateUserEmail', params);
+  } else {
+    alert('No user is currently logged in.');
+  }
+}
+
   
    async submit_profile( phone:number, gender:string,age:number ,location:string,language:string,description:string){
    
