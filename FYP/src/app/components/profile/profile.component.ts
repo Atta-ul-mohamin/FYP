@@ -4,10 +4,10 @@ import { Router } from '@angular/router';
 import { ParseService } from 'src/app/services/parse.service';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { Component, NgZone } from '@angular/core';
-import { MapsAPILoader } from '@agm/core';
+// import { MapsAPILoader } from '@agm/core';
 import { GeocodingService, GeocodeResponse } from 'src/app/services/geocoding.service';
 
-// import { google } from '@google/maps';
+
 
 
 @Component({
@@ -35,10 +35,8 @@ export class ProfileComponent {
   
 
   //yaha par jo parse service lagana he yaha ae ga or authentication b
-  constructor(private geocodingService: GeocodingService, private mapsAPILoader: MapsAPILoader, private ngZone: NgZone, private service: ParseService, private authService: AuthService, private router: Router, private fb: FormBuilder) {
-
-
-  }
+  constructor(private geocodingService: GeocodingService, private ngZone: NgZone, private service: ParseService, private authService: AuthService, private router: Router, private fb: FormBuilder) {}
+  
 
 
   onDescriptionInput(value: string) {
@@ -70,7 +68,21 @@ export class ProfileComponent {
   }
 
 
+  // getLocation() {
+  //   if (navigator.geolocation) {
+  //     navigator.geolocation.getCurrentPosition((position) => {
+  //       const latitude = position.coords.latitude;
+  //       const longitude = position.coords.longitude;
 
+  //       // Here you can format and store the location as needed
+  //       this.userLocation = `Latitude: ${latitude}, Longitude: ${longitude}`;
+  //     }, (error) => {
+  //       console.error('Error fetching location:', error);
+  //     });
+  //   } else {
+  //     console.error('Geolocation is not supported by this browser.');
+  //   }
+  // }
 
 
 
@@ -94,9 +106,6 @@ export class ProfileComponent {
       return;
     }
 
-  
-
-  
       if (!this.fileBinaryString) {
         alert('No file selected or file processing error.');
         return;
@@ -116,13 +125,6 @@ export class ProfileComponent {
         console.error('Error submitting profile with binary string:', error);
         alert('Error in processing request');
       }
-    
-
-   
-  
-
-
-
   }
 
 // Updated onFileChanged method with emphasized console logging

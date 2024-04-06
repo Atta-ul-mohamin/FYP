@@ -37,6 +37,8 @@ import { AccountControllComponent } from './components/account-controll/account-
 import { UpdateGigComponent } from './update-gig/update-gig.component';
 import { ProfileSettingComponent } from './profile-setting/profile-setting.component';
 
+
+
 import { ReactiveFormsModule } from '@angular/forms';
 import { UpdateProffesionComponent } from './update-proffesion/update-proffesion.component';
 import { HttpClientModule } from '@angular/common/http';

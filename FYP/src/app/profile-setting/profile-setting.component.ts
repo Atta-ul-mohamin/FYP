@@ -42,7 +42,6 @@ export class ProfileSettingComponent  {
 
 
   async fetchProfileData() {
-    
     try {
       const result = await this.service.getProfileById(this.teacherID);
       
@@ -60,17 +59,13 @@ export class ProfileSettingComponent  {
        this.profileId = result.data.objectId;
        
       } else {
-        // Handle the error case
+     
       }
     } catch (error) {
       console.error('Error loading card details', error);
-      // Handle the error
     }
-      
-      // this.currentName = result.name;
-      // console.log(this.currentName);
-       // Set the current name if fetched
     }
+
   getLocation() {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition((position) => {

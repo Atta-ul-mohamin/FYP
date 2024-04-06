@@ -27,6 +27,8 @@ Price1: string= '';
 Price2: string = '';
 Price3: string = '';
 fullTitle : string = '';
+profileId : string = '';
+teacherId : string = '';
 
 categoriesWithSub: any[] = [
   { category: 'Business', subcategories: ['Branding Services', 'Business Consulting', 'Business Plans', 'Career Counseling', 'Data Entry', 'E-Commerce Management', 'Financial Consulting', 'Flyer Distribution', 'HR Consulting', 'Lead Generation', 'Legal Consulting', 'Market Research', 'Presentations', 'Project Management', 'Virtual Assistant' , 'other'] },
@@ -42,8 +44,34 @@ filteredSubcategories: string[] = [];
 selectedCategory1: string = '';
 selectedSubcategory: string = '';
   constructor(private service: ParseService, private authService: AuthService, private router: Router) { 
+    
   }
 
+  ngOnInit() {
+    this.teacherId = this.service.user.objectId;
+    this.fetchProfileData();
+  }
+
+ 
+
+
+  async fetchProfileData() {
+    try {
+      const result = await this.service.getProfileById(this.teacherId);
+      
+      if (result.status === 1) {
+       this.profileId = result.data.objectId;
+       
+       
+      } else {
+     
+      }
+    } catch (error) {
+      console.error('Error getting profileId', error);
+    }
+    }
+
+ 
   onCategoryChange() {
     const category = this.categoriesWithSub.find(cat => cat.category === this.selectedCategory1);
     this.filteredSubcategories = category ? category.subcategories : [];
@@ -77,7 +105,7 @@ updateSelectedPrice(priceLevel: string, event: Event) {
 
   async gigInfoAdd(title : string , year_Of_Experience: string  , type: string, skill: string , level: string   , level_1_Description: string  ,  level_1_Price: string  , level_2_Description: string  , level_2_Price: string  ,  level_3_Description: string  , level_3_Price: string , selectedCategory1: string, selectedSubcategory: string  ){
     // this.fullTitle = `I will ${title}`;
-    const result = await this.service.gig_info_add( this.title , year_Of_Experience  , type  , skill  , level  , level_1_Description  ,  level_1_Price  , level_2_Description  , level_2_Price  ,  level_3_Description  , level_3_Price , this.homePrice , selectedCategory1, selectedSubcategory);
+    const result = await this.service.gig_info_add( title , year_Of_Experience  , type  , skill  , level  , level_1_Description  ,  level_1_Price  , level_2_Description  , level_2_Price  ,  level_3_Description  , level_3_Price , this.homePrice , selectedCategory1, selectedSubcategory , this.profileId);
     if(result.status===1){
      alert('gig created successfuly')
      this.router.navigate(['/gigmanage']);

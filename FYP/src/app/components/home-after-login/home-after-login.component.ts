@@ -31,6 +31,10 @@ export class HomeAfterLoginComponent implements OnInit {
     this.user = this.service.user;
   }
 
+  images = [944, 1011, 984].map((n) => `https://picsum.photos/id/${n}/900/500`);
+
+
+
   async fetchProfileData() {
     
     try {
@@ -45,10 +49,6 @@ export class HomeAfterLoginComponent implements OnInit {
       console.error('Error loading card details', error);     
     }   
     }
-
-
-
-
 }
 
 

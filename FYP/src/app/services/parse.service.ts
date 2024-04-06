@@ -19,7 +19,8 @@ export class ParseService {
    }
    async signup(firstname:string, email:string , password:string){
     const params = {firstname, email, password};
-    await Parse.Cloud.run("addUserTeacher",params)
+     await Parse.Cloud.run("addUserTeacher",params)
+
    }
 
    // In ParseService
@@ -71,7 +72,7 @@ async submitProfileWithBinaryString(phone: number, gender: string, age: number, 
   }
   
 
-   async login(email: string, password: string) {
+   async login(email: string, password: string)  {
     const params ={email,password};
     const response = await Parse.Cloud.run("loginTeacher" , params);
     if(response.status === 2  || response.status === 3 || response.status === 4   ) {
@@ -155,8 +156,8 @@ async updateCurrentUserEmail(email: string) {
    }
 
 
-   async gig_info_add(title : string , year_Of_Experience: string  , type: string, skillLevel: string , level: string   , level_1_Description: string  ,  level_1_Price: string  , level_2_Description: string  , level_2_Price: string  ,  level_3_Description: string  , level_3_Price: string , homePrice:string , selectedCategory1: string, selectedSubcategory: string ){
-    const params = {title , year_Of_Experience  , type, skillLevel , level  , level_1_Description  ,  level_1_Price, level_2_Description , level_2_Price  ,  level_3_Description , level_3_Price , homePrice, selectedCategory1 , selectedSubcategory, userId :this.currentUser.objectId  };
+   async gig_info_add(title : string , year_Of_Experience: string  , type: string, skillLevel: string , level: string   , level_1_Description: string  ,  level_1_Price: string  , level_2_Description: string  , level_2_Price: string  ,  level_3_Description: string  , level_3_Price: string , homePrice:string , selectedCategory1: string, selectedSubcategory: string , profileId : string ){
+    const params = {title , year_Of_Experience  , type, skillLevel , level  , level_1_Description  ,  level_1_Price, level_2_Description , level_2_Price  ,  level_3_Description , level_3_Price , homePrice, selectedCategory1 , selectedSubcategory, profileId ,userId :this.currentUser.objectId  ,  };
     console.log(title);
     console.log(this.currentUser.objectId);
     console.log(this.currentUser);
@@ -247,6 +248,16 @@ async getProfileById(id: string): Promise<any> {
     return response;
   } catch (error) {
     console.error('Error fetching profile by ID from Cloud Code', error);
+    throw error;
+  }
+}
+
+async get_ProfileId() : Promise<any>{
+  try {
+    const response = await Parse.Cloud.run('getProfilId', {  objectId :this.currentUser.objectId});
+    return response;
+  } catch (error) {
+    console.error('Error fetching profileid by ID from Cloud Code', error);
     throw error;
   }
 }

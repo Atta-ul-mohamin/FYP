@@ -43,8 +43,25 @@
               </div>
 
               <button type="button" class="btn btn-dark btn-lg btn-block" (click)="onLogin(email.value, password.value)" style="background-color: rgb(20, 20, 19);">Login</button>
-                <button (click)="onGoogleLogin()" class="btn btn-google btn-lg btn-block">Sign in with Google</button>
-                 <!-- <button  class="btn btn-google btn-lg btn-block">Sign in with Google</button> -->
+                <!-- <button (click)="onGoogleLogin()" class="btn btn-google btn-lg btn-block">Sign in with Google</button> -->
+                 <button  class="btn btn-google btn-lg btn-block">Sign in with Google</button>
+                 <div id="g_id_onload"
+     data-client_id="66603945155-dfvk6kum2qrsu3igtd8e2qfj00k40ts3.apps.googleusercontent.com"
+     data-context="signin"
+     data-ux_mode="popup"
+     data-login_uri="http://localhost:1337/parse"
+     data-auto_select="true"
+     data-itp_support="true">
+</div>
+
+<div class="g_id_signin"
+     data-type="standard"
+     data-shape="pill"
+     data-theme="filled_blue"
+     data-text="signin_with"
+     data-size="large"
+     data-logo_alignment="left">
+</div>
 
 
               <a class="small text-muted" href="#" [routerLink]="['/forget-pin']">Forgot password?</a>
