@@ -23,7 +23,7 @@
                                     <br>
                                     <br>
 
-                                    <div class="form-outline mb-4">
+                                    <div  *ngIf="pass!=='null'" class="form-outline mb-4">
                                         <label class="fw-bold my-1 py-1">Profile Picture</label>
                                         <input type="file" (change)="onFileChanged($event)" class="form-control form-control-lg">
                                       </div>

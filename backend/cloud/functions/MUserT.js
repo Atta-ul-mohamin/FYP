@@ -5,34 +5,78 @@ Parse.Cloud.define("addUserTeacher", async (request) => {
     user.set("firstname", request.params.firstname);
     user.set("email", request.params.email);
     user.set("password", request.params.password);
-    const result = await user.save();
-    return result;
+    
+    const query = new Parse.Query(MUserT);
+    query.equalTo("email", request.params.email);
+    const existingUser = await query.first();
+
+    if (existingUser) {
+        // Email already exists, return status 0
+        return { status: 0, message: "Email already exists." };
+    } else {
+        // Email does not exist, save the new user
+        const result = await user.save();
+        return result;
+    }
     });
 
-    // Parse.Cloud.define("loginTeacher", async (request) => {
-    //     const { email, password } = request.params;
-      
-    //     const query = new Parse.Query("MUserT");
-    //     query.equalTo("email", email);
-    //     query.equalTo("password", password);
-      
-    //     const user = await query.first();
-      
-    //     if (user) {
 
-    //       return {
-    //         status: 1,
-    //         firstname: user.get('firstname'),
-    //          objectId: user.id 
-    //       };
-    //     } else {
-    //       console.log('error 2');
+    Parse.Cloud.define("addUserTeacherGoogle", async (request) => {
+
+      const MUserT = Parse.Object.extend("MUserT");
+      const user = new MUserT();
+      user.set("firstname", request.params.firstname);
+      user.set("email", request.params.email);
+      user.set("password", request.params.password);
+      
+      const query = new Parse.Query(MUserT);
+      query.equalTo("email", request.params.email);
+      const existingUser = await query.first();
+  
+      if (existingUser) {
           
-    //       return {
-    //         status: 0
-    //       };
-    //     }
-    //   });
+          //  return { status: 0, message: "Email already exists." };
+      } else {
+          // Email does not exist, save the new user
+          const result = await user.save();
+          return result;
+      }
+      const profileQuery = new Parse.Query("profile");
+      const professionQuery = new Parse.Query("profession");
+      profileQuery.equalTo("userId", existingUser.id); // Assuming MUserTPtr is the pointer field in Profile
+      professionQuery.equalTo("userId", existingUser.id); // Assuming MUserTPtr is the pointer field in Profession
+
+      // Execute both queries concurrently
+      const [profile, profession] = await Promise.all([profileQuery.first(), professionQuery.first()]);
+
+      // Determine the presence of MUserT in profile and profession
+      if (profile && profession) {
+          // Present in both
+          return { status: 2, firstname: user.get('firstname'), objectId: user.id };
+      } 
+      else if (profile && !profession) {
+          // Present only in profile
+          return { status: 3, firstname: user.get('firstname'), objectId: user.id };
+      } 
+      else if (!profile && profession) {
+        // Present only in profile
+        return { status: 5, firstname: user.get('firstname'), objectId: user.id };
+    } 
+      else if (!profile && !profession) {
+          // Not present in both
+          return { status: 4, firstname: user.get('firstname'), objectId: user.id };
+      }
+   else {
+  
+      // Login failed. You can return an error message.
+      return { status: 0 };
+  }
+
+
+
+      });
+
+  
 
 
 
@@ -60,19 +104,19 @@ Parse.Cloud.define("addUserTeacher", async (request) => {
             // Determine the presence of MUserT in profile and profession
             if (profile && profession) {
                 // Present in both
-                return { status: 2, firstname: user.get('firstname'), objectId: user.id };
+                return { status: 2, firstname: user.get('firstname'), objectId: user.id,pass:user.get('password') };
             } 
             else if (profile && !profession) {
                 // Present only in profile
-                return { status: 3, firstname: user.get('firstname'), objectId: user.id };
+                return { status: 3, firstname: user.get('firstname'), objectId: user.id , pass:user.get('password')};
             } 
             else if (!profile && profession) {
               // Present only in profile
-              return { status: 5, firstname: user.get('firstname'), objectId: user.id };
+              return { status: 5, firstname: user.get('firstname'), objectId: user.id , pass:user.get('password')};
           } 
             else if (!profile && !profession) {
                 // Not present in both
-                return { status: 4, firstname: user.get('firstname'), objectId: user.id };
+                return { status: 4, firstname: user.get('firstname'), objectId: user.id , pass:user.get('password')};
             }
         } else {
             console.log('error 2');

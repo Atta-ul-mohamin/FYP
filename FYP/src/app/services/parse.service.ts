@@ -17,10 +17,22 @@ export class ParseService {
           this.currentUser = JSON.parse(storedUser);
         }
    }
+   async signupGoogle(firstname:string, email:string , password:string){
+    const params = {firstname, email, password};
+    const result =  await Parse.Cloud.run("addUserTeacherGoogle",params);
+    this.currentUser = result;
+    return result;
+    
+   }
+
    async signup(firstname:string, email:string , password:string){
     const params = {firstname, email, password};
-     await Parse.Cloud.run("addUserTeacher",params)
+    const result =  await Parse.Cloud.run("addUserTeacherGoogle",params);
+   
+    return result;
 
+
+    
    }
 
    // In ParseService
@@ -156,8 +168,8 @@ async updateCurrentUserEmail(email: string) {
    }
 
 
-   async gig_info_add(title : string , year_Of_Experience: string  , type: string, skillLevel: string , level: string   , level_1_Description: string  ,  level_1_Price: string  , level_2_Description: string  , level_2_Price: string  ,  level_3_Description: string  , level_3_Price: string , homePrice:string , selectedCategory1: string, selectedSubcategory: string , profileId : string ){
-    const params = {title , year_Of_Experience  , type, skillLevel , level  , level_1_Description  ,  level_1_Price, level_2_Description , level_2_Price  ,  level_3_Description , level_3_Price , homePrice, selectedCategory1 , selectedSubcategory, profileId ,userId :this.currentUser.objectId  ,  };
+   async gig_info_add(title : string , year_Of_Experience: string  , type: string, skillLevel: string , level: string   , level_1_Description: string  ,  level_1_Price: string  , level_2_Description: string  , level_2_Price: string  ,  level_3_Description: string  , level_3_Price: string , homePrice:string , selectedCategory1: string, selectedSubcategory: string , profileId : string  , image1:string , image2:string, image3:string ){
+    const params = {title , year_Of_Experience  , type, skillLevel , level  , level_1_Description  ,  level_1_Price, level_2_Description , level_2_Price  ,  level_3_Description , level_3_Price , homePrice, selectedCategory1 , selectedSubcategory, profileId ,userId :this.currentUser.objectId  , image1,image2,image3 };
     console.log(title);
     console.log(this.currentUser.objectId);
     console.log(this.currentUser);

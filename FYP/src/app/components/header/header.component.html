@@ -20,9 +20,9 @@
                     <li class="nav-item"><a class="nav-link border-hover py-3 text-white" href="#"
                             [routerLink]="['/contactus']">Contact</a></li>
                     <li class="nav-item"><a class="nav-link border-hover py-3 text-white" href="#" [routerLink]="['/services-page']">Services</a></li>
-                    <li class="nav-item"  *ngIf="!isLoggedIn"><a class="nav-link border-hover py-3 text-white" href="#"
+                    <li class="nav-item"  ><a class="nav-link border-hover py-3 text-white" href="#"
                             [routerLink]="['/signup']">Signup</a></li>
-                    <li class="nav-item" *ngIf="isLoggedIn">
+                    <li class="nav-item">
                         <a class="nav-link border-hover py-3 text-white" href="#" [routerLink]="['/gig-page']">Offer
                             Skill</a>
                     </li>
@@ -38,8 +38,8 @@
                 <!-- <img src="assets\images\profile_dropdown_logo\user.png" *ngIf="isLoggedIn" clickOutside
                     (clickOutside)="clickedOutside()" class="user_pic" (click)="toggleMenu()" /> -->
 
-                    <div *ngIf="pictur" class="image-container d-flex justify-content-center">
-                        <img [src]="pictur | safeResourceUrl" class="rounded-circle" alt="Profile Image" style="height: 7vh; width: 5vw; border-radius: 1rem;" *ngIf="isLoggedIn" clickOutside
+                    <div  class="image-container d-flex justify-content-center">
+                        <img [src]="pictur | safeResourceUrl" class="rounded-circle" alt="Profile Image" style="height: 7vh; width: 5vw; border-radius: 1rem;"  clickOutside
                         (clickOutside)="clickedOutside()"  (click)="toggleMenu()">
                     </div>
 

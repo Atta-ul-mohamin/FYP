@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
+import { Router } from 'express';
 import { AuthService } from 'src/app/services/auth.service';
 import { ParseService } from 'src/app/services/parse.service';
 
@@ -8,6 +9,14 @@ import { ParseService } from 'src/app/services/parse.service';
   styleUrls: ['./home-after-login.component.css']
 })
 export class HomeAfterLoginComponent implements OnInit {
+  auth = inject(AuthService);
+  isAuthenticated: boolean = false;
+  isAppAuthenticated : boolean = false;
+  isAppLogin: boolean = false;
+  nameGoogle = JSON.parse(sessionStorage.getItem("loggedInUser")!).name;
+  imageGoogle = JSON.parse(sessionStorage.getItem("loggedInUser")!).picture;
+  emailGoogle = JSON.parse(sessionStorage.getItem("loggedInUser")!).email;
+
   user: any;
   userName!: string; 
   teacherId:any;
@@ -16,7 +25,13 @@ export class HomeAfterLoginComponent implements OnInit {
   constructor(private service: ParseService, private authService: AuthService) {}
 
   ngOnInit() {
+
+    this.authService.isAuthenticated.subscribe((status) => {
+      this.isAuthenticated = status;
+      console.log(this.isAuthenticated);
+    });
     this.teacherId = this.service.user.objectId;
+    
     console.log(this.teacherId);
     this.fetchProfileData();
 
@@ -31,9 +46,12 @@ export class HomeAfterLoginComponent implements OnInit {
     this.user = this.service.user;
   }
 
-  images = [944, 1011, 984].map((n) => `https://picsum.photos/id/${n}/900/500`);
 
 
+   signOutGoogle(){
+    sessionStorage.removeItem("loggedInUser");
+    this.auth.signOutGoogle();
+   }
 
   async fetchProfileData() {
     
@@ -43,7 +61,7 @@ export class HomeAfterLoginComponent implements OnInit {
        console.log(result) 
        this.pictur =  result.data.pictur;
       } else {
-        // Handle the error case
+       
       }
     } catch (error) {
       console.error('Error loading card details', error);     

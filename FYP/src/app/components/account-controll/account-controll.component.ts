@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
+import { Router } from 'express';
+import { AuthService } from 'src/app/services/auth.service';
 import { ParseService } from 'src/app/services/parse.service';
 
 @Component({
@@ -7,6 +9,11 @@ import { ParseService } from 'src/app/services/parse.service';
   styleUrls: ['./account-controll.component.css']
 })
 export class AccountControllComponent implements OnInit {
+  auth = inject(AuthService);
+  nameGoogle = JSON.parse(sessionStorage.getItem("loggedInUser")!).name;
+  imageGoogle = JSON.parse(sessionStorage.getItem("loggedInUser")!).picture;
+  emailGoogle = JSON.parse(sessionStorage.getItem("loggedInUser")!).email;
+
   teacherId:any;
   pictur:string="";
   name : string="";

@@ -98,6 +98,9 @@ Parse.Cloud.define("getProfileById", async (request) => {
 });
 
 
+
+
+
 Parse.Cloud.define("deleteProfile", async (request) => {
   const ProfileId = request.params.ProfileId;
   const query = new Parse.Query("profile");

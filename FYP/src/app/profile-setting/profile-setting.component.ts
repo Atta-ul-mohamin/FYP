@@ -23,15 +23,19 @@ export class ProfileSettingComponent  {
   selectedgender:string ="";
   profileId:string="";
   pictur:string="";
-  selectedFile: File | null = null;
+  
   descriptionCount: number | null = null;
   isDescriptionLimitReached: boolean = false;
+  selectedFile: File | null = null;
   fileBinaryString: string | null = null;
+  pass : string = '';
   //yaha par jo parse service lagana he yaha ae ga or authentication b
   constructor(private service: ParseService, private route: ActivatedRoute , private router: Router) { }
  
   ngOnInit() {
     this.teacherID = this.route.snapshot.paramMap.get('id') as string;
+    this.pass= this.service.user.pass;
+    console.log(this.pass);
     this.fetchProfileData();
   }
 
@@ -94,10 +98,10 @@ export class ProfileSettingComponent  {
       return;
     }
 
-    if (age === undefined || !Number.isInteger(age) || age < 0 || age > 120) {
-      alert('Please enter a valid age');
-      return;
-    }
+    // if (age === undefined || !Number.isInteger(age) || age < 0 || age > 120) {
+    //   alert('Please enter a valid age');
+    //   return;
+    // }
 
     // Assuming phone is a number but checking if it's defined and within a plausible range
     if (phone === undefined || phone.toString().length < 7 || phone.toString().length > 15) {

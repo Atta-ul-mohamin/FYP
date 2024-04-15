@@ -3,7 +3,7 @@ import { AuthService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
 import { ParseService } from 'src/app/services/parse.service';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
-import { Component, NgZone } from '@angular/core';
+import { Component, NgZone,inject, OnInit  } from '@angular/core';
 // import { MapsAPILoader } from '@agm/core';
 import { GeocodingService, GeocodeResponse } from 'src/app/services/geocoding.service';
 
@@ -15,13 +15,17 @@ import { GeocodingService, GeocodeResponse } from 'src/app/services/geocoding.se
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css']
 })
-export class ProfileComponent {
+export class ProfileComponent implements OnInit{
+  auth = inject(AuthService);
+  
+  imageGoogle = JSON.parse(sessionStorage.getItem("loggedInUser")!).picture;
   cnic: number | undefined = undefined;
   phone: number | undefined = undefined;
   age: number | undefined = undefined;
-  selectedFile: File | null = null;
+  
   descriptionCount: number | null = null;
   isDescriptionLimitReached: boolean = false;
+  selectedFile: File | null = null;
   fileBinaryString: string | null = null;
   userLocation: string = ''; // Initialize the userLocation variable
   gender: string = '';
@@ -29,10 +33,15 @@ export class ProfileComponent {
   language: string = '';
   description: string = '';
   selectedgender: string = "";
+  pass : string = "";
 
 
 
-  
+  ngOnInit() {
+
+    this.pass= this.service.user.pass;
+    console.log(this.pass);
+  }
 
   //yaha par jo parse service lagana he yaha ae ga or authentication b
   constructor(private geocodingService: GeocodingService, private ngZone: NgZone, private service: ParseService, private authService: AuthService, private router: Router, private fb: FormBuilder) {}
@@ -68,21 +77,7 @@ export class ProfileComponent {
   }
 
 
-  // getLocation() {
-  //   if (navigator.geolocation) {
-  //     navigator.geolocation.getCurrentPosition((position) => {
-  //       const latitude = position.coords.latitude;
-  //       const longitude = position.coords.longitude;
 
-  //       // Here you can format and store the location as needed
-  //       this.userLocation = `Latitude: ${latitude}, Longitude: ${longitude}`;
-  //     }, (error) => {
-  //       console.error('Error fetching location:', error);
-  //     });
-  //   } else {
-  //     console.error('Geolocation is not supported by this browser.');
-  //   }
-  // }
 
 
 
@@ -106,13 +101,33 @@ export class ProfileComponent {
       return;
     }
 
+      
+    
+      // Validate other inputs as before (age, phone, etc.)
+      this.pass= await this.service.user.pass;
+      
+      if(this.pass === "null")
+    {
+      try {
+        const result = await this.service.submitProfileWithBinaryString(phone, gender, age, location, language, description, this.imageGoogle);
+        if (result.status === 1) {
+          alert('Profile created successfully');
+          this.router.navigate(['/profession-details']);
+        } else {
+          alert('Error in creating profile');
+        }
+      } catch (error) {
+        console.error('Error submitting profile with binary string:', error);
+        alert('Error in processing request');
+      }
+
+
+    }
+    if(this.pass !== "null"){
       if (!this.fileBinaryString) {
         alert('No file selected or file processing error.');
         return;
       }
-    
-      // Validate other inputs as before (age, phone, etc.)
-    
       try {
         const result = await this.service.submitProfileWithBinaryString(phone, gender, age, location, language, description, this.fileBinaryString);
         if (result.status === 1) {
@@ -126,6 +141,7 @@ export class ProfileComponent {
         alert('Error in processing request');
       }
   }
+}
 
 // Updated onFileChanged method with emphasized console logging
  // Updated onFileChanged method
@@ -140,7 +156,7 @@ export class ProfileComponent {
     this.convertBlobUrlToBase64String(blobUrl)
       .then(base64String => {
         this.fileBinaryString = base64String; // Store Base64 string
-        console.log('Generated Base64 String:', this.fileBinaryString.substring(0, 50) + '...');
+        console.log('Generated Base64 String:', this.fileBinaryString.substring(0, 5) + '...');
       })
       .catch(error => console.error('Error reading file as Base64 string:', error));
   }

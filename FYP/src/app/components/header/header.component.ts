@@ -10,7 +10,7 @@ import { ParseService } from 'src/app/services/parse.service';// Adjust the impo
 })
 export class HeaderComponent implements OnInit, OnDestroy {
   isMenuOpened: boolean = false;
-  isLoggedIn: boolean = false;
+  // isLoggedIn: boolean = false;
   teacherId:any;
   pictur:string="";
   name : string="";
@@ -24,9 +24,9 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.fetchProfileData();
     this.fetchSignupData();
 
-    this.authSubscription = this.authService.isLoggedInStatus.subscribe(status => {
-      this.isLoggedIn = status;
-    });
+    // this.authSubscription = this.authService.isLoggedInStatus.subscribe(status => {
+    //   this.isLoggedIn = status;
+    // });
   }
   async fetchProfileData() {
     

@@ -45,31 +45,40 @@ Parse.Cloud.define("getTeacherIdsByStudent", async (request) => {
 
 
 Parse.Cloud.define("getTeacherNamesByIds", async (request) => {
-  const teacherIds = request.params.teacherIds.filter(id => id != null);
+  const teacherIds = request.params.teacherIds.filter(id => id !== null);
 
-  // Check if the filtered array is not empty
   if (teacherIds.length === 0) {
-    return [];  // Return an empty array if no valid IDs are provided
+    return []; // Return an empty array if no valid IDs are provided
   }
 
-  const query = new Parse.Query("MUserT");
-  query.containedIn("objectId", teacherIds);
+  // Query to fetch teachers based on IDs
+  const teacherQuery = new Parse.Query("MUserT");
+  teacherQuery.containedIn("objectId", teacherIds);
+  const teachers = await teacherQuery.find();
 
-  const teachers = await query.find();
-  
-  // Return the full student data
+  // Query to fetch profiles linked to these teachers
+  const profileQuery = new Parse.Query("profile");
+  profileQuery.containedIn("userId", teachers); // Assuming "userId" is a Pointer to MUserT
+  const profiles = await profileQuery.find();
+
+  // Create a map of userId to profile images for quick lookup
+  const profileImageMap = profiles.reduce((map, profile) => {
+    const userId = profile.get("userId").id; // Get the ID of the linked user
+    const image = profile.get("image"); // Assuming 'image' holds the URL or Parse.File
+    map[userId] = image;
+    return map;
+  }, {});
+
+  // Map teacher data including the image from the profile
   return teachers.map(teacher => {
-    // If you want to return the complete object including all fields
-    // return student.toJSON();
-
-    // Alternatively, if you want to return specific fields only
     return {
       id: teacher.id,
-      name: teacher.get("firstname"),
-      // other fields you want to include
+      name: teacher.get("firstname"), // or any field representing the name
+      image: profileImageMap[teacher.id] // Get the image URL or Parse.File from the map
     };
   });
 });
+
 
 Parse.Cloud.define("getConversationIDStudent", async (request) => {
   const { TeacherID, StudentID  } = request.params;

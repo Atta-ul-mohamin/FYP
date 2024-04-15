@@ -1,4 +1,7 @@
-import { Component } from '@angular/core';
+
+import { Component, OnInit, inject } from '@angular/core';
+import { Router } from 'express';
+import { AuthService } from 'src/app/services/auth.service';
 import { ParseService } from 'src/app/services/parse.service';
 
 @Component({
@@ -7,6 +10,7 @@ import { ParseService } from 'src/app/services/parse.service';
   styleUrls: ['./account-setting.component.css']
 })
 export class AccountSettingComponent {
+
 
   constructor(private parseService: ParseService) {}
   currentName: string = '';
