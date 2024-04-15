@@ -106,7 +106,6 @@ export class ProfileComponent {
       return;
     }
 
-<<<<<<< HEAD
     // if (this.selectedFile) {
     //   const result = await this.service.submitProfileWithImage(phone, gender, age, location, language, description, this.selectedFile);
     //   console.log("hello");
@@ -125,7 +124,6 @@ export class ProfileComponent {
     // }
 
 
-=======
   
       if (!this.fileBinaryString) {
         alert('No file selected or file processing error.');
@@ -147,24 +145,9 @@ export class ProfileComponent {
         alert('Error in processing request');
       }
     
->>>>>>> 47b199caa797c882c3949ab831ede0b25830a75a
 
     // const result = await this.service.submit_profile(phone, gender, age, location, language, description)
 
-<<<<<<< HEAD
-
-    const result = await this.service.submit_profile(phone, gender, age, location, language, description)
-
-    if (result.status === 1) {
-      alert('profile maded successfully');
-      this.router.navigate(['/profession-details']);
-    }
-
-    else {
-      alert('error in making profile');
-    }
-
-=======
       //  if (result.status === 1) {
       //   alert('profile maded successfully');
       //   this.router.navigate(['/profession-details']);
@@ -174,7 +157,6 @@ export class ProfileComponent {
       //   alert('error in making profile');
       // }
   
->>>>>>> 47b199caa797c882c3949ab831ede0b25830a75a
 
 
 
