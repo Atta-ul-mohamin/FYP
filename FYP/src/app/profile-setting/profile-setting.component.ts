@@ -17,22 +17,35 @@ export class ProfileSettingComponent  {
   language:string='';
   description:string = '';  
   userLocation: string = ''; 
-  age:string = '';
+  age: number | undefined = undefined;
+ 
   phone:string='';
   selectedgender:string ="";
   profileId:string="";
   pictur:string="";
+  
+  descriptionCount: number | null = null;
+  isDescriptionLimitReached: boolean = false;
+  selectedFile: File | null = null;
+  fileBinaryString: string | null = null;
+  pass : string = '';
   //yaha par jo parse service lagana he yaha ae ga or authentication b
   constructor(private service: ParseService, private route: ActivatedRoute , private router: Router) { }
  
   ngOnInit() {
     this.teacherID = this.route.snapshot.paramMap.get('id') as string;
+    this.pass= this.service.user.pass;
+    console.log(this.pass);
     this.fetchProfileData();
+  }
+
+  onDescriptionInput(value: string) {
+    this.descriptionCount = value.length;
+    this.isDescriptionLimitReached = this.descriptionCount >= 100;
   }
 
 
   async fetchProfileData() {
-    
     try {
       const result = await this.service.getProfileById(this.teacherID);
       
@@ -50,17 +63,13 @@ export class ProfileSettingComponent  {
        this.profileId = result.data.objectId;
        
       } else {
-        // Handle the error case
+     
       }
     } catch (error) {
       console.error('Error loading card details', error);
-      // Handle the error
     }
-      
-      // this.currentName = result.name;
-      // console.log(this.currentName);
-       // Set the current name if fetched
     }
+
   getLocation() {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition((position) => {
@@ -81,15 +90,59 @@ export class ProfileSettingComponent  {
     
     
   
-  async submit_profile( phone : string ,  gender:string , age:string , location:string , language:string , description:string) {
-    const result = await this.service.update_submit_profile(this.profileId,this.teacherID, phone, gender, age, location,language, description)
+  async submit_profile( phone : string ,  gender:string , age:number , location:string , language:string , description:string) {
+  
+    const descriptionLength = description.length;
+    if (descriptionLength < 100) {
+      alert('Description should more than 100 characters.');
+      return;
+    }
+
+    // if (age === undefined || !Number.isInteger(age) || age < 0 || age > 120) {
+    //   alert('Please enter a valid age');
+    //   return;
+    // }
+
+    // Assuming phone is a number but checking if it's defined and within a plausible range
+    if (phone === undefined || phone.toString().length < 7 || phone.toString().length > 15) {
+      alert('Please enter a valid phone number.');
+      return;
+    }
+
+  
+
+  
+      if (!this.fileBinaryString) {
+        alert('No file selected or file processing error.');
+        return;
+      }
+    
+      // Validate other inputs as before (age, phone, etc.)
+    
+      // try {
+      //   const result = await this.service.submitProfileWithBinaryString(phone, gender, age, location, language, description, this.fileBinaryString);
+      //   if (result.status === 1) {
+      //     alert('Profile created successfully');
+      //     this.router.navigate(['/profession-details']);
+      //   } else {
+      //     alert('Error in creating profile');
+      //   }
+      // } catch (error) {
+      //   console.error('Error submitting profile with binary string:', error);
+      //   alert('Error in processing request');
+      // }
+    
+
+
+
+    const result = await this.service.update_submit_profile(this.profileId,this.teacherID, phone, gender, age, location,language, description,this.fileBinaryString)
     if(result.status===1)
     {
-      alert('profile maded successfully');
+      alert('profile edited successfully');
     }
 
     else{
-      alert('error in making profile');
+      alert('error in editing profile');
     }
     
   }
@@ -119,14 +172,40 @@ export class ProfileSettingComponent  {
    
     console.log("Profile deletion cancelled.");
   }
+}
+
+  onFileChanged(event: Event) {
+    const input = event.target as HTMLInputElement;
+    if (!input.files || input.files.length === 0) {
+      this.selectedFile = null;
+      this.fileBinaryString = null;
+    } else {
+      this.selectedFile = input.files[0];
+      const blobUrl = URL.createObjectURL(this.selectedFile);
+      this.convertBlobUrlToBase64String(blobUrl)
+        .then(base64String => {
+          this.fileBinaryString = base64String; // Store Base64 string
+          console.log('Generated Base64 String:', this.fileBinaryString.substring(0, 50) + '...');
+        })
+        .catch(error => console.error('Error reading file as Base64 string:', error));
+    }
   }
-
   
-
-
-
+  // Method to convert Blob URL to Base64 string
+  async convertBlobUrlToBase64String(blobUrl: string): Promise<string> {
+    const response = await fetch(blobUrl);
+    const blob = await response.blob();
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        const base64String = reader.result; // This is a Base64 string
+        resolve(base64String as string);
+      };
+      reader.onerror = reject;
+      reader.readAsDataURL(blob); // Changed to readAsDataURL for Base64
+    });
+  }
   
-
 }
 
 

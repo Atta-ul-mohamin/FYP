@@ -3,11 +3,11 @@ import { AuthService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
 import { ParseService } from 'src/app/services/parse.service';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
-import { Component, NgZone } from '@angular/core';
-import { MapsAPILoader } from '@agm/core';
+import { Component, NgZone,inject, OnInit  } from '@angular/core';
+// import { MapsAPILoader } from '@agm/core';
 import { GeocodingService, GeocodeResponse } from 'src/app/services/geocoding.service';
 
-// import { google } from '@google/maps';
+
 
 
 @Component({
@@ -15,36 +15,43 @@ import { GeocodingService, GeocodeResponse } from 'src/app/services/geocoding.se
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css']
 })
-export class ProfileComponent {
+export class ProfileComponent implements OnInit{
+  auth = inject(AuthService);
+  
+  imageGoogle = JSON.parse(sessionStorage.getItem("loggedInUser")!).picture;
   cnic: number | undefined = undefined;
   phone: number | undefined = undefined;
   age: number | undefined = undefined;
-  selectedFile: File | null = null;
+  
   descriptionCount: number | null = null;
   isDescriptionLimitReached: boolean = false;
+  selectedFile: File | null = null;
   fileBinaryString: string | null = null;
+  userLocation: string = ''; // Initialize the userLocation variable
+  gender: string = '';
+  location: string = '';
+  language: string = '';
+  description: string = '';
+  selectedgender: string = "";
+  pass : string = "";
+
+
+
+  ngOnInit() {
+
+    this.pass= this.service.user.pass;
+    console.log(this.pass);
+  }
+
+  //yaha par jo parse service lagana he yaha ae ga or authentication b
+  constructor(private geocodingService: GeocodingService, private ngZone: NgZone, private service: ParseService, private authService: AuthService, private router: Router, private fb: FormBuilder) {}
+  
+
 
   onDescriptionInput(value: string) {
     this.descriptionCount = value.length;
     this.isDescriptionLimitReached = this.descriptionCount >= 100;
   }
-
-  
-  userLocation: string = ''; // Initialize the userLocation variable
-
-  gender: string = '';
-
-  location: string = '';
-  language: string = '';
-  description: string = '';
-  selectedgender: string = "";
-  //yaha par jo parse service lagana he yaha ae ga or authentication b
-  constructor(private geocodingService: GeocodingService, private mapsAPILoader: MapsAPILoader, private ngZone: NgZone, private service: ParseService, private authService: AuthService, private router: Router, private fb: FormBuilder) {
-
-
-  }
-
-
 
   getLocation() {
     if (navigator.geolocation) {
@@ -76,24 +83,12 @@ export class ProfileComponent {
 
   async submit_profile(phone: number, gender: string, age: number, location: string, language: string, description: string) {
 
-    // for words
-    // const descriptionWordCount = description.split(/\s+/).length;
-    // if (descriptionWordCount < 100) {
-    //     alert('Description cannot exceed 100 words.');
-    //     return;
-    // }
 
-    // for character
     const descriptionLength = description.length;
     if (descriptionLength < 100) {
       alert('Description should more than 100 characters.');
       return;
     }
-
-
-
-
-
 
     if (age === undefined || !Number.isInteger(age) || age < 0 || age > 120) {
       alert('Please enter a valid age');
@@ -106,6 +101,7 @@ export class ProfileComponent {
       return;
     }
 
+<<<<<<< HEAD
     // if (this.selectedFile) {
     //   const result = await this.service.submitProfileWithImage(phone, gender, age, location, language, description, this.selectedFile);
     //   console.log("hello");
@@ -125,13 +121,35 @@ export class ProfileComponent {
 
 
   
+=======
+      
+    
+      // Validate other inputs as before (age, phone, etc.)
+      this.pass= await this.service.user.pass;
+      
+      if(this.pass === "null")
+    {
+      try {
+        const result = await this.service.submitProfileWithBinaryString(phone, gender, age, location, language, description, this.imageGoogle);
+        if (result.status === 1) {
+          alert('Profile created successfully');
+          this.router.navigate(['/profession-details']);
+        } else {
+          alert('Error in creating profile');
+        }
+      } catch (error) {
+        console.error('Error submitting profile with binary string:', error);
+        alert('Error in processing request');
+      }
+
+
+    }
+    if(this.pass !== "null"){
+>>>>>>> b3aa22d6bbc796ca416430e56b0d2daaf1a76213
       if (!this.fileBinaryString) {
         alert('No file selected or file processing error.');
         return;
       }
-    
-      // Validate other inputs as before (age, phone, etc.)
-    
       try {
         const result = await this.service.submitProfileWithBinaryString(phone, gender, age, location, language, description, this.fileBinaryString);
         if (result.status === 1) {
@@ -144,6 +162,7 @@ export class ProfileComponent {
         console.error('Error submitting profile with binary string:', error);
         alert('Error in processing request');
       }
+<<<<<<< HEAD
     
 
     // const result = await this.service.submit_profile(phone, gender, age, location, language, description)
@@ -160,7 +179,10 @@ export class ProfileComponent {
 
 
 
+=======
+>>>>>>> b3aa22d6bbc796ca416430e56b0d2daaf1a76213
   }
+}
 
 // Updated onFileChanged method with emphasized console logging
  // Updated onFileChanged method
@@ -175,7 +197,7 @@ export class ProfileComponent {
     this.convertBlobUrlToBase64String(blobUrl)
       .then(base64String => {
         this.fileBinaryString = base64String; // Store Base64 string
-        console.log('Generated Base64 String:', this.fileBinaryString.substring(0, 50) + '...');
+        console.log('Generated Base64 String:', this.fileBinaryString.substring(0, 5) + '...');
       })
       .catch(error => console.error('Error reading file as Base64 string:', error));
   }

@@ -22,23 +22,31 @@
 
   // return combinedData;
   Parse.Cloud.define("getGigData", async (request) => {
-    const {userId} = request.params; // Get the current user's objectId
+    // const userId = request.params; // Get the current user's objectId
     const query = new Parse.Query('create_gig');
   
     // query.equalTo('userId', userId); // Add a filter to get gigs only for the current user
-    query.include('userId'); // Ensure to include the user object to access its data
+    query.include(['userId', 'profileId']);// Ensure to include the user object to access its data
   
     const results = await query.find();
   
     return results.map(result => {
-      // Access the user object from the pointer
+      // Access the user and profile object from the pointer
       const user = result.get('userId');
+      const profile = result.get('profileId');
+      const firstname = user ? user.get('firstname') : null; // Adjust field names as necessary
+      const image = profile ? profile.get('image') : null; 
   
       return {
-        objectId: result.id, 
+        userId: user.id, 
+        objectId : result.id,
+        image1 : result.get("image1"),
+        image2 : result.get("image2"),
+        image3 : result.get("image3"),
         price: result.get('homePrice'),
         title: result.get('title'),
-        firstname: user.get('firstname'),
+        firstname: firstname,
+          image: image,
          // Access the firstname field from the MUserT class
       };
     });
@@ -59,7 +67,8 @@ Parse.Cloud.define("getGigById", async (request) => {
 
   try {
     const card = await query.get(id);
-    const user = card.get("userId"); // This is the MUserT object, could be null if pointer does not exist
+    const user = card.get("userId"); 
+                              // This is the MUserT object, could be null if pointer does not exist
 
     // Constructing response data with fields from create_gig and user object
     const responseData = {
@@ -78,6 +87,10 @@ Parse.Cloud.define("getGigById", async (request) => {
       level_3_Description: card.get("level_3_Description"),
       category : card.get("selectedCategory1"),
       subcategory : card.get("selectedSubcategory"),
+      image1 : card.get("image1"),
+      image2 : card.get("image2"),
+      image3 : card.get("image3"),
+      
     };
 
     // Include user data if it exists
@@ -104,3 +117,60 @@ Parse.Cloud.define("getGigById", async (request) => {
     };
   }
 });
+
+Parse.Cloud.define("getGigByUserId", async (request) => {
+  const { id } = request.params; // Assuming this is the ID of the MUserT object
+  const Gig = Parse.Object.extend("create_gig");
+  const userQuery = new Parse.Query(Parse.Object.extend("MUserT"));
+  const profileQuery = new Parse.Query(Parse.Object.extend("profile"));
+
+  try {
+    const user = await userQuery.get(id); // Fetch the user by ID to validate existence
+
+    // Query to find the profile matching the user ID
+    profileQuery.equalTo("userId", user); // Assuming 'userId' is a pointer to the MUserT object
+    const userProfile = await profileQuery.first(); // Use .first() if you expect one result
+
+    const query = new Parse.Query(Gig);
+    query.equalTo("userId", user); // Search for gigs where 'userId' matches the provided user object
+    query.include("userId"); // Include the pointer to fetch the related MUserT object data
+
+    const card = await query.first(); // Use .first() if you expect one result or modify as needed
+
+    if (!card) {
+      return {
+        status: 0,
+        message: "No gig found for the provided user ID",
+      };
+    }
+
+    let profileImage = userProfile ? userProfile.get("image") : null; // Get image from profile if exists
+
+    // Constructing response data with fields from create_gig, user object, and profile image
+    const responseData = {
+      objectId: card.id,
+      title: card.get("title"),
+      // Add other fields as before...
+      profileImage: profileImage, // Image from the profile
+      user: {
+        userId: user.id,
+        firstname: user.get("firstname"),
+        // Add other user fields as needed...
+      },
+    };
+
+    return {
+      status: 1,
+      data: responseData,
+    };
+  } catch (error) {
+    console.error('Error fetching gig or profile by user ID', error);
+    return {
+      status: 0,
+      message: "Error fetching gig or profile by user ID",
+      error: error.message,
+    };
+  }
+});
+
+

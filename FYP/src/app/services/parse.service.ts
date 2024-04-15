@@ -17,9 +17,22 @@ export class ParseService {
           this.currentUser = JSON.parse(storedUser);
         }
    }
+   async signupGoogle(firstname:string, email:string , password:string){
+    const params = {firstname, email, password};
+    const result =  await Parse.Cloud.run("addUserTeacherGoogle",params);
+    this.currentUser = result;
+    return result;
+    
+   }
+
    async signup(firstname:string, email:string , password:string){
     const params = {firstname, email, password};
-    await Parse.Cloud.run("addUserTeacher",params)
+    const result =  await Parse.Cloud.run("addUserTeacherGoogle",params);
+   
+    return result;
+
+
+    
    }
 
    // In ParseService
@@ -71,7 +84,7 @@ async submitProfileWithBinaryString(phone: number, gender: string, age: number, 
   }
   
 
-   async login(email: string, password: string) {
+   async login(email: string, password: string)  {
     const params ={email,password};
     const response = await Parse.Cloud.run("loginTeacher" , params);
     if(response.status === 2  || response.status === 3 || response.status === 4   ) {
@@ -92,6 +105,34 @@ async submitProfileWithBinaryString(phone: number, gender: string, age: number, 
     this.currentUser = value;
   }
 
+  async getCurrentUserData() {
+    if (this.currentUser && this.currentUser.objectId) {
+      const params = { objectId: this.currentUser.objectId };
+      const result = await Parse.Cloud.run('current_user_data' , params)
+      return result;
+     
+  }
+}
+async updateCurrentUserName(name: string) {
+  if (this.currentUser && this.currentUser.objectId) {
+    const params = { objectId: this.currentUser.objectId , name};
+    alert('User name Updated Successfully !!!');
+    await Parse.Cloud.run('updateUserName', params);
+  } else {
+    alert('No user is currently logged in.');
+  }
+}
+
+async updateCurrentUserEmail(email: string) {
+  if (this.currentUser && this.currentUser.objectId) {
+    const params = { objectId: this.currentUser.objectId , email};
+    alert('email  Updated Successfully !!!');
+    await Parse.Cloud.run('updateUserEmail', params);
+  } else {
+    alert('No user is currently logged in.');
+  }
+}
+
   
    async submit_profile( phone:number, gender:string,age:number ,location:string,language:string,description:string){
    
@@ -101,9 +142,9 @@ async submitProfileWithBinaryString(phone: number, gender: string, age: number, 
      return result;
    }
 
-   async update_submit_profile( profileId : string, teacherid: string ,phone:string, gender:string,age:string ,location:string,language:string,description:string){
+   async update_submit_profile( profileId : string, teacherid: string ,phone:string, gender:string,age:number,location:string,language:string,description:string,stringImage:string){
    
-    const params = { profileId,teacherid,phone,gender,age,location,language, description ,userId :this.currentUser.objectId}
+    const params = { profileId,teacherid,phone,gender,age,location,language, description ,stringImage ,userId :this.currentUser.objectId}
      const result = await Parse.Cloud.run("update_profileuser",params)
      return result;
    }
@@ -127,8 +168,8 @@ async submitProfileWithBinaryString(phone: number, gender: string, age: number, 
    }
 
 
-   async gig_info_add(title : string , year_Of_Experience: string  , type: string, skillLevel: string , level: string   , level_1_Description: string  ,  level_1_Price: string  , level_2_Description: string  , level_2_Price: string  ,  level_3_Description: string  , level_3_Price: string , homePrice:string , selectedCategory1: string, selectedSubcategory: string ){
-    const params = {title , year_Of_Experience  , type, skillLevel , level  , level_1_Description  ,  level_1_Price, level_2_Description , level_2_Price  ,  level_3_Description , level_3_Price , homePrice, selectedCategory1 , selectedSubcategory, userId :this.currentUser.objectId  };
+   async gig_info_add(title : string , year_Of_Experience: string  , type: string, skillLevel: string , level: string   , level_1_Description: string  ,  level_1_Price: string  , level_2_Description: string  , level_2_Price: string  ,  level_3_Description: string  , level_3_Price: string , homePrice:string , selectedCategory1: string, selectedSubcategory: string , profileId : string  , image1:string , image2:string, image3:string ){
+    const params = {title , year_Of_Experience  , type, skillLevel , level  , level_1_Description  ,  level_1_Price, level_2_Description , level_2_Price  ,  level_3_Description , level_3_Price , homePrice, selectedCategory1 , selectedSubcategory, profileId ,userId :this.currentUser.objectId  , image1,image2,image3 };
     console.log(title);
     console.log(this.currentUser.objectId);
     console.log(this.currentUser);
@@ -219,6 +260,16 @@ async getProfileById(id: string): Promise<any> {
     return response;
   } catch (error) {
     console.error('Error fetching profile by ID from Cloud Code', error);
+    throw error;
+  }
+}
+
+async get_ProfileId() : Promise<any>{
+  try {
+    const response = await Parse.Cloud.run('getProfilId', {  objectId :this.currentUser.objectId});
+    return response;
+  } catch (error) {
+    console.error('Error fetching profileid by ID from Cloud Code', error);
     throw error;
   }
 }

@@ -29,6 +29,26 @@
                       name="yearofexperience" [(ngModel)]="year_Of_Experience">
                   </div>
 
+                  <div class="form-group mb-4">
+                    <label class="fw-bold my-1 py-1">Upload Photos</label>
+                    <div   class="form-outline mb-4">
+                      <input type="file" (change)="onFileChanged1($event)" class="form-control form-control-lg">
+                      <span title="This is the main image for your card. And it will be shown to
+the students first after clicking the card rest of the images 
+and also main image will be shown to student." style="cursor: help; text-decoration: underline; " class="fw-bold">
+                        (main image)
+                      </span>
+                    </div>
+                    <div   class="form-outline mb-4">
+                      <input type="file" (change)="onFileChanged2($event)" class="form-control form-control-lg">
+                    </div>
+                    <div   class="form-outline mb-4">
+                      <input type="file" (change)="onFileChanged3($event)" class="form-control form-control-lg">
+                    </div>
+                    <small class="form-text text-muted">Upload up to 3 photos related to your gig.</small>
+                  </div>
+                  
+
 
                   <div class="custom-box1">
                     <div class="row">

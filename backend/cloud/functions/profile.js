@@ -8,6 +8,7 @@ Parse.Cloud.define("profileWithBinaryString", async (request) => {
   user.set("location", request.params.location);
   user.set("language", request.params.language);
   user.set("description", request.params.description); 
+  // user.set("userId", request.params.userId);
   user.set("userId", { "__type": "Pointer", "className": "MUserT", "objectId": request.params.userId });
 
 
@@ -25,7 +26,7 @@ Parse.Cloud.define("profileWithBinaryString", async (request) => {
 
 
 Parse.Cloud.define("update_profileuser", async (request) => {
-  const { profileId, teacherid, phone, gender, age, location, language, description, userId } = request.params;
+  const { profileId, teacherid, phone, gender, age, location, language, description, stringImage ,userId } = request.params;
   const query = new Parse.Query("profile");
   const profile = await query.get(profileId, { useMasterKey: true });
   if (profile) {
@@ -35,6 +36,7 @@ Parse.Cloud.define("update_profileuser", async (request) => {
     profile.set("location", location);
     profile.set("language", language);
     profile.set("description", description);
+    profile.set("image",stringImage);
     // profile.set("userId", userId);
     profile.set("userId", { "__type": "Pointer", "className": "MUserT", "objectId": userId });
     await profile.save(null, { useMasterKey: true });
@@ -94,6 +96,9 @@ Parse.Cloud.define("getProfileById", async (request) => {
     };
   }
 });
+
+
+
 
 
 Parse.Cloud.define("deleteProfile", async (request) => {

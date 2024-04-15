@@ -20,9 +20,9 @@
                     <li class="nav-item"><a class="nav-link border-hover py-3 text-white" href="#"
                             [routerLink]="['/contactus']">Contact</a></li>
                     <li class="nav-item"><a class="nav-link border-hover py-3 text-white" href="#" [routerLink]="['/services-page']">Services</a></li>
-                    <li class="nav-item"  *ngIf="!isLoggedIn"><a class="nav-link border-hover py-3 text-white" href="#"
+                    <li class="nav-item"  ><a class="nav-link border-hover py-3 text-white" href="#"
                             [routerLink]="['/signup']">Signup</a></li>
-                    <li class="nav-item" *ngIf="isLoggedIn">
+                    <li class="nav-item">
                         <a class="nav-link border-hover py-3 text-white" href="#" [routerLink]="['/gig-page']">Offer
                             Skill</a>
                     </li>
@@ -35,14 +35,21 @@
 
                 </ul>
                 <!-- //ng if logedin -->
-                <img src="assets\images\profile_dropdown_logo\user.png" *ngIf="isLoggedIn" clickOutside
-                    (clickOutside)="clickedOutside()" class="user_pic" (click)="toggleMenu()" />
+                <!-- <img src="assets\images\profile_dropdown_logo\user.png" *ngIf="isLoggedIn" clickOutside
+                    (clickOutside)="clickedOutside()" class="user_pic" (click)="toggleMenu()" /> -->
+
+                    <div  class="image-container d-flex justify-content-center">
+                        <img [src]="pictur | safeResourceUrl" class="rounded-circle" alt="Profile Image" style="height: 7vh; width: 5vw; border-radius: 1rem;"  clickOutside
+                        (clickOutside)="clickedOutside()"  (click)="toggleMenu()">
+                    </div>
 
                 <div class="sub-menu-wrap" *ngIf="isMenuOpened" id="subMenu">
                     <div class="sub-menu">
                         <div class="user-inform">
-                            <img src="assets\images\profile_dropdown_logo\user.png" />
-                            <h3>Mohamin</h3>
+                            <div *ngIf="pictur" class="image-container d-flex justify-content-center">
+                                <img [src]="pictur | safeResourceUrl" class="rounded-circle" alt="Profile Image" style="height: 15vh; width: 8vw; border-radius: 1rem;">
+                            </div>
+                            <h3>{{name}}</h3>
                         </div>
 
 

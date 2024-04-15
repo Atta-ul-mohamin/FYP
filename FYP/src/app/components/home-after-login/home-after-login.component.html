@@ -5,13 +5,13 @@
     <div class="card text-white bg-secondary my-5 py-4 text-center">
         <div class="card-body">
             <p class="text-white m-0">Welcome atta ul mohamin Find important messages, tips, and links to helpful
-                resources here:     <div *ngIf="user">
-                    <h1>Welcome, {{ user.firstname }}!</h1>
+                resources here:   
+                  <div >
+                    <h1 >Welcome, {{ user.firstname }}!</h1>
+                   
                   </div> 
 
-                  <!-- <div *ngIf="userName">
-                    <h1>Welcome, {{ userName }}!</h1>
-                  </div> -->
+                
         </div>
     </div>
     <div class="boxes_globall row row-cols-1 row-cols-md-2 row-cols-lg-4 mx-auto" >
@@ -34,6 +34,9 @@
                 <div class="numbers">90%</div>
                 <div class="name">positive rating</div>
                 <div class="iconbox"> <i class="bi bi-star"></i></div>
+            </div>
+            <div >
+        <a (click)="signOutGoogle()"> SignOut</a>  
             </div>
         </div>
         <div class="col mb-4">
@@ -58,3 +61,42 @@
         </div>
     </div>
 </div>
+
+   
+  <div class="row">
+    <div class="col">
+      <ngb-carousel class="custom-carousel">
+        <ng-template ngbSlide>
+          <div class="picsum-img-wrapper" style="height: 300px; /* Adjust this value as needed */">
+            <img src="../../assets/images/1.jpg" alt="Random third slide" class="img-fluid" />
+        </div>
+          
+          <div class="carousel-caption">
+            <h3>First slide label</h3>
+            <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+          </div>
+        </ng-template>
+        <ng-template ngbSlide>
+          <div class="picsum-img-wrapper" style="height: 300px; /* Adjust this value as needed */">
+            <img src="../../assets/images/2.jpg" alt="Random third slide" class="img-fluid" />
+        </div>
+          
+          <div class="carousel-caption">
+            <h3>Second slide label</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+          </div>
+        </ng-template>
+        <ng-template ngbSlide>
+          <div class="picsum-img-wrapper" style="height: 300px; /* Adjust this value as needed */">
+            <img src="../../assets/images/3.jpg" alt="Random third slide" class="img-fluid" />
+        </div>
+        
+          <div class="carousel-caption">
+            <h3>Third slide label</h3>
+            <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+          </div>
+        </ng-template>
+      </ngb-carousel> 
+      
+    </div>
+</div> 

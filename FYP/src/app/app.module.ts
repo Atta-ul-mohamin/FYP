@@ -37,10 +37,16 @@ import { AccountControllComponent } from './components/account-controll/account-
 import { UpdateGigComponent } from './update-gig/update-gig.component';
 import { ProfileSettingComponent } from './profile-setting/profile-setting.component';
 
+
+
 import { ReactiveFormsModule } from '@angular/forms';
 import { UpdateProffesionComponent } from './update-proffesion/update-proffesion.component';
 import { HttpClientModule } from '@angular/common/http';
+<<<<<<< HEAD
 import { AgmCoreModule } from '@agm/core';
+=======
+// import { AgmCoreModule } from '@agm/core';
+>>>>>>> b3aa22d6bbc796ca416430e56b0d2daaf1a76213
 import { OkComponent } from './ok/ok.component';
 import { SafeResourceUrlPipe } from './safe-resource-url.pipe';
 @NgModule({
@@ -92,9 +98,9 @@ import { SafeResourceUrlPipe } from './safe-resource-url.pipe';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyBamKmkAXbhYFW-cCxtAezM5xAON_-uv-0'
-    })
+    // AgmCoreModule.forRoot({
+    //   apiKey: 'AIzaSyBamKmkAXbhYFW-cCxtAezM5xAON_-uv-0'
+    // })
     
   ],
   providers: [],

@@ -1,8 +1,11 @@
 <body class="d-flex justify-content-center align-items-center">
     <div class="sub-menu-wrap">
       <div class="user-inform">
-        <img src="assets\images\profile_dropdown_logo\user.png" />
-        <h3>Mohamin</h3>
+        <div  class="image-container d-flex justify-content-center">
+          <!-- <img [src]="pictur | safeResourceUrl" class="rounded-circle" alt="Profile Image" style="height: 15vh; width: 8vw; border-radius: 1rem;"> -->
+          <img [src]="imageGoogle" class="rounded-circle" alt="Profile Image" style="height: 15vh; width: 8vw; border-radius: 1rem;">
+      </div>
+        <h3 class="text-center">{{nameGoogle}}</h3>
       </div>
       
       <!-- Horizontal row -->
