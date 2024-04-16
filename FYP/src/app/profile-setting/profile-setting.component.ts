@@ -117,22 +117,6 @@ export class ProfileSettingComponent  {
         return;
       }
     
-      // Validate other inputs as before (age, phone, etc.)
-    
-      // try {
-      //   const result = await this.service.submitProfileWithBinaryString(phone, gender, age, location, language, description, this.fileBinaryString);
-      //   if (result.status === 1) {
-      //     alert('Profile created successfully');
-      //     this.router.navigate(['/profession-details']);
-      //   } else {
-      //     alert('Error in creating profile');
-      //   }
-      // } catch (error) {
-      //   console.error('Error submitting profile with binary string:', error);
-      //   alert('Error in processing request');
-      // }
-    
-
 
 
     const result = await this.service.update_submit_profile(this.profileId,this.teacherID, phone, gender, age, location,language, description,this.fileBinaryString)

@@ -53,7 +53,7 @@ export class ChatPageComponent {
   async getStudentDetails() {
     try {
       console.log(this.recieverid_studentId);
-      const StudentDetails = await this.parseService.getStudentById(this.recieverid_studentId);
+      const StudentDetails = await this.parseService.getStudentDataByIds(this.recieverid_studentId);
        
         this.studentName = StudentDetails.data.get("name");
         this.senderId_teacher = await this.parseService.user.objectId;

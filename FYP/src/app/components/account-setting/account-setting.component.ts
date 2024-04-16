@@ -20,14 +20,14 @@ export class AccountSettingComponent {
   }
 
   async fetchCurrentUserName() {
-    const result = await this.parseService.getCurrentUserData();
-    if (result.status===1) {
-      
-      this.currentName = result.name;
-      this.currentEmail =  result.email;
+   
+  
+ 
+      this.currentName = this.parseService.user.firstname;
+      this.currentEmail =  this.parseService.user.email;
       console.log(this.currentName);
        // Set the current name if fetched
-    }
+    
   }
 
   async updateUserName(name: string) {

@@ -1,5 +1,5 @@
 Parse.Cloud.define("giginfo", async (request) => {
-  const {  title , year_Of_Experience  , type, skillLevel , level  , level_1_Description  ,  level_1_Price, level_2_Description , level_2_Price  ,  level_3_Description , level_3_Price , homePrice , selectedCategory1, selectedSubcategory,profileId ,userId,image1,image2,image3 } = request.params;
+  const {  title , year_Of_Experience  , type, skillLevel , level  , level_1_Description  ,  level_1_Price, level_2_Description , level_2_Price  ,  level_3_Description , level_3_Price , homePrice , selectedCategory1, selectedSubcategory,profileId ,userId,image1,image2,image3 ,orderDay1,orderDay2,orderDay3} = request.params;
 
   try {
     // const userPointer = Parse.User.createWithoutData(userId);
@@ -26,6 +26,9 @@ Parse.Cloud.define("giginfo", async (request) => {
     gig.set("image1", image1);
     gig.set("image2", image2);
     gig.set("image3", image3);
+    gig.set("orderDay1",orderDay1);
+    gig.set("orderDay2",orderDay2);
+    gig.set("orderDay3",orderDay3);
      // Associate gig with the user
 
     const result = await gig.save();
@@ -47,7 +50,7 @@ Parse.Cloud.define("giginfo", async (request) => {
 
 
 Parse.Cloud.define("updateGiginfo", async (request) => {
-    const {  gigId ,title , year_Of_Experience  , type, skillLevel , level  , level_1_Description  ,  level_1_Price, level_2_Description , level_2_Price  ,  level_3_Description , level_3_Price , homePrice , selectedCategory1, selectedSubcategory,userId } = request.params;
+    const {  gigId ,title , year_Of_Experience  , type, skillLevel , level  , level_1_Description  ,  level_1_Price, level_2_Description , level_2_Price  ,  level_3_Description , level_3_Price , homePrice , selectedCategory1, selectedSubcategory,userId ,orderDay1,orderDay2,orderDay3} = request.params;
   
 
     
@@ -72,6 +75,9 @@ Parse.Cloud.define("updateGiginfo", async (request) => {
         gig.set("homePrice", homePrice);
         gig.set("selectedCategory1", selectedCategory1);
         gig.set("selectedSubcategory", selectedSubcategory);
+        gig.set("orderDay1",orderDay1);
+        gig.set("orderDay2",orderDay2);
+        gig.set("orderDay3",orderDay3);
           await gig.save(null, { useMasterKey: true });
           return { 
             status: 1 

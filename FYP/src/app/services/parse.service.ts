@@ -17,26 +17,16 @@ export class ParseService {
           this.currentUser = JSON.parse(storedUser);
         }
    }
-   async signupGoogle(firstname:string, email:string , password:string){
+
+
+    async signup(firstname:string, email:string , password:string){
     const params = {firstname, email, password};
-    const result =  await Parse.Cloud.run("addUserTeacherGoogle",params);
-    this.currentUser = result;
+    const result =  await Parse.Cloud.run("addUserTeacher",params);
     return result;
-    
-   }
-
-   async signup(firstname:string, email:string , password:string){
-    const params = {firstname, email, password};
-    const result =  await Parse.Cloud.run("addUserTeacherGoogle",params);
-   
-    return result;
-
-
-    
    }
 
    // In ParseService
-async submitProfileWithBinaryString(phone: number, gender: string, age: number, location: string, language: string, description: string, binaryString: string) {
+async submitProfile(phone: number, gender: string, age: number, location: string, language: string, description: string, binaryString: string) {
   // Assuming binaryString needs to be converted or handled according to your backend requirements
   const params = {
     phone,
@@ -50,38 +40,13 @@ async submitProfileWithBinaryString(phone: number, gender: string, age: number, 
   };
 
   // Adjust your cloud function or server-side logic to handle the binaryString
-  const result = await Parse.Cloud.run("profileWithBinaryString", params);
-  console.log(result,"result from image js file is");
+  const result = await Parse.Cloud.run("submitProfile", params);
+
   return result;
 }
 
 
-   async submitProfileWithImage(phone: number, gender: string, age: number, location: string, language: string, description: string, file: File) {
-    const maxFileSizeAllowedInBytes = 10485760; // Example: 10 MB limit (in bytes)
-    if (file.size > maxFileSizeAllowedInBytes) {
-      throw new Error('File size exceeds the maximum limit allowed.');
-    }
-    try {
-      const parseFile = new Parse.File(file.name, file);
-      await parseFile.save();
-      const params = {
-        phone,
-        gender,
-        age,
-        location,
-        language,
-        description,
-        image: parseFile, // Pass the Parse.File object
-        userId: this.currentUser.objectId
-      };
-  
-      const result = await Parse.Cloud.run("profileuser", params);
-      return result;
-    } catch (error) {
-      console.error('Error while saving file:', error);
-      throw error; // Rethrow the error to propagate it to the caller
-    }
-  }
+
   
 
    async login(email: string, password: string)  {
@@ -105,14 +70,7 @@ async submitProfileWithBinaryString(phone: number, gender: string, age: number, 
     this.currentUser = value;
   }
 
-  async getCurrentUserData() {
-    if (this.currentUser && this.currentUser.objectId) {
-      const params = { objectId: this.currentUser.objectId };
-      const result = await Parse.Cloud.run('current_user_data' , params)
-      return result;
-     
-  }
-}
+
 async updateCurrentUserName(name: string) {
   if (this.currentUser && this.currentUser.objectId) {
     const params = { objectId: this.currentUser.objectId , name};
@@ -134,13 +92,7 @@ async updateCurrentUserEmail(email: string) {
 }
 
   
-   async submit_profile( phone:number, gender:string,age:number ,location:string,language:string,description:string){
-   
-    const params = { phone,gender,age,location,language, description ,userId :this.currentUser.objectId}
-    console.log(this.currentUser.objectId);
-     const result = await Parse.Cloud.run("profileuser",params)
-     return result;
-   }
+  
 
    async update_submit_profile( profileId : string, teacherid: string ,phone:string, gender:string,age:number,location:string,language:string,description:string,stringImage:string){
    
@@ -168,8 +120,8 @@ async updateCurrentUserEmail(email: string) {
    }
 
 
-   async gig_info_add(title : string , year_Of_Experience: string  , type: string, skillLevel: string , level: string   , level_1_Description: string  ,  level_1_Price: string  , level_2_Description: string  , level_2_Price: string  ,  level_3_Description: string  , level_3_Price: string , homePrice:string , selectedCategory1: string, selectedSubcategory: string , profileId : string  , image1:string , image2:string, image3:string ){
-    const params = {title , year_Of_Experience  , type, skillLevel , level  , level_1_Description  ,  level_1_Price, level_2_Description , level_2_Price  ,  level_3_Description , level_3_Price , homePrice, selectedCategory1 , selectedSubcategory, profileId ,userId :this.currentUser.objectId  , image1,image2,image3 };
+   async gig_info_add(title : string , year_Of_Experience: string  , type: string, skillLevel: string , level: string   , level_1_Description: string  ,  level_1_Price: string  , level_2_Description: string  , level_2_Price: string  ,  level_3_Description: string  , level_3_Price: string , homePrice:string , selectedCategory1: string, selectedSubcategory: string , profileId : string  , image1:string , image2:string, image3:string ,orderDay1:string,orderDay2:string,orderDay3:string){
+    const params = {title , year_Of_Experience  , type, skillLevel , level  , level_1_Description  ,  level_1_Price, level_2_Description , level_2_Price  ,  level_3_Description , level_3_Price , homePrice, selectedCategory1 , selectedSubcategory, profileId ,userId :this.currentUser.objectId  , image1,image2,image3,orderDay1,orderDay2,orderDay3 };
     console.log(title);
     console.log(this.currentUser.objectId);
     console.log(this.currentUser);
@@ -177,8 +129,8 @@ async updateCurrentUserEmail(email: string) {
     return result;
    }
 
-   async update_gig_info_add(gigId : string ,title : string , year_Of_Experience: string  , type: string, skillLevel: string , level: string   , level_1_Description: string  ,  level_1_Price: string  , level_2_Description: string  , level_2_Price: string  ,  level_3_Description: string  , level_3_Price: string , homePrice:string , selectedCategory1: string, selectedSubcategory: string ){
-    const params = {gigId ,title , year_Of_Experience  , type, skillLevel , level  , level_1_Description  ,  level_1_Price, level_2_Description , level_2_Price  ,  level_3_Description , level_3_Price , homePrice, selectedCategory1 , selectedSubcategory, userId :this.currentUser.objectId  };
+   async update_gig_info_add(gigId : string ,title : string , year_Of_Experience: string  , type: string, skillLevel: string , level: string   , level_1_Description: string  ,  level_1_Price: string  , level_2_Description: string  , level_2_Price: string  ,  level_3_Description: string  , level_3_Price: string , homePrice:string , selectedCategory1: string, selectedSubcategory: string ,orderDay1:string,orderDay2:string,orderDay3:string){
+    const params = {gigId ,title , year_Of_Experience  , type, skillLevel , level  , level_1_Description  ,  level_1_Price, level_2_Description , level_2_Price  ,  level_3_Description , level_3_Price , homePrice, selectedCategory1 , selectedSubcategory, userId :this.currentUser.objectId,orderDay1,orderDay2,orderDay3  };
     console.log(title);
     console.log(this.currentUser.objectId);
     console.log(this.currentUser);
@@ -264,15 +216,7 @@ async getProfileById(id: string): Promise<any> {
   }
 }
 
-async get_ProfileId() : Promise<any>{
-  try {
-    const response = await Parse.Cloud.run('getProfilId', {  objectId :this.currentUser.objectId});
-    return response;
-  } catch (error) {
-    console.error('Error fetching profileid by ID from Cloud Code', error);
-    throw error;
-  }
-}
+
 
 async getProfessionById(id: string): Promise<any> {
   try {
@@ -297,9 +241,9 @@ async getSignupById(id: string): Promise<any> {
 
   // In parse.service.ts
 
-async getStudentIdsByTeacherId(teacherId: string): Promise<string[]> {
+async getStudentIdsByTeacherIdInConversation(teacherId: string): Promise<string[]> {
   const params = { teacherId };
-  const studentIds = await Parse.Cloud.run('getStudentIdsByTeacher', params);
+  const studentIds = await Parse.Cloud.run('getStudentIdsByTeacherInConversation', params);
   // Filter out any null or undefined values just in case
   // return studentIds.filter(id => id != null && id !== undefined);
   // In parse.service.ts
@@ -321,7 +265,7 @@ async getStudentIdsByTeacherId(teacherId: string): Promise<string[]> {
     return response;
   }
 
-  async getStudentById(id: string): Promise<any> {
+  async getStudentDataByIds(id: string): Promise<any> {
     try {
       const response = await Parse.Cloud.run('getStudentDataByIds', { id });
       return response;

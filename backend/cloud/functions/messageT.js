@@ -1,5 +1,5 @@
 
-      Parse.Cloud.define("getStudentIdsByTeacher", async (request) => {
+      Parse.Cloud.define("getStudentIdsByTeacherInConversation", async (request) => {
         const teacherId = request.params.teacherId;
         const query = new Parse.Query("Conversation");
         query.equalTo("participant2", teacherId);
