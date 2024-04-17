@@ -102,7 +102,7 @@ export class ProfileComponent implements OnInit{
       if(this.pass === "null")
     {
       try {
-        const result = await this.service.submitProfileWithBinaryString(phone, gender, age, location, language, description, this.imageGoogle);
+        const result = await this.service.submitProfile(phone, gender, age, location, language, description, this.imageGoogle);
         if (result.status === 1) {
           alert('Profile created successfully');
           this.router.navigate(['/profession-details']);
@@ -122,7 +122,7 @@ export class ProfileComponent implements OnInit{
         return;
       }
       try {
-        const result = await this.service.submitProfileWithBinaryString(phone, gender, age, location, language, description, this.fileBinaryString);
+        const result = await this.service.submitProfile(phone, gender, age, location, language, description, this.fileBinaryString);
         if (result.status === 1) {
           alert('Profile created successfully');
           this.router.navigate(['/profession-details']);

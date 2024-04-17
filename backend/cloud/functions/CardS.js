@@ -76,7 +76,7 @@ Parse.Cloud.define("getGigById", async (request) => {
       title: card.get("title"), // Example field from create_gig
       price: card.get("homePrice"),
       type: card.get("type"),
-       experience:card.get("year_Of_Experience"),
+       experience:card.get("year_Of_Experience"),           
       skillLevel:card.get("skillLevel"),
       level:card.get("level"),
       level_1_price: card.get("level_1_Price"),
@@ -87,10 +87,14 @@ Parse.Cloud.define("getGigById", async (request) => {
       level_3_Description: card.get("level_3_Description"),
       category : card.get("selectedCategory1"),
       subcategory : card.get("selectedSubcategory"),
+      orderDay1:card.get("orderDay1"),
+      orderDay2:card.get("orderDay2"),
+      orderDay3:card.get("orderDay3"),
       image1 : card.get("image1"),
       image2 : card.get("image2"),
       image3 : card.get("image3"),
-      
+     
+     
     };
 
     // Include user data if it exists

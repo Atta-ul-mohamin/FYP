@@ -18,7 +18,7 @@ export class MessageTableComponent {
       if (this.parseService.user) {
         const teacherId = this.parseService.user.objectId;
         console.log(teacherId, 'ts teacher present user id');
-        const studentIds = await this.parseService.getStudentIdsByTeacherId(teacherId);
+        const studentIds = await this.parseService.getStudentIdsByTeacherIdInConversation(teacherId);
         console.log(studentIds, 'student arrays matching with teacher id');
 
         // Assuming getStudentNamesByIds returns an array of objects with a 'name' property

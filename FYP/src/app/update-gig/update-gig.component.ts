@@ -21,6 +21,9 @@ export class UpdateGigComponent implements OnInit {
  level_2_Description : string = '';
  level_3_Description: string = ''
  year_Of_Experience: string = '';
+ orderDay1 : string = '';
+orderDay2 : string = '';
+orderDay3 : string = '';
  selectedPrice1: boolean= false;
 selectedPrice2: boolean = false;
 selectedPrice3: boolean = false;
@@ -78,6 +81,10 @@ filteredSubcategories: string[] = [];
          this.skillLevel =result.data.skillLevel;
         this.cardName = result.data.user.firstname;
         this.selectedCategory1 = result.data.category ;
+        this.orderDay1 = result.data.orderDay1,
+        this.orderDay2 = result.data.orderDay2,
+        this.orderDay3 =  result.data.orderDay3
+        console.log(this.orderDay2,"ok",this.orderDay3,"ok",this.orderDay1),
         this.onCategoryChange();
         setTimeout(() => {
           this.selectedSubcategory = result.data.subcategory;
@@ -132,10 +139,10 @@ filteredSubcategories: string[] = [];
     }
     
 
-    async gigInfoAdd(title : string , year_Of_Experience: string  , type: string, skill: string , level: string   , level_1_Description: string  ,  level_1_Price: string  , level_2_Description: string  , level_2_Price: string  ,  level_3_Description: string  , level_3_Price: string , selectedCategory1: string, selectedSubcategory: string  ){
+    async gigInfoAdd(title : string , year_Of_Experience: string  , type: string, skill: string , level: string   , level_1_Description: string  ,  level_1_Price: string  , level_2_Description: string  , level_2_Price: string  ,  level_3_Description: string  , level_3_Price: string , selectedCategory1: string, selectedSubcategory: string  ,orderDay1:string,orderDay2:string,orderDay3:string){
       // this.fullTitle = `I will ${title}`;
       console.log(this.homePrice, "homeprice")
-      const result = await this.service.update_gig_info_add( this.gigId,this.title , year_Of_Experience  , type  , skill  , level  , level_1_Description  ,  level_1_Price  , level_2_Description  , level_2_Price  ,  level_3_Description  , level_3_Price , this.homePrice , selectedCategory1, selectedSubcategory);
+      const result = await this.service.update_gig_info_add( this.gigId,this.title , year_Of_Experience  , type  , skill  , level  , level_1_Description  ,  level_1_Price  , level_2_Description  , level_2_Price  ,  level_3_Description  , level_3_Price , this.homePrice , selectedCategory1, selectedSubcategory,orderDay1,orderDay2,orderDay3);
 
       if(result.status===1){
        alert('gig edit successfuly')

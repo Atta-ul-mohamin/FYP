@@ -1,4 +1,4 @@
-Parse.Cloud.define("profileWithBinaryString", async (request) => {
+Parse.Cloud.define("submitProfile", async (request) => {
   const profile = Parse.Object.extend("profile");
   const user = new profile();
   user.set("image" ,  request.params.binaryString);

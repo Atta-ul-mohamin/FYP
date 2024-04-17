@@ -9,7 +9,7 @@ export class StudentNamesResolver implements Resolve<string[]> {
   async resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Promise<string[]> {
     if (this.parseService.user) {
       const teacherId = this.parseService.user.objectId;
-      const studentIds = await this.parseService.getStudentIdsByTeacherId(teacherId);
+      const studentIds = await this.parseService.getStudentIdsByTeacherIdInConversation(teacherId);
       return this.parseService.getStudentNamesByIds(studentIds);
     }
     return [];
