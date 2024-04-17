@@ -76,20 +76,13 @@ export class ProfileComponent implements OnInit{
     }
   }
 
-
-
-
-
-
-  async submit_profile(phone: number, gender: string, age: number, location: string, language: string, description: string) {
-
-
-    const descriptionLength = description.length;
-    if (descriptionLength < 100) {
-      alert('Description should more than 100 characters.');
-      return;
-    }
-
+  
+    
+    
+  
+  async submit_profile( phone : number ,  gender:string , age:number , location:string , language:string , description:string) {
+  
+ 
     if (age === undefined || !Number.isInteger(age) || age < 0 || age > 120) {
       alert('Please enter a valid age');
       return;
@@ -101,27 +94,6 @@ export class ProfileComponent implements OnInit{
       return;
     }
 
-<<<<<<< HEAD
-    // if (this.selectedFile) {
-    //   const result = await this.service.submitProfileWithImage(phone, gender, age, location, language, description, this.selectedFile);
-    //   console.log("hello");
-    //   if (result.status === 1) {
-    //     alert('profile maded successfully');
-    //     this.router.navigate(['/profession-details']);
-    //   }
-
-    //   else {
-    //     alert('error in making profile');
-    //   }
-
-    // } else {
-    //   alert('file not seleced');
-
-    // }
-
-
-  
-=======
       
     
       // Validate other inputs as before (age, phone, etc.)
@@ -145,7 +117,6 @@ export class ProfileComponent implements OnInit{
 
     }
     if(this.pass !== "null"){
->>>>>>> b3aa22d6bbc796ca416430e56b0d2daaf1a76213
       if (!this.fileBinaryString) {
         alert('No file selected or file processing error.');
         return;
@@ -162,25 +133,6 @@ export class ProfileComponent implements OnInit{
         console.error('Error submitting profile with binary string:', error);
         alert('Error in processing request');
       }
-<<<<<<< HEAD
-    
-
-    // const result = await this.service.submit_profile(phone, gender, age, location, language, description)
-
-      //  if (result.status === 1) {
-      //   alert('profile maded successfully');
-      //   this.router.navigate(['/profession-details']);
-      // }
-  
-      // else {
-      //   alert('error in making profile');
-      // }
-  
-
-
-
-=======
->>>>>>> b3aa22d6bbc796ca416430e56b0d2daaf1a76213
   }
 }
 

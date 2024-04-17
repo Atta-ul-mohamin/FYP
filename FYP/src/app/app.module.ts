@@ -42,11 +42,7 @@ import { ProfileSettingComponent } from './profile-setting/profile-setting.compo
 import { ReactiveFormsModule } from '@angular/forms';
 import { UpdateProffesionComponent } from './update-proffesion/update-proffesion.component';
 import { HttpClientModule } from '@angular/common/http';
-<<<<<<< HEAD
-import { AgmCoreModule } from '@agm/core';
-=======
 // import { AgmCoreModule } from '@agm/core';
->>>>>>> b3aa22d6bbc796ca416430e56b0d2daaf1a76213
 import { OkComponent } from './ok/ok.component';
 import { SafeResourceUrlPipe } from './safe-resource-url.pipe';
 @NgModule({
