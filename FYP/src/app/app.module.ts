@@ -36,6 +36,8 @@ import { ChatPageComponent } from './chat-page/chat-page.component';
 import { AccountControllComponent } from './components/account-controll/account-controll.component';
 import { UpdateGigComponent } from './update-gig/update-gig.component';
 import { ProfileSettingComponent } from './profile-setting/profile-setting.component';
+import { HistoryordersComponent } from './historyorders/historyorders.component';
+import { CurrentOrdersComponent } from './current-orders/current-orders.component';
 
 
 
@@ -47,7 +49,9 @@ import { OkComponent } from './ok/ok.component';
 import { SafeResourceUrlPipe } from './safe-resource-url.pipe';
 @NgModule({
   declarations: [
-   
+    OrderComponent,
+    HistoryordersComponent,
+    CurrentOrdersComponent,
     AppComponent,
     HeaderComponent,
     FooterComponent,

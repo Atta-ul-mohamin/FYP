@@ -1,0 +1,46 @@
+
+<div class="container mt-4">
+    <div class="row justify-content-center">
+      <div class="col-md-10">
+  
+        <!-- Shadow Container -->
+        <div class="shadow p-3">
+  
+          <!-- Table -->
+          <div class="table-responsive">
+            <table class="table table-bordered table-hover">
+              <thead class="table-dark">
+                <tr>
+                  <th colspan="6" class="text-center">Current Orders</th>
+                </tr>
+                <tr class="fw-bold">
+                  <th>#</th>
+                  <th>orderId</th>
+                  <th>Title</th>
+                  <th>Days To Complete</th>
+                  <th>Price</th>
+                  <th class="text-center">Chat</th>
+                 
+                </tr>
+              </thead>
+  
+              <tbody>
+                <tr *ngFor="let order of orders; let i = index">
+  
+                  <td>{{ i + 1 }}</td>
+                  <td>{{ order.objectId}}</td>
+                  <td>{{ order.title }}</td>
+                  <td>{{ order.orderDay }}</td>
+                  <td>{{ order.price }}</td>
+                  <td class="text-center"><button class="edit-btn" [routerLink]="['/chat-page', order.studentId.id]">Chat</button></td>
+    
+                </tr>
+              </tbody>
+            </table>
+          </div>
+  
+        </div>
+  
+      </div>
+    </div>
+  </div>

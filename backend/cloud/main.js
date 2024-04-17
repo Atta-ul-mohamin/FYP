@@ -7,3 +7,4 @@ require('./functions/MUserS.js');
 require('./functions/favouriteS.js');
 require('./functions/CardS.js');
 require('./functions/messageT.js');
+require('./functions/order.js');
