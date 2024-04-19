@@ -1,10 +1,13 @@
+
 require('dotenv').config(); //include .env file(db credentials)
 const express = require('express');
 const ParseServer = require('parse-server').ParseServer;
 const app = express();
+const httpServer = require('http').createServer(app);
 const router = express.Router()
 
 const cors = require('cors');
+
 
 const api = ParseServer({
     databaseURI:  process.env.databaseURI,
@@ -13,7 +16,10 @@ const api = ParseServer({
     masterKey: process.env.masterKey, 
     serverURL: process.env.serverURL,
     enableAnonymousUsers: true,
-    allowClientClassCreation: true
+    allowClientClassCreation: true,
+    liveQuery: {
+      classNames: ['favourites'] // Specify the classes for which you want to enable LiveQuery
+  },
 });
 
 app.use(cors());
@@ -30,6 +36,8 @@ app.get('/', (req, res) => {
 app.listen(process.env.port, function() {
   console.log('parse-server-example running on port ' + process.env.port);
 });
+
+ParseServer.createLiveQueryServer(httpServer);
 
 
 // require('dotenv').config(); //include .env file(db credentials)

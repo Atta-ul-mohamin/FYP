@@ -100,3 +100,39 @@ Parse.Cloud.define("removeFavorite", async (request) => {
     throw new Error("Error in removing favorite");
   }
 });
+
+
+
+
+// Define a Cloud Code function for handling live queries
+Parse.Cloud.define("subscribeToFavourites", async (request) => {
+  // Define the query for the "favourites" class
+  const query = new Parse.Query('favourites');
+
+  // Subscribe to the live query
+  const subscription = query.subscribe();
+
+  // Define event handlers for various live query events
+  subscription.on('open', () => {
+      console.log('LiveQuery subscription opened');
+  });
+
+  subscription.on('create', (object) => {
+      console.log('New object created:', object);
+  });
+
+  subscription.on('update', (object) => {
+      console.log('Object updated:', object);
+  });
+
+  subscription.on('delete', (object) => {
+      console.log('Object deleted:', object);
+  });
+
+  subscription.on('close', () => {
+      console.log('LiveQuery subscription closed');
+  });
+
+  // Return a success message indicating that the subscription is active
+  return { success: true, message: "LiveQuery subscription started for 'favourites' class." };
+});
