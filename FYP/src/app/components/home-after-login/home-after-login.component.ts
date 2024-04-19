@@ -13,16 +13,24 @@ export class HomeAfterLoginComponent implements OnInit {
   isAuthenticated: boolean = false;
   isAppAuthenticated : boolean = false;
   isAppLogin: boolean = false;
-  nameGoogle = JSON.parse(sessionStorage.getItem("loggedInUser")!).name;
-  imageGoogle = JSON.parse(sessionStorage.getItem("loggedInUser")!).picture;
-  emailGoogle = JSON.parse(sessionStorage.getItem("loggedInUser")!).email;
+  name : string ='';
+  email:string ='';
+  picture:string='';
+  
 
   user: any;
   userName!: string; 
   teacherId:any;
   pictur:string="";
 
-  constructor(private service: ParseService, private authService: AuthService) {}
+  constructor(private service: ParseService, private authService: AuthService,) {
+    const userJson = sessionStorage.getItem("loggedInUser") || '{}';
+    const users = JSON.parse(userJson);
+
+    this.name = users.name;
+    this.picture = users.picture;
+    this.email = users.email;
+  }
 
   ngOnInit() {
 

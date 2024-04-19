@@ -3,9 +3,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
   </head>
 
-<body>
+<body class="video-background">
+  <video autoplay muted loop id="myVideo">
+    <source src="assets/images/course-video.mp4" type="video/mp4">
+    Your browser does not support HTML5 video.
+  </video>
 
-  <main id="body-content">
+  <!-- <main id="body-content">
 
     <div class="container text-white w-75">
       <p class="fs-2 fw-light m-0 mt-lg-5">About SkillMentor</p>
@@ -39,29 +43,31 @@
         </div>
       </div>
     </div>
-  </main>
+  </main> -->
 </body>
 
 
 
 
 <div class="container  mx-auto  ">
-  <div class="card text-white bg-secondary my-5 py-4 text-center">
+  <!-- <div class="card text-white bg-secondary my-5 py-4 text-center">
     <div class="card-body">
       <p class="text-white m-0">Forget the old rules. You can have the best people.
         Right now. Right here.</p>
     </div>
-  </div>
+  </div> -->
   <!-- Heading Row-->
   <div class="row gx-4 gx-lg-5 align-items-center my-5 ">
-    <div class="col-lg-5 m "><img class="img-fluid rounded mb-4 mb-lg-0 img-fluid" src="assets\images\img1.jpg"
-        alt="img1.jpg" /></div>
-    <div class="col-lg-5 px-5">
-      <h2 class="font-weight-light align-items-center ">"SkillMentor allowed me to make a living without leaving
-        home!"</h2>
-      <p class="my-3">Mohamin. teaches English on Skillmentor so she can spend more time with her mom</p>
-      <a class="btn btn-outline-secondary btn-lg mt-2" [routerLink]="['/signup']" >Become a Tutor!</a>
-    </div>
+    <!-- <div class="col-lg-5 m "><img class="img-fluid rounded mb-4 mb-lg-0 img-fluid" src="assets\images\img1.jpg"
+        alt="img1.jpg" /></div> -->
+        <div class="vh-100 d-flex align-items-center justify-content-center">
+          <div class="text-center">
+              <h2 class="font-weight-light">"SkillMentor allowed me to make a living without leaving home!"</h2>
+              <p class="my-3">Mohamin teaches English on Skillmentor so she can spend more time with her mom.</p>
+              <a class="btn btn-outline-secondary btn-lg mt-2" [routerLink]="['/signup']">Become a Tutor!</a>
+          </div>
+      </div>
+      
   </div>
  </div>
 </html>

@@ -1,108 +1,195 @@
-<h1 class="text-center" style="color: rgb(203, 202, 202);"> STEP 2 of 3 </h1>
+<!-- <h1 class="text-center" style="color: rgb(203, 202, 202);"> STEP 2 of 3 </h1> -->
 
-<section style="background-color: #d3d3d3 mar" >
-    <div class="container my-5 py-5 h-100">
-        <div class="row d-flex justify-content-center align-items-center h-100">
-            <div class="col col-xl-6">
-                <div class="card" style="border-radius: 1rem">
-                    <div class="row g-0">
-                    
-                        <div class="col-md-6 col-lg-12  d-flex align-items-center">
-                            <div class="card-body p-4 p-lg-5 text-black">
-                                <form>
-                                    <h5 class="fw-normal mb-3 pb-3 fs-1" style="letter-spacing: 1px">
-                                        Personal Detail
-                                    </h5>  
-                                   
-                                    <div class="ms-auto">
-                                        
-                                         <img  *ngIf="pass==='null'"  class="rounded-circle" alt="avatar1" src="{{imageGoogle}}" style="height: 20vh; width: 20vb;border-radius: 1rem 0 0 1rem; margin: 20px 0;margin-left: 35%;" />    
+<section class="custom-background   card" style="background-color: #d3d3d3 mar">
+  <div class="container my-5 py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col col-xl-6">
+        <div class="card" style="border-radius: 1rem">
+          <div class="row g-0">
+            <div class="col-md-6 col-lg-12 d-flex align-items-center">
+              <div class="card-body p-4 p-lg-5 text-black">
+                <form>
+                  <h5
+                    class="fw-normal mb-3 pb-3 fs-1"
+                    style="letter-spacing: 1px"
+                  >
+                    Personal Detail
+                  </h5>
 
-                                    </div>
+                  <div class="ms-auto">
+                    <img
+                      *ngIf="pass === 'null'"
+                      class="rounded-circle"
+                      alt="avatar1"
+                      src="{{ imageGoogle }}"
+                      style="
+                        height: 20vh;
+                        width: 20vb;
+                        border-radius: 1rem 0 0 1rem;
+                        margin: 20px 0;
+                        margin-left: 35%;
+                      "
+                    />
+                  </div>
 
-                                    <div *ngIf="pass !== 'null'"  class="form-outline mb-4">
-                                        <label class="fw-bold my-1 py-1">Profile Picture</label>
-                                        <input type="file" (change)="onFileChanged($event)" class="form-control form-control-lg">
-                                      </div>
-                                      
-                                   
-                                      <div class="form-outline mb-4">
-                                        <label class="fw-bold my-1 py-1">CNIC</label>
-                                        <input type="number" id="f" class="form-control form-control-lg" placeholder="e.g., 32403-9279439-5" [(ngModel)]="cnic" name="cnic" />
-                                    </div>
-                                    <div class="form-outline mb-4">
-                                        <label class="fw-bold my-1 py-1">Upload Cnic </label> <br>
-                                        <input type="file" id="skillsCertificate" accept=".pdf" name="skillsCertificate" #skillsCertificate>
-                                       
-                                      </div>
-                                    <div class="form-outline mb-4">
-                                        <label class="fw-bold my-1 py-1">Phone number</label>
-                                        <input type="number" id="f" class="form-control form-control-lg" placeholder="e.g., +923001234567" [(ngModel)]="phone" name="phoneNumber" />
-                                    </div>
-                                    
+                  <div *ngIf="pass !== 'null'" class="form-outline mb-4">
+                    <label class="fw-bold my-1 py-1">Profile Picture</label>
+                    <input
+                      type="file"
+                      (change)="onFileChanged($event)"
+                      class="form-control form-control-lg"
+                    />
+                  </div>
 
+                  <div class="form-outline mb-4">
+                    <label class="fw-bold my-1 py-1">CNIC</label>
+                    <input
+                      type="number"
+                      id="f"
+                      class="form-control form-control-lg"
+                      placeholder="e.g., 32403-9279439-5"
+                      [(ngModel)]="cnic"
+                      name="cnic"
+                    />
+                  </div>
+                  <div class="form-outline mb-4">
+                    <label class="fw-bold my-1 py-1">Upload Cnic </label> <br />
+                    <input
+                      type="file"
+                      id="skillsCertificate"
+                      accept=".pdf"
+                      name="skillsCertificate"
+                      #skillsCertificate
+                    />
+                  </div>
+                  <div class="form-outline mb-4">
+                    <label class="fw-bold my-1 py-1">Phone number</label>
+                    <input
+                      type="number"
+                      id="f"
+                      class="form-control form-control-lg"
+                      placeholder="e.g., +923001234567"
+                      [(ngModel)]="phone"
+                      name="phoneNumber"
+                    />
+                  </div>
 
-                                      <div class="form-group mb-4">
-                                        <label class="fw-bold my-1 py-1">Choose gender </label>
-                                        <br>
-                                      <div class="btn-group" data-toggle="buttons-level">
-                                        <label class="btn btn-light-orange">
-                                            <input type="radio" name="gender" [(ngModel)]="selectedgender"  value="male" #gender> Male
-                                        </label>
-                                         <label class="btn btn-light-orange">
-                                            <input type="radio" name="gender" [(ngModel)]="selectedgender" value="female" #gender> Female
-                                        </label>
-                                        <label class="btn btn-light-orange">
-                                            <input type="radio" name="gender" [(ngModel)]="selectedgender" value="non-binary" #gender> Non-binary 
-                                          </label> 
-                                        </div>   
-                                    </div>
-
-                                    <div  class="form-outline mb-4">
-                                        <label class="fw-bold my-1 py-1">Your age</label>
-                                        <input type="number" id="f" class="form-control form-control-lg" [(ngModel)]="age"  name="phoneNumber" />
-                                      </div>
-
-                                      <div class="form-outline mb-4">
-                                        <label class="fw-bold my-1 py-1">Location</label>
-                                        <input type="text" id="location" class="form-control form-control-lg" placeholder="Click to fetch your current location" name="location" (click)="getLocation()" [(ngModel)]="userLocation" #location>
-                                      </div>
-                                      
-
-                                    <div  class="form-outline mb-4">
-                                        <label class="fw-bold my-1 py-1">Languages spoken</label>
-                                        <input type="language"  class="form-control form-control-lg" placeholder="urdu,english etc"  name="language" #language >
-                                      </div>
-
-                                      <div class="form-outline mb-4">
-                                        <label class="fw-bold my-1 py-1">Your Description</label>
-                                        <!-- <textarea class="form-control form-control-lg" name="languagesSpoken" placeholder="" rows="4" #description (input)="onDescriptionInput(description.value)" [disabled]="isDescriptionLimitReached"></textarea> -->
-                                        <textarea class="form-control form-control-lg" name="languagesSpoken" placeholder="" rows="4" #description (input)="onDescriptionInput(description.value)" ></textarea>
-                                        <div *ngIf="descriptionCount !== null" class="text-muted">{{ descriptionCount }}/100</div>
-                                    </div>
-                                    
-                                 
-                                  
-                                    <br>
-                                    <br>
-                          
-                                  
-
-                                    <div class="pt-1 mb-4">
-                                        <button class="btn btn-dark btn-lg btn-block" type="next" 
-                                       
-                                        (click)="submit_profile( phone ?? 0 ,gender.value ,age ?? 0 ,location.value ,language.value  ,description.value )">
-                                        
-                                                Next
-                                        </button>
-                                      
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
+                  <div class="form-group mb-4">
+                    <label class="fw-bold my-1 py-1">Choose gender </label>
+                    <br />
+                    <div class="btn-group" data-toggle="buttons-level">
+                      <label class="btn btn-light-orange">
+                        <input
+                          type="radio"
+                          name="gender"
+                          [(ngModel)]="selectedgender"
+                          value="male"
+                          #gender
+                        />
+                        Male
+                      </label>
+                      <label class="btn btn-light-orange">
+                        <input
+                          type="radio"
+                          name="gender"
+                          [(ngModel)]="selectedgender"
+                          value="female"
+                          #gender
+                        />
+                        Female
+                      </label>
+                      <label class="btn btn-light-orange">
+                        <input
+                          type="radio"
+                          name="gender"
+                          [(ngModel)]="selectedgender"
+                          value="non-binary"
+                          #gender
+                        />
+                        Non-binary
+                      </label>
                     </div>
-                </div>
+                  </div>
+
+                  <div class="form-outline mb-4">
+                    <label class="fw-bold my-1 py-1">Your age</label>
+                    <input
+                      type="number"
+                      id="f"
+                      class="form-control form-control-lg"
+                      [(ngModel)]="age"
+                      name="phoneNumber"
+                    />
+                  </div>
+
+                  <div class="form-outline mb-4">
+                    <label class="fw-bold my-1 py-1">Location</label>
+                    <input
+                      type="text"
+                      id="location"
+                      class="form-control form-control-lg"
+                      placeholder="Click to fetch your current location"
+                      name="location"
+                      (click)="getLocation()"
+                      [(ngModel)]="userLocation"
+                      #location
+                    />
+                  </div>
+
+                  <div class="form-outline mb-4">
+                    <label class="fw-bold my-1 py-1">Languages spoken</label>
+                    <input
+                      type="language"
+                      class="form-control form-control-lg"
+                      placeholder="urdu,english etc"
+                      name="language"
+                      #language
+                    />
+                  </div>
+
+                  <div class="form-outline mb-4">
+                    <label class="fw-bold my-1 py-1">Your Description</label>
+                    <!-- <textarea class="form-control form-control-lg" name="languagesSpoken" placeholder="" rows="4" #description (input)="onDescriptionInput(description.value)" [disabled]="isDescriptionLimitReached"></textarea> -->
+                    <textarea
+                      class="form-control form-control-lg"
+                      name="languagesSpoken"
+                      placeholder=""
+                      rows="4"
+                      #description
+                      (input)="onDescriptionInput(description.value)"
+                    ></textarea>
+                    <div *ngIf="descriptionCount !== null" class="text-muted">
+                      {{ descriptionCount }}/100
+                    </div>
+                  </div>
+
+                  <br />
+                  <br />
+
+                  <div class="pt-1 mb-4">
+                    <button
+                      class="btn btn-dark btn-lg btn-block"
+                      type="next"
+                      (click)="
+                        submit_profile(
+                          phone ?? 0,
+                          gender.value,
+                          age ?? 0,
+                          location.value,
+                          language.value,
+                          description.value
+                        )
+                      "
+                    >
+                      Next
+                    </button>
+                  </div>
+                </form>
+              </div>
             </div>
+          </div>
         </div>
+      </div>
     </div>
+  </div>
 </section>

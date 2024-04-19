@@ -1,15 +1,152 @@
-/* Custom CSS for responsiveness */
-
-/* Logo image style */
+/* Component-specific styles */
+.custom-background {
+  background-image: url('/assets/images/meetings-bg.jpg'); /* Update with the correct path to your image */
+  background-size: cover; /* Ensure the image covers the full area */
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Do not repeat the image */
+ 
+}
 .logo-img {
     max-width: 50px; /* Adjust as needed */
     height: auto;
   }
+  section {
+    /* background-color: #a0d2eb; */
   
+    width: 100%; /* Ensures the section covers the full width */
+    min-height: 100vh; /* Ensures the section covers the full viewport height */
+    display: flex;
+    align-items: center; /* Centers the card vertically */
+    justify-content: center; /* Centers the card horizontally */
+  }
   /* Adjust padding for small screens */
   @media screen and (max-width: 576px) {
     .card-body {
       padding: 2rem 1.5rem;
     }
   }
+  .btn-dark {
+    background-color: rgb(30, 30, 30); /* Dark blue background */
+    color: white; /* White text color */
+    border: none; /* No border */
+    transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+    /* Padding, font-size, and other styling as needed */
+}
+
+.btn-dark:hover {
+    background-color: #1a0fdd; /* Slightly lighter blue on hover for a subtle effect */
+    /* You can also add a box-shadow for a "raised" effect on hover if desired */
+}
+
   
+  .login-options {
+    display: flex;
+    align-items: center; /* Aligns items vertically in the center */
+    justify-content: center; /* Centers the items horizontally */
+    gap: 20px; /* Adds space between items */
+}
+
+.or-text {
+    white-space: nowrap; /* Ensures 'OR' does not break into multiple lines */
+    margin: 0 10px; /* Slightly less margin for smaller devices */
+}
+
+.btn-lg {
+    padding: 0.5rem 1.5rem; /* Adjust padding according to your preference */
+}
+
+.google-btn-small {
+    /* Adjust size specifically for the Google sign-in button */
+    transform: scale(1); /* Scale down the button */
+    transform-origin: center; /* Ensure it scales from the center */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .login-options {
+        flex-direction: column; /* Stack the items vertically on smaller screens */
+        gap: 15px; /* Reduce the gap for smaller screens */
+    }
+
+    .or-text {
+        margin: 10px 0; /* Adjust margin for vertical stacking */
+    }
+
+    .btn-lg, .google-btn-small {
+        width: 100%; /* Full width buttons for smaller screens */
+        padding: 10px 0; /* Adjust padding for better touch targets */
+    }
+
+    .google-btn-small {
+        transform: scale(1); /* Reset scale for better visibility on small screens */
+    }
+}
+
+/* Further adjustments for very small screens */
+@media (max-width: 480px) {
+    .btn-lg {
+        padding: 8px 0; /* Slightly less padding for very small devices */
+    }
+
+    .or-text {
+        font-size: 0.8rem; /* Smaller font size for 'OR' text */
+    }
+}
+.link-container {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.link-container a {
+  color: #0d1785; /* Unified color for all links */
+  text-decoration: none; /* No underlines on links */
+  margin: 0 10px; /* Space around the links */
+  transition: color 0.3s ease; /* Smooth transition for hover effect */
+}
+
+.link-container a:hover {
+  color: #ff4081; /* Hover color */
+}
+
+/* Specific styling for 'Forgot password?' link */
+.link-forgot-password {
+  font-size: 0.9rem; /* Smaller text for the 'forgot password' link */
+  display: block; /* Block makes it take a full line for itself */
+  margin-bottom: 10px; /* Spacing below the link */
+}
+
+/* Text leading up to 'Register here' link */
+.link-signup-text {
+  margin: 10px 0; /* Spacing around the text */
+  color: #0d1785; /* Color for the text */
+  font-size: 1rem; /* Slightly larger text */
+}
+
+/* Specific styling for 'Terms of use' and 'Privacy policy' links */
+.link-policy a {
+  font-weight: bold; /* Makes 'Terms' and 'Privacy Policy' bold */
+}
+
+/* Media query for smaller screens to stack links vertically */
+@media (max-width: 768px) {
+  .link-container a {
+    display: block; /* Stack links vertically */
+    margin: 8px auto; /* Centers links with automatic horizontal margins */
+  }
+
+  .link-policy {
+    display: flex;
+    flex-direction: column; /* Stack terms and privacy policy vertically */
+    align-items: center;
+  }
+}
+/* Hover effect for the card */
+.card {
+  transition: box-shadow 0.3s ease; /* Transition for shadow for a smooth effect */
+  border-radius: 1rem; /* Rounded corners for the card */
+  background-color: #ffffff; /* White background for clarity */
+}
+
+.card:hover {
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15); /* Slightly larger shadow on hover for a 'raised' effect */
+}

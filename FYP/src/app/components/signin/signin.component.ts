@@ -1,102 +1,111 @@
 declare var google : any
-import { Component, OnInit, inject, resolveForwardRef } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { ParseService } from 'src/app/services/parse.service';
-import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-signin',
   templateUrl: './signin.component.html',
   styleUrls: ['./signin.component.css']
 })
+export class SigninComponent implements OnInit {
+  nameGoogle: string = '';
+  emailGoogle: string = '';
+  imageGoogle: string = '';
 
-export class SigninComponent implements OnInit{
-  auth = inject(AuthService);
-  nameGoogle: string ='';
-  emailGoogle : string = '';
-  imageGoogle : string = '';
+  constructor(
+    private parseService: ParseService,
+    private authService: AuthService,
+    private router: Router
+  ) { }
 
-  
-private router = inject(Router);
-ngOnInit(): void {
+  ngOnInit(): void {
+    this.initGoogleSignIn();
+  }
+
+  private initGoogleSignIn(): void {
     google.accounts.id.initialize({
-      client_id:'66603945155-dfvk6kum2qrsu3igtd8e2qfj00k40ts3.apps.googleusercontent.com',
-      callback:(resp:any)=>this.handleLogin(resp)
-      
-   
-
+      client_id: '66603945155-dfvk6kum2qrsu3igtd8e2qfj00k40ts3.apps.googleusercontent.com',
+      callback: (response: any) => this.handleGoogleLogin(response)
     });
 
+    google.accounts.id.renderButton(
+      document.getElementById('google-btn'), {
+        theme: 'filled_blue',
+        size: 'large',
+        shape: 'rectangle',
+        width: 350,
+      }
+    );
 
-    google.accounts.id.renderButton(document.getElementById("google-btn"),{
-      theme: 'filled_blue',
-      size:  'large',
-      shape: 'rectangle',
-      width: 350,
-
-    })
-
-    this.auth.updateAuthenticationAppStatus(false);
-    this.auth.updateAuthenticationStatus(false);
-
-
-}
-  constructor(private parseService: ParseService , private authservice : AuthService) { }
-
+    this.authService.updateAuthenticationAppStatus(false);
+    this.authService.updateAuthenticationStatus(false);
+  }
 
   async onLogin(email: string, password: string) {
-    // this.authService.login();
     const user = await this.parseService.login(email, password);
     console.log(user);
-   
-    if (user.status == 2) {
-      alert('Login successful ');
-      // this.auth.updateAuthenticationAppStatus(true);
-      this.router.navigate(['/home-after-login']);
-    }
 
-    else if (user.status == 3) {
-      alert('Login successful ');
-     
-      this.router.navigate(['/profession-details']); 
-    } 
-    
-    else if (user.status == 4) {
-      alert('Login successful ');
-
-      this.router.navigate(['/profile']);
-    } 
-
-     
-    else if (user.status == 5) {
-      alert('Login successful ');
-      this.router.navigate(['/profile']);
-    } 
-
-     else if (user.status == 0) {
-      alert('incorrect name or password');
+    if (user && user.status >= 2 && user.status <= 5) {
+      this.setSessionStorage(user);
+      this.navigateToRoute(user.status);
+    } else {
+      alert('Incorrect name or password');
     }
   }
- 
 
-  private decodeToken(token:string){
+  private handleGoogleLogin(response: any) {
+    if (response) {
+      const payload = this.decodeToken(response.credential);
+      sessionStorage.setItem("loggedInUser", JSON.stringify(payload));
+      this.updateUserProperties();
+      this.onLogin(payload.email, "null"); // Assuming 'null' password is handled by your logic
+    }
+  }
+
+  private decodeToken(token: string) {
     return JSON.parse(atob(token.split(".")[1]));
   }
 
-  handleLogin(response:any){
-
-
-    if(response){
-      const payLoad = this.decodeToken(response.credential);
-      sessionStorage.setItem("loggedInUser",JSON.stringify(payLoad));
-      this.nameGoogle = JSON.parse(sessionStorage.getItem("loggedInUser")!).name;
-      this.imageGoogle = JSON.parse(sessionStorage.getItem("loggedInUser")!).picture;
-      this.emailGoogle = JSON.parse(sessionStorage.getItem("loggedInUser")!).email;
-      
-      this.onLogin(this.emailGoogle,"null")
-      // this.router.navigate(['/home-after-login']);
-    }
-
+  private setSessionStorage(user: any) {
+    sessionStorage.setItem("loggedInUser", JSON.stringify({
+      name: user.name,
+      picture: user.picture || 'default-image-url',
+      email: user.email
+    }));
+    this.updateUserProperties();
   }
+
+  private updateUserProperties() {
+    const loggedInUser = JSON.parse(sessionStorage.getItem("loggedInUser")!);
+    this.nameGoogle = loggedInUser?.name;
+    this.imageGoogle = loggedInUser?.picture;
+    this.emailGoogle = loggedInUser?.email;
+  }
+
+  private navigateToRoute(status: number) {
+    let route = '';
+    switch (status) {
+      
+      case 3:
+        route = '/profession-details';
+        break;
+        case 2:
+          route = '/home-after-login';
+          break;
+      case 4:
+      case 5:
+        route = '/profile';
+        break;
+      default:
+        route = '/home-after-login';
+        break;
+    }
+    this.router.navigate([route]);
+  }
+}
+
 //   async signup(name: string , email:string  , password:string )
 //   {
   
@@ -134,4 +143,3 @@ ngOnInit(): void {
   
 
 
-}

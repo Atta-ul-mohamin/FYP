@@ -7,3 +7,20 @@
 .btn-light-orange.active {
     background-color: rgb(255, 255, 255); /* Active state background color */
 }
+.custom-background {
+    background-image: url('/assets/images/meetings-bg.jpg'); /* Update with the correct path to your image */
+    background-size: cover; /* Ensure the image covers the full area */
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Do not repeat the image */
+   
+}
+.card {
+    transition: box-shadow 0.3s ease; /* Transition for shadow for a smooth effect */
+    border-radius: 1rem; /* Rounded corners for the card */
+    background-color: #ffffff; /* White background for clarity */
+  }
+  
+  .card:hover {
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15); /* Slightly larger shadow on hover for a 'raised' effect */
+  }
+  

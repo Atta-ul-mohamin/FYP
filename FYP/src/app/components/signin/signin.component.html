@@ -1,66 +1,75 @@
 
-<!-- <div id="g_id_onload"
-data-client_id="66603945155-dfvk6kum2qrsu3igtd8e2qfj00k40ts3.apps.googleusercontent.com"
-data-context="signin"
-data-ux_mode="popup"
-data-login_uri="http://localhost:3000/api/login"
-data-auto_prompt="false">
-</div>
 
-<div class="g_id_signin"
-data-type="standard"
-data-shape="rectangular"
-data-theme="filled_blue"
-data-text="signin_with"
-data-size="large"
-data-logo_alignment="left">
-</div> -->
-<h1 class="text-center" style="color: rgb(203, 202, 202);"> STEP 1 of 3 </h1>
+<section class="custom-background" (submit)="onLogin(email.value, password.value)">
+  
 
-<section  (submit)="onLogin(email.value, password.value)">
   <div class="container py-5">
     <div class="row d-flex justify-content-center align-items-center">
       <div class="col-md-8 col-lg-6">
-        <div class="card" style="border-radius: 1rem;">
+        <div class="card" style="border-radius: 1rem">
           <div class="card-body p-4 p-lg-5 text-black">
             <!-- Placeholder for logo -->
             <div class="d-flex align-items-center mb-3 pb-1">
-              <img src="assets\images\logo2.svg" alt="Logo" height="60"  />
-              
+              <img src="assets\images\logo2.svg" alt="Logo" height="60" />
             </div>
-            <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Sign into your account</h5>
+            <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px">
+              Sign into your account
+            </h5>
 
             <form>
               <div class="form-outline mb-4">
-                <input type="email" id="email" class="form-control form-control-lg"  #email/>
+                <input
+                  type="email"
+                  id="email"
+                  class="form-control form-control-lg"
+                  #email
+                />
                 <label class="form-label" for="email">Email address</label>
               </div>
 
               <div class="form-outline mb-4">
-                <input type="password" id="password" class="form-control form-control-lg" #password/>
+                <input
+                  type="password"
+                  id="password"
+                  class="form-control form-control-lg"
+                  #password
+                />
                 <label class="form-label" for="password">Password</label>
               </div>
 
-              <button type="button" class="btn btn-dark btn-lg btn-block" (click)="onLogin(email.value, password.value)" style="background-color: rgb(20, 20, 19);">Login</button>
-              <br>
-              <br>
-              OR
-              <br>
-              <br>
+              
+              
+              <div class="login-options">
+                <button
+                type="button"
+                class="btn btn-dark btn-lg"
+                (click)="onLogin(email.value, password.value)">
+                Login
+            </button>
+            
+            
+                <span class="or-text">OR</span>
+            
+                <div id="google-btn" class="google-btn-small"></div>
+            </div>
+            
               
 
-              <div id="google-btn">
-                
+              
+
+            <div class="link-container">
+              <a class="link-forgot-password" href="#" [routerLink]="['/forget-pin']">Forgot password?</a>
+              <p class="link-signup-text">
+                Don’t have an account?
+                <a class="link-signup" href="#" [routerLink]="['/signup']">Register here</a>
+              </p>
+              <div class="link-policy">
+                <a class="link-terms" href="#!" [routerLink]="['/privacypolicy']">Terms of use</a>
+                <a class="link-privacy" href="#!" [routerLink]="['/privacypolicy']">Privacy policy</a>
               </div>
-              
-
-              <a class="small text-muted" href="#" [routerLink]="['/forget-pin']">Forgot password?</a>
-              <p class="mb-3" style="color: #0d1785;">Don't have an account?
-              <a href="#"[routerLink]="['/signup']" style="color: #0d1785;">Register here</a></p>
-              <a href="#!"  [routerLink]="['/privacypolicy']"style="color: #2d37a3;">Terms of use.</a>
-              <a href="#!"   [routerLink]="['/privacypolicy']"style="color: #2533c7;">Privacy policy</a>
+            </div>
+            
             </form>
-
           </div>
         </div>
       </div>
