@@ -94,7 +94,6 @@ Parse.Cloud.define("getGigById", async (request) => {
       image2 : card.get("image2"),
       image3 : card.get("image3"),
      
-     
     };
 
     // Include user data if it exists

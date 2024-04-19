@@ -26,10 +26,22 @@ import { UpdateGigComponent } from './update-gig/update-gig.component';
 import { ProfileSettingComponent } from './profile-setting/profile-setting.component';
 import { UpdateProffesionComponent } from './update-proffesion/update-proffesion.component';
 import { ServicesPageComponent } from './components/services-page/services-page.component';
+import { OrderComponent } from './components/order/order.component';
+import { CurrentOrdersComponent } from './current-orders/current-orders.component';
+import { HistoryordersComponent } from './historyorders/historyorders.component';
 // import { StudentNamesResolver } from './services/student_names.resolver';
 
 
 const routes: Routes = [
+  {path:"orders",
+  component:OrderComponent
+},
+{path:"currentOrders",
+component:CurrentOrdersComponent
+},
+{path:"historyOrders",
+component:HistoryordersComponent
+},
 
   {path:"edit_gig/:id",
   component:UpdateGigComponent

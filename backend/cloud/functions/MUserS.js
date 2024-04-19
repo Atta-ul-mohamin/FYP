@@ -40,7 +40,8 @@ Parse.Cloud.define("loginStudent", async (request) => {
     return {
       status: 1,
       name: user.get('name'),
-      objectId: user.id 
+      objectId: user.id,
+      image:user.get('image')
     };
   } else {
     console.log('error 2');
