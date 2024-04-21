@@ -165,6 +165,30 @@ async getOrders(): Promise<any[]> {
   }
 }
 
+async getHistoryOrders(): Promise<any[]> {
+  try {
+      const params = {userId: this.user.objectId}
+      const results = await Parse.Cloud.run("getHistoryOrdersTeacher", params);
+      console.log('Results from Cloud Code:', results);
+      return results;
+  } catch (error) {
+      console.error('Error fetching orders from Cloud Code', error);
+      throw error; // Propagate the error to the calling code if needed
+  }
+}
+
+async onCompleteFunction(orderId:string){
+  try{
+        const params = {orderId};
+        const result = await Parse.Cloud.run("CompleteOrdersTeacher" , params);
+        return result;
+    }
+  catch(error){
+    throw error;
+  }
+
+}
+
 async deleteGig( gigId : string) {
 
   if (this.currentUser && this.currentUser.objectId) {

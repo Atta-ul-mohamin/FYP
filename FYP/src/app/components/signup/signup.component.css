@@ -16,3 +16,29 @@
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15); /* Slightly larger shadow on hover for a 'raised' effect */
   }
   
+  /* .translate-middle-y {
+    transform: translateY(-50%);
+  } */
+
+  .form-outline.position-relative {
+    position: relative;
+  }
+  
+  .form-outline .btn.position-absolute {
+    top: 50%;
+    right: 0;
+    transform: translate(0, -50%);
+    border: none;
+    background: none;
+  }
+  
+  /* Ensure the input and the button are aligned in height */
+  .form-outline .form-control {
+    height: 48px; /* or your desired height */
+  }
+  
+  .form-outline .btn {
+    height: 48px; /* should match the input height or adjusted as needed */
+  }
+  
+  

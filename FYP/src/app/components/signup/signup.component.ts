@@ -9,9 +9,14 @@ import { Router } from '@angular/router';
   styleUrls: ['./signup.component.css']
 })
 export class SignupComponent {
+  showPassword: boolean = false;
   constructor(private service: ParseService, private authService: AuthService, private router: Router) {}
 
-  onsignup(event: Event, firstnameElement: HTMLInputElement, emailElement: HTMLInputElement, passwordElement: HTMLInputElement, termsCheckbox: HTMLInputElement) {
+  togglePasswordVisibility() {
+    this.showPassword = !this.showPassword;
+  }
+
+ async onsignup(event: Event, firstnameElement: HTMLInputElement, emailElement: HTMLInputElement, passwordElement: HTMLInputElement, termsCheckbox: HTMLInputElement) {
     // Prevent the default form submission
     event.preventDefault();
   
@@ -20,36 +25,36 @@ export class SignupComponent {
     const email = emailElement.value.trim();
     const password = passwordElement.value.trim();
   
-    // Check if any field is empty
     if (!firstname || !email || !password) {
-      // Show an error message or handle the validation as needed
       alert('Please fill in all the fields.');
+      return;
+    }
+    if (firstname.length < 3 || firstname.length > 20) {
+      alert('Name must be between 3 and 20 characters long.');
+      return;
+    }
+
+    // Validate the password complexity
+    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d@$!%*?&]{8,}$/;
+    if (!passwordRegex.test(password)) {
+      alert('Password must be at least 8 characters long, include numbers, alphabets, at least one uppercase letter and one special character.');
       return;
     }
   
     // Check if the checkbox is checked
     if (!termsCheckbox.checked) {
-      // Show an error message or handle the validation as needed
       alert('Please agree to the terms and conditions before signing up.');
       return;
     }
   
     // Call the signup method from ParseService
-    this.service.signup(firstname, email, password)
-      .then(() => {
-        // If signup is successful, proceed with login and navigation
-        // Call the login() method from the AuthService
-        this.authService.login();
-  
-        // Navigate to the profile page
-        this.router.navigate(['/']);
-      })
-      .catch((error) => {
-        // Handle any error that might occur during signup
-        console.error('Signup failed:', error);
-      });
+   const result= await this.service.signup(firstname, email, password)
+   if(result.status===1){  
+        alert("Your account created successfully");
+        this.router.navigate(['/signin']); 
+    }
+    if(result.status===0){
+      alert('email already exists, try another')
+    }
   }
-  
-
-  
 }

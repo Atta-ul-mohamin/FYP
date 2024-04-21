@@ -16,7 +16,7 @@ Parse.Cloud.define("addUserTeacher", async (request) => {
     } else {
         // Email does not exist, save the new user
         const result = await user.save();
-        return result;
+        return {result,status:1};
     }
     });
 

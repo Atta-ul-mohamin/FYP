@@ -1,1 +1,52 @@
-<p>historyorders works!</p>
+<div class="container mt-4">
+    <div class="row justify-content-center">
+      <div class="col-md-10">
+  
+        <!-- Shadow Container -->
+        <div class="shadow p-3">
+  
+          <!-- Table -->
+          <div class="table-responsive">
+            <table class="table table-bordered table-hover">
+              <thead class="table-dark">
+                <tr>
+                  <th colspan="9" class="text-center">History Orders</th>
+                </tr>
+                <tr class="fw-bold">
+                  <th>#</th>
+                  <th>orderId</th>
+                  <th>Title</th>
+                  <th>Completion Time</th>
+                  <th>Given Time</th>
+                  <th>Price</th>
+                  <th class="text-center">Review</th>
+                  <th class="text-center">Rating</th>
+                  <th class="text-center">Completion Confirmation</th>
+
+
+                 
+                </tr>
+              </thead>
+  
+              <tbody>
+                <tr *ngFor="let order of orders; let i = index">
+  
+                  <td>{{ i + 1 }}</td>
+                  <td>{{ order.objectId}}</td>
+                  <td>{{ order.title }}</td>
+                  <td>{{ order.timeCompletion }}</td>
+                  <td>{{order.orderDay}} days</td>
+                  <td>{{ order.price }}</td>
+                  <td class="text-center">{{order.review}}</td>
+                  <td class="text-center">{{order.rating}}</td>
+                  <td class="text-center">{{order.completionConfirm}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+  
+        </div>
+  
+      </div>
+    </div>
+  </div>

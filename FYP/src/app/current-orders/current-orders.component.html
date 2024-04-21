@@ -11,7 +11,7 @@
             <table class="table table-bordered table-hover">
               <thead class="table-dark">
                 <tr>
-                  <th colspan="6" class="text-center">Current Orders</th>
+                  <th colspan="8" class="text-center">Current Orders</th>
                 </tr>
                 <tr class="fw-bold">
                   <th>#</th>
@@ -19,7 +19,10 @@
                   <th>Title</th>
                   <th>Days To Complete</th>
                   <th>Price</th>
+                  <th>time Left</th>
                   <th class="text-center">Chat</th>
+                  <th class="text-center">Press it when Completed</th>
+
                  
                 </tr>
               </thead>
@@ -32,8 +35,9 @@
                   <td>{{ order.title }}</td>
                   <td>{{ order.orderDay }}</td>
                   <td>{{ order.price }}</td>
+                  <td>{{ order.timeLeft }}</td>
                   <td class="text-center"><button class="edit-btn" [routerLink]="['/chat-page', order.studentId.id]">Chat</button></td>
-    
+                  <td class="text-center"><button class="edit-btn"  (click)="onComplete(order.objectId)"> Complete </button></td>
                 </tr>
               </tbody>
             </table>
