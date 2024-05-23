@@ -34,10 +34,17 @@ export class SignupComponent {
       return;
     }
 
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email) || !email.endsWith('@gmail.com')) {
+      alert('Email must be in the format of username@gmail.com');
+      return;
+    }
+
     // Validate the password complexity
-    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d@$!%*?&]{8,}$/;
+    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,}$/;
+
     if (!passwordRegex.test(password)) {
-      alert('Password must be at least 8 characters long, include numbers, alphabets, at least one uppercase letter and one special character.');
+      alert('Password must be at least 8 characters long, include numbers, alphabets, at least one uppercase letter');
       return;
     }
   

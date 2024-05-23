@@ -1,6 +1,3 @@
-''
-<!-- In message-table.component.html -->
-
 
 <div class="container mt-3">
     <table class="table table-hover">
@@ -10,8 +7,11 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let data of studentNames" (click)="onRowClick(data.id)" class="clickable-row">
-          <td>{{ data.name }}</td>
+        <tr *ngFor="let data of studentData" (click)="onRowClick(data.id)" class="clickable-row">
+          <td class="align-middle">
+            <img [src]="data.image | safeResourceUrl" class="rounded-circle me-2" alt="Profile Image" style="height: 50px; width: 50px; border-radius: 50%; vertical-align: middle;">
+            <span>{{ data.name }}</span>
+          </td>
         </tr>
       </tbody>
     </table>

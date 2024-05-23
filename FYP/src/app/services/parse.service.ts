@@ -1,7 +1,7 @@
-import { Injectable } from '@angular/core';
-import * as Parse from 'parse' ;
-import { Message } from '../chat-page/message.model';
 import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import * as Parse from 'parse';
+import { Message } from '../chat-page/message.model';
 @Injectable({
   providedIn: 'root'
 })
@@ -71,7 +71,7 @@ async submitProfile(phone: number, gender: string, age: number, location: string
   }
 
 
-async updateCurrentUserName(name: string) {
+  async updateCurrentUserName(name: string) {
   if (this.currentUser && this.currentUser.objectId) {
     const params = { objectId: this.currentUser.objectId , name};
     alert('User name Updated Successfully !!!');
@@ -186,7 +186,25 @@ async onCompleteFunction(orderId:string){
   catch(error){
     throw error;
   }
+}
 
+
+async onLoginGoogle(name : string , email : string , pass : string ){
+  try{
+    const params = {name,email,pass};
+    const response  = await Parse.Cloud.run("onLoginGoogle" , params);
+    if(response.status === 2  || response.status === 3 || response.status === 4   ) {
+      this.currentUser = response;
+          // Save user to local storage on successful login
+          localStorage.setItem(this.USER_KEY, JSON.stringify(response));
+      console.log(this.currentUser.objectId);
+    }
+    return response;
+  }
+
+catch(error){
+throw error;
+}
 }
 
 async deleteGig( gigId : string) {
@@ -310,6 +328,37 @@ async getStudentIdsByTeacherIdInConversation(teacherId: string): Promise<string[
       throw error;
     }
   }
+
+  async getCancelOrders(): Promise<any[]> {
+    try {
+      const params = { userId: this.user.objectId }
+      const results = await Parse.Cloud.run("getCancelOrdersTeacher", params);
+      console.log('Results from Cloud Code:', results);
+      return results;
+    } catch (error) {
+      console.error('Error fetching orders from Cloud Code', error);
+      throw error; // Propagate the error to the calling code if needed
+    }
+  }
+
+  async getIncompleteOrders(): Promise<any[]> {
+    try {
+      const params = { userId: this.user.objectId }
+      const results = await Parse.Cloud.run("getIncompleteOrdersTeacher", params);
+      console.log('Results from Cloud Code:', results);
+      return results;
+    } catch (error) {
+      console.error('Error fetching orders from Cloud Code', error);
+      throw error; // Propagate the error to the calling code if needed
+    }
+  }
+
+
+  async moveToIncompleteOrders(orderId: string) {
+    return Parse.Cloud.run("MoveToIncompleteOrders", { orderId });
+  }
+
+
   
 
   async sendMessage(senderId: string, receiverId: string, text: string) {

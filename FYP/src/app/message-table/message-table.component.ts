@@ -8,7 +8,7 @@ import { ParseService } from 'src/app/services/parse.service';
   styleUrls: ['./message-table.component.css']
 })
 export class MessageTableComponent {
-  studentNames: any[] = [];
+  studentData: any[] = [];
   images : any[] = []; // To store just the names of students
 
   constructor(private parseService: ParseService,private router: Router) {}
@@ -24,14 +24,13 @@ export class MessageTableComponent {
         // Assuming getStudentNamesByIds returns an array of objects with a 'name' property
         const students = await this.parseService.getStudentNamesByIds(studentIds);
         console.log(students, 'full student data');
-        this.studentNames = students;
-        this.images = students;
+        this.studentData = students;
 
         // Extracting only the names
         // Assuming students is an array of objects with a 'name' property
         // this.studentNames = (students as any[]).map(student => student.name);
         
-        console.log(this.studentNames, 'student names');
+        console.log(this.studentData, 'student names');
       }
     } catch (error) {
       console.error('Error:', error);

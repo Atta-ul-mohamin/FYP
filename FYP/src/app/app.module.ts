@@ -38,6 +38,8 @@ import { UpdateGigComponent } from './update-gig/update-gig.component';
 import { ProfileSettingComponent } from './profile-setting/profile-setting.component';
 import { HistoryordersComponent } from './historyorders/historyorders.component';
 import { CurrentOrdersComponent } from './current-orders/current-orders.component';
+import { DatePipe } from '@angular/common';
+
 
 
 
@@ -47,8 +49,12 @@ import { HttpClientModule } from '@angular/common/http';
 // import { AgmCoreModule } from '@agm/core';
 import { OkComponent } from './ok/ok.component';
 import { SafeResourceUrlPipe } from './safe-resource-url.pipe';
+import { IncompleteOrdersComponent } from './incomplete-orders/incomplete-orders.component';
+import { CancelOrdersComponent } from './cancel-orders/cancel-orders.component';
 @NgModule({
   declarations: [
+    CancelOrdersComponent,
+    IncompleteOrdersComponent,
     OrderComponent,
     HistoryordersComponent,
     CurrentOrdersComponent,
@@ -91,19 +97,21 @@ import { SafeResourceUrlPipe } from './safe-resource-url.pipe';
        
   ],
   imports: [
+    HttpClientModule,
     BrowserModule,
     AppRoutingModule,
     NgbModule,
     FontAwesomeModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule,
+  
     // AgmCoreModule.forRoot({
     //   apiKey: 'AIzaSyBamKmkAXbhYFW-cCxtAezM5xAON_-uv-0'
     // })
     
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [DatePipe],
+  bootstrap: [AppComponent],
+
 })
 export class AppModule { }

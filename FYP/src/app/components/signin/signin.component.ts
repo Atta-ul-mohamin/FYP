@@ -60,7 +60,18 @@ export class SigninComponent implements OnInit {
       const payload = this.decodeToken(response.credential);
       sessionStorage.setItem("loggedInUser", JSON.stringify(payload));
       this.updateUserProperties();
-      this.onLogin(payload.email, "null"); // Assuming 'null' password is handled by your logic
+      this.onLoginGoogle(payload.name,payload.email, "null"); // Assuming 'null' password is handled by your logic
+    }
+  }
+
+  async onLoginGoogle(name : string , email : string , pass: string ){
+    const user = await this.parseService.onLoginGoogle(name , email , pass);
+    console.log(user);
+    if (user && user.status >= 2 && user.status <= 5) {
+      this.setSessionStorage(user);
+      this.navigateToRoute(user.status);
+    } else {
+      alert('Incorrect name or password');
     }
   }
 

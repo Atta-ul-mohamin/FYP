@@ -29,12 +29,20 @@ import { ServicesPageComponent } from './components/services-page/services-page.
 import { OrderComponent } from './components/order/order.component';
 import { CurrentOrdersComponent } from './current-orders/current-orders.component';
 import { HistoryordersComponent } from './historyorders/historyorders.component';
+import { IncompleteOrdersComponent } from './incomplete-orders/incomplete-orders.component';
+import { CancelOrdersComponent } from './cancel-orders/cancel-orders.component';
 // import { StudentNamesResolver } from './services/student_names.resolver';
 
 
 const routes: Routes = [
   {path:"orders",
   component:OrderComponent
+},
+{path:"incompleteOrders",
+component:IncompleteOrdersComponent
+},
+{path:"cancelOrders",
+component:CancelOrdersComponent
 },
 {path:"currentOrders",
 component:CurrentOrdersComponent

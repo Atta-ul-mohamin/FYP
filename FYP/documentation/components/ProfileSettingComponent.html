@@ -1,0 +1,1758 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>fyp documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avaoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+
+               if ($darkModeToggles.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-block d-sm-none">
+            <a href="../" class="navbar-brand">fyp documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  ProfileSettingComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li class="nav-item">
+            <a href="#styleData" class="nav-link"
+                role="tab" id="styleData-tab" data-bs-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/profile-setting/profile-setting.component.ts</code>
+</p>
+
+
+
+
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-profile-setting</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./profile-setting.component.css</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./profile-setting.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#age" >age</a>
+                            </li>
+                            <li>
+                                <a href="#description" >description</a>
+                            </li>
+                            <li>
+                                <a href="#descriptionCount" >descriptionCount</a>
+                            </li>
+                            <li>
+                                <a href="#fileBinaryString" >fileBinaryString</a>
+                            </li>
+                            <li>
+                                <a href="#isDescriptionLimitReached" >isDescriptionLimitReached</a>
+                            </li>
+                            <li>
+                                <a href="#language" >language</a>
+                            </li>
+                            <li>
+                                <a href="#pass" >pass</a>
+                            </li>
+                            <li>
+                                <a href="#phone" >phone</a>
+                            </li>
+                            <li>
+                                <a href="#pictur" >pictur</a>
+                            </li>
+                            <li>
+                                <a href="#profileId" >profileId</a>
+                            </li>
+                            <li>
+                                <a href="#selectedFile" >selectedFile</a>
+                            </li>
+                            <li>
+                                <a href="#selectedgender" >selectedgender</a>
+                            </li>
+                            <li>
+                                <a href="#teacherID" >teacherID</a>
+                            </li>
+                            <li>
+                                <a href="#userLocation" >userLocation</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#convertBlobUrlToBase64String" >convertBlobUrlToBase64String</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#deleteProfile" >deleteProfile</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#fetchProfileData" >fetchProfileData</a>
+                            </li>
+                            <li>
+                                <a href="#getLocation" >getLocation</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnInit" >ngOnInit</a>
+                            </li>
+                            <li>
+                                <a href="#onDescriptionInput" >onDescriptionInput</a>
+                            </li>
+                            <li>
+                                <a href="#onFileChanged" >onFileChanged</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#submit_profile" >submit_profile</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(service: <a href="../injectables/ParseService.html" target="_self">ParseService</a>, route: ActivatedRoute, router: Router)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/app/profile-setting/profile-setting.component.ts:31</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>service</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/ParseService.html" target="_self" >ParseService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>route</td>
+                                                  
+                                                        <td>
+                                                                    <code>ActivatedRoute</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>router</td>
+                                                  
+                                                        <td>
+                                                                    <code>Router</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+
+
+    <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="convertBlobUrlToBase64String"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>convertBlobUrlToBase64String</b></span>
+                        <a href="#convertBlobUrlToBase64String"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>convertBlobUrlToBase64String(blobUrl: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="179"
+                                    class="link-to-prism">src/app/profile-setting/profile-setting.component.ts:179</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>blobUrl</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Promise&lt;string&gt;</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="deleteProfile"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>deleteProfile</b></span>
+                        <a href="#deleteProfile"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>deleteProfile(TeacherId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="135"
+                                    class="link-to-prism">src/app/profile-setting/profile-setting.component.ts:135</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>TeacherId</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="fetchProfileData"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>fetchProfileData</b></span>
+                        <a href="#fetchProfileData"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>fetchProfileData()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="48"
+                                    class="link-to-prism">src/app/profile-setting/profile-setting.component.ts:48</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getLocation"></a>
+                    <span class="name">
+                        <span ><b>getLocation</b></span>
+                        <a href="#getLocation"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getLocation()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="73"
+                                    class="link-to-prism">src/app/profile-setting/profile-setting.component.ts:73</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <span ><b>ngOnInit</b></span>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="35"
+                                    class="link-to-prism">src/app/profile-setting/profile-setting.component.ts:35</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onDescriptionInput"></a>
+                    <span class="name">
+                        <span ><b>onDescriptionInput</b></span>
+                        <a href="#onDescriptionInput"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onDescriptionInput(value: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="42"
+                                    class="link-to-prism">src/app/profile-setting/profile-setting.component.ts:42</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>value</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onFileChanged"></a>
+                    <span class="name">
+                        <span ><b>onFileChanged</b></span>
+                        <a href="#onFileChanged"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onFileChanged(event: Event)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="161"
+                                    class="link-to-prism">src/app/profile-setting/profile-setting.component.ts:161</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>event</td>
+                                            <td>
+                                                        <code>Event</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="submit_profile"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>submit_profile</b></span>
+                        <a href="#submit_profile"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>submit_profile(phone: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, gender: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, age: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, location: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, language: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, description: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="93"
+                                    class="link-to-prism">src/app/profile-setting/profile-setting.component.ts:93</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>phone</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>gender</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>age</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>location</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>language</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>description</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="age"></a>
+                    <span class="name">
+                        <span ><b>age</b></span>
+                        <a href="#age"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>number | undefined</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>undefined</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/app/profile-setting/profile-setting.component.ts:20</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="description"></a>
+                    <span class="name">
+                        <span ><b>description</b></span>
+                        <a href="#description"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;&#x27;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/app/profile-setting/profile-setting.component.ts:18</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="descriptionCount"></a>
+                    <span class="name">
+                        <span ><b>descriptionCount</b></span>
+                        <a href="#descriptionCount"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>number | null</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>null</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/app/profile-setting/profile-setting.component.ts:27</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="fileBinaryString"></a>
+                    <span class="name">
+                        <span ><b>fileBinaryString</b></span>
+                        <a href="#fileBinaryString"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>string | null</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>null</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/app/profile-setting/profile-setting.component.ts:30</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isDescriptionLimitReached"></a>
+                    <span class="name">
+                        <span ><b>isDescriptionLimitReached</b></span>
+                        <a href="#isDescriptionLimitReached"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/app/profile-setting/profile-setting.component.ts:28</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="language"></a>
+                    <span class="name">
+                        <span ><b>language</b></span>
+                        <a href="#language"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;&#x27;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/app/profile-setting/profile-setting.component.ts:17</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="pass"></a>
+                    <span class="name">
+                        <span ><b>pass</b></span>
+                        <a href="#pass"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;&#x27;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/app/profile-setting/profile-setting.component.ts:31</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="phone"></a>
+                    <span class="name">
+                        <span ><b>phone</b></span>
+                        <a href="#phone"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;&#x27;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/app/profile-setting/profile-setting.component.ts:22</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="pictur"></a>
+                    <span class="name">
+                        <span ><b>pictur</b></span>
+                        <a href="#pictur"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&quot;&quot;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/app/profile-setting/profile-setting.component.ts:25</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="profileId"></a>
+                    <span class="name">
+                        <span ><b>profileId</b></span>
+                        <a href="#profileId"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&quot;&quot;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/app/profile-setting/profile-setting.component.ts:24</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="selectedFile"></a>
+                    <span class="name">
+                        <span ><b>selectedFile</b></span>
+                        <a href="#selectedFile"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>File | null</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>null</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/app/profile-setting/profile-setting.component.ts:29</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="selectedgender"></a>
+                    <span class="name">
+                        <span ><b>selectedgender</b></span>
+                        <a href="#selectedgender"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&quot;&quot;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/app/profile-setting/profile-setting.component.ts:23</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="teacherID"></a>
+                    <span class="name">
+                        <span ><b>teacherID</b></span>
+                        <a href="#teacherID"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;&#x27;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/app/profile-setting/profile-setting.component.ts:16</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="userLocation"></a>
+                    <span class="name">
+                        <span ><b>userLocation</b></span>
+                        <a href="#userLocation"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;&#x27;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/app/profile-setting/profile-setting.component.ts:19</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component } from &#x27;@angular/core&#x27;;
+import { ActivatedRoute } from &#x27;@angular/router&#x27;;
+import { ParseService } from &#x27;src/app/services/parse.service&#x27;;
+import { Router } from &#x27;@angular/router&#x27;;
+
+
+@Component({
+    selector: &#x27;app-profile-setting&#x27;,
+    templateUrl: &#x27;./profile-setting.component.html&#x27;,
+    styleUrls: [&#x27;./profile-setting.component.css&#x27;]
+  })
+export class ProfileSettingComponent  {
+  // Initialize the userLocation variable
+  
+  teacherID : string &#x3D; &#x27;&#x27;;
+  language:string&#x3D;&#x27;&#x27;;
+  description:string &#x3D; &#x27;&#x27;;  
+  userLocation: string &#x3D; &#x27;&#x27;; 
+  age: number | undefined &#x3D; undefined;
+ 
+  phone:string&#x3D;&#x27;&#x27;;
+  selectedgender:string &#x3D;&quot;&quot;;
+  profileId:string&#x3D;&quot;&quot;;
+  pictur:string&#x3D;&quot;&quot;;
+  
+  descriptionCount: number | null &#x3D; null;
+  isDescriptionLimitReached: boolean &#x3D; false;
+  selectedFile: File | null &#x3D; null;
+  fileBinaryString: string | null &#x3D; null;
+  pass : string &#x3D; &#x27;&#x27;;
+  //yaha par jo parse service lagana he yaha ae ga or authentication b
+  constructor(private service: ParseService, private route: ActivatedRoute , private router: Router) { }
+ 
+  ngOnInit() {
+    this.teacherID &#x3D; this.route.snapshot.paramMap.get(&#x27;id&#x27;) as string;
+    this.pass&#x3D; this.service.user.pass;
+    console.log(this.pass);
+    this.fetchProfileData();
+  }
+
+  onDescriptionInput(value: string) {
+    this.descriptionCount &#x3D; value.length;
+    this.isDescriptionLimitReached &#x3D; this.descriptionCount &gt;&#x3D; 100;
+  }
+
+
+  async fetchProfileData() {
+    try {
+      const result &#x3D; await this.service.getProfileById(this.teacherID);
+      
+      if (result.status &#x3D;&#x3D;&#x3D; 1) {
+
+       console.log(result)
+       this.pictur &#x3D; result.data.pictur;
+       console.log(this.pictur);
+       this.language &#x3D; result.data.language;
+       this.phone &#x3D; result.data.phone;
+       this.description &#x3D; result.data.description;
+       this.userLocation &#x3D; result.data.location;
+       this.age&#x3D; result.data.age;
+       this.selectedgender &#x3D; result.data.gender;
+       this.profileId &#x3D; result.data.objectId;
+       
+      } else {
+     
+      }
+    } catch (error) {
+      console.error(&#x27;Error loading card details&#x27;, error);
+    }
+    }
+
+  getLocation() {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition((position) &#x3D;&gt; {
+        const latitude &#x3D; position.coords.latitude;
+        const longitude &#x3D; position.coords.longitude;
+
+        // Here you can format and store the location as needed
+        this.userLocation &#x3D; &#x60;Latitude: ${latitude}, Longitude: ${longitude}&#x60;;
+      }, (error) &#x3D;&gt; {
+        console.error(&#x27;Error fetching location:&#x27;, error);
+      });
+    } else {
+      console.error(&#x27;Geolocation is not supported by this browser.&#x27;);
+    }
+  }
+
+  
+    
+    
+  
+  async submit_profile( phone : string ,  gender:string , age:number , location:string , language:string , description:string) {
+  
+    const descriptionLength &#x3D; description.length;
+    if (descriptionLength &lt; 100) {
+      alert(&#x27;Description should more than 100 characters.&#x27;);
+      return;
+    }
+
+    // if (age &#x3D;&#x3D;&#x3D; undefined || !Number.isInteger(age) || age &lt; 0 || age &gt; 120) {
+    //   alert(&#x27;Please enter a valid age&#x27;);
+    //   return;
+    // }
+
+    // Assuming phone is a number but checking if it&#x27;s defined and within a plausible range
+    if (phone &#x3D;&#x3D;&#x3D; undefined || phone.toString().length &lt; 7 || phone.toString().length &gt; 15) {
+      alert(&#x27;Please enter a valid phone number.&#x27;);
+      return;
+    }
+
+  
+
+  
+      if (!this.fileBinaryString) {
+        alert(&#x27;No file selected or file processing error.&#x27;);
+        return;
+      }
+    
+
+
+    const result &#x3D; await this.service.update_submit_profile(this.profileId,this.teacherID, phone, gender, age, location,language, description,this.fileBinaryString)
+    if(result.status&#x3D;&#x3D;&#x3D;1)
+    {
+      alert(&#x27;profile edited successfully&#x27;);
+    }
+
+    else{
+      alert(&#x27;error in editing profile&#x27;);
+    }
+    
+  }
+
+
+  async deleteProfile(TeacherId : string) {
+    // Ask the user for confirmation before deleting the account
+    
+    const confirmation &#x3D; confirm(&#x27;Are you sure you want to delete your Profile? This action cannot be undone.&#x27;);
+    if (confirmation) {
+      const result &#x3D; await this.service.deleteProfile(TeacherId);
+      
+    if(result.status&#x3D;&#x3D;&#x3D;1){
+        console.log(&quot;in delete&quot;);
+       
+        
+        alert(&#x27;Profile deleted successfully.&#x27;);
+        this.router.navigate([&#x27;/home-after-login&#x27;]);
+        // Navigate the user away from the current page or refresh the application state as needed
+          
+    } else {
+      // User clicked &#x27;Cancel&#x27;, do not delete the account
+      alert(&#x27;error in Profile deletion&#x27;);
+    }
+  }
+  else{
+   
+    console.log(&quot;Profile deletion cancelled.&quot;);
+  }
+}
+
+  onFileChanged(event: Event) {
+    const input &#x3D; event.target as HTMLInputElement;
+    if (!input.files || input.files.length &#x3D;&#x3D;&#x3D; 0) {
+      this.selectedFile &#x3D; null;
+      this.fileBinaryString &#x3D; null;
+    } else {
+      this.selectedFile &#x3D; input.files[0];
+      const blobUrl &#x3D; URL.createObjectURL(this.selectedFile);
+      this.convertBlobUrlToBase64String(blobUrl)
+        .then(base64String &#x3D;&gt; {
+          this.fileBinaryString &#x3D; base64String; // Store Base64 string
+          console.log(&#x27;Generated Base64 String:&#x27;, this.fileBinaryString.substring(0, 50) + &#x27;...&#x27;);
+        })
+        .catch(error &#x3D;&gt; console.error(&#x27;Error reading file as Base64 string:&#x27;, error));
+    }
+  }
+  
+  // Method to convert Blob URL to Base64 string
+  async convertBlobUrlToBase64String(blobUrl: string): Promise&lt;string&gt; {
+    const response &#x3D; await fetch(blobUrl);
+    const blob &#x3D; await response.blob();
+    return new Promise((resolve, reject) &#x3D;&gt; {
+      const reader &#x3D; new FileReader();
+      reader.onloadend &#x3D; () &#x3D;&gt; {
+        const base64String &#x3D; reader.result; // This is a Base64 string
+        resolve(base64String as string);
+      };
+      reader.onerror &#x3D; reject;
+      reader.readAsDataURL(blob); // Changed to readAsDataURL for Base64
+    });
+  }
+  
+}
+
+
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;section style&#x3D;&quot;background-color: #d3d3d3 mar&quot; &gt;
+    &lt;div class&#x3D;&quot;container my-5 py-5 h-100&quot;&gt;
+        &lt;div class&#x3D;&quot;row d-flex justify-content-center align-items-center h-100&quot;&gt;
+            &lt;div class&#x3D;&quot;col col-xl-6&quot;&gt;
+                &lt;div class&#x3D;&quot;card&quot; style&#x3D;&quot;border-radius: 1rem&quot;&gt;
+                    &lt;div class&#x3D;&quot;row g-0&quot;&gt;
+                        
+                        &lt;div class&#x3D;&quot;col-md-6 col-lg-12  d-flex align-items-center&quot;&gt;
+                            &lt;div class&#x3D;&quot;card-body p-4 p-lg-5 text-black&quot;&gt;
+                                &lt;form&gt;
+                                    &lt;h5 class&#x3D;&quot;fw-normal mb-3 pb-3 fs-1&quot; style&#x3D;&quot;letter-spacing: 1px&quot;&gt;
+                                        Personal Detail
+                                    &lt;/h5&gt;
+                                   
+                                  
+                                      
+                                    &lt;div *ngIf&#x3D;&quot;pictur&quot; class&#x3D;&quot;image-container d-flex justify-content-center&quot;&gt;
+                                        &lt;img [src]&#x3D;&quot;pictur | safeResourceUrl&quot; class&#x3D;&quot;rounded-circle&quot; alt&#x3D;&quot;Profile Image&quot; style&#x3D;&quot;height: 20vh; width: 10vw; border-radius: 1rem;&quot;&gt;
+                                    &lt;/div&gt;
+
+
+
+                                    &lt;br&gt;
+                                    &lt;br&gt;
+
+                                    &lt;div  *ngIf&#x3D;&quot;pass!&#x3D;&#x3D;&#x27;null&#x27;&quot; class&#x3D;&quot;form-outline mb-4&quot;&gt;
+                                        &lt;label class&#x3D;&quot;fw-bold my-1 py-1&quot;&gt;Profile Picture&lt;/label&gt;
+                                        &lt;input type&#x3D;&quot;file&quot; (change)&#x3D;&quot;onFileChanged($event)&quot; class&#x3D;&quot;form-control form-control-lg&quot;&gt;
+                                      &lt;/div&gt;
+                                    
+                                    &lt;div  class&#x3D;&quot;form-outline mb-4&quot;&gt;
+                                        &lt;label class&#x3D;&quot;fw-bold my-1 py-1&quot;&gt;Phone number&lt;/label&gt;
+                                        &lt;input type&#x3D;&quot;text&quot;  class&#x3D;&quot;form-control form-control-lg&quot; [(ngModel)]&#x3D;&quot;phone&quot; placeholder&#x3D;&quot;like 03001234567&quot;  name&#x3D;&quot;phoneNumber&quot; /&gt;
+                                      &lt;/div&gt;
+
+
+                                      &lt;div class&#x3D;&quot;form-group mb-4&quot;&gt;
+                                        &lt;label class&#x3D;&quot;fw-bold my-1 py-1&quot;&gt;Choose gender &lt;/label&gt;
+                                        &lt;br&gt;
+                                      &lt;div class&#x3D;&quot;btn-group&quot; data-toggle&#x3D;&quot;buttons-level&quot;&gt;
+                                        &lt;label class&#x3D;&quot;btn btn-light-orange&quot;&gt;
+                                            &lt;input type&#x3D;&quot;radio&quot; name&#x3D;&quot;gender&quot; [(ngModel)]&#x3D;&quot;selectedgender&quot;  value&#x3D;&quot;male&quot;  &gt; male
+                                        &lt;/label&gt;
+                                         &lt;label class&#x3D;&quot;btn btn-light-orange&quot;&gt;
+                                            &lt;input type&#x3D;&quot;radio&quot; name&#x3D;&quot;gender&quot; [(ngModel)]&#x3D;&quot;selectedgender&quot; value&#x3D;&quot;female&quot;&gt; female
+                                        &lt;/label&gt;
+                                        &lt;label class&#x3D;&quot;btn btn-light-orange&quot;&gt;
+                                            &lt;input type&#x3D;&quot;radio&quot; name&#x3D;&quot;gender&quot; [(ngModel)]&#x3D;&quot;selectedgender&quot; value&#x3D;&quot;non-binary&quot; &gt; non-binary 
+                                          &lt;/label&gt; 
+                                        &lt;/div&gt;   
+                                    &lt;/div&gt;
+
+                                    &lt;div  class&#x3D;&quot;form-outline mb-4&quot;&gt;
+                                        &lt;label class&#x3D;&quot;fw-bold my-1 py-1&quot;&gt;Your age&lt;/label&gt;
+                                        &lt;input type&#x3D;&quot;phonenumber&quot; id&#x3D;&quot;f&quot; class&#x3D;&quot;form-control form-control-lg&quot; [(ngModel)]&#x3D;&quot;age&quot;  name&#x3D;&quot;yourage&quot; /&gt;
+                                      &lt;/div&gt;
+
+                                      &lt;div class&#x3D;&quot;form-outline mb-4&quot;&gt;
+                                        &lt;label class&#x3D;&quot;fw-bold my-1 py-1&quot;&gt;Location&lt;/label&gt;
+                                        &lt;input type&#x3D;&quot;text&quot; id&#x3D;&quot;location&quot; class&#x3D;&quot;form-control form-control-lg&quot;  placeholder&#x3D;&quot;Click to fetch your current location&quot; name&#x3D;&quot;location&quot; (click)&#x3D;&quot;getLocation()&quot; [(ngModel)]&#x3D;&quot;userLocation&quot; &gt;
+                                      &lt;/div&gt;
+                                      
+
+                                    &lt;div  class&#x3D;&quot;form-outline mb-4&quot;&gt;
+                                        &lt;label class&#x3D;&quot;fw-bold my-1 py-1&quot;&gt;Languages spoken&lt;/label&gt;
+                                        &lt;input type&#x3D;&quot;language&quot;  class&#x3D;&quot;form-control form-control-lg&quot; placeholder&#x3D;&quot;urdu,english etc&quot;  name&#x3D;&quot;language&quot;  [(ngModel)]&#x3D;&quot;language&quot; &gt;
+                                      &lt;/div&gt;
+
+                                      &lt;div class&#x3D;&quot;form-outline mb-4&quot;&gt;
+                                        &lt;label  class&#x3D;&quot;fw-bold my-1 py-1&quot;&gt;Your Description (optional)&lt;/label&gt;
+                                        &lt;textarea class&#x3D;&quot;form-control form-control-lg&quot; name&#x3D;&quot;languagesSpoken&quot; placeholder&#x3D;&quot;&quot; rows&#x3D;&quot;4&quot; [(ngModel)]&#x3D;&quot;description&quot;&gt; &lt;/textarea&gt;
+                                      &lt;/div&gt;
+                                      
+                                 
+                                  
+                                    &lt;br&gt;
+                                    &lt;br&gt;
+                          
+                                  
+
+                                    &lt;div class&#x3D;&quot;pt-1 mb-4&quot;&gt;
+                                        &lt;button class&#x3D;&quot;btn btn-dark btn-lg btn-block&quot; 
+                                        (click)&#x3D;&quot;submit_profile( phone ,selectedgender ,age ?? 0 , userLocation ,language  ,description )&quot;&gt;
+                                        
+                                                Edit
+                                        &lt;/button&gt;
+                                         
+                                        &lt;button class&#x3D;&quot;btn btn-dark btn-lg btn-block &quot; 
+                                        (click)&#x3D;&quot;deleteProfile(teacherID)&quot;&gt;
+                                        
+                                                Delete
+                                        &lt;/button&gt;
+
+
+
+                                    &lt;/div&gt;
+                                &lt;/form&gt;
+                            &lt;/div&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/section&gt;</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="styleData">
+                <p class="comment">
+                    <code>./profile-setting.component.css</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">.btn-light-orange {
+    color: #ffffff; /* Text color */
+    background-color: orange; /* Light Orange background color */
+    border-color: orange; /* Border color */
+}
+
+.btn-light-orange.active {
+    background-color: orange; /* Active state background color */
+}</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><section style="background-color: #d3d3d3 mar" >    <div class="container my-5 py-5 h-100">        <div class="row d-flex justify-content-center align-items-center h-100">            <div class="col col-xl-6">                <div class="card" style="border-radius: 1rem">                    <div class="row g-0">                                                <div class="col-md-6 col-lg-12  d-flex align-items-center">                            <div class="card-body p-4 p-lg-5 text-black">                                <form>                                    <h5 class="fw-normal mb-3 pb-3 fs-1" style="letter-spacing: 1px">                                        Personal Detail                                    </h5>                                                                                                                                               <div *ngIf="pictur" class="image-container d-flex justify-content-center">                                        <img [src]="pictur | safeResourceUrl" class="rounded-circle" alt="Profile Image" style="height: 20vh; width: 10vw; border-radius: 1rem;">                                    </div>                                    <br>                                    <br>                                    <div  *ngIf="pass!==\'null\'" class="form-outline mb-4">                                        <label class="fw-bold my-1 py-1">Profile Picture</label>                                        <input type="file" (change)="onFileChanged($event)" class="form-control form-control-lg">                                      </div>                                                                        <div  class="form-outline mb-4">                                        <label class="fw-bold my-1 py-1">Phone number</label>                                        <input type="text"  class="form-control form-control-lg" [(ngModel)]="phone" placeholder="like 03001234567"  name="phoneNumber" />                                      </div>                                      <div class="form-group mb-4">                                        <label class="fw-bold my-1 py-1">Choose gender </label>                                        <br>                                      <div class="btn-group" data-toggle="buttons-level">                                        <label class="btn btn-light-orange">                                            <input type="radio" name="gender" [(ngModel)]="selectedgender"  value="male"  > male                                        </label>                                         <label class="btn btn-light-orange">                                            <input type="radio" name="gender" [(ngModel)]="selectedgender" value="female"> female                                        </label>                                        <label class="btn btn-light-orange">                                            <input type="radio" name="gender" [(ngModel)]="selectedgender" value="non-binary" > non-binary                                           </label>                                         </div>                                       </div>                                    <div  class="form-outline mb-4">                                        <label class="fw-bold my-1 py-1">Your age</label>                                        <input type="phonenumber" id="f" class="form-control form-control-lg" [(ngModel)]="age"  name="yourage" />                                      </div>                                      <div class="form-outline mb-4">                                        <label class="fw-bold my-1 py-1">Location</label>                                        <input type="text" id="location" class="form-control form-control-lg"  placeholder="Click to fetch your current location" name="location" (click)="getLocation()" [(ngModel)]="userLocation" >                                      </div>                                                                          <div  class="form-outline mb-4">                                        <label class="fw-bold my-1 py-1">Languages spoken</label>                                        <input type="language"  class="form-control form-control-lg" placeholder="urdu,english etc"  name="language"  [(ngModel)]="language" >                                      </div>                                      <div class="form-outline mb-4">                                        <label  class="fw-bold my-1 py-1">Your Description (optional)</label>                                        <textarea class="form-control form-control-lg" name="languagesSpoken" placeholder="" rows="4" [(ngModel)]="description"> </textarea>                                      </div>                                                                                                                                             <br>                                    <br>                                                                                                <div class="pt-1 mb-4">                                        <button class="btn btn-dark btn-lg btn-block"                                         (click)="submit_profile( phone ,selectedgender ,age ?? 0 , userLocation ,language  ,description )">                                                                                        Edit                                        </button>                                                                                 <button class="btn btn-dark btn-lg btn-block "                                         (click)="deleteProfile(teacherID)">                                                                                        Delete                                        </button>                                    </div>                                </form>                            </div>                        </div>                    </div>                </div>            </div>        </div>    </div></section></div>'
+    var COMPONENTS = [{'name': 'AboutusComponent', 'selector': 'app-aboutus'},{'name': 'AccountControllComponent', 'selector': 'app-account-controll'},{'name': 'AccountSettingComponent', 'selector': 'app-account-setting'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'ChatPageComponent', 'selector': 'app-chat-page'},{'name': 'ContacusComponent', 'selector': 'app-contacus'},{'name': 'CurrentOrdersComponent', 'selector': 'app-current-orders'},{'name': 'EarningComponent', 'selector': 'app-earning'},{'name': 'FooterComponent', 'selector': 'app-footer'},{'name': 'ForgetPinComponent', 'selector': 'app-forget-pin'},{'name': 'GigInfoUploadComponent', 'selector': 'app-gig-info-upload'},{'name': 'GigManageComponent', 'selector': 'app-gig-manage'},{'name': 'GigPageComponent', 'selector': 'app-gig-page'},{'name': 'GigPricingComponent', 'selector': 'app-gig-pricing'},{'name': 'HeaderBeforeLoginComponent', 'selector': 'app-header-before-login'},{'name': 'HeaderComponent', 'selector': 'app-header'},{'name': 'HistoryordersComponent', 'selector': 'app-historyorders'},{'name': 'HomeAfterLoginComponent', 'selector': 'app-home-after-login'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'MeassageManageComponent', 'selector': 'app-meassage-manage'},{'name': 'MessageTableComponent', 'selector': 'app-message-table'},{'name': 'OkComponent', 'selector': 'app-ok'},{'name': 'OrderComponent', 'selector': 'app-order'},{'name': 'PrefrencesComponent', 'selector': 'app-prefrences'},{'name': 'PrivacypolicyComponent', 'selector': 'app-privacypolicy'},{'name': 'ProfessionDetailsComponent', 'selector': 'app-profession-details'},{'name': 'ProfileComponent', 'selector': 'app-profile'},{'name': 'ProfileSettingComponent', 'selector': 'app-profile-setting'},{'name': 'ProfileTeacherComponent', 'selector': 'app-profile-teacher'},{'name': 'ServicesPageComponent', 'selector': 'app-services-page'},{'name': 'SettingTeacherComponent', 'selector': 'app-setting-teacher'},{'name': 'SigninComponent', 'selector': 'app-signin'},{'name': 'SignupComponent', 'selector': 'app-signup'},{'name': 'UpdateGigComponent', 'selector': 'app-update-gig'},{'name': 'UpdateProffesionComponent', 'selector': 'app-update-proffesion'}];
+    var DIRECTIVES = [{'name': 'ClickOutsideDirective', 'selector': '[clickOutside]'},{'name': 'ClickOutsideDirective', 'selector': '[clickOutside]'}];
+    var ACTUAL_COMPONENT = {'name': 'ProfileSettingComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'ProfileSettingComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ParseService } from '../services/parse.service';
+import { DatePipe } from '@angular/common';
+
 
 @Component({
   selector: 'app-historyorders',
@@ -12,7 +14,7 @@ export class HistoryordersComponent implements OnInit {
   user: any;
   orderId: string = '';
 
-  constructor(private parseService: ParseService) { }
+  constructor(private parseService: ParseService , public datePipe: DatePipe) { }
 
   ngOnInit() {
     this.loadOrders();

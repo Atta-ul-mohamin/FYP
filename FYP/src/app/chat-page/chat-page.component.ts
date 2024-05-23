@@ -14,6 +14,7 @@ export class ChatPageComponent {
   messageText: string = '';
   recieverid_studentId: string = '';
   studentName: string = '';
+  image : string ='';
   senderId_teacher:  string = '';
   conversationId:string = '';
   
@@ -53,9 +54,11 @@ export class ChatPageComponent {
   async getStudentDetails() {
     try {
       console.log(this.recieverid_studentId);
+
       const StudentDetails = await this.parseService.getStudentDataByIds(this.recieverid_studentId);
        
         this.studentName = StudentDetails.data.get("name");
+        this.image = StudentDetails.data.get("image");
         this.senderId_teacher = await this.parseService.user.objectId;
         const conversationResult = await this.getConversationID(this.senderId_teacher, this.recieverid_studentId);
       if(conversationResult){
@@ -78,7 +81,7 @@ export class ChatPageComponent {
   async onSendMessage(text: string ) {
     const senderId_teacher =  await this.parseService.user.objectId/* ID of the sender (teacher) */;
     const receiverId_student = this.recieverid_studentId/* ID of the receiver (student) */;
-    
+    console.log("dwedewdewdewdew");
     try {
       const message = await this.parseService.sendMessage(senderId_teacher, receiverId_student, text);
       
@@ -93,6 +96,7 @@ export class ChatPageComponent {
 
   
   async getConversationID(TeacherID : string ,  StudentID :  string ){
+    console.log(TeacherID , "teacherId", StudentID , "studentId");
     const id_get = await this.parseService.getConversationID(TeacherID, StudentID);
     console.log(id_get);
       return id_get;

@@ -10,12 +10,14 @@
             <table class="table table-bordered table-hover">
               <thead class="table-dark">
                 <tr>
-                  <th colspan="9" class="text-center">History Orders</th>
+                  <th colspan="11" class="text-center">History Orders</th>
                 </tr>
                 <tr class="fw-bold">
                   <th>#</th>
                   <th>orderId</th>
                   <th>Title</th>
+                  <th>Order Placed on</th>
+                  <th>Order Completed on</th>
                   <th>Completion Time</th>
                   <th>Given Time</th>
                   <th>Price</th>
@@ -34,12 +36,15 @@
                   <td>{{ i + 1 }}</td>
                   <td>{{ order.objectId}}</td>
                   <td>{{ order.title }}</td>
+                  <td>{{ datePipe.transform(order.orderDate, 'EEE MMM dd yyyy') }}</td>
+                  <td>{{ datePipe.transform(order.completion, 'EEE MMM dd yyyy') }}</td>
                   <td>{{ order.timeCompletion }}</td>
+
                   <td>{{order.orderDay}} days</td>
                   <td>{{ order.price }}</td>
                   <td class="text-center">{{order.review}}</td>
                   <td class="text-center">{{order.rating}}</td>
-                  <td class="text-center">{{order.completionConfirm}}</td>
+                  <td class="text-center">{{order.completionConfirm}} percent</td>
                 </tr>
               </tbody>
             </table>

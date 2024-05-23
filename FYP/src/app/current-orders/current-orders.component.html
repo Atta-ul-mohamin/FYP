@@ -11,12 +11,13 @@
             <table class="table table-bordered table-hover">
               <thead class="table-dark">
                 <tr>
-                  <th colspan="8" class="text-center">Current Orders</th>
+                  <th colspan="9" class="text-center">Current Orders</th>
                 </tr>
                 <tr class="fw-bold">
                   <th>#</th>
                   <th>orderId</th>
                   <th>Title</th>
+                  <th>Order Placed On</th>
                   <th>Days To Complete</th>
                   <th>Price</th>
                   <th>time Left</th>
@@ -33,11 +34,13 @@
                   <td>{{ i + 1 }}</td>
                   <td>{{ order.objectId}}</td>
                   <td>{{ order.title }}</td>
+                  <td>{{ datePipe.transform(order.created, 'EEE MMM dd yyyy') }}</td>
                   <td>{{ order.orderDay }}</td>
                   <td>{{ order.price }}</td>
                   <td>{{ order.timeLeft }}</td>
                   <td class="text-center"><button class="edit-btn" [routerLink]="['/chat-page', order.studentId.id]">Chat</button></td>
-                  <td class="text-center"><button class="edit-btn"  (click)="onComplete(order.objectId)"> Complete </button></td>
+                  <td class="text-center"> <button class="edit-btn" (click)="onComplete(order.objectId)" [disabled]="order.isExpired">Complete</button></td>
+                  
                 </tr>
               </tbody>
             </table>

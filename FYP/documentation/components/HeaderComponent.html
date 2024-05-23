@@ -1,0 +1,1288 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>fyp documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avaoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+
+               if ($darkModeToggles.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-block d-sm-none">
+            <a href="../" class="navbar-brand">fyp documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  HeaderComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li class="nav-item">
+            <a href="#styleData" class="nav-link"
+                role="tab" id="styleData-tab" data-bs-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/components/header/header.component.ts</code>
+</p>
+
+
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                <code>OnInit</code>
+                <code>OnDestroy</code>
+    </p>
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-header</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./header.component.css</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./header.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#authService" >authService</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#authSubscription" >authSubscription</a>
+                            </li>
+                            <li>
+                                <a href="#categories" >categories</a>
+                            </li>
+                            <li>
+                                <a href="#isMenuOpened" >isMenuOpened</a>
+                            </li>
+                            <li>
+                                <a href="#name" >name</a>
+                            </li>
+                            <li>
+                                <a href="#pictur" >pictur</a>
+                            </li>
+                            <li>
+                                <a href="#teacherId" >teacherId</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#clickedOutside" >clickedOutside</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#fetchProfileData" >fetchProfileData</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#fetchSignupData" >fetchSignupData</a>
+                            </li>
+                            <li>
+                                <a href="#logout" >logout</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnDestroy" >ngOnDestroy</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnInit" >ngOnInit</a>
+                            </li>
+                            <li>
+                                <a href="#toggleMenu" >toggleMenu</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(service: <a href="../injectables/ParseService.html" target="_self">ParseService</a>, authService: <a href="../injectables/AuthService.html" target="_self">AuthService</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/app/components/header/header.component.ts:27</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>service</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/ParseService.html" target="_self" >ParseService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>authService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/AuthService.html" target="_self" >AuthService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+
+
+    <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="clickedOutside"></a>
+                    <span class="name">
+                        <span ><b>clickedOutside</b></span>
+                        <a href="#clickedOutside"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>clickedOutside()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="81"
+                                    class="link-to-prism">src/app/components/header/header.component.ts:81</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="fetchProfileData"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>fetchProfileData</b></span>
+                        <a href="#fetchProfileData"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>fetchProfileData()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="41"
+                                    class="link-to-prism">src/app/components/header/header.component.ts:41</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="fetchSignupData"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>fetchSignupData</b></span>
+                        <a href="#fetchSignupData"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>fetchSignupData()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="56"
+                                    class="link-to-prism">src/app/components/header/header.component.ts:56</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="logout"></a>
+                    <span class="name">
+                        <span ><b>logout</b></span>
+                        <a href="#logout"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>logout()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="85"
+                                    class="link-to-prism">src/app/components/header/header.component.ts:85</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnDestroy"></a>
+                    <span class="name">
+                        <span ><b>ngOnDestroy</b></span>
+                        <a href="#ngOnDestroy"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnDestroy()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="73"
+                                    class="link-to-prism">src/app/components/header/header.component.ts:73</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <span ><b>ngOnInit</b></span>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="31"
+                                    class="link-to-prism">src/app/components/header/header.component.ts:31</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="toggleMenu"></a>
+                    <span class="name">
+                        <span ><b>toggleMenu</b></span>
+                        <a href="#toggleMenu"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>toggleMenu()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="77"
+                                    class="link-to-prism">src/app/components/header/header.component.ts:77</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="authService"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>authService</b></span>
+                        <a href="#authService"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../injectables/AuthService.html" target="_self" >AuthService</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/app/components/header/header.component.ts:29</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="authSubscription"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>authSubscription</b></span>
+                        <a href="#authSubscription"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Subscription</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new Subscription()</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/app/components/header/header.component.ts:27</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="categories"></a>
+                    <span class="name">
+                        <span ><b>categories</b></span>
+                        <a href="#categories"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[
+    { category: &#x27;Business&#x27;, subcategories: [&#x27;Branding Services&#x27;, &#x27;Business Consulting&#x27;, &#x27;Business Plans&#x27;, &#x27;Career Counseling&#x27;, &#x27;Data Entry&#x27;, &#x27;E-Commerce Management&#x27;, &#x27;Financial Consulting&#x27;, &#x27;Flyer Distribution&#x27;, &#x27;HR Consulting&#x27;, &#x27;Lead Generation&#x27;, &#x27;Legal Consulting&#x27;, &#x27;Market Research&#x27;, &#x27;Presentations&#x27;, &#x27;Project Management&#x27;, &#x27;Virtual Assistant&#x27;, &#x27;other&#x27;] },
+    { category: &#x27;Digital Marketing&#x27;, subcategories: [&#x27;Domain Research&#x27;, &#x27;E-Commerce Marketing&#x27;, &#x27;Influencer Marketing&#x27;, &#x27;Local SEO&#x27;, &#x27;Mobile Marketing &amp; Advertising&#x27;, &#x27;Music Promotion&#x27;, &#x27;Web Traffic&#x27;, &#x27;other&#x27;] },
+    { category: &#x27;Lifestyle&#x27;, subcategories: [&#x27;Arts &amp; Crafts&#x27;, &#x27;Astrology &amp; Readings&#x27;, &#x27;Celebrity Impersonators&#x27;, &#x27;Collectibles&#x27;, &#x27;Cooking Lessons&#x27;, &#x27;Craft Lessons&#x27;, &#x27;Family &amp; Genealogy&#x27;, &#x27;Fitness Lessons&#x27;, &#x27;Gaming&#x27;, &#x27;Greeting Cards &amp; Videos&#x27;, &#x27;Health Nutrition &amp; Fitness&#x27;, &#x27;Online Lessons&#x27;, &#x27;Personal Stylists&#x27;, &#x27;Relationship Advice&#x27;, &#x27;Spiritual &amp; Healing&#x27;, &#x27;Traveling&#x27;, &#x27;Viral Videos&#x27;, &#x27;other&#x27;] },
+    { category: &#x27;Music &amp; Audio&#x27;, subcategories: [&#x27;Audio Ads Production&#x27;, &#x27;Audiobook Production&#x27;, &#x27;DJ Drops &amp; Tags&#x27;, &#x27;Dialogue Editing&#x27;, &#x27;Jingles &amp; Intros&#x27;, &#x27;Mixing &amp; Mastering&#x27;, &#x27;Music Transcription&#x27;, &#x27;Online Music Lessons&#x27;, &#x27;Podcast Editing&#x27;, &#x27;Producers &amp; Composers&#x27;, &#x27;Session Musicians&#x27;, &#x27;Singers &amp; Vocalists&#x27;, &#x27;Songwriters&#x27;, &#x27;Sound Design&#x27;, &#x27;Vocal Tuning&#x27;, &#x27;Voice Over&#x27;, &#x27;other&#x27;] },
+    { category: &#x27;Programming &amp; Tech&#x27;, subcategories: [&#x27;Chatbots&#x27;, &#x27;Convert Files&#x27;, &#x27;Cybersecurity &amp; Data Protection&#x27;, &#x27;Data Analysis &amp; Reports&#x27;, &#x27;Databases&#x27;, &#x27;Desktop Applications&#x27;, &#x27;Development for Streamers&#x27;, &#x27;E-Commerce Development&#x27;, &#x27;Game Development&#x27;, &#x27;Mobile Apps&#x27;, &#x27;Online Coding Lessons&#x27;, &#x27;QA&#x27;, &#x27;Support &amp; IT&#x27;, &#x27;User Testing&#x27;, &#x27;Web Programming&#x27;, &#x27;Website Builders &amp; CMS&#x27;, &#x27;WordPress&#x27;, &#x27;C++ Programming&#x27;, &#x27;C# Programming&#x27;, &#x27;Java Programming&#x27;, &#x27;Python Programming&#x27;, &#x27;JavaScript Programming&#x27;, &#x27;PHP Programming&#x27;, &#x27;other&#x27;] },
+    { category: &#x27;Video &amp; Animation&#x27;, subcategories: [&#x27;3D Product Animation&#x27;, &#x27;Animated GIFs&#x27;, &#x27;Animation for Kids&#x27;, &#x27;Animation for Streamers&#x27;, &#x27;App &amp; Website Previews&#x27;, &#x27;Article to Video&#x27;, &#x27;Book Trailers&#x27;, &#x27;Character Animation&#x27;, &#x27;Game Trailers&#x27;, &#x27;Intros &amp; Outros&#x27;, &#x27;Live Action Explainers&#x27;, &#x27;Local Photography&#x27;, &#x27;Logo Animation&#x27;, &#x27;Lyric &amp; Music Videos&#x27;, &#x27;Product Photography&#x27;, &#x27;Real Estate Promos&#x27;, &#x27;Screencasting Videos&#x27;, &#x27;Short Video Ads&#x27;, &#x27;Slideshows Videos&#x27;, &#x27;Spokespersons Videos&#x27;, &#x27;Subtitles &amp; Captions&#x27;, &#x27;Unboxing Videos&#x27;, &#x27;Video Editing&#x27;, &#x27;Visual Effects&#x27;, &#x27;Whiteboard &amp; Animated Explainers&#x27;, &#x27;eLearning Video Production&#x27;, &#x27;other&#x27;] },
+    { category: &#x27;Writing &amp; Translation&#x27;, subcategories: [&#x27;Articles &amp; Blog Posts&#x27;, &#x27;Beta Reading&#x27;, &#x27;Book &amp; eBook Writing&#x27;, &#x27;Book Editing&#x27;, &#x27;Brand Voice &amp; Tone&#x27;, &#x27;Business Names &amp; Slogans&#x27;, &#x27;Case Studies&#x27;, &#x27;Cover Letters&#x27;, &#x27;Creative Writing&#x27;, &#x27;Email Copy&#x27;, &#x27;Grant Writing&#x27;, &#x27;Legal Writing&#x27;, &#x27;LinkedIn Profiles&#x27;, &#x27;Online Language Lessons&#x27;, &#x27;Podcast Writing&#x27;, &#x27;Press Releases&#x27;, &#x27;Product Descriptions&#x27;, &#x27;Proofreading &amp; Editing&#x27;, &#x27;Research &amp; Summaries&#x27;, &#x27;Resume Writing&#x27;, &#x27;Sales Copy&#x27;, &#x27;Scriptwriting&#x27;, &#x27;Social Media Copy&#x27;, &#x27;Speechwriting&#x27;, &#x27;Technical Writing&#x27;, &#x27;Transcripts&#x27;, &#x27;Translation&#x27;, &#x27;UX Writing&#x27;, &#x27;Website Content&#x27;, &#x27;White Papers&#x27;, &#x27;other&#x27;] },
+    { category: &#x27;Education &amp; Learning&#x27;, subcategories: [&#x27;Mathematics&#x27;, &#x27;Physics&#x27;, &#x27;Chemistry&#x27;, &#x27;Biology&#x27;, &#x27;Computer Science&#x27;, &#x27;English Literature&#x27;, &#x27;History&#x27;, &#x27;Geography&#x27;, &#x27;Islamic Studies&#x27;, &#x27;Urdu&#x27;, &#x27;Business Studies&#x27;, &#x27;Accounting&#x27;, &#x27;Economics&#x27;, &#x27;Law&#x27;, &#x27;Psychology&#x27;, &#x27;Sociology&#x27;, &#x27;other&#x27;] }
+  ]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/app/components/header/header.component.ts:12</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isMenuOpened"></a>
+                    <span class="name">
+                        <span ><b>isMenuOpened</b></span>
+                        <a href="#isMenuOpened"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/app/components/header/header.component.ts:22</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="name"></a>
+                    <span class="name">
+                        <span ><b>name</b></span>
+                        <a href="#name"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&quot;&quot;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/app/components/header/header.component.ts:26</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="pictur"></a>
+                    <span class="name">
+                        <span ><b>pictur</b></span>
+                        <a href="#pictur"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&quot;&quot;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/app/components/header/header.component.ts:25</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="teacherId"></a>
+                    <span class="name">
+                        <span ><b>teacherId</b></span>
+                        <a href="#teacherId"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/app/components/header/header.component.ts:24</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit, OnDestroy } from &#x27;@angular/core&#x27;;
+import { Subscription } from &#x27;rxjs&#x27;;
+import { AuthService } from &#x27;src/app/services/auth.service&#x27;; 
+import { ParseService } from &#x27;src/app/services/parse.service&#x27;;// Adjust the import path as necessary
+
+@Component({
+  selector: &#x27;app-header&#x27;,
+  templateUrl: &#x27;./header.component.html&#x27;,
+  styleUrls: [&#x27;./header.component.css&#x27;]
+})
+export class HeaderComponent implements OnInit, OnDestroy {
+  categories &#x3D; [
+    { category: &#x27;Business&#x27;, subcategories: [&#x27;Branding Services&#x27;, &#x27;Business Consulting&#x27;, &#x27;Business Plans&#x27;, &#x27;Career Counseling&#x27;, &#x27;Data Entry&#x27;, &#x27;E-Commerce Management&#x27;, &#x27;Financial Consulting&#x27;, &#x27;Flyer Distribution&#x27;, &#x27;HR Consulting&#x27;, &#x27;Lead Generation&#x27;, &#x27;Legal Consulting&#x27;, &#x27;Market Research&#x27;, &#x27;Presentations&#x27;, &#x27;Project Management&#x27;, &#x27;Virtual Assistant&#x27;, &#x27;other&#x27;] },
+    { category: &#x27;Digital Marketing&#x27;, subcategories: [&#x27;Domain Research&#x27;, &#x27;E-Commerce Marketing&#x27;, &#x27;Influencer Marketing&#x27;, &#x27;Local SEO&#x27;, &#x27;Mobile Marketing &amp; Advertising&#x27;, &#x27;Music Promotion&#x27;, &#x27;Web Traffic&#x27;, &#x27;other&#x27;] },
+    { category: &#x27;Lifestyle&#x27;, subcategories: [&#x27;Arts &amp; Crafts&#x27;, &#x27;Astrology &amp; Readings&#x27;, &#x27;Celebrity Impersonators&#x27;, &#x27;Collectibles&#x27;, &#x27;Cooking Lessons&#x27;, &#x27;Craft Lessons&#x27;, &#x27;Family &amp; Genealogy&#x27;, &#x27;Fitness Lessons&#x27;, &#x27;Gaming&#x27;, &#x27;Greeting Cards &amp; Videos&#x27;, &#x27;Health Nutrition &amp; Fitness&#x27;, &#x27;Online Lessons&#x27;, &#x27;Personal Stylists&#x27;, &#x27;Relationship Advice&#x27;, &#x27;Spiritual &amp; Healing&#x27;, &#x27;Traveling&#x27;, &#x27;Viral Videos&#x27;, &#x27;other&#x27;] },
+    { category: &#x27;Music &amp; Audio&#x27;, subcategories: [&#x27;Audio Ads Production&#x27;, &#x27;Audiobook Production&#x27;, &#x27;DJ Drops &amp; Tags&#x27;, &#x27;Dialogue Editing&#x27;, &#x27;Jingles &amp; Intros&#x27;, &#x27;Mixing &amp; Mastering&#x27;, &#x27;Music Transcription&#x27;, &#x27;Online Music Lessons&#x27;, &#x27;Podcast Editing&#x27;, &#x27;Producers &amp; Composers&#x27;, &#x27;Session Musicians&#x27;, &#x27;Singers &amp; Vocalists&#x27;, &#x27;Songwriters&#x27;, &#x27;Sound Design&#x27;, &#x27;Vocal Tuning&#x27;, &#x27;Voice Over&#x27;, &#x27;other&#x27;] },
+    { category: &#x27;Programming &amp; Tech&#x27;, subcategories: [&#x27;Chatbots&#x27;, &#x27;Convert Files&#x27;, &#x27;Cybersecurity &amp; Data Protection&#x27;, &#x27;Data Analysis &amp; Reports&#x27;, &#x27;Databases&#x27;, &#x27;Desktop Applications&#x27;, &#x27;Development for Streamers&#x27;, &#x27;E-Commerce Development&#x27;, &#x27;Game Development&#x27;, &#x27;Mobile Apps&#x27;, &#x27;Online Coding Lessons&#x27;, &#x27;QA&#x27;, &#x27;Support &amp; IT&#x27;, &#x27;User Testing&#x27;, &#x27;Web Programming&#x27;, &#x27;Website Builders &amp; CMS&#x27;, &#x27;WordPress&#x27;, &#x27;C++ Programming&#x27;, &#x27;C# Programming&#x27;, &#x27;Java Programming&#x27;, &#x27;Python Programming&#x27;, &#x27;JavaScript Programming&#x27;, &#x27;PHP Programming&#x27;, &#x27;other&#x27;] },
+    { category: &#x27;Video &amp; Animation&#x27;, subcategories: [&#x27;3D Product Animation&#x27;, &#x27;Animated GIFs&#x27;, &#x27;Animation for Kids&#x27;, &#x27;Animation for Streamers&#x27;, &#x27;App &amp; Website Previews&#x27;, &#x27;Article to Video&#x27;, &#x27;Book Trailers&#x27;, &#x27;Character Animation&#x27;, &#x27;Game Trailers&#x27;, &#x27;Intros &amp; Outros&#x27;, &#x27;Live Action Explainers&#x27;, &#x27;Local Photography&#x27;, &#x27;Logo Animation&#x27;, &#x27;Lyric &amp; Music Videos&#x27;, &#x27;Product Photography&#x27;, &#x27;Real Estate Promos&#x27;, &#x27;Screencasting Videos&#x27;, &#x27;Short Video Ads&#x27;, &#x27;Slideshows Videos&#x27;, &#x27;Spokespersons Videos&#x27;, &#x27;Subtitles &amp; Captions&#x27;, &#x27;Unboxing Videos&#x27;, &#x27;Video Editing&#x27;, &#x27;Visual Effects&#x27;, &#x27;Whiteboard &amp; Animated Explainers&#x27;, &#x27;eLearning Video Production&#x27;, &#x27;other&#x27;] },
+    { category: &#x27;Writing &amp; Translation&#x27;, subcategories: [&#x27;Articles &amp; Blog Posts&#x27;, &#x27;Beta Reading&#x27;, &#x27;Book &amp; eBook Writing&#x27;, &#x27;Book Editing&#x27;, &#x27;Brand Voice &amp; Tone&#x27;, &#x27;Business Names &amp; Slogans&#x27;, &#x27;Case Studies&#x27;, &#x27;Cover Letters&#x27;, &#x27;Creative Writing&#x27;, &#x27;Email Copy&#x27;, &#x27;Grant Writing&#x27;, &#x27;Legal Writing&#x27;, &#x27;LinkedIn Profiles&#x27;, &#x27;Online Language Lessons&#x27;, &#x27;Podcast Writing&#x27;, &#x27;Press Releases&#x27;, &#x27;Product Descriptions&#x27;, &#x27;Proofreading &amp; Editing&#x27;, &#x27;Research &amp; Summaries&#x27;, &#x27;Resume Writing&#x27;, &#x27;Sales Copy&#x27;, &#x27;Scriptwriting&#x27;, &#x27;Social Media Copy&#x27;, &#x27;Speechwriting&#x27;, &#x27;Technical Writing&#x27;, &#x27;Transcripts&#x27;, &#x27;Translation&#x27;, &#x27;UX Writing&#x27;, &#x27;Website Content&#x27;, &#x27;White Papers&#x27;, &#x27;other&#x27;] },
+    { category: &#x27;Education &amp; Learning&#x27;, subcategories: [&#x27;Mathematics&#x27;, &#x27;Physics&#x27;, &#x27;Chemistry&#x27;, &#x27;Biology&#x27;, &#x27;Computer Science&#x27;, &#x27;English Literature&#x27;, &#x27;History&#x27;, &#x27;Geography&#x27;, &#x27;Islamic Studies&#x27;, &#x27;Urdu&#x27;, &#x27;Business Studies&#x27;, &#x27;Accounting&#x27;, &#x27;Economics&#x27;, &#x27;Law&#x27;, &#x27;Psychology&#x27;, &#x27;Sociology&#x27;, &#x27;other&#x27;] }
+  ];
+  isMenuOpened: boolean &#x3D; false;
+  // isLoggedIn: boolean &#x3D; false;
+  teacherId:any;
+  pictur:string&#x3D;&quot;&quot;;
+  name : string&#x3D;&quot;&quot;;
+  private authSubscription: Subscription &#x3D; new Subscription();
+
+  constructor(private service: ParseService,public authService: AuthService) {}
+
+  ngOnInit(): void {
+    this.teacherId &#x3D; this.service.user.objectId;
+    console.log(this.teacherId);
+    this.fetchProfileData();
+    this.fetchSignupData();
+
+    // this.authSubscription &#x3D; this.authService.isLoggedInStatus.subscribe(status &#x3D;&gt; {
+    //   this.isLoggedIn &#x3D; status;
+    // });
+  }
+  async fetchProfileData() {
+    
+    try {
+      const result &#x3D; await this.service.getProfileById(this.teacherId);
+      if (result.status &#x3D;&#x3D;&#x3D; 1) {
+       console.log(result) 
+       this.pictur &#x3D;  result.data.pictur;
+      } else {
+        // Handle the error case
+      }
+    } catch (error) {
+      console.error(&#x27;Error loading card details&#x27;, error);     
+    }   
+    }
+
+    async fetchSignupData() {
+    
+      try {
+        const result &#x3D; await this.service.getSignupById(this.teacherId);
+        if (result.status &#x3D;&#x3D;&#x3D; 1) {
+            console.log(result)
+            this.name &#x3D; result.data.name;
+            // this.email &#x3D; result.data.email;
+            // const createdParts &#x3D; new Date(result.data.created).toString().split(&#x27; &#x27;).slice(1, 4).join(&#x27; &#x27;);
+            // this.created &#x3D; createdParts;
+        } else {
+            // Handle the error case
+        }
+      } catch (error) {
+        console.error(&#x27;Error loading sign up details&#x27;, error);     
+      } 
+      }
+  ngOnDestroy(): void {
+    this.authSubscription.unsubscribe();
+  }
+
+  toggleMenu(): void {
+    this.isMenuOpened &#x3D; !this.isMenuOpened;
+  }
+
+  clickedOutside(): void {
+    this.isMenuOpened &#x3D; false;
+  }
+
+  logout(): void {
+    this.authService.logout();
+  }
+}</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;html&gt;
+
+&lt;body&gt;
+    &lt;nav class&#x3D;&quot;navbar navbar-expand-lg pt-4 fixed-top&quot; style&#x3D;&quot;background-color: #3A3E4B;&quot;&gt;
+        &lt;div class&#x3D;&quot;container-fluid&quot;&gt;
+            &lt;a class&#x3D;&quot;navbar-brand&quot; href&#x3D;&quot;#&quot;&gt;
+                &lt;img src&#x3D;&quot;assets\images\logo2.svg&quot; alt&#x3D;&quot;Logo&quot; height&#x3D;&quot;50&quot; class&#x3D;&quot;d-inline-block align-top&quot; /&gt;
+            &lt;/a&gt;
+            &lt;button class&#x3D;&quot;navbar-toggler&quot; type&#x3D;&quot;button&quot; data-bs-toggle&#x3D;&quot;collapse&quot;
+                data-bs-target&#x3D;&quot;#navbarSupportedContent&quot; aria-controls&#x3D;&quot;navbarSupportedContent&quot; aria-expanded&#x3D;&quot;false&quot;
+                aria-label&#x3D;&quot;Toggle navigation&quot;&gt;
+                &lt;span class&#x3D;&quot;navbar-toggler-icon&quot;&gt;&lt;/span&gt;
+            &lt;/button&gt;
+            &lt;div class&#x3D;&quot;collapse navbar-collapse justify-content-end&quot; id&#x3D;&quot;navbarSupportedContent&quot;&gt;
+                &lt;ul id&#x3D;&quot;nav-length&quot; class&#x3D;&quot;navbar-nav justify-content-between border-top border-2 text-center&quot;&gt;
+                    &lt;li class&#x3D;&quot;nav-item&quot;&gt;&lt;a class&#x3D;&quot;nav-link border-hover py-3 text-white&quot; aria-current&#x3D;&quot;page&quot; href&#x3D;&quot;#&quot;
+                            [routerLink]&#x3D;&quot;[&#x27;/home&#x27;]&quot;&gt;Home&lt;/a&gt;&lt;/li&gt;
+                    &lt;li class&#x3D;&quot;nav-item&quot;&gt;&lt;a class&#x3D;&quot;nav-link border-hover py-3 text-white&quot; href&#x3D;&quot;#&quot;
+                            [routerLink]&#x3D;&quot;[&#x27;/aboutus&#x27;]&quot;&gt;About&lt;/a&gt;&lt;/li&gt;
+                    &lt;li class&#x3D;&quot;nav-item&quot;&gt;&lt;a class&#x3D;&quot;nav-link border-hover py-3 text-white&quot; href&#x3D;&quot;#&quot;
+                            [routerLink]&#x3D;&quot;[&#x27;/contactus&#x27;]&quot;&gt;Contact&lt;/a&gt;&lt;/li&gt;
+                    &lt;li class&#x3D;&quot;nav-item&quot;&gt;&lt;a class&#x3D;&quot;nav-link border-hover py-3 text-white&quot; href&#x3D;&quot;#&quot; [routerLink]&#x3D;&quot;[&#x27;/services-page&#x27;]&quot;&gt;Services&lt;/a&gt;&lt;/li&gt;
+                    &lt;li class&#x3D;&quot;nav-item&quot;  &gt;&lt;a class&#x3D;&quot;nav-link border-hover py-3 text-white&quot; href&#x3D;&quot;#&quot;
+                            [routerLink]&#x3D;&quot;[&#x27;/signup&#x27;]&quot;&gt;Signup&lt;/a&gt;&lt;/li&gt;
+                    &lt;li class&#x3D;&quot;nav-item&quot;&gt;
+                        &lt;a class&#x3D;&quot;nav-link border-hover py-3 text-white&quot; href&#x3D;&quot;#&quot; [routerLink]&#x3D;&quot;[&#x27;/gig-page&#x27;]&quot;&gt;Offer
+                            Skill&lt;/a&gt;
+                    &lt;/li&gt;
+                    &lt;li class&#x3D;&quot;nav-item&quot;   &gt;
+                        &lt;a href&#x3D;&quot;#&quot; [routerLink]&#x3D;&quot;[&#x27;/signin&#x27;]&quot; id&#x3D;&quot;sign-in&quot; class&#x3D;&quot;nav-link my-2 px-4 text-white&quot;&gt;
+                            Sign In
+                        &lt;/a&gt;
+                    &lt;/li&gt;
+
+
+                &lt;/ul&gt;
+                &lt;!-- //ng if logedin --&gt;
+                &lt;!-- &lt;img src&#x3D;&quot;assets\images\profile_dropdown_logo\user.png&quot; *ngIf&#x3D;&quot;isLoggedIn&quot; clickOutside
+                    (clickOutside)&#x3D;&quot;clickedOutside()&quot; class&#x3D;&quot;user_pic&quot; (click)&#x3D;&quot;toggleMenu()&quot; /&gt; --&gt;
+
+                    &lt;div  class&#x3D;&quot;image-container d-flex justify-content-center&quot;&gt;
+                        &lt;img [src]&#x3D;&quot;pictur | safeResourceUrl&quot; class&#x3D;&quot;rounded-circle&quot; alt&#x3D;&quot;Profile Image&quot; style&#x3D;&quot;height: 7vh; width: 5vw; border-radius: 1rem;&quot;  clickOutside
+                        (clickOutside)&#x3D;&quot;clickedOutside()&quot;  (click)&#x3D;&quot;toggleMenu()&quot;&gt;
+                    &lt;/div&gt;
+
+                &lt;div class&#x3D;&quot;sub-menu-wrap&quot; *ngIf&#x3D;&quot;isMenuOpened&quot; id&#x3D;&quot;subMenu&quot;&gt;
+                    &lt;div class&#x3D;&quot;sub-menu&quot;&gt;
+                        &lt;div class&#x3D;&quot;user-inform&quot;&gt;
+                            &lt;div *ngIf&#x3D;&quot;pictur&quot; class&#x3D;&quot;image-container d-flex justify-content-center&quot;&gt;
+                                &lt;img [src]&#x3D;&quot;pictur | safeResourceUrl&quot; class&#x3D;&quot;rounded-circle&quot; alt&#x3D;&quot;Profile Image&quot; style&#x3D;&quot;height: 15vh; width: 8vw; border-radius: 1rem;&quot;&gt;
+                            &lt;/div&gt;
+                            &lt;h3&gt;{{name}}&lt;/h3&gt;
+                        &lt;/div&gt;
+
+
+                        &lt;hr /&gt;
+
+
+                        &lt;a href&#x3D;&quot;#&quot; [routerLink]&#x3D;&quot;[&#x27;/profile-teacher&#x27;]&quot; class&#x3D;&quot;sub-menu-linking&quot;&gt;
+                            &lt;img src&#x3D;&quot;assets\images\profile_dropdown_logo\profile.png&quot; /&gt;
+                            &lt;p&gt;MY Profile&lt;/p&gt;
+                            &lt;span&gt;&gt;&lt;/span&gt;
+                        &lt;/a&gt;
+                        &lt;a href&#x3D;&quot;#&quot; [routerLink]&#x3D;&quot;[&#x27;/earning&#x27;]&quot; class&#x3D;&quot;sub-menu-linking&quot;&gt;
+                            &lt;i class&#x3D;&quot;bi bi-cash&quot;&gt;&lt;/i&gt;
+                            &lt;p&gt;Earnings&lt;/p&gt;
+                            &lt;span&gt;&gt;&lt;/span&gt;
+                        &lt;/a&gt;
+                        &lt;a href&#x3D;&quot;#&quot; [routerLink]&#x3D;&quot;[&#x27;/gigmanage&#x27;]&quot; class&#x3D;&quot;sub-menu-linking&quot;&gt;
+                            &lt;i class&#x3D;&quot;bi bi-file-ruled&quot;&gt;&lt;/i&gt;
+                            &lt;p&gt;Manage Gigs&lt;/p&gt;
+                            &lt;span&gt;&gt;&lt;/span&gt;
+                        &lt;/a&gt;
+
+
+                        &lt;a href&#x3D;&quot;#&quot; [routerLink]&#x3D;&quot;[&#x27;/setting-teacher&#x27;]&quot; class&#x3D;&quot;sub-menu-linking&quot;&gt;
+                            &lt;i class&#x3D;&quot;bi bi-gear&quot;&gt;&lt;/i&gt;
+                            &lt;p&gt;Settings&lt;/p&gt;
+                            &lt;span&gt;&gt;&lt;/span&gt;
+                        &lt;/a&gt;
+
+                        &lt;a href&#x3D;&quot;#&quot; [routerLink]&#x3D;&quot;[&#x27;/home&#x27;]&quot; class&#x3D;&quot;sub-menu-linking&quot;&gt;
+                            &lt;img src&#x3D;&quot;assets\images\profile_dropdown_logo\logout.png&quot; /&gt;
+                            &lt;p&gt;Logout&lt;/p&gt;
+                            &lt;span&gt;&gt;&lt;/span&gt;
+                        &lt;/a&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/nav&gt;
+
+&lt;/body&gt;
+
+&lt;/html&gt;</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="styleData">
+                <p class="comment">
+                    <code>./header.component.css</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">.user_pic{
+    width: 35px;
+    border-radius: 50%;
+    cursor: pointer;
+    margin-left: 10px;
+}
+.sub-menu-wrap{
+    position: absolute;
+    top: 100%;
+    right: 10%;
+    width: 320px;
+    max-height: 800px; 
+    overflow: hidden;
+    transition: max-height 0.5s;
+}
+.sub-menu-wrap.open-menu{
+    max-height: 400px;
+} 
+
+
+
+.sub-menu{
+    background: #fff;
+    padding: 20px;
+    margin: 10px;
+}
+.user-inform{
+    display: flex;
+    align-items: center;
+}
+.user-inform h3{
+    font-weight: 500;
+}
+.user-inform img{
+    width: 60px;
+    border-radius: 50%;
+    margin-right: 15px;
+}
+.sub-menu hr{
+    border: 1;
+    height: 1px;
+    width: 100%;
+    background: #ccc;
+    margin: 15px 0 10 px;
+
+}
+.sub-menu-linking{
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #525252;
+    margin: 12px 0;     /* margin from top and bottom is 12 px */
+
+}
+
+/* submenu linking */
+
+.sub-menu-linking p{
+    width: 100%;
+}
+.sub-menu-linking img{
+    width: 40px;
+    background: #e5e5e5;
+    border-radius: 50%;
+    padding: 8px;
+    margin-right: 15px;
+}
+.sub-menu-linking i{
+    width: 40px;
+    background: #e5e5e5;
+    border-radius: 50%;
+    padding: 8px;
+    margin-right: 15px;
+}
+.sub-menu-linking span{
+    font-size: 22px;
+     transition: transform 0.5s; /* waha transition ho gi jab ham profile submenu pe hover le jae ge tu waha 0.5s slow ho ga or pyara lage ga */
+
+   
+}
+.sub-menu-linking:hover span{
+    transform: translateX(5px);
+    
+}
+.sub-menu-linking:hover p{ /* font weight mota ho ga */
+
+    font-weight: 600;
+}
+
+
+
+
+/* Navbar code fro here css --------------------------------------------------------------------------------------------------*/
+
+
+.brand {
+    color: #FF9138;
+}
+
+.border-hover {
+    border-top: 5px solid transparent;
+    transform: translateY(-4px);
+}
+
+.border-hover:hover {
+    border-top: 5px solid #ff9138;
+    transform: translateY(-4px);
+}
+
+#sign-in {
+    background: #FF9138;
+    border-top-left-radius: 50px;
+    border-bottom-left-radius: 50px;
+}
+
+.navbar-toggler {
+    border: 3px solid #FF9138;
+}
+
+
+
+.navbar-toggler:focus {
+    box-shadow: none;
+}
+
+#nav-length {
+    width: 90%;
+}
+
+@media screen and (max-width : 992px) {
+    #nav-length {
+        width: 100%;
+    }
+
+    .border-hover {
+        border-top: 0;
+    }
+
+    .border-hover:hover {
+        border-top: 0;
+    }
+
+    #sign-in {
+        border-radius: 50px;
+    }
+}
+
+
+
+
+
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><html><body>    <nav class="navbar navbar-expand-lg pt-4 fixed-top" style="background-color: #3A3E4B;">        <div class="container-fluid">            <a class="navbar-brand" href="#">                <img src="assets\images\logo2.svg" alt="Logo" height="50" class="d-inline-block align-top" />            </a>            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"                aria-label="Toggle navigation">                <span class="navbar-toggler-icon"></span>            </button>            <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">                <ul id="nav-length" class="navbar-nav justify-content-between border-top border-2 text-center">                    <li class="nav-item"><a class="nav-link border-hover py-3 text-white" aria-current="page" href="#"                            [routerLink]="[\'/home\']">Home</a></li>                    <li class="nav-item"><a class="nav-link border-hover py-3 text-white" href="#"                            [routerLink]="[\'/aboutus\']">About</a></li>                    <li class="nav-item"><a class="nav-link border-hover py-3 text-white" href="#"                            [routerLink]="[\'/contactus\']">Contact</a></li>                    <li class="nav-item"><a class="nav-link border-hover py-3 text-white" href="#" [routerLink]="[\'/services-page\']">Services</a></li>                    <li class="nav-item"  ><a class="nav-link border-hover py-3 text-white" href="#"                            [routerLink]="[\'/signup\']">Signup</a></li>                    <li class="nav-item">                        <a class="nav-link border-hover py-3 text-white" href="#" [routerLink]="[\'/gig-page\']">Offer                            Skill</a>                    </li>                    <li class="nav-item"   >                        <a href="#" [routerLink]="[\'/signin\']" id="sign-in" class="nav-link my-2 px-4 text-white">                            Sign In                        </a>                    </li>                </ul>                <!-- //ng if logedin -->                <!-- <img src="assets\images\profile_dropdown_logo\user.png" *ngIf="isLoggedIn" clickOutside                    (clickOutside)="clickedOutside()" class="user_pic" (click)="toggleMenu()" /> -->                    <div  class="image-container d-flex justify-content-center">                        <img [src]="pictur | safeResourceUrl" class="rounded-circle" alt="Profile Image" style="height: 7vh; width: 5vw; border-radius: 1rem;"  clickOutside                        (clickOutside)="clickedOutside()"  (click)="toggleMenu()">                    </div>                <div class="sub-menu-wrap" *ngIf="isMenuOpened" id="subMenu">                    <div class="sub-menu">                        <div class="user-inform">                            <div *ngIf="pictur" class="image-container d-flex justify-content-center">                                <img [src]="pictur | safeResourceUrl" class="rounded-circle" alt="Profile Image" style="height: 15vh; width: 8vw; border-radius: 1rem;">                            </div>                            <h3>{{name}}</h3>                        </div>                        <hr />                        <a href="#" [routerLink]="[\'/profile-teacher\']" class="sub-menu-linking">                            <img src="assets\images\profile_dropdown_logo\profile.png" />                            <p>MY Profile</p>                            <span>></span>                        </a>                        <a href="#" [routerLink]="[\'/earning\']" class="sub-menu-linking">                            <i class="bi bi-cash"></i>                            <p>Earnings</p>                            <span>></span>                        </a>                        <a href="#" [routerLink]="[\'/gigmanage\']" class="sub-menu-linking">                            <i class="bi bi-file-ruled"></i>                            <p>Manage Gigs</p>                            <span>></span>                        </a>                        <a href="#" [routerLink]="[\'/setting-teacher\']" class="sub-menu-linking">                            <i class="bi bi-gear"></i>                            <p>Settings</p>                            <span>></span>                        </a>                        <a href="#" [routerLink]="[\'/home\']" class="sub-menu-linking">                            <img src="assets\images\profile_dropdown_logo\logout.png" />                            <p>Logout</p>                            <span>></span>                        </a>                    </div>                </div>            </div>        </div>    </nav></body></html></div>'
+    var COMPONENTS = [{'name': 'AboutusComponent', 'selector': 'app-aboutus'},{'name': 'AccountControllComponent', 'selector': 'app-account-controll'},{'name': 'AccountSettingComponent', 'selector': 'app-account-setting'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'ChatPageComponent', 'selector': 'app-chat-page'},{'name': 'ContacusComponent', 'selector': 'app-contacus'},{'name': 'CurrentOrdersComponent', 'selector': 'app-current-orders'},{'name': 'EarningComponent', 'selector': 'app-earning'},{'name': 'FooterComponent', 'selector': 'app-footer'},{'name': 'ForgetPinComponent', 'selector': 'app-forget-pin'},{'name': 'GigInfoUploadComponent', 'selector': 'app-gig-info-upload'},{'name': 'GigManageComponent', 'selector': 'app-gig-manage'},{'name': 'GigPageComponent', 'selector': 'app-gig-page'},{'name': 'GigPricingComponent', 'selector': 'app-gig-pricing'},{'name': 'HeaderBeforeLoginComponent', 'selector': 'app-header-before-login'},{'name': 'HeaderComponent', 'selector': 'app-header'},{'name': 'HistoryordersComponent', 'selector': 'app-historyorders'},{'name': 'HomeAfterLoginComponent', 'selector': 'app-home-after-login'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'MeassageManageComponent', 'selector': 'app-meassage-manage'},{'name': 'MessageTableComponent', 'selector': 'app-message-table'},{'name': 'OkComponent', 'selector': 'app-ok'},{'name': 'OrderComponent', 'selector': 'app-order'},{'name': 'PrefrencesComponent', 'selector': 'app-prefrences'},{'name': 'PrivacypolicyComponent', 'selector': 'app-privacypolicy'},{'name': 'ProfessionDetailsComponent', 'selector': 'app-profession-details'},{'name': 'ProfileComponent', 'selector': 'app-profile'},{'name': 'ProfileSettingComponent', 'selector': 'app-profile-setting'},{'name': 'ProfileTeacherComponent', 'selector': 'app-profile-teacher'},{'name': 'ServicesPageComponent', 'selector': 'app-services-page'},{'name': 'SettingTeacherComponent', 'selector': 'app-setting-teacher'},{'name': 'SigninComponent', 'selector': 'app-signin'},{'name': 'SignupComponent', 'selector': 'app-signup'},{'name': 'UpdateGigComponent', 'selector': 'app-update-gig'},{'name': 'UpdateProffesionComponent', 'selector': 'app-update-proffesion'}];
+    var DIRECTIVES = [{'name': 'ClickOutsideDirective', 'selector': '[clickOutside]'},{'name': 'ClickOutsideDirective', 'selector': '[clickOutside]'}];
+    var ACTUAL_COMPONENT = {'name': 'HeaderComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'HeaderComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

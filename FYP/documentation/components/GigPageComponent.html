@@ -1,0 +1,3047 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>fyp documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avaoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+
+               if ($darkModeToggles.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-block d-sm-none">
+            <a href="../" class="navbar-brand">fyp documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  GigPageComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li class="nav-item">
+            <a href="#styleData" class="nav-link"
+                role="tab" id="styleData-tab" data-bs-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/components/gig-page/gig-page.component.ts</code>
+</p>
+
+
+
+
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-gig-page</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./gig-page.component.css</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./gig-page.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#categoriesWithSub" >categoriesWithSub</a>
+                            </li>
+                            <li>
+                                <a href="#fileBinaryString1" >fileBinaryString1</a>
+                            </li>
+                            <li>
+                                <a href="#fileBinaryString2" >fileBinaryString2</a>
+                            </li>
+                            <li>
+                                <a href="#fileBinaryString3" >fileBinaryString3</a>
+                            </li>
+                            <li>
+                                <a href="#filteredSubcategories" >filteredSubcategories</a>
+                            </li>
+                            <li>
+                                <a href="#fullTitle" >fullTitle</a>
+                            </li>
+                            <li>
+                                <a href="#homePrice" >homePrice</a>
+                            </li>
+                            <li>
+                                <a href="#orderDay1" >orderDay1</a>
+                            </li>
+                            <li>
+                                <a href="#orderDay2" >orderDay2</a>
+                            </li>
+                            <li>
+                                <a href="#orderDay3" >orderDay3</a>
+                            </li>
+                            <li>
+                                <a href="#photos" >photos</a>
+                            </li>
+                            <li>
+                                <a href="#Price1" >Price1</a>
+                            </li>
+                            <li>
+                                <a href="#Price2" >Price2</a>
+                            </li>
+                            <li>
+                                <a href="#Price3" >Price3</a>
+                            </li>
+                            <li>
+                                <a href="#profileId" >profileId</a>
+                            </li>
+                            <li>
+                                <a href="#selectedCategory" >selectedCategory</a>
+                            </li>
+                            <li>
+                                <a href="#selectedCategory1" >selectedCategory1</a>
+                            </li>
+                            <li>
+                                <a href="#selectedFile1" >selectedFile1</a>
+                            </li>
+                            <li>
+                                <a href="#selectedFile2" >selectedFile2</a>
+                            </li>
+                            <li>
+                                <a href="#selectedFile3" >selectedFile3</a>
+                            </li>
+                            <li>
+                                <a href="#selectedLevel" >selectedLevel</a>
+                            </li>
+                            <li>
+                                <a href="#selectedPrice1" >selectedPrice1</a>
+                            </li>
+                            <li>
+                                <a href="#selectedPrice2" >selectedPrice2</a>
+                            </li>
+                            <li>
+                                <a href="#selectedPrice3" >selectedPrice3</a>
+                            </li>
+                            <li>
+                                <a href="#selectedSubcategory" >selectedSubcategory</a>
+                            </li>
+                            <li>
+                                <a href="#selectedType" >selectedType</a>
+                            </li>
+                            <li>
+                                <a href="#skillLevel" >skillLevel</a>
+                            </li>
+                            <li>
+                                <a href="#teacherId" >teacherId</a>
+                            </li>
+                            <li>
+                                <a href="#title" >title</a>
+                            </li>
+                            <li>
+                                <a href="#year_Of_Experience" >year_Of_Experience</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#convertBlobUrlToBase64String1" >convertBlobUrlToBase64String1</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#convertBlobUrlToBase64String2" >convertBlobUrlToBase64String2</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#convertBlobUrlToBase64String3" >convertBlobUrlToBase64String3</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#fetchProfileData" >fetchProfileData</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#gigInfoAdd" >gigInfoAdd</a>
+                            </li>
+                            <li>
+                                <a href="#handleFileInput" >handleFileInput</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnInit" >ngOnInit</a>
+                            </li>
+                            <li>
+                                <a href="#onCategoryChange" >onCategoryChange</a>
+                            </li>
+                            <li>
+                                <a href="#onFileChanged1" >onFileChanged1</a>
+                            </li>
+                            <li>
+                                <a href="#onFileChanged2" >onFileChanged2</a>
+                            </li>
+                            <li>
+                                <a href="#onFileChanged3" >onFileChanged3</a>
+                            </li>
+                            <li>
+                                <a href="#submitForm" >submitForm</a>
+                            </li>
+                            <li>
+                                <a href="#updateSelectedPrice" >updateSelectedPrice</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(service: <a href="../injectables/ParseService.html" target="_self">ParseService</a>, authService: <a href="../injectables/AuthService.html" target="_self">AuthService</a>, router: Router)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="74" class="link-to-prism">src/app/components/gig-page/gig-page.component.ts:74</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>service</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/ParseService.html" target="_self" >ParseService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>authService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/AuthService.html" target="_self" >AuthService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>router</td>
+                                                  
+                                                        <td>
+                                                                    <code>Router</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+
+
+    <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="convertBlobUrlToBase64String1"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>convertBlobUrlToBase64String1</b></span>
+                        <a href="#convertBlobUrlToBase64String1"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>convertBlobUrlToBase64String1(blobUrl: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="172"
+                                    class="link-to-prism">src/app/components/gig-page/gig-page.component.ts:172</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>blobUrl</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Promise&lt;string&gt;</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="convertBlobUrlToBase64String2"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>convertBlobUrlToBase64String2</b></span>
+                        <a href="#convertBlobUrlToBase64String2"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>convertBlobUrlToBase64String2(blobUrl: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="204"
+                                    class="link-to-prism">src/app/components/gig-page/gig-page.component.ts:204</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>blobUrl</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Promise&lt;string&gt;</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="convertBlobUrlToBase64String3"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>convertBlobUrlToBase64String3</b></span>
+                        <a href="#convertBlobUrlToBase64String3"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>convertBlobUrlToBase64String3(blobUrl: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="236"
+                                    class="link-to-prism">src/app/components/gig-page/gig-page.component.ts:236</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>blobUrl</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Promise&lt;string&gt;</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="fetchProfileData"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>fetchProfileData</b></span>
+                        <a href="#fetchProfileData"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>fetchProfileData()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="87"
+                                    class="link-to-prism">src/app/components/gig-page/gig-page.component.ts:87</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="gigInfoAdd"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>gigInfoAdd</b></span>
+                        <a href="#gigInfoAdd"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>gigInfoAdd(title: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, year_Of_Experience: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, type: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, skill: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, level: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, level_1_Description: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, level_1_Price: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, level_2_Description: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, level_2_Price: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, level_3_Description: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, level_3_Price: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, selectedCategory1: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, selectedSubcategory: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, orderDay1: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, orderDay2: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, orderDay3: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="135"
+                                    class="link-to-prism">src/app/components/gig-page/gig-page.component.ts:135</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>title</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>year_Of_Experience</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>type</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>skill</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>level</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>level_1_Description</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>level_1_Price</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>level_2_Description</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>level_2_Price</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>level_3_Description</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>level_3_Price</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>selectedCategory1</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>selectedSubcategory</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>orderDay1</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>orderDay2</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>orderDay3</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="handleFileInput"></a>
+                    <span class="name">
+                        <span ><b>handleFileInput</b></span>
+                        <a href="#handleFileInput"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>handleFileInput(event: Event, photoId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="44"
+                                    class="link-to-prism">src/app/components/gig-page/gig-page.component.ts:44</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>event</td>
+                                            <td>
+                                                        <code>Event</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>photoId</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <span ><b>ngOnInit</b></span>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="79"
+                                    class="link-to-prism">src/app/components/gig-page/gig-page.component.ts:79</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onCategoryChange"></a>
+                    <span class="name">
+                        <span ><b>onCategoryChange</b></span>
+                        <a href="#onCategoryChange"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onCategoryChange()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="104"
+                                    class="link-to-prism">src/app/components/gig-page/gig-page.component.ts:104</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onFileChanged1"></a>
+                    <span class="name">
+                        <span ><b>onFileChanged1</b></span>
+                        <a href="#onFileChanged1"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onFileChanged1(event: Event)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="154"
+                                    class="link-to-prism">src/app/components/gig-page/gig-page.component.ts:154</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>event</td>
+                                            <td>
+                                                        <code>Event</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onFileChanged2"></a>
+                    <span class="name">
+                        <span ><b>onFileChanged2</b></span>
+                        <a href="#onFileChanged2"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onFileChanged2(event: Event)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="186"
+                                    class="link-to-prism">src/app/components/gig-page/gig-page.component.ts:186</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>event</td>
+                                            <td>
+                                                        <code>Event</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onFileChanged3"></a>
+                    <span class="name">
+                        <span ><b>onFileChanged3</b></span>
+                        <a href="#onFileChanged3"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onFileChanged3(event: Event)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="218"
+                                    class="link-to-prism">src/app/components/gig-page/gig-page.component.ts:218</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>event</td>
+                                            <td>
+                                                        <code>Event</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="submitForm"></a>
+                    <span class="name">
+                        <span ><b>submitForm</b></span>
+                        <a href="#submitForm"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>submitForm()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="148"
+                                    class="link-to-prism">src/app/components/gig-page/gig-page.component.ts:148</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="updateSelectedPrice"></a>
+                    <span class="name">
+                        <span ><b>updateSelectedPrice</b></span>
+                        <a href="#updateSelectedPrice"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>updateSelectedPrice(priceLevel: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, event: Event)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="111"
+                                    class="link-to-prism">src/app/components/gig-page/gig-page.component.ts:111</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>priceLevel</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>event</td>
+                                            <td>
+                                                        <code>Event</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="categoriesWithSub"></a>
+                    <span class="name">
+                        <span ><b>categoriesWithSub</b></span>
+                        <a href="#categoriesWithSub"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>any[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[
+  { category: &#x27;Business&#x27;, subcategories: [&#x27;Branding Services&#x27;, &#x27;Business Consulting&#x27;, &#x27;Business Plans&#x27;, &#x27;Career Counseling&#x27;, &#x27;Data Entry&#x27;, &#x27;E-Commerce Management&#x27;, &#x27;Financial Consulting&#x27;, &#x27;Flyer Distribution&#x27;, &#x27;HR Consulting&#x27;, &#x27;Lead Generation&#x27;, &#x27;Legal Consulting&#x27;, &#x27;Market Research&#x27;, &#x27;Presentations&#x27;, &#x27;Project Management&#x27;, &#x27;Virtual Assistant&#x27;, &#x27;other&#x27;] },
+  { category: &#x27;Digital Marketing&#x27;, subcategories: [&#x27;Domain Research&#x27;, &#x27;E-Commerce Marketing&#x27;, &#x27;Influencer Marketing&#x27;, &#x27;Local SEO&#x27;, &#x27;Mobile Marketing &amp; Advertising&#x27;, &#x27;Music Promotion&#x27;, &#x27;Web Traffic&#x27;, &#x27;other&#x27;] },
+  { category: &#x27;Lifestyle&#x27;, subcategories: [&#x27;Arts &amp; Crafts&#x27;, &#x27;Astrology &amp; Readings&#x27;, &#x27;Celebrity Impersonators&#x27;, &#x27;Collectibles&#x27;, &#x27;Cooking Lessons&#x27;, &#x27;Craft Lessons&#x27;, &#x27;Family &amp; Genealogy&#x27;, &#x27;Fitness Lessons&#x27;, &#x27;Gaming&#x27;, &#x27;Greeting Cards &amp; Videos&#x27;, &#x27;Health Nutrition &amp; Fitness&#x27;, &#x27;Online Lessons&#x27;, &#x27;Personal Stylists&#x27;, &#x27;Relationship Advice&#x27;, &#x27;Spiritual &amp; Healing&#x27;, &#x27;Traveling&#x27;, &#x27;Viral Videos&#x27;, &#x27;other&#x27;] },
+  { category: &#x27;Music &amp; Audio&#x27;, subcategories: [&#x27;Audio Ads Production&#x27;, &#x27;Audiobook Production&#x27;, &#x27;DJ Drops &amp; Tags&#x27;, &#x27;Dialogue Editing&#x27;, &#x27;Jingles &amp; Intros&#x27;, &#x27;Mixing &amp; Mastering&#x27;, &#x27;Music Transcription&#x27;, &#x27;Online Music Lessons&#x27;, &#x27;Podcast Editing&#x27;, &#x27;Producers &amp; Composers&#x27;, &#x27;Session Musicians&#x27;, &#x27;Singers &amp; Vocalists&#x27;, &#x27;Songwriters&#x27;, &#x27;Sound Design&#x27;, &#x27;Vocal Tuning&#x27;, &#x27;Voice Over&#x27;, &#x27;other&#x27;] },
+  { category: &#x27;Programming &amp; Tech&#x27;, subcategories: [&#x27;Chatbots&#x27;, &#x27;Convert Files&#x27;, &#x27;Cybersecurity &amp; Data Protection&#x27;, &#x27;Data Analysis &amp; Reports&#x27;, &#x27;Databases&#x27;, &#x27;Desktop Applications&#x27;, &#x27;Development for Streamers&#x27;, &#x27;E-Commerce Development&#x27;, &#x27;Game Development&#x27;, &#x27;Mobile Apps&#x27;, &#x27;Online Coding Lessons&#x27;, &#x27;QA&#x27;, &#x27;Support &amp; IT&#x27;, &#x27;User Testing&#x27;, &#x27;Web Programming&#x27;, &#x27;Website Builders &amp; CMS&#x27;, &#x27;WordPress&#x27;, &#x27;C++ Programming&#x27;, &#x27;C# Programming&#x27;, &#x27;Java Programming&#x27;, &#x27;Python Programming&#x27;, &#x27;JavaScript Programming&#x27;, &#x27;PHP Programming&#x27;, &#x27;other&#x27;] },
+  { category: &#x27;Video &amp; Animation&#x27;, subcategories: [&#x27;3D Product Animation&#x27;, &#x27;Animated GIFs&#x27;, &#x27;Animation for Kids&#x27;, &#x27;Animation for Streamers&#x27;, &#x27;App &amp; Website Previews&#x27;, &#x27;Article to Video&#x27;, &#x27;Book Trailers&#x27;, &#x27;Character Animation&#x27;, &#x27;Game Trailers&#x27;, &#x27;Intros &amp; Outros&#x27;, &#x27;Live Action Explainers&#x27;, &#x27;Local Photography&#x27;, &#x27;Logo Animation&#x27;, &#x27;Lyric &amp; Music Videos&#x27;, &#x27;Product Photography&#x27;, &#x27;Real Estate Promos&#x27;, &#x27;Screencasting Videos&#x27;, &#x27;Short Video Ads&#x27;, &#x27;Slideshows Videos&#x27;, &#x27;Spokespersons Videos&#x27;, &#x27;Subtitles &amp; Captions&#x27;, &#x27;Unboxing Videos&#x27;, &#x27;Video Editing&#x27;, &#x27;Visual Effects&#x27;, &#x27;Whiteboard &amp; Animated Explainers&#x27;, &#x27;eLearning Video Production&#x27;, &#x27;other&#x27;] },
+  { category: &#x27;Writing &amp; Translation&#x27;, subcategories: [&#x27;Articles &amp; Blog Posts&#x27;, &#x27;Beta Reading&#x27;, &#x27;Book &amp; eBook Writing&#x27;, &#x27;Book Editing&#x27;, &#x27;Brand Voice &amp; Tone&#x27;, &#x27;Business Names &amp; Slogans&#x27;, &#x27;Case Studies&#x27;, &#x27;Cover Letters&#x27;, &#x27;Creative Writing&#x27;, &#x27;Email Copy&#x27;, &#x27;Grant Writing&#x27;, &#x27;Legal Writing&#x27;, &#x27;LinkedIn Profiles&#x27;, &#x27;Online Language Lessons&#x27;, &#x27;Podcast Writing&#x27;, &#x27;Press Releases&#x27;, &#x27;Product Descriptions&#x27;, &#x27;Proofreading &amp; Editing&#x27;, &#x27;Research &amp; Summaries&#x27;, &#x27;Resume Writing&#x27;, &#x27;Sales Copy&#x27;, &#x27;Scriptwriting&#x27;, &#x27;Social Media Copy&#x27;, &#x27;Speechwriting&#x27;, &#x27;Technical Writing&#x27;, &#x27;Transcripts&#x27;, &#x27;Translation&#x27;, &#x27;UX Writing&#x27;, &#x27;Website Content&#x27;, &#x27;White Papers&#x27;, &#x27;other&#x27;] },
+  { category: &#x27;Education &amp; Learning&#x27;, subcategories: [&#x27;Mathematics&#x27;, &#x27;Physics&#x27;, &#x27;Chemistry&#x27;, &#x27;Biology&#x27;, &#x27;Computer Science&#x27;, &#x27;English Literature&#x27;, &#x27;History&#x27;, &#x27;Geography&#x27;, &#x27;Islamic Studies&#x27;, &#x27;Urdu&#x27;, &#x27;Business Studies&#x27;, &#x27;Accounting&#x27;, &#x27;Economics&#x27;, &#x27;Law&#x27;, &#x27;Psychology&#x27;, &#x27;Sociology&#x27;, &#x27;other&#x27;] }
+]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="60" class="link-to-prism">src/app/components/gig-page/gig-page.component.ts:60</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="fileBinaryString1"></a>
+                    <span class="name">
+                        <span ><b>fileBinaryString1</b></span>
+                        <a href="#fileBinaryString1"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>string | null</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>null</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/app/components/gig-page/gig-page.component.ts:26</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="fileBinaryString2"></a>
+                    <span class="name">
+                        <span ><b>fileBinaryString2</b></span>
+                        <a href="#fileBinaryString2"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>string | null</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>null</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/app/components/gig-page/gig-page.component.ts:28</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="fileBinaryString3"></a>
+                    <span class="name">
+                        <span ><b>fileBinaryString3</b></span>
+                        <a href="#fileBinaryString3"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>string | null</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>null</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/app/components/gig-page/gig-page.component.ts:30</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="filteredSubcategories"></a>
+                    <span class="name">
+                        <span ><b>filteredSubcategories</b></span>
+                        <a href="#filteredSubcategories"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>string[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="72" class="link-to-prism">src/app/components/gig-page/gig-page.component.ts:72</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="fullTitle"></a>
+                    <span class="name">
+                        <span ><b>fullTitle</b></span>
+                        <a href="#fullTitle"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;&#x27;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">src/app/components/gig-page/gig-page.component.ts:39</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="homePrice"></a>
+                    <span class="name">
+                        <span ><b>homePrice</b></span>
+                        <a href="#homePrice"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;&#x27;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/app/components/gig-page/gig-page.component.ts:31</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="orderDay1"></a>
+                    <span class="name">
+                        <span ><b>orderDay1</b></span>
+                        <a href="#orderDay1"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;&#x27;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="35" class="link-to-prism">src/app/components/gig-page/gig-page.component.ts:35</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="orderDay2"></a>
+                    <span class="name">
+                        <span ><b>orderDay2</b></span>
+                        <a href="#orderDay2"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;&#x27;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/app/components/gig-page/gig-page.component.ts:36</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="orderDay3"></a>
+                    <span class="name">
+                        <span ><b>orderDay3</b></span>
+                        <a href="#orderDay3"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;&#x27;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/app/components/gig-page/gig-page.component.ts:37</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="photos"></a>
+                    <span class="name">
+                        <span ><b>photos</b></span>
+                        <a href="#photos"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>File[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="42" class="link-to-prism">src/app/components/gig-page/gig-page.component.ts:42</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="Price1"></a>
+                    <span class="name">
+                        <span ><b>Price1</b></span>
+                        <a href="#Price1"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;&#x27;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/app/components/gig-page/gig-page.component.ts:32</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="Price2"></a>
+                    <span class="name">
+                        <span ><b>Price2</b></span>
+                        <a href="#Price2"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;&#x27;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/app/components/gig-page/gig-page.component.ts:33</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="Price3"></a>
+                    <span class="name">
+                        <span ><b>Price3</b></span>
+                        <a href="#Price3"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;&#x27;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/app/components/gig-page/gig-page.component.ts:34</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="profileId"></a>
+                    <span class="name">
+                        <span ><b>profileId</b></span>
+                        <a href="#profileId"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;&#x27;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/app/components/gig-page/gig-page.component.ts:40</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="selectedCategory"></a>
+                    <span class="name">
+                        <span ><b>selectedCategory</b></span>
+                        <a href="#selectedCategory"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;&#x27;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/app/components/gig-page/gig-page.component.ts:15</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="selectedCategory1"></a>
+                    <span class="name">
+                        <span ><b>selectedCategory1</b></span>
+                        <a href="#selectedCategory1"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;&#x27;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="73" class="link-to-prism">src/app/components/gig-page/gig-page.component.ts:73</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="selectedFile1"></a>
+                    <span class="name">
+                        <span ><b>selectedFile1</b></span>
+                        <a href="#selectedFile1"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>File | null</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>null</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/app/components/gig-page/gig-page.component.ts:25</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="selectedFile2"></a>
+                    <span class="name">
+                        <span ><b>selectedFile2</b></span>
+                        <a href="#selectedFile2"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>File | null</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>null</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/app/components/gig-page/gig-page.component.ts:27</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="selectedFile3"></a>
+                    <span class="name">
+                        <span ><b>selectedFile3</b></span>
+                        <a href="#selectedFile3"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>File | null</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>null</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/app/components/gig-page/gig-page.component.ts:29</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="selectedLevel"></a>
+                    <span class="name">
+                        <span ><b>selectedLevel</b></span>
+                        <a href="#selectedLevel"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;&#x27;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="21" class="link-to-prism">src/app/components/gig-page/gig-page.component.ts:21</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="selectedPrice1"></a>
+                    <span class="name">
+                        <span ><b>selectedPrice1</b></span>
+                        <a href="#selectedPrice1"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/app/components/gig-page/gig-page.component.ts:22</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="selectedPrice2"></a>
+                    <span class="name">
+                        <span ><b>selectedPrice2</b></span>
+                        <a href="#selectedPrice2"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/app/components/gig-page/gig-page.component.ts:23</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="selectedPrice3"></a>
+                    <span class="name">
+                        <span ><b>selectedPrice3</b></span>
+                        <a href="#selectedPrice3"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/app/components/gig-page/gig-page.component.ts:24</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="selectedSubcategory"></a>
+                    <span class="name">
+                        <span ><b>selectedSubcategory</b></span>
+                        <a href="#selectedSubcategory"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;&#x27;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="74" class="link-to-prism">src/app/components/gig-page/gig-page.component.ts:74</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="selectedType"></a>
+                    <span class="name">
+                        <span ><b>selectedType</b></span>
+                        <a href="#selectedType"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;&#x27;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/app/components/gig-page/gig-page.component.ts:16</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="skillLevel"></a>
+                    <span class="name">
+                        <span ><b>skillLevel</b></span>
+                        <a href="#skillLevel"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;&#x27;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/app/components/gig-page/gig-page.component.ts:19</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="teacherId"></a>
+                    <span class="name">
+                        <span ><b>teacherId</b></span>
+                        <a href="#teacherId"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;&#x27;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/app/components/gig-page/gig-page.component.ts:41</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="title"></a>
+                    <span class="name">
+                        <span ><b>title</b></span>
+                        <a href="#title"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;&#x27;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/app/components/gig-page/gig-page.component.ts:17</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="year_Of_Experience"></a>
+                    <span class="name">
+                        <span ><b>year_Of_Experience</b></span>
+                        <a href="#year_Of_Experience"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;&#x27;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/app/components/gig-page/gig-page.component.ts:18</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component } from &#x27;@angular/core&#x27;;
+import { AuthService } from &#x27;src/app/services/auth.service&#x27;;
+import { Router } from &#x27;@angular/router&#x27;;
+import { ParseService } from &#x27;src/app/services/parse.service&#x27;;
+import { FormBuilder, FormGroup, Validators } from &#x27;@angular/forms&#x27;; 
+
+
+@Component({
+  selector: &#x27;app-gig-page&#x27;,
+  templateUrl: &#x27;./gig-page.component.html&#x27;,
+  styleUrls: [&#x27;./gig-page.component.css&#x27;]
+})
+export class GigPageComponent {
+[x: string]: any;
+selectedCategory: string &#x3D; &#x27;&#x27;;
+selectedType: string &#x3D; &#x27;&#x27;;
+title : string &#x3D; &#x27;&#x27;;
+year_Of_Experience : string &#x3D; &#x27;&#x27;;
+skillLevel :string &#x3D; &#x27;&#x27;;
+// price : string &#x3D; &#x27;&#x27;;
+selectedLevel: string &#x3D; &#x27;&#x27;;
+selectedPrice1: boolean&#x3D; false;
+selectedPrice2: boolean &#x3D; false;
+selectedPrice3: boolean &#x3D; false;
+selectedFile1: File | null &#x3D; null;
+fileBinaryString1: string | null &#x3D; null;
+selectedFile2: File | null &#x3D; null;
+fileBinaryString2: string | null &#x3D; null;
+selectedFile3: File | null &#x3D; null;
+fileBinaryString3: string | null &#x3D; null;
+homePrice: string &#x3D; &#x27;&#x27;;
+Price1: string&#x3D; &#x27;&#x27;;
+Price2: string &#x3D; &#x27;&#x27;;
+Price3: string &#x3D; &#x27;&#x27;;
+orderDay1 : string &#x3D; &#x27;&#x27;;
+orderDay2 : string &#x3D; &#x27;&#x27;;
+orderDay3 : string &#x3D; &#x27;&#x27;;
+
+fullTitle : string &#x3D; &#x27;&#x27;;
+profileId : string &#x3D; &#x27;&#x27;;
+teacherId : string &#x3D; &#x27;&#x27;;
+photos: File[] &#x3D; [];
+
+handleFileInput(event: Event, photoId: string) {
+  const files &#x3D; (event.target as HTMLInputElement).files!;
+  if (files.length &gt; 0) {
+    const file &#x3D; files[0];
+    if (photoId &#x3D;&#x3D;&#x3D; &#x27;photo1&#x27;) {
+      this.photos[0] &#x3D; file;
+    } else if (photoId &#x3D;&#x3D;&#x3D; &#x27;photo2&#x27;) {
+      this.photos[1] &#x3D; file;
+    } else if (photoId &#x3D;&#x3D;&#x3D; &#x27;photo3&#x27;) {
+      this.photos[2] &#x3D; file;
+    }
+    console.log(&#x27;File uploaded:&#x27;, file.name);  // For debug purpose
+  }
+}
+
+
+categoriesWithSub: any[] &#x3D; [
+  { category: &#x27;Business&#x27;, subcategories: [&#x27;Branding Services&#x27;, &#x27;Business Consulting&#x27;, &#x27;Business Plans&#x27;, &#x27;Career Counseling&#x27;, &#x27;Data Entry&#x27;, &#x27;E-Commerce Management&#x27;, &#x27;Financial Consulting&#x27;, &#x27;Flyer Distribution&#x27;, &#x27;HR Consulting&#x27;, &#x27;Lead Generation&#x27;, &#x27;Legal Consulting&#x27;, &#x27;Market Research&#x27;, &#x27;Presentations&#x27;, &#x27;Project Management&#x27;, &#x27;Virtual Assistant&#x27;, &#x27;other&#x27;] },
+  { category: &#x27;Digital Marketing&#x27;, subcategories: [&#x27;Domain Research&#x27;, &#x27;E-Commerce Marketing&#x27;, &#x27;Influencer Marketing&#x27;, &#x27;Local SEO&#x27;, &#x27;Mobile Marketing &amp; Advertising&#x27;, &#x27;Music Promotion&#x27;, &#x27;Web Traffic&#x27;, &#x27;other&#x27;] },
+  { category: &#x27;Lifestyle&#x27;, subcategories: [&#x27;Arts &amp; Crafts&#x27;, &#x27;Astrology &amp; Readings&#x27;, &#x27;Celebrity Impersonators&#x27;, &#x27;Collectibles&#x27;, &#x27;Cooking Lessons&#x27;, &#x27;Craft Lessons&#x27;, &#x27;Family &amp; Genealogy&#x27;, &#x27;Fitness Lessons&#x27;, &#x27;Gaming&#x27;, &#x27;Greeting Cards &amp; Videos&#x27;, &#x27;Health Nutrition &amp; Fitness&#x27;, &#x27;Online Lessons&#x27;, &#x27;Personal Stylists&#x27;, &#x27;Relationship Advice&#x27;, &#x27;Spiritual &amp; Healing&#x27;, &#x27;Traveling&#x27;, &#x27;Viral Videos&#x27;, &#x27;other&#x27;] },
+  { category: &#x27;Music &amp; Audio&#x27;, subcategories: [&#x27;Audio Ads Production&#x27;, &#x27;Audiobook Production&#x27;, &#x27;DJ Drops &amp; Tags&#x27;, &#x27;Dialogue Editing&#x27;, &#x27;Jingles &amp; Intros&#x27;, &#x27;Mixing &amp; Mastering&#x27;, &#x27;Music Transcription&#x27;, &#x27;Online Music Lessons&#x27;, &#x27;Podcast Editing&#x27;, &#x27;Producers &amp; Composers&#x27;, &#x27;Session Musicians&#x27;, &#x27;Singers &amp; Vocalists&#x27;, &#x27;Songwriters&#x27;, &#x27;Sound Design&#x27;, &#x27;Vocal Tuning&#x27;, &#x27;Voice Over&#x27;, &#x27;other&#x27;] },
+  { category: &#x27;Programming &amp; Tech&#x27;, subcategories: [&#x27;Chatbots&#x27;, &#x27;Convert Files&#x27;, &#x27;Cybersecurity &amp; Data Protection&#x27;, &#x27;Data Analysis &amp; Reports&#x27;, &#x27;Databases&#x27;, &#x27;Desktop Applications&#x27;, &#x27;Development for Streamers&#x27;, &#x27;E-Commerce Development&#x27;, &#x27;Game Development&#x27;, &#x27;Mobile Apps&#x27;, &#x27;Online Coding Lessons&#x27;, &#x27;QA&#x27;, &#x27;Support &amp; IT&#x27;, &#x27;User Testing&#x27;, &#x27;Web Programming&#x27;, &#x27;Website Builders &amp; CMS&#x27;, &#x27;WordPress&#x27;, &#x27;C++ Programming&#x27;, &#x27;C# Programming&#x27;, &#x27;Java Programming&#x27;, &#x27;Python Programming&#x27;, &#x27;JavaScript Programming&#x27;, &#x27;PHP Programming&#x27;, &#x27;other&#x27;] },
+  { category: &#x27;Video &amp; Animation&#x27;, subcategories: [&#x27;3D Product Animation&#x27;, &#x27;Animated GIFs&#x27;, &#x27;Animation for Kids&#x27;, &#x27;Animation for Streamers&#x27;, &#x27;App &amp; Website Previews&#x27;, &#x27;Article to Video&#x27;, &#x27;Book Trailers&#x27;, &#x27;Character Animation&#x27;, &#x27;Game Trailers&#x27;, &#x27;Intros &amp; Outros&#x27;, &#x27;Live Action Explainers&#x27;, &#x27;Local Photography&#x27;, &#x27;Logo Animation&#x27;, &#x27;Lyric &amp; Music Videos&#x27;, &#x27;Product Photography&#x27;, &#x27;Real Estate Promos&#x27;, &#x27;Screencasting Videos&#x27;, &#x27;Short Video Ads&#x27;, &#x27;Slideshows Videos&#x27;, &#x27;Spokespersons Videos&#x27;, &#x27;Subtitles &amp; Captions&#x27;, &#x27;Unboxing Videos&#x27;, &#x27;Video Editing&#x27;, &#x27;Visual Effects&#x27;, &#x27;Whiteboard &amp; Animated Explainers&#x27;, &#x27;eLearning Video Production&#x27;, &#x27;other&#x27;] },
+  { category: &#x27;Writing &amp; Translation&#x27;, subcategories: [&#x27;Articles &amp; Blog Posts&#x27;, &#x27;Beta Reading&#x27;, &#x27;Book &amp; eBook Writing&#x27;, &#x27;Book Editing&#x27;, &#x27;Brand Voice &amp; Tone&#x27;, &#x27;Business Names &amp; Slogans&#x27;, &#x27;Case Studies&#x27;, &#x27;Cover Letters&#x27;, &#x27;Creative Writing&#x27;, &#x27;Email Copy&#x27;, &#x27;Grant Writing&#x27;, &#x27;Legal Writing&#x27;, &#x27;LinkedIn Profiles&#x27;, &#x27;Online Language Lessons&#x27;, &#x27;Podcast Writing&#x27;, &#x27;Press Releases&#x27;, &#x27;Product Descriptions&#x27;, &#x27;Proofreading &amp; Editing&#x27;, &#x27;Research &amp; Summaries&#x27;, &#x27;Resume Writing&#x27;, &#x27;Sales Copy&#x27;, &#x27;Scriptwriting&#x27;, &#x27;Social Media Copy&#x27;, &#x27;Speechwriting&#x27;, &#x27;Technical Writing&#x27;, &#x27;Transcripts&#x27;, &#x27;Translation&#x27;, &#x27;UX Writing&#x27;, &#x27;Website Content&#x27;, &#x27;White Papers&#x27;, &#x27;other&#x27;] },
+  { category: &#x27;Education &amp; Learning&#x27;, subcategories: [&#x27;Mathematics&#x27;, &#x27;Physics&#x27;, &#x27;Chemistry&#x27;, &#x27;Biology&#x27;, &#x27;Computer Science&#x27;, &#x27;English Literature&#x27;, &#x27;History&#x27;, &#x27;Geography&#x27;, &#x27;Islamic Studies&#x27;, &#x27;Urdu&#x27;, &#x27;Business Studies&#x27;, &#x27;Accounting&#x27;, &#x27;Economics&#x27;, &#x27;Law&#x27;, &#x27;Psychology&#x27;, &#x27;Sociology&#x27;, &#x27;other&#x27;] }
+];
+
+
+filteredSubcategories: string[] &#x3D; [];
+selectedCategory1: string &#x3D; &#x27;&#x27;;
+selectedSubcategory: string &#x3D; &#x27;&#x27;;
+  constructor(private service: ParseService, private authService: AuthService, private router: Router) { 
+    
+  }
+
+  ngOnInit() {
+    this.teacherId &#x3D; this.service.user.objectId;
+    this.fetchProfileData();
+  }
+
+ 
+
+
+  async fetchProfileData() {
+    try {
+      const result &#x3D; await this.service.getProfileById(this.teacherId);
+      
+      if (result.status &#x3D;&#x3D;&#x3D; 1) {
+       this.profileId &#x3D; result.data.objectId;
+       
+       
+      } else {
+     
+      }
+    } catch (error) {
+      console.error(&#x27;Error getting profileId&#x27;, error);
+    }
+    }
+
+ 
+  onCategoryChange() {
+    const category &#x3D; this.categoriesWithSub.find(cat &#x3D;&gt; cat.category &#x3D;&#x3D;&#x3D; this.selectedCategory1);
+    this.filteredSubcategories &#x3D; category ? category.subcategories : [];
+  }
+
+
+
+updateSelectedPrice(priceLevel: string, event: Event) {
+  const checkbox &#x3D; event.target as HTMLInputElement; // Cast to HTMLInputElement to access &#x27;checked&#x27;
+  const isChecked &#x3D; checkbox.checked;
+
+  // Reset all selections
+  this.selectedPrice1 &#x3D; false;
+  this.selectedPrice2 &#x3D; false;
+  this.selectedPrice3 &#x3D; false;
+
+  // Enable the selected price if isChecked is true
+  if (isChecked) {
+    this[&#x27;selectedPrice&#x27; + priceLevel.charAt(priceLevel.length - 1)] &#x3D; true; // Dynamically sets the correct selectedPriceX
+    this.homePrice &#x3D; this[&#x27;Price&#x27; + priceLevel.charAt(priceLevel.length - 1)]; // Sets homePrice to the selected price
+  } else {
+    this.homePrice &#x3D; &#x27;&#x27;; // Clears homePrice if the checkbox is unchecked
+  }
+}
+
+
+
+
+
+ 
+
+  async gigInfoAdd(title : string , year_Of_Experience: string  , type: string, skill: string , level: string   , level_1_Description: string  ,  level_1_Price: string  , level_2_Description: string  , level_2_Price: string  ,  level_3_Description: string  , level_3_Price: string , selectedCategory1: string, selectedSubcategory: string ,orderDay1:string,orderDay2:string,orderDay3:string ){
+    // this.fullTitle &#x3D; &#x60;I will ${title}&#x60;;
+    const result &#x3D; await this.service.gig_info_add( title , year_Of_Experience  , type  , skill  , level  , level_1_Description  ,  level_1_Price  , level_2_Description  , level_2_Price  ,  level_3_Description  , level_3_Price , this.homePrice , selectedCategory1, selectedSubcategory , this.profileId ,this.fileBinaryString1! , this.fileBinaryString2! , this.fileBinaryString3!,orderDay1,orderDay2,orderDay3 );
+    if(result.status&#x3D;&#x3D;&#x3D;1){
+     alert(&#x27;gig created successfuly&#x27;)
+     this.router.navigate([&#x27;/gigmanage&#x27;]);
+    }
+    else{
+      alert(&#x27;error created in gig&#x27;)
+    }
+    ;
+  }
+
+  submitForm() {
+    const fullTitle &#x3D; &#x60;I will ${this.title}&#x60;;
+    // Now use fullTitle for your submission or processing logic
+  }
+  
+  
+  onFileChanged1(event: Event) {
+    const input &#x3D; event.target as HTMLInputElement;
+    if (!input.files || input.files.length &#x3D;&#x3D;&#x3D; 0) {
+      this.selectedFile1 &#x3D; null;
+      this.fileBinaryString1 &#x3D; null;
+    } else {
+      this.selectedFile1 &#x3D; input.files[0];
+      const blobUrl &#x3D; URL.createObjectURL(this.selectedFile1);
+      this.convertBlobUrlToBase64String1(blobUrl)
+        .then(base64String &#x3D;&gt; {
+          this.fileBinaryString1 &#x3D; base64String; // Store Base64 string
+          console.log(&#x27;Generated Base64 String:&#x27;, this.fileBinaryString1.substring(0, 50) + &#x27;...&#x27;);
+        })
+        .catch(error &#x3D;&gt; console.error(&#x27;Error reading file as Base64 string:&#x27;, error));
+    }
+  }
+  
+  // Method to convert Blob URL to Base64 string
+  async convertBlobUrlToBase64String1(blobUrl: string): Promise&lt;string&gt; {
+    const response &#x3D; await fetch(blobUrl);
+    const blob &#x3D; await response.blob();
+    return new Promise((resolve, reject) &#x3D;&gt; {
+      const reader &#x3D; new FileReader();
+      reader.onloadend &#x3D; () &#x3D;&gt; {
+        const base64String &#x3D; reader.result; // This is a Base64 string
+        resolve(base64String as string);
+      };
+      reader.onerror &#x3D; reject;
+      reader.readAsDataURL(blob); // Changed to readAsDataURL for Base64
+    });
+  }
+
+  onFileChanged2(event: Event) {
+    const input &#x3D; event.target as HTMLInputElement;
+    if (!input.files || input.files.length &#x3D;&#x3D;&#x3D; 0) {
+      this.selectedFile2 &#x3D; null;
+      this.fileBinaryString2 &#x3D; null;
+    } else {
+      this.selectedFile2 &#x3D; input.files[0];
+      const blobUrl &#x3D; URL.createObjectURL(this.selectedFile2);
+      this.convertBlobUrlToBase64String2(blobUrl)
+        .then(base64String &#x3D;&gt; {
+          this.fileBinaryString2 &#x3D; base64String; // Store Base64 string
+          console.log(&#x27;Generated Base64 String:&#x27;, this.fileBinaryString2.substring(0, 50) + &#x27;...&#x27;);
+        })
+        .catch(error &#x3D;&gt; console.error(&#x27;Error reading file as Base64 string:&#x27;, error));
+    }
+  }
+  
+  // Method to convert Blob URL to Base64 string
+  async convertBlobUrlToBase64String2(blobUrl: string): Promise&lt;string&gt; {
+    const response &#x3D; await fetch(blobUrl);
+    const blob &#x3D; await response.blob();
+    return new Promise((resolve, reject) &#x3D;&gt; {
+      const reader &#x3D; new FileReader();
+      reader.onloadend &#x3D; () &#x3D;&gt; {
+        const base64String &#x3D; reader.result; // This is a Base64 string
+        resolve(base64String as string);
+      };
+      reader.onerror &#x3D; reject;
+      reader.readAsDataURL(blob); // Changed to readAsDataURL for Base64
+    });
+  }
+
+  onFileChanged3(event: Event) {
+    const input &#x3D; event.target as HTMLInputElement;
+    if (!input.files || input.files.length &#x3D;&#x3D;&#x3D; 0) {
+      this.selectedFile3 &#x3D; null;
+      this.fileBinaryString3 &#x3D; null;
+    } else {
+      this.selectedFile3 &#x3D; input.files[0];
+      const blobUrl &#x3D; URL.createObjectURL(this.selectedFile3);
+      this.convertBlobUrlToBase64String3(blobUrl)
+        .then(base64String &#x3D;&gt; {
+          this.fileBinaryString3 &#x3D; base64String; // Store Base64 string
+          console.log(&#x27;Generated Base64 String:&#x27;, this.fileBinaryString3.substring(0, 50) + &#x27;...&#x27;);
+        })
+        .catch(error &#x3D;&gt; console.error(&#x27;Error reading file as Base64 string:&#x27;, error));
+    }
+  }
+  
+  // Method to convert Blob URL to Base64 string
+  async convertBlobUrlToBase64String3(blobUrl: string): Promise&lt;string&gt; {
+    const response &#x3D; await fetch(blobUrl);
+    const blob &#x3D; await response.blob();
+    return new Promise((resolve, reject) &#x3D;&gt; {
+      const reader &#x3D; new FileReader();
+      reader.onloadend &#x3D; () &#x3D;&gt; {
+        const base64String &#x3D; reader.result; // This is a Base64 string
+        resolve(base64String as string);
+      };
+      reader.onerror &#x3D; reject;
+      reader.readAsDataURL(blob); // Changed to readAsDataURL for Base64
+    });
+  }
+
+  
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;section style&#x3D;&quot;background-color: #d3d3d3;&quot;&gt;
+  &lt;div class&#x3D;&quot;container my-5 py-5 h-100&quot;&gt;
+    &lt;div class&#x3D;&quot;row d-flex justify-content-center align-items-center h-100&quot;&gt;
+      &lt;div class&#x3D;&quot;col col-xl-6&quot;&gt;
+        &lt;div class&#x3D;&quot;card&quot; style&#x3D;&quot;border-radius: 2rem;&quot;&gt;
+          &lt;div class&#x3D;&quot;row g-0&quot;&gt;
+            &lt;div class&#x3D;&quot;col-md-6 col-lg-12 d-flex align-items-center&quot;&gt;
+              &lt;div class&#x3D;&quot;card-body p-4 p-lg-5 text-black&quot;&gt;
+                &lt;form style&#x3D;&quot;margin: 0% 10% 0% 10%;&quot;&gt;
+                  &lt;h5 class&#x3D;&quot;fw-normal mb-3 pb-3 fs-1&quot; style&#x3D;&quot;letter-spacing: 1px;&quot;&gt;
+                    Create Gig
+                  &lt;/h5&gt;
+
+
+
+                  &lt;div class&#x3D;&quot;form-outline mb-4&quot;&gt;
+                    &lt;label class&#x3D;&quot;fw-bold my-1 py-1&quot;&gt;Gig Title&lt;/label&gt;
+                    &lt;div class&#x3D;&quot;input-group&quot;&gt;
+                      &lt;span class&#x3D;&quot;input-group-text&quot;&gt;I will&lt;/span&gt;
+                      &lt;input type&#x3D;&quot;text&quot; id&#x3D;&quot;title&quot; class&#x3D;&quot;form-control form-control-lg&quot; name&#x3D;&quot;title&quot;
+                        [(ngModel)]&#x3D;&quot;title&quot;&gt;
+                    &lt;/div&gt;
+                  &lt;/div&gt;
+
+
+                  &lt;div class&#x3D;&quot;form-outline mb-4&quot;&gt;
+                    &lt;label class&#x3D;&quot;fw-bold my-1 py-1&quot;&gt;Year Of Experience&lt;/label&gt;
+                    &lt;input type&#x3D;&quot;text&quot; id&#x3D;&quot;yearOfExperience&quot; class&#x3D;&quot;form-control form-control-lg&quot;
+                      name&#x3D;&quot;yearofexperience&quot; [(ngModel)]&#x3D;&quot;year_Of_Experience&quot;&gt;
+                  &lt;/div&gt;
+
+                  &lt;div class&#x3D;&quot;form-group mb-4&quot;&gt;
+                    &lt;label class&#x3D;&quot;fw-bold my-1 py-1&quot;&gt;Upload Photos&lt;/label&gt;
+                    &lt;div   class&#x3D;&quot;form-outline mb-4&quot;&gt;
+                      &lt;input type&#x3D;&quot;file&quot; (change)&#x3D;&quot;onFileChanged1($event)&quot; class&#x3D;&quot;form-control form-control-lg&quot;&gt;
+                      &lt;span title&#x3D;&quot;This is the main image for your card. And it will be shown to
+the students first after clicking the card rest of the images 
+and also main image will be shown to student.&quot; style&#x3D;&quot;cursor: help; text-decoration: underline; &quot; class&#x3D;&quot;fw-bold&quot;&gt;
+                        (main image)
+                      &lt;/span&gt;
+                    &lt;/div&gt;
+                    &lt;div   class&#x3D;&quot;form-outline mb-4&quot;&gt;
+                      &lt;input type&#x3D;&quot;file&quot; (change)&#x3D;&quot;onFileChanged2($event)&quot; class&#x3D;&quot;form-control form-control-lg&quot;&gt;
+                    &lt;/div&gt;
+                    &lt;div   class&#x3D;&quot;form-outline mb-4&quot;&gt;
+                      &lt;input type&#x3D;&quot;file&quot; (change)&#x3D;&quot;onFileChanged3($event)&quot; class&#x3D;&quot;form-control form-control-lg&quot;&gt;
+                    &lt;/div&gt;
+                    &lt;small class&#x3D;&quot;form-text text-muted&quot;&gt;Upload up to 3 photos related to your gig.&lt;/small&gt;
+                  &lt;/div&gt;
+                  
+
+
+                  &lt;div class&#x3D;&quot;custom-box1&quot;&gt;
+                    &lt;div class&#x3D;&quot;row&quot;&gt;
+                      &lt;div class&#x3D;&quot;col&quot;&gt;
+                        &lt;label class&#x3D;&quot;fw-bold my-1 py-1&quot;&gt;Category&lt;/label&gt;
+                        &lt;br&gt;
+                        &lt;select [(ngModel)]&#x3D;&quot;selectedCategory1&quot; name&#x3D;&quot;selectedCategory1&quot; (change)&#x3D;&quot;onCategoryChange()&quot;&gt;
+                          &lt;option *ngFor&#x3D;&quot;let cat of categoriesWithSub&quot; [value]&#x3D;&quot;cat.category&quot;&gt;{{ cat.category }}
+                          &lt;/option&gt;
+                        &lt;/select&gt;
+                      &lt;/div&gt;
+                      &lt;label class&#x3D;&quot;fw-bold my-1 py-1&quot;&gt;Sub Category&lt;/label&gt;
+                      &lt;br&gt;
+                      &lt;div class&#x3D;&quot;col&quot; *ngIf&#x3D;&quot;selectedCategory1&quot;&gt;
+
+                        &lt;select [(ngModel)]&#x3D;&quot;selectedSubcategory&quot; name&#x3D;&quot;subCategorySelection&quot;&gt;
+                          &lt;option *ngFor&#x3D;&quot;let subcat of filteredSubcategories&quot; [value]&#x3D;&quot;subcat&quot;&gt;{{ subcat }}&lt;/option&gt;
+                        &lt;/select&gt;
+                      &lt;/div&gt;
+                    &lt;/div&gt;
+                  &lt;/div&gt;
+                  &lt;br&gt;
+                  &lt;br&gt;
+
+
+                  &lt;div class&#x3D;&quot;form-group mb-4&quot;&gt;
+                    &lt;label class&#x3D;&quot;fw-bold my-1 py-1&quot;&gt;Choose Type&lt;/label&gt;
+                    &lt;br&gt;
+                    &lt;div class&#x3D;&quot;btn-group&quot; data-toggle&#x3D;&quot;buttons-type&quot;&gt;
+                      &lt;label class&#x3D;&quot;btn btn-light-orange&quot;&gt;
+                        &lt;input type&#x3D;&quot;radio&quot; name&#x3D;&quot;typeSelectType&quot; value&#x3D;&quot;online&quot; [(ngModel)]&#x3D;&quot;selectedType&quot;&gt; Online
+                      &lt;/label&gt;
+                      &lt;label class&#x3D;&quot;btn btn-light-orange&quot;&gt;
+                        &lt;input type&#x3D;&quot;radio&quot; name&#x3D;&quot;typeSelectType&quot; value&#x3D;&quot;offline&quot; [(ngModel)]&#x3D;&quot;selectedType&quot;&gt; Offline
+                      &lt;/label&gt;
+                      &lt;label class&#x3D;&quot;btn btn-light-orange&quot;&gt;
+                        &lt;input type&#x3D;&quot;radio&quot; name&#x3D;&quot;typeSelectType&quot; value&#x3D;&quot;both&quot; [(ngModel)]&#x3D;&quot;selectedType&quot;&gt; Both
+                      &lt;/label&gt;
+                    &lt;/div&gt;
+                  &lt;/div&gt;
+
+
+
+                  &lt;div class&#x3D;&quot;form-group mb-4&quot;&gt;
+                    &lt;label class&#x3D;&quot;fw-bold my-1 py-1&quot;&gt;Skill level&lt;/label&gt;
+                    &lt;br&gt;
+                    &lt;div class&#x3D;&quot;btn-group&quot; data-toggle&#x3D;&quot;buttons-type&quot;&gt;
+                      &lt;label class&#x3D;&quot;btn btn-light-orange&quot;&gt;
+                        &lt;input type&#x3D;&quot;radio&quot; name&#x3D;&quot;typeSelectSkillLevel&quot; value&#x3D;&quot;Begineer&quot; [(ngModel)]&#x3D;&quot;skillLevel&quot;&gt;
+                        Begineer
+                      &lt;/label&gt;
+                      &lt;label class&#x3D;&quot;btn btn-light-orange&quot;&gt;
+                        &lt;input type&#x3D;&quot;radio&quot; name&#x3D;&quot;typeSelectSkillLevel&quot; value&#x3D;&quot;Moderate&quot; [(ngModel)]&#x3D;&quot;skillLevel&quot;&gt;
+                        Moderate
+                      &lt;/label&gt;
+                      &lt;label class&#x3D;&quot;btn btn-light-orange&quot;&gt;
+                        &lt;input type&#x3D;&quot;radio&quot; name&#x3D;&quot;typeSelectSkillLevel&quot; value&#x3D;&quot;Expert&quot; [(ngModel)]&#x3D;&quot;skillLevel&quot;&gt; Expert
+                      &lt;/label&gt;
+                    &lt;/div&gt;
+                  &lt;/div&gt;
+
+
+
+                  &lt;div class&#x3D;&quot;form-group mb-4&quot;&gt;
+                    &lt;label class&#x3D;&quot;fw-bold my-1 py-1&quot;&gt;Choose level &lt;/label&gt;
+                    &lt;br&gt;
+                    &lt;div class&#x3D;&quot;btn-group&quot; data-toggle&#x3D;&quot;buttons-type&quot;&gt;
+                      &lt;label class&#x3D;&quot;btn btn-light-orange&quot;&gt;
+                        &lt;input type&#x3D;&quot;radio&quot; name&#x3D;&quot;typeSelectLevel&quot; value&#x3D;&quot;level1&quot; [(ngModel)]&#x3D;&quot;selectedLevel&quot;&gt; low price
+                      &lt;/label&gt;
+                      &lt;label class&#x3D;&quot;btn btn-light-orange&quot;&gt;
+                        &lt;input type&#x3D;&quot;radio&quot; name&#x3D;&quot;typeSelectLevel&quot; value&#x3D;&quot;level2&quot; [(ngModel)]&#x3D;&quot;selectedLevel&quot;&gt; low and
+                        mid price
+                      &lt;/label&gt;
+                      &lt;label class&#x3D;&quot;btn btn-light-orange&quot;&gt;
+                        &lt;input type&#x3D;&quot;radio&quot; name&#x3D;&quot;typeSelectLevel&quot; value&#x3D;&quot;level3&quot; [(ngModel)]&#x3D;&quot;selectedLevel&quot;&gt; low , mid
+                        and high price &lt;/label&gt;
+                    &lt;/div&gt;
+                  &lt;/div&gt;
+
+
+
+                  &lt;fieldset&gt;
+                    &lt;div class&#x3D;&quot;custom-box1&quot;&gt;
+                      &lt;div class&#x3D;&quot;form-outline mb-4&quot;&gt;
+                        &lt;h4 style&#x3D;&quot;text-align: center;&quot; class&#x3D;&quot;fw-bold my-1 py-1&quot;&gt;Low Price&lt;/h4&gt;
+                        &lt;hr class&#x3D;&quot;hr&quot;&gt;
+                      &lt;/div&gt;
+
+                      &lt;div class&#x3D;&quot;form-outline mb-4&quot;&gt;
+                        &lt;label for&#x3D;&quot;languagesSpoken&quot; class&#x3D;&quot;fw-bold my-1 py-1&quot;&gt;Description about price&lt;/label&gt;
+                        &lt;textarea class&#x3D;&quot;form-control form-control-lg&quot; name&#x3D;&quot;&quot; placeholder&#x3D;&quot;&quot; rows&#x3D;&quot;4&quot;
+                          #level_1_Description&gt;&lt;/textarea&gt;
+                        &lt;br&gt;
+                        &lt;hr class&#x3D;&quot;hr&quot;&gt;
+                      &lt;/div&gt;
+
+                      &lt;div class&#x3D;&quot;form-outline mb-4&quot;&gt;
+                        &lt;label for&#x3D;&quot;languagesSpoken&quot; class&#x3D;&quot;fw-bold my-1 py-1&quot;&gt;Days to place order&lt;/label&gt;
+                        &lt;input type&#x3D;&quot;schoolname&quot; id&#x3D;&quot;f&quot; class&#x3D;&quot;form-control form-control-lg&quot; placeholder&#x3D;&quot;&quot;
+                          name&#x3D;&quot;priceLevel1&quot; [(ngModel)]&#x3D;&quot;orderDay1&quot; #order_1_day&gt;
+                        &lt;br&gt;
+                        &lt;hr class&#x3D;&quot;hr&quot;&gt;
+                      &lt;/div&gt;
+
+                      &lt;div class&#x3D;&quot;form-outline mb-4&quot;&gt;
+                        &lt;label class&#x3D;&quot;fw-bold my-1 py-1&quot;&gt;Price&lt;/label&gt;
+                        &lt;input type&#x3D;&quot;schoolname&quot; id&#x3D;&quot;f&quot; class&#x3D;&quot;form-control form-control-lg&quot; placeholder&#x3D;&quot;&quot;
+                          name&#x3D;&quot;priceLevel1&quot; [(ngModel)]&#x3D;&quot;Price1&quot; #level_1_Price&gt;
+                      &lt;/div&gt;
+
+                      &lt;!-- Checkbox for Low Price --&gt;
+                      &lt;div class&#x3D;&quot;form-check&quot;&gt;
+                        &lt;input class&#x3D;&quot;form-check-input&quot; type&#x3D;&quot;checkbox&quot; id&#x3D;&quot;priceCheckbox1&quot; name&#x3D;&quot;confirmPrice&quot;
+                          value&#x3D;&quot;price1&quot; [(ngModel)]&#x3D;&quot;selectedPrice1&quot; (change)&#x3D;&quot;updateSelectedPrice(&#x27;price1&#x27;, $event)&quot;&gt;
+                        &lt;label class&#x3D;&quot;form-check-label&quot; for&#x3D;&quot;priceCheckbox1&quot;&gt;
+                          Tick it for Display this price on users home
+                        &lt;/label&gt;
+                      &lt;/div&gt;
+
+
+
+
+                    &lt;/div&gt;
+
+                  &lt;/fieldset&gt;
+                  &lt;br&gt;
+                  &lt;br&gt;
+
+                  &lt;fieldset [disabled]&#x3D;&quot;selectedLevel &#x3D;&#x3D;&#x3D; &#x27;level1&#x27;&quot;&gt;
+                    &lt;div class&#x3D;&quot;custom-box1&quot;&gt;
+                      &lt;div class&#x3D;&quot;form-outline mb-4&quot;&gt;
+                        &lt;h4 style&#x3D;&quot;text-align: center;&quot; class&#x3D;&quot;fw-bold my-1 py-1&quot;&gt;Mid Price&lt;/h4&gt;
+                        &lt;hr class&#x3D;&quot;hr&quot;&gt;
+                      &lt;/div&gt;
+
+                      &lt;div class&#x3D;&quot;form-outline mb-4&quot;&gt;
+                        &lt;label for&#x3D;&quot;languagesSpoken&quot; class&#x3D;&quot;fw-bold my-1 py-1&quot;&gt;Description about price&lt;/label&gt;
+                        &lt;textarea class&#x3D;&quot;form-control form-control-lg&quot; name&#x3D;&quot;&quot; placeholder&#x3D;&quot;&quot; rows&#x3D;&quot;4&quot;
+                          #level_2_Description&gt;&lt;/textarea&gt;
+                        &lt;br&gt;
+                        &lt;hr class&#x3D;&quot;hr&quot;&gt;
+                      &lt;/div&gt;
+                      
+                      &lt;div class&#x3D;&quot;form-outline mb-4&quot;&gt;
+                        &lt;label for&#x3D;&quot;languagesSpoken&quot; class&#x3D;&quot;fw-bold my-1 py-1&quot;&gt;Days to place order&lt;/label&gt;
+                        &lt;input type&#x3D;&quot;schoolname&quot; id&#x3D;&quot;f&quot; class&#x3D;&quot;form-control form-control-lg&quot; placeholder&#x3D;&quot;&quot;
+                          name&#x3D;&quot;priceLevel1&quot; [(ngModel)]&#x3D;&quot;orderDay2&quot; #order_2_day&gt;
+                        &lt;br&gt;
+                        &lt;hr class&#x3D;&quot;hr&quot;&gt;
+                      &lt;/div&gt;
+
+                      &lt;div class&#x3D;&quot;form-outline mb-4&quot;&gt;
+                        &lt;label class&#x3D;&quot;fw-bold my-1 py-1&quot;&gt;Price&lt;/label&gt;
+                        &lt;input type&#x3D;&quot;schoolname&quot; id&#x3D;&quot;f&quot; class&#x3D;&quot;form-control form-control-lg&quot; placeholder&#x3D;&quot;&quot;
+                          name&#x3D;&quot;priceLevel2&quot; [(ngModel)]&#x3D;&quot;Price2&quot; #level_2_Price&gt;
+                      &lt;/div&gt;
+
+                      &lt;div class&#x3D;&quot;form-check&quot;&gt;
+                        &lt;input class&#x3D;&quot;form-check-input&quot; type&#x3D;&quot;checkbox&quot; id&#x3D;&quot;priceCheckbox2&quot; name&#x3D;&quot;confirmPrice&quot;
+                          value&#x3D;&quot;price2&quot; [(ngModel)]&#x3D;&quot;selectedPrice2&quot; (change)&#x3D;&quot;updateSelectedPrice(&#x27;price2&#x27;, $event)&quot;&gt;
+                        &lt;label class&#x3D;&quot;form-check-label&quot; for&#x3D;&quot;priceCheckbox2&quot;&gt;
+                          Tick it for Display this price on users home
+                        &lt;/label&gt;
+                      &lt;/div&gt;
+                    &lt;/div&gt;
+                  &lt;/fieldset&gt;
+
+
+                  &lt;br&gt;
+                  &lt;br&gt;
+
+                  &lt;fieldset [disabled]&#x3D;&quot;selectedLevel &#x3D;&#x3D;&#x3D; &#x27;level1&#x27;  || selectedLevel &#x3D;&#x3D;&#x3D; &#x27;level2&#x27;&quot;&gt;
+                    &lt;div class&#x3D;&quot;custom-box1&quot;&gt;
+                      &lt;div class&#x3D;&quot;form-outline mb-4&quot;&gt;
+                        &lt;h4 style&#x3D;&quot;text-align: center;&quot; class&#x3D;&quot;fw-bold my-1 py-1&quot;&gt;High Price&lt;/h4&gt;
+                        &lt;hr class&#x3D;&quot;hr&quot;&gt;
+                      &lt;/div&gt;
+
+                      &lt;div class&#x3D;&quot;form-outline mb-4&quot;&gt;
+                        &lt;label for&#x3D;&quot;languagesSpoken&quot; class&#x3D;&quot;fw-bold my-1 py-1&quot;&gt;Description about price&lt;/label&gt;
+                        &lt;textarea class&#x3D;&quot;form-control form-control-lg&quot; name&#x3D;&quot;&quot; placeholder&#x3D;&quot;&quot; rows&#x3D;&quot;4&quot;
+                          #level_3_Description&gt;&lt;/textarea&gt;
+                        &lt;br&gt;
+                        &lt;hr class&#x3D;&quot;hr&quot;&gt;
+                      &lt;/div&gt;
+
+                      &lt;div class&#x3D;&quot;form-outline mb-4&quot;&gt;
+                        &lt;label for&#x3D;&quot;languagesSpoken&quot; class&#x3D;&quot;fw-bold my-1 py-1&quot;&gt;Days to place order&lt;/label&gt;
+                        &lt;input type&#x3D;&quot;schoolname&quot; id&#x3D;&quot;f&quot; class&#x3D;&quot;form-control form-control-lg&quot; placeholder&#x3D;&quot;&quot;
+                          name&#x3D;&quot;priceLevel1&quot; [(ngModel)]&#x3D;&quot;orderDay3&quot; #order_3_day&gt;
+                        &lt;br&gt;
+                        &lt;hr class&#x3D;&quot;hr&quot;&gt;
+                      &lt;/div&gt;
+
+                      &lt;div class&#x3D;&quot;form-outline mb-4&quot;&gt;
+                        &lt;label for&#x3D;&quot;f&quot; class&#x3D;&quot;fw-bold my-1 py-1&quot;&gt;Price&lt;/label&gt;
+                        &lt;input type&#x3D;&quot;text&quot; id&#x3D;&quot;f&quot; class&#x3D;&quot;form-control form-control-lg&quot; 
+                          name&#x3D;&quot;priceLevel3&quot; [(ngModel)]&#x3D;&quot;Price3&quot; #level_3_Price&gt;
+                        &lt;!-- Additional checkbox input --&gt;
+                        &lt;br&gt;
+                        &lt;div class&#x3D;&quot;form-check&quot;&gt;
+                          &lt;input class&#x3D;&quot;form-check-input&quot; type&#x3D;&quot;checkbox&quot; id&#x3D;&quot;priceCheckbox3&quot; name&#x3D;&quot;confirmPrice&quot;
+                            value&#x3D;&quot;price3&quot; [(ngModel)]&#x3D;&quot;selectedPrice3&quot;
+                            (change)&#x3D;&quot;updateSelectedPrice(&#x27;price3&#x27;, $event)&quot;&gt;
+                          &lt;label class&#x3D;&quot;form-check-label&quot; for&#x3D;&quot;priceCheckbox3&quot;&gt;
+                            Tick it for Display this price on users home
+                          &lt;/label&gt;
+                        &lt;/div&gt;
+                      &lt;/div&gt;
+
+
+                    &lt;/div&gt;
+                  &lt;/fieldset&gt;
+
+
+
+
+
+
+                  &lt;br&gt;
+                  &lt;br&gt;
+
+
+
+                  &lt;div class&#x3D;&quot;pt-1 mb-4&quot;&gt;
+                    &lt;button class&#x3D;&quot;btn btn-dark btn-lg btn-block&quot; type&#x3D;&quot;submit&quot;
+                      (click)&#x3D;&quot;gigInfoAdd(  title , year_Of_Experience  , selectedType  , skillLevel , selectedLevel  , level_1_Description.value  ,  level_1_Price.value  , level_2_Description.value  , level_2_Price.value  ,  level_3_Description.value  , level_3_Price.value , selectedCategory1, selectedSubcategory,orderDay1,orderDay2,orderDay3)&quot;&gt;
+                      Submit
+                    &lt;/button&gt;
+                  &lt;/div&gt;
+
+                  &lt;div class&#x3D;&quot;pt-1 mb-4&quot;&gt;
+                  &lt;/div&gt;
+                &lt;/form&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/section&gt;</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="styleData">
+                <p class="comment">
+                    <code>./gig-page.component.css</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">.btn-light-orange {
+    color: #ffffff; /* Text color */
+    background-color: orange; /* Light Orange background color */
+    border-color: orange; /* Border color */
+}
+
+.btn-light-orange.active {
+    background-color: orange; /* Active state background color */
+}
+
+.custom-box1 {
+    border: 2px solid rgba(255, 166, 0, 0.599); /* Add an orange border with 2px width */
+    padding: 20px; /* Add padding for spacing inside the box */
+    border-radius: 10px;
+}
+
+.custom-box2 {
+    border: 2px solid rgba(255, 166, 0, 0.599); /* Add an orange border with 2px width */
+    padding: 20px; /* Add padding for spacing inside the box */
+    border-radius: 10px;
+}
+
+.custom-box3 {
+    border: 2px solid rgba(255, 166, 0, 0.599); /* Add an orange border with 2px width */
+    padding: 20px; /* Add padding for spacing inside the box */
+    border-radius: 10px;
+}
+
+.hr{
+    color: orange;
+    
+}</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><section style="background-color: #d3d3d3;">  <div class="container my-5 py-5 h-100">    <div class="row d-flex justify-content-center align-items-center h-100">      <div class="col col-xl-6">        <div class="card" style="border-radius: 2rem;">          <div class="row g-0">            <div class="col-md-6 col-lg-12 d-flex align-items-center">              <div class="card-body p-4 p-lg-5 text-black">                <form style="margin: 0% 10% 0% 10%;">                  <h5 class="fw-normal mb-3 pb-3 fs-1" style="letter-spacing: 1px;">                    Create Gig                  </h5>                  <div class="form-outline mb-4">                    <label class="fw-bold my-1 py-1">Gig Title</label>                    <div class="input-group">                      <span class="input-group-text">I will</span>                      <input type="text" id="title" class="form-control form-control-lg" name="title"                        [(ngModel)]="title">                    </div>                  </div>                  <div class="form-outline mb-4">                    <label class="fw-bold my-1 py-1">Year Of Experience</label>                    <input type="text" id="yearOfExperience" class="form-control form-control-lg"                      name="yearofexperience" [(ngModel)]="year_Of_Experience">                  </div>                  <div class="form-group mb-4">                    <label class="fw-bold my-1 py-1">Upload Photos</label>                    <div   class="form-outline mb-4">                      <input type="file" (change)="onFileChanged1($event)" class="form-control form-control-lg">                      <span title="This is the main image for your card. And it will be shown tothe students first after clicking the card rest of the images and also main image will be shown to student." style="cursor: help; text-decoration: underline; " class="fw-bold">                        (main image)                      </span>                    </div>                    <div   class="form-outline mb-4">                      <input type="file" (change)="onFileChanged2($event)" class="form-control form-control-lg">                    </div>                    <div   class="form-outline mb-4">                      <input type="file" (change)="onFileChanged3($event)" class="form-control form-control-lg">                    </div>                    <small class="form-text text-muted">Upload up to 3 photos related to your gig.</small>                  </div>                                    <div class="custom-box1">                    <div class="row">                      <div class="col">                        <label class="fw-bold my-1 py-1">Category</label>                        <br>                        <select [(ngModel)]="selectedCategory1" name="selectedCategory1" (change)="onCategoryChange()">                          <option *ngFor="let cat of categoriesWithSub" [value]="cat.category">{{ cat.category }}                          </option>                        </select>                      </div>                      <label class="fw-bold my-1 py-1">Sub Category</label>                      <br>                      <div class="col" *ngIf="selectedCategory1">                        <select [(ngModel)]="selectedSubcategory" name="subCategorySelection">                          <option *ngFor="let subcat of filteredSubcategories" [value]="subcat">{{ subcat }}</option>                        </select>                      </div>                    </div>                  </div>                  <br>                  <br>                  <div class="form-group mb-4">                    <label class="fw-bold my-1 py-1">Choose Type</label>                    <br>                    <div class="btn-group" data-toggle="buttons-type">                      <label class="btn btn-light-orange">                        <input type="radio" name="typeSelectType" value="online" [(ngModel)]="selectedType"> Online                      </label>                      <label class="btn btn-light-orange">                        <input type="radio" name="typeSelectType" value="offline" [(ngModel)]="selectedType"> Offline                      </label>                      <label class="btn btn-light-orange">                        <input type="radio" name="typeSelectType" value="both" [(ngModel)]="selectedType"> Both                      </label>                    </div>                  </div>                  <div class="form-group mb-4">                    <label class="fw-bold my-1 py-1">Skill level</label>                    <br>                    <div class="btn-group" data-toggle="buttons-type">                      <label class="btn btn-light-orange">                        <input type="radio" name="typeSelectSkillLevel" value="Begineer" [(ngModel)]="skillLevel">                        Begineer                      </label>                      <label class="btn btn-light-orange">                        <input type="radio" name="typeSelectSkillLevel" value="Moderate" [(ngModel)]="skillLevel">                        Moderate                      </label>                      <label class="btn btn-light-orange">                        <input type="radio" name="typeSelectSkillLevel" value="Expert" [(ngModel)]="skillLevel"> Expert                      </label>                    </div>                  </div>                  <div class="form-group mb-4">                    <label class="fw-bold my-1 py-1">Choose level </label>                    <br>                    <div class="btn-group" data-toggle="buttons-type">                      <label class="btn btn-light-orange">                        <input type="radio" name="typeSelectLevel" value="level1" [(ngModel)]="selectedLevel"> low price                      </label>                      <label class="btn btn-light-orange">                        <input type="radio" name="typeSelectLevel" value="level2" [(ngModel)]="selectedLevel"> low and                        mid price                      </label>                      <label class="btn btn-light-orange">                        <input type="radio" name="typeSelectLevel" value="level3" [(ngModel)]="selectedLevel"> low , mid                        and high price </label>                    </div>                  </div>                  <fieldset>                    <div class="custom-box1">                      <div class="form-outline mb-4">                        <h4 style="text-align: center;" class="fw-bold my-1 py-1">Low Price</h4>                        <hr class="hr">                      </div>                      <div class="form-outline mb-4">                        <label for="languagesSpoken" class="fw-bold my-1 py-1">Description about price</label>                        <textarea class="form-control form-control-lg" name="" placeholder="" rows="4"                          #level_1_Description></textarea>                        <br>                        <hr class="hr">                      </div>                      <div class="form-outline mb-4">                        <label for="languagesSpoken" class="fw-bold my-1 py-1">Days to place order</label>                        <input type="schoolname" id="f" class="form-control form-control-lg" placeholder=""                          name="priceLevel1" [(ngModel)]="orderDay1" #order_1_day>                        <br>                        <hr class="hr">                      </div>                      <div class="form-outline mb-4">                        <label class="fw-bold my-1 py-1">Price</label>                        <input type="schoolname" id="f" class="form-control form-control-lg" placeholder=""                          name="priceLevel1" [(ngModel)]="Price1" #level_1_Price>                      </div>                      <!-- Checkbox for Low Price -->                      <div class="form-check">                        <input class="form-check-input" type="checkbox" id="priceCheckbox1" name="confirmPrice"                          value="price1" [(ngModel)]="selectedPrice1" (change)="updateSelectedPrice(\'price1\', $event)">                        <label class="form-check-label" for="priceCheckbox1">                          Tick it for Display this price on users home                        </label>                      </div>                    </div>                  </fieldset>                  <br>                  <br>                  <fieldset [disabled]="selectedLevel === \'level1\'">                    <div class="custom-box1">                      <div class="form-outline mb-4">                        <h4 style="text-align: center;" class="fw-bold my-1 py-1">Mid Price</h4>                        <hr class="hr">                      </div>                      <div class="form-outline mb-4">                        <label for="languagesSpoken" class="fw-bold my-1 py-1">Description about price</label>                        <textarea class="form-control form-control-lg" name="" placeholder="" rows="4"                          #level_2_Description></textarea>                        <br>                        <hr class="hr">                      </div>                                            <div class="form-outline mb-4">                        <label for="languagesSpoken" class="fw-bold my-1 py-1">Days to place order</label>                        <input type="schoolname" id="f" class="form-control form-control-lg" placeholder=""                          name="priceLevel1" [(ngModel)]="orderDay2" #order_2_day>                        <br>                        <hr class="hr">                      </div>                      <div class="form-outline mb-4">                        <label class="fw-bold my-1 py-1">Price</label>                        <input type="schoolname" id="f" class="form-control form-control-lg" placeholder=""                          name="priceLevel2" [(ngModel)]="Price2" #level_2_Price>                      </div>                      <div class="form-check">                        <input class="form-check-input" type="checkbox" id="priceCheckbox2" name="confirmPrice"                          value="price2" [(ngModel)]="selectedPrice2" (change)="updateSelectedPrice(\'price2\', $event)">                        <label class="form-check-label" for="priceCheckbox2">                          Tick it for Display this price on users home                        </label>                      </div>                    </div>                  </fieldset>                  <br>                  <br>                  <fieldset [disabled]="selectedLevel === \'level1\'  || selectedLevel === \'level2\'">                    <div class="custom-box1">                      <div class="form-outline mb-4">                        <h4 style="text-align: center;" class="fw-bold my-1 py-1">High Price</h4>                        <hr class="hr">                      </div>                      <div class="form-outline mb-4">                        <label for="languagesSpoken" class="fw-bold my-1 py-1">Description about price</label>                        <textarea class="form-control form-control-lg" name="" placeholder="" rows="4"                          #level_3_Description></textarea>                        <br>                        <hr class="hr">                      </div>                      <div class="form-outline mb-4">                        <label for="languagesSpoken" class="fw-bold my-1 py-1">Days to place order</label>                        <input type="schoolname" id="f" class="form-control form-control-lg" placeholder=""                          name="priceLevel1" [(ngModel)]="orderDay3" #order_3_day>                        <br>                        <hr class="hr">                      </div>                      <div class="form-outline mb-4">                        <label for="f" class="fw-bold my-1 py-1">Price</label>                        <input type="text" id="f" class="form-control form-control-lg"                           name="priceLevel3" [(ngModel)]="Price3" #level_3_Price>                        <!-- Additional checkbox input -->                        <br>                        <div class="form-check">                          <input class="form-check-input" type="checkbox" id="priceCheckbox3" name="confirmPrice"                            value="price3" [(ngModel)]="selectedPrice3"                            (change)="updateSelectedPrice(\'price3\', $event)">                          <label class="form-check-label" for="priceCheckbox3">                            Tick it for Display this price on users home                          </label>                        </div>                      </div>                    </div>                  </fieldset>                  <br>                  <br>                  <div class="pt-1 mb-4">                    <button class="btn btn-dark btn-lg btn-block" type="submit"                      (click)="gigInfoAdd(  title , year_Of_Experience  , selectedType  , skillLevel , selectedLevel  , level_1_Description.value  ,  level_1_Price.value  , level_2_Description.value  , level_2_Price.value  ,  level_3_Description.value  , level_3_Price.value , selectedCategory1, selectedSubcategory,orderDay1,orderDay2,orderDay3)">                      Submit                    </button>                  </div>                  <div class="pt-1 mb-4">                  </div>                </form>              </div>            </div>          </div>        </div>      </div>    </div>  </div></section></div>'
+    var COMPONENTS = [{'name': 'AboutusComponent', 'selector': 'app-aboutus'},{'name': 'AccountControllComponent', 'selector': 'app-account-controll'},{'name': 'AccountSettingComponent', 'selector': 'app-account-setting'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'ChatPageComponent', 'selector': 'app-chat-page'},{'name': 'ContacusComponent', 'selector': 'app-contacus'},{'name': 'CurrentOrdersComponent', 'selector': 'app-current-orders'},{'name': 'EarningComponent', 'selector': 'app-earning'},{'name': 'FooterComponent', 'selector': 'app-footer'},{'name': 'ForgetPinComponent', 'selector': 'app-forget-pin'},{'name': 'GigInfoUploadComponent', 'selector': 'app-gig-info-upload'},{'name': 'GigManageComponent', 'selector': 'app-gig-manage'},{'name': 'GigPageComponent', 'selector': 'app-gig-page'},{'name': 'GigPricingComponent', 'selector': 'app-gig-pricing'},{'name': 'HeaderBeforeLoginComponent', 'selector': 'app-header-before-login'},{'name': 'HeaderComponent', 'selector': 'app-header'},{'name': 'HistoryordersComponent', 'selector': 'app-historyorders'},{'name': 'HomeAfterLoginComponent', 'selector': 'app-home-after-login'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'MeassageManageComponent', 'selector': 'app-meassage-manage'},{'name': 'MessageTableComponent', 'selector': 'app-message-table'},{'name': 'OkComponent', 'selector': 'app-ok'},{'name': 'OrderComponent', 'selector': 'app-order'},{'name': 'PrefrencesComponent', 'selector': 'app-prefrences'},{'name': 'PrivacypolicyComponent', 'selector': 'app-privacypolicy'},{'name': 'ProfessionDetailsComponent', 'selector': 'app-profession-details'},{'name': 'ProfileComponent', 'selector': 'app-profile'},{'name': 'ProfileSettingComponent', 'selector': 'app-profile-setting'},{'name': 'ProfileTeacherComponent', 'selector': 'app-profile-teacher'},{'name': 'ServicesPageComponent', 'selector': 'app-services-page'},{'name': 'SettingTeacherComponent', 'selector': 'app-setting-teacher'},{'name': 'SigninComponent', 'selector': 'app-signin'},{'name': 'SignupComponent', 'selector': 'app-signup'},{'name': 'UpdateGigComponent', 'selector': 'app-update-gig'},{'name': 'UpdateProffesionComponent', 'selector': 'app-update-proffesion'}];
+    var DIRECTIVES = [{'name': 'ClickOutsideDirective', 'selector': '[clickOutside]'},{'name': 'ClickOutsideDirective', 'selector': '[clickOutside]'}];
+    var ACTUAL_COMPONENT = {'name': 'GigPageComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'GigPageComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

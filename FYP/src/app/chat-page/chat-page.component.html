@@ -2,7 +2,8 @@
 
 <div class="chat-container">
     <!-- Chat Header with Name -->
-    <div class="chat-header">
+    <div class="chat-header d-flex align-items-center">
+        <img [src]="image | safeResourceUrl" class="rounded-circle" alt="Profile Image" style="height: 10vh; width: 5vw; border-radius: 1rem;">
         <h2>{{ studentName }}</h2>
     </div>
 
