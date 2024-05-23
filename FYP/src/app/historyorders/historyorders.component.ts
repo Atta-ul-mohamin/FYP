@@ -6,7 +6,11 @@ import { DatePipe } from '@angular/common';
 @Component({
   selector: 'app-historyorders',
   templateUrl: './historyorders.component.html',
+<<<<<<< Updated upstream
   styleUrls: ['./historyorders.component.css'] // Corrected property name from 'styleUrl' to 'styleUrls'
+=======
+  styleUrls: ['./historyorders.component.css'],
+>>>>>>> Stashed changes
 })
 export class HistoryordersComponent implements OnInit {
   

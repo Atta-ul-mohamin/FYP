@@ -7,7 +7,8 @@ import { interval } from 'rxjs';
   selector: 'app-current-orders',
 
   templateUrl: './current-orders.component.html',
-  styleUrl: './current-orders.component.css'
+  
+  styleUrls: ['./current-orders.component.css'],
 })
 export class CurrentOrdersComponent implements OnInit{
 
