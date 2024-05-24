@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { AppRoutingModule } from './app-routing.module';
@@ -104,6 +104,7 @@ import { CancelOrdersComponent } from './cancel-orders/cancel-orders.component';
     FontAwesomeModule,
     FormsModule,
     ReactiveFormsModule,
+    
   
     // AgmCoreModule.forRoot({
     //   apiKey: 'AIzaSyBamKmkAXbhYFW-cCxtAezM5xAON_-uv-0'
@@ -112,6 +113,7 @@ import { CancelOrdersComponent } from './cancel-orders/cancel-orders.component';
   ],
   providers: [DatePipe],
   bootstrap: [AppComponent],
+  schemas:  [CUSTOM_ELEMENTS_SCHEMA]
 
 })
 export class AppModule { }

@@ -83,16 +83,30 @@ export class ProfileComponent implements OnInit{
   async submit_profile( phone : number ,  gender:string , age:number , location:string , language:string , description:string) {
   
  
-    if (age === undefined || !Number.isInteger(age) || age < 0 || age > 120) {
+   
+  
+  
+    if (!age || !phone || !gender || !location || !language || !description ) {
+      alert('Please fill in all the fields.');
+      return;
+    }
+    if (age === undefined|| !Number.isInteger(age) || age < 0 || age > 120) {
       alert('Please enter a valid age');
       return;
     }
-
+    
+     
     // Assuming phone is a number but checking if it's defined and within a plausible range
-    if (phone === undefined || phone.toString().length < 7 || phone.toString().length > 15) {
+    if (phone === undefined || phone.toString().length < 10 || phone.toString().length > 11 ) {
       alert('Please enter a valid phone number.');
       return;
     }
+
+    if(description.length>=100 || description.length <=200)
+      {
+        alert('please enter description between 100 and 200 characters');
+        return;
+      }
 
       
     
@@ -102,6 +116,10 @@ export class ProfileComponent implements OnInit{
       if(this.pass === "null")
     {
       try {
+        if (!this.imageGoogle) {
+          alert('No file selected or file processing error.');
+          return;
+        }
         const result = await this.service.submitProfile(phone, gender, age, location, language, description, this.imageGoogle);
         if (result.status === 1) {
           alert('Profile created successfully');
