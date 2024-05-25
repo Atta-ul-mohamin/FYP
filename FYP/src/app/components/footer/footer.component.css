@@ -1,7 +1,5 @@
-/* body {
-    background: #3A3E4B;
-} */
-       /* Custom styles for the footer */
+
+       /* agar ham foter ke dot ko remove kar de ge tu vo fixed tu ho jae ga lekin vo home page ko hide are ga */
        .footer {
         background-color:  #3A3E4B;
         color: #fff;
@@ -9,6 +7,8 @@
         position: fixed;
         bottom: 0;
         width: 100%;
+        
+        
     }
 
     .footer a {

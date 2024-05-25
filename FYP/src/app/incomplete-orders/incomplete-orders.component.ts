@@ -5,7 +5,7 @@ import { DatePipe } from '@angular/common';
 @Component({
   selector: 'app-incomplete-orders',
   templateUrl: './incomplete-orders.component.html',
-  styleUrl: './incomplete-orders.component.css'
+  styleUrls: ['./incomplete-orders.component.css']
 })
 export class IncompleteOrdersComponent {
   orders: any[] = []; // Using any for simplicity

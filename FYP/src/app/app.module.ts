@@ -43,6 +43,23 @@ import { DatePipe } from '@angular/common';
 
 
 
+
+// yaha galti he jis k waja se location ni le raha 
+
+
+
+// import { AgmCoreModule } from '@agm/core';
+
+
+
+
+
+
+
+
+
+
+
 import { ReactiveFormsModule } from '@angular/forms';
 import { UpdateProffesionComponent } from './update-proffesion/update-proffesion.component';
 import { HttpClientModule } from '@angular/common/http';

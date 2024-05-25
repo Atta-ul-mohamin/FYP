@@ -1,3 +1,6 @@
+
+
+
 <html>
 
 <body>
@@ -15,17 +18,32 @@
                 <ul id="nav-length" class="navbar-nav justify-content-between border-top border-2 text-center">
                     <li class="nav-item"><a class="nav-link border-hover py-3 text-white" aria-current="page" href="#"
                             [routerLink]="['/home']">Home</a></li>
+                    <li class="nav-item">
+                        
+                            <a class="nav-link border-hover py-3 text-white" href="#"
+                        routerLink="/message_table">Messages</a>
+                        
+                    </li>
+
+
                     <li class="nav-item"><a class="nav-link border-hover py-3 text-white" href="#"
-                            [routerLink]="['/aboutus']">About</a></li>
-                    <li class="nav-item"><a class="nav-link border-hover py-3 text-white" href="#"
-                            [routerLink]="['/contactus']">Contact</a></li>
-                    <li class="nav-item"><a class="nav-link border-hover py-3 text-white" href="#" [routerLink]="['/services-page']">Services</a></li>
+                        routerLink="/orders" >Manage Orders</a></li>
+                        <li class="nav-item"><a class="nav-link border-hover py-3 text-white" 
+                            href="#" [routerLink]="['/gigmanage']"
+                            >Manage Gigs</a></li>
+
+                          
                     <!-- <li class="nav-item"  ><a class="nav-link border-hover py-3 text-white" href="#"
                             [routerLink]="['/signup']">Signup</a></li> -->
                     <li class="nav-item">
                         <a class="nav-link border-hover py-3 text-white" href="#" [routerLink]="['/gig-page']">Offer
                             Skill</a>
                     </li>
+
+                    <div  class="image-container  d-flex justify-content-center mt-2">
+                        <img [src]="pictur | safeResourceUrl" class="rounded-circle" alt="Profile Image" style="height: 7vh; width: 4vw;border-radius: 50%;" clickOutside
+                        (clickOutside)="clickedOutside()"  (click)="toggleMenu()">
+                    </div>
                    
 
 
@@ -34,10 +52,7 @@
                 <!-- <img src="assets\images\profile_dropdown_logo\user.png" *ngIf="isLoggedIn" clickOutside
                     (clickOutside)="clickedOutside()" class="user_pic" (click)="toggleMenu()" /> -->
 
-                    <div  class="image-container d-flex justify-content-center">
-                        <img [src]="pictur | safeResourceUrl" class="rounded-circle" alt="Profile Image" style="height: 7vh; width: 5vw; border-radius: 1rem;"  clickOutside
-                        (clickOutside)="clickedOutside()"  (click)="toggleMenu()">
-                    </div>
+    
 
                 <div class="sub-menu-wrap" *ngIf="isMenuOpened" id="subMenu">
                     <div class="sub-menu">

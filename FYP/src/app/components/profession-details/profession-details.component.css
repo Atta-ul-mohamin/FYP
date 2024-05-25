@@ -1,6 +1,15 @@
+.custom-background {
+    background-image: url('/assets/images/meetings-bg.jpg'); /* Update with the correct path to your image */
+    background-size: cover; /* Ensure the image covers the full area */
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Do not repeat the image */
+   
+  }
+
+
 .btn-light-orange {
     color: #0f0e0e; /* Text color */
-    background-color: rgb(228, 226, 222); /* Light Orange background color */
+    background-color: rgb(116, 114, 111); /* Light Orange background color */
     border-color:rgb(228, 226, 222); /* Border color */
 }
 

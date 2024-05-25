@@ -1,23 +1,23 @@
-<body>
+<!-- <body>
   <footer class="footer">
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-3 col-sm-3 text-center" style="margin-bottom: 20px;"> <!-- Adjust the margin-bottom value as needed -->
+            <div class="col-3 col-sm-3 text-center" style="margin-bottom: 20px;"> 
                 <a routerLink="/home-after-login" class="footer-icons">
                     <fa-icon class="fa-2x" [icon]="house"></fa-icon>
                 </a>
             </div>
-            <div class="col-3 col-sm-3 text-center" style="margin-bottom: 20px;"> <!-- Adjust the margin-bottom value as needed -->
+            <div class="col-3 col-sm-3 text-center" style="margin-bottom: 20px;"> 
                 <a routerLink="/message_table" class="footer-icons">
                     <fa-icon class="fa-2x" [icon]="message"></fa-icon>
                 </a>
             </div>
-            <div class="col-3 col-sm-3 text-center" style="margin-bottom: 20px;"> <!-- Adjust the margin-bottom value as needed -->
+            <div class="col-3 col-sm-3 text-center" style="margin-bottom: 20px;"> 
                 <a routerLink="/orders" class="footer-icons">
                     <fa-icon class="fa-2x" [icon]="manage_orders"></fa-icon>
                 </a>
             </div>
-            <div class="col-3 col-sm-3 text-center" style="margin-bottom: 20px;"> <!-- Adjust the margin-bottom value as needed -->
+            <div class="col-3 col-sm-3 text-center" style="margin-bottom: 20px;"> 
                 <a routerLink="/account_controll" class="footer-icons">
                     <fa-icon class="fa-2x" [icon]="profile"></fa-icon>
                 </a>
@@ -25,7 +25,13 @@
         </div>
     </div>
   </footer>
-</body>
+</body> -->
+
+<!-- <a class="nav-link border-hover py-3 text-white" href="#"
+                            [routerLink]="['/aboutus']">About</a>
+                            <a class="nav-link border-hover py-3 text-white" href="#"
+                            [routerLink]="['/contactus']">Contact</a>
+ -->
 
 
 
@@ -34,75 +40,89 @@
 
 
 
+<div class=" bg-dark text-white ">
 
+  <footer class="text-center text-lg-start border border-white mt-xl-5 pt-4">
+  <!-- Grid container -->
+  <div class="container p-4">
+    <!--Grid row-->
+    <div class="row">
+      <!--Grid column-->
+      <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
+        <h5 class="text-uppercase mb-4">OUR WORLD</h5>
 
-
-
-<!--
-<body>
-  <div>
-    <footer class="text-center text-lg-start border border-white mt-xl-5 pt-4">
-      <div class="container p-4">
-        <div class="row">
-          <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
-            <h5 class="text-uppercase mb-4" style="color: #FF9138;">OUR WORLD</h5>
-            <ul class="list-unstyled mb-4">
-              <li>
-                <a href="#!" class="text-white">About us</a>
-              </li>
-              <li>
-                <a href="#!" class="text-white">Collections</a>
-              </li>
-              <li>
-                <a href="#!" class="text-white">Environmental philosophy</a>
-              </li>
-              <li>
-                <a href="#!" class="text-white">Artist collaborations</a>
-              </li>
-            </ul>
-          </div>
-
-          <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
-            <h5 class="text-uppercase mb-4" style="color: #FF9138;">Assistance</h5>
-            <ul class="list-unstyled">
-              <li>
-                <a href="#!" class="text-white">Contact us</a>
-              </li>
-              <li>
-                <a href="#!" class="text-white">Size Guide</a>
-              </li>
-              <li>
-                <a href="#!" class="text-white">Shipping Information</a>
-              </li>
-              <li>
-                <a href="#!" class="text-white">Returns & Exchanges</a>
-              </li>
-              <li>
-                <a href="#!" class="text-white">Payment</a>
-              </li>
-            </ul>
-          </div>
-
-          <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
-            <h5 class="text-uppercase mb-4" style="color: #FF9138;">Careers</h5>
-            <ul class="list-unstyled">
-              <li>
-                <a href="#!" class="text-white">Jobs</a>
-              </li>
-            </ul>
-          </div>
-
-          <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
-            <h5 class="text-uppercase mb-4" style="color: #FF9138;">Sign up to our newsletter</h5>
-            <div class="form-outline form-white mb-4">
-              <input type="email" id="form5Example2" class="form-control" />
-              <label class="form-label" for="form5Example2">Email address</label>
-            </div>
-            <button type="submit" class="btn btn-outline-secondary btn-block">Subscribe</button>
-          </div>
-        </div>
+        <ul class="list-unstyled mb-4">
+          <li>
+            
+            
+            <a class="nav-link border-hover  text-white" href="#"
+                            [routerLink]="['/aboutus']">About</a>
+          </li>
+          <li>
+            <a class="nav-link border-hover  text-white" href="#" [routerLink]="['/services-page']">Services</a>          </li>
+          
+          <li>
+            <a class="nav-link border-hover  text-white" href="#" [routerLink]="['/services-page']">Artist collaborations</a> 
+          </li>
+        </ul>
       </div>
-    </footer>
+      <!--Grid column-->
+
+      <!--Grid column-->
+      <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
+        <h5 class="text-uppercase mb-4">Assistance</h5>
+
+        <ul class="list-unstyled">
+          <li>
+            <a class="nav-link border-hover  text-white" href="#"
+            [routerLink]="['/contactus']">Contact</a>          </li>
+          
+          <li>
+            <a class="nav-link border-hover  text-white" href="#" [routerLink]="['/services-page']">Exchange Information</a> 
+
+          </li>
+         
+          <li>
+            <a class="nav-link border-hover  text-white" href="#" [routerLink]="['/services-page']"> Payment</a> 
+
+          </li>
+        </ul>
+      </div>
+      <!--Grid column-->
+
+      <!--Grid column-->
+      <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
+        <h5 class="text-uppercase mb-4">Careers</h5>
+
+        <ul class="list-unstyled">
+          <li>
+            <a class="nav-link border-hover  text-white" href="#" [routerLink]="['/services-page']" >Jobs</a>
+
+          </li>
+        </ul>
+      </div>
+      <!--Grid column-->
+
+      <!--Grid column-->
+      <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
+        <h5 class="text-uppercase mb-4">Sign up to our newsletter</h5>
+
+        <div class="form-outline form-white mb-4">
+          <input type="email" id="form5Example2" class="form-control" />
+          <label class="form-label" for="form5Example2">Email address</label>
+        </div>
+
+        <button type="submit" class="btn btn-outline-secondary btn-block">Subscribe</button>
+      </div>
+      <!--Grid column-->
+    </div>
+    <!--Grid row-->
   </div>
-</body>
--->
+  <!-- Grid container -->
+
+  <!-- Copyright -->
+  
+</footer>
+
+</div>
+<!-- End of .container -->

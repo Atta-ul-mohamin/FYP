@@ -1,44 +1,36 @@
-/* Component-specific styles */
 .custom-background {
-    background-image: url('/assets/images/meetings-bg.jpg'); /* Update with the correct path to your image */
-    background-size: cover; /* Ensure the image covers the full area */
-    background-position: center; /* Center the image */
-    background-repeat: no-repeat; /* Do not repeat the image */
-   
+  background-image: url('/assets/images/meetings-bg.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
-.card {
-    transition: box-shadow 0.3s ease; /* Transition for shadow for a smooth effect */
-    border-radius: 1rem; /* Rounded corners for the card */
-    background-color: #ffffff; /* White background for clarity */
-  }
-  
-  .card:hover {
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15); /* Slightly larger shadow on hover for a 'raised' effect */
-  }
-  
-  /* .translate-middle-y {
-    transform: translateY(-50%);
-  } */
 
-  .form-outline.position-relative {
-    position: relative;
-  }
-  
-  .form-outline .btn.position-absolute {
-    top: 50%;
-    right: 0;
-    transform: translate(0, -50%);
-    border: none;
-    background: none;
-  }
-  
-  /* Ensure the input and the button are aligned in height */
-  .form-outline .form-control {
-    height: 48px; /* or your desired height */
-  }
-  
-  .form-outline .btn {
-    height: 48px; /* should match the input height or adjusted as needed */
-  }
-  
-  
+.card {
+  transition: box-shadow 0.3s ease;
+  border-radius: 1rem;
+  background-color: #ffffff;
+}
+
+.card:hover {
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.form-outline.position-relative {
+  position: relative;
+}
+
+.form-outline .btn.position-absolute {
+  top: 50%;
+  right: 0;
+  transform: translate(0, -50%);
+  border: none;
+  background: none;
+}
+
+.form-outline .form-control {
+  height: 48px;
+}
+
+.form-outline .btn {
+  height: 48px;
+}

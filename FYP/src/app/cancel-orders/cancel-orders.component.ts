@@ -6,7 +6,7 @@ import { DatePipe } from '@angular/common';
 @Component({
   selector: 'app-cancel-orders',
   templateUrl: './cancel-orders.component.html',
-  styleUrl: './cancel-orders.component.css'
+  styleUrls: ['./cancel-orders.component.css']
 })
 export class CancelOrdersComponent {
   orders: any[] = []; // Using any for simplicity
