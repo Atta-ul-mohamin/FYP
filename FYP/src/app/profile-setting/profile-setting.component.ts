@@ -14,20 +14,26 @@ export class ProfileSettingComponent  {
   // Initialize the userLocation variable
   
   teacherID : string = '';
-  language:string='';
-  description:string = '';  
+  availableLanguages: string[] = ['Urdu', 'English', 'Punjabi', 'Saraiki', 'Sindhi', 'Balochi', 'Arabi', 'Pushto'];
+  selectedLanguages: string[] = [];
+  selectedLanguage: string = '';
+  language:string[]=[];
+  selectedFile1: File | null = null;
+  fileBinaryString1: string ='';
+  descriptions:string = '';  
   userLocation: string = ''; 
   age: number | undefined = undefined;
- 
-  phone:string='';
+  phone: number | undefined = undefined;
+  cnic: number | undefined = undefined;
   selectedgender:string ="";
   profileId:string="";
   pictur:string="";
+  cnicImage:string=""
   
   descriptionCount: number | null = null;
   isDescriptionLimitReached: boolean = false;
   selectedFile: File | null = null;
-  fileBinaryString: string | null = null;
+  fileBinaryString: string ='';
   pass : string = '';
   //yaha par jo parse service lagana he yaha ae ga or authentication b
   constructor(private service: ParseService, private route: ActivatedRoute , private router: Router) { }
@@ -38,6 +44,19 @@ export class ProfileSettingComponent  {
     console.log(this.pass);
     this.fetchProfileData();
   }
+
+  addLanguage() {
+    if (this.selectedLanguage && !this.selectedLanguages.includes(this.selectedLanguage)) {
+      this.selectedLanguages.push(this.selectedLanguage);
+      this.selectedLanguage = ''; // Reset the dropdown
+    }
+  }
+
+  resetLanguages() {
+    this.selectedLanguages = [];
+    this.selectedLanguage = '';
+  }
+
 
   onDescriptionInput(value: string) {
     this.descriptionCount = value.length;
@@ -51,17 +70,17 @@ export class ProfileSettingComponent  {
       
       if (result.status === 1) {
 
-       console.log(result)
        this.pictur = result.data.pictur;
-       console.log(this.pictur);
        this.language = result.data.language;
+       console.log(this.language);
        this.phone = result.data.phone;
-       this.description = result.data.description;
+       this.descriptions = result.data.description;
        this.userLocation = result.data.location;
        this.age= result.data.age;
        this.selectedgender = result.data.gender;
        this.profileId = result.data.objectId;
-       
+       this.cnic=result.data.cnicNumber;
+       this.cnicImage=result.data.cnicImage;
       } else {
      
       }
@@ -90,36 +109,47 @@ export class ProfileSettingComponent  {
     
     
   
-  async submit_profile( phone : string ,  gender:string , age:number , location:string , language:string , description:string) {
+  async submit_profile( phone :number ,  gender:string , age:number , location:string , language:string[] , description:string, cnic:number) {
   
-    const descriptionLength = description.length;
-    if (descriptionLength < 100) {
-      alert('Description should more than 100 characters.');
+  
+
+    if (!age || !phone || !gender || !location || !language || !description || !cnic) {
+      alert('Please fill in all the fields.');
+      return;
+    }
+   
+    if (age === undefined || age.toString().length < 0 || age.toString().length > 120 ) {
+      alert('Please enter a valid age.');
+      return;
+    }
+     
+    if (cnic === undefined || cnic.toString().length < 13 || cnic.toString().length > 13 ) {
+      alert('Please enter a valid cnic number.');
+      return;
+    }
+     
+   
+    if (phone === undefined || phone.toString().length < 10 || phone.toString().length>10 ) {
+      alert('phone number digits should be equal to 10');
       return;
     }
 
-    // if (age === undefined || !Number.isInteger(age) || age < 0 || age > 120) {
-    //   alert('Please enter a valid age');
-    //   return;
-    // }
-
-    // Assuming phone is a number but checking if it's defined and within a plausible range
-    if (phone === undefined || phone.toString().length < 7 || phone.toString().length > 15) {
-      alert('Please enter a valid phone number.');
-      return;
-    }
-
-  
-
-  
-      if (!this.fileBinaryString) {
-        alert('No file selected or file processing error.');
+    if(description.length<100 || description.length >250)
+      {
+        alert('please enter description between 99 and 251 characters');
         return;
       }
+
+  
+
     
-
-
-    const result = await this.service.update_submit_profile(this.profileId,this.teacherID, phone, gender, age, location,language, description,this.fileBinaryString)
+if(!this.fileBinaryString){
+ this.fileBinaryString = this.pictur;
+}
+if(!this.fileBinaryString1){
+  this.fileBinaryString1 = this.cnicImage
+}
+    const result = await this.service.update_submit_profile(this.profileId,this.teacherID, phone, gender, age, location,language,description,this.fileBinaryString , cnic , this.fileBinaryString1)
     if(result.status===1)
     {
       alert('profile edited successfully');
@@ -162,7 +192,7 @@ export class ProfileSettingComponent  {
     const input = event.target as HTMLInputElement;
     if (!input.files || input.files.length === 0) {
       this.selectedFile = null;
-      this.fileBinaryString = null;
+      this.fileBinaryString ;
     } else {
       this.selectedFile = input.files[0];
       const blobUrl = URL.createObjectURL(this.selectedFile);
@@ -177,6 +207,36 @@ export class ProfileSettingComponent  {
   
   // Method to convert Blob URL to Base64 string
   async convertBlobUrlToBase64String(blobUrl: string): Promise<string> {
+    const response = await fetch(blobUrl);
+    const blob = await response.blob();
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        const base64String = reader.result; // This is a Base64 string
+        resolve(base64String as string);
+      };
+      reader.onerror = reject;
+      reader.readAsDataURL(blob); // Changed to readAsDataURL for Base64
+    });
+  }
+  
+  onFileChanged1(event: Event) {
+    const input = event.target as HTMLInputElement;
+    if (!input.files || input.files.length === 0) {
+      this.selectedFile1 = null;
+      this.fileBinaryString1 ;
+    } else {
+      this.selectedFile1 = input.files[0];
+      const blobUrl = URL.createObjectURL(this.selectedFile1);
+      this.convertBlobUrlToBase64String1(blobUrl)
+        .then(base64String => {
+          this.fileBinaryString1 = base64String; // Store Base64 string
+          console.log('Generated Base64 String:', this.fileBinaryString1.substring(0, 5) + '...');
+        })
+        .catch(error => console.error('Error reading file as Base64 string:', error));
+    }
+  }
+  async convertBlobUrlToBase64String1(blobUrl: string): Promise<string> {
     const response = await fetch(blobUrl);
     const blob = await response.blob();
     return new Promise((resolve, reject) => {

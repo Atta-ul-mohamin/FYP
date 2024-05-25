@@ -272,7 +272,7 @@ and also main image will be shown to student." style="cursor: help; text-decorat
 
                   <div class="pt-1 mb-4">
                     <button class="btn btn-dark btn-lg btn-block" type="submit"
-                      (click)="gigInfoAdd(  title , year_Of_Experience  , selectedType  , skillLevel , selectedLevel  , level_1_Description.value  ,  level_1_Price.value  , level_2_Description.value  , level_2_Price.value  ,  level_3_Description.value  , level_3_Price.value , selectedCategory1, selectedSubcategory,orderDay1,orderDay2,orderDay3)">
+                      (click)="gigInfoAdd(  title , year_Of_Experience ?? 0 , selectedType  , skillLevel , selectedLevel  , level_1_Description.value  ,  Price1 ?? 0 , level_2_Description.value  , Price2 ?? 0  ,  level_3_Description.value  , Price3 ?? 0 , selectedCategory1, selectedSubcategory,orderDay1??0,orderDay2??0,orderDay3??0)">
                       Submit
                     </button>
                   </div>

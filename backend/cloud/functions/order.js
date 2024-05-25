@@ -63,6 +63,152 @@ Parse.Cloud.define("getOrders", async (request) => {
     }));
 });
 
+
+Parse.Cloud.define("getCancelOrders", async (request) => {
+
+    const {userId} = request.params; // Get the current user's objectId
+    const query = new Parse.Query('cancelOrders');
+    query.equalTo('studentId', userId); // Add a filter to get gigs only for the current user
+    const results = await query.find();
+
+    return results.map(result => ({
+        cardId : result.get('cardId'),
+        price: result.get('price'),
+        objectId : result.id,
+        title :  result.get('title'),
+        created :result.get('createdAt'),
+    }));
+});
+
+Parse.Cloud.define("getCancelOrdersTeacher", async (request) => {
+
+    const {userId} = request.params; // Get the current user's objectId
+    const query = new Parse.Query('cancelOrders');
+    query.equalTo('teacherId', userId); // Add a filter to get gigs only for the current user
+    const results = await query.find();
+
+    return results.map(result => ({
+        cardId : result.get('cardId'),
+        price: result.get('price'),
+        objectId : result.id,
+        title :  result.get('title'),
+        created :result.get('createdAt'),
+    }));
+});
+
+Parse.Cloud.define("getIncompleteOrdersTeacher", async (request) => {
+
+    const {userId} = request.params; // Get the current user's objectId
+    const query = new Parse.Query('incompleteOrders');
+    query.equalTo('teacherId', userId); // Add a filter to get gigs only for the current user
+    const results = await query.find();
+
+    return results.map(result => ({
+        cardId : result.get('cardId'),
+        price: result.get('price'),
+        objectId : result.id,
+        title :  result.get('title'),
+        created :result.get('createdAt'),
+    }));
+});
+
+Parse.Cloud.define("getIncompleteOrdersStudent", async (request) => {
+
+    const {userId} = request.params; // Get the current user's objectId
+    const query = new Parse.Query('incompleteOrders');
+    query.equalTo('studentId', userId); // Add a filter to get gigs only for the current user
+    const results = await query.find();
+
+    return results.map(result => ({
+        cardId : result.get('cardId'),
+        price: result.get('price'),
+        objectId : result.id,
+        title :  result.get('title'),
+        created :result.get('createdAt'),
+    }));
+});
+
+
+Parse.Cloud.define("getTitles", async (request) => {
+    // Create a new query on the 'create_gig' class
+    const query = new Parse.Query("create_gig");
+  
+    // Specify that we want to retrieve the 'title' and 'cardId' fields
+    query.select("title", "cardId");
+  
+    try {
+      // Execute the query
+      const results = await query.find();
+  
+      // Extract titles and cardIds from the results
+      const titles = results.map((record) => ({
+        title: record.get("title"),
+        cardId: record.get("cardId")
+      }));
+  
+      // Return the titles and cardIds in a success response
+      return {
+        status: 1,
+        data: titles
+      };
+    } catch (error) {
+      // Handle any errors that occurred during the query
+      console.error("Error retrieving titles:", error);
+      return {
+        status: 0,
+        message: "Error retrieving titles",
+        error: error.message
+      };
+    }
+  });
+  
+  
+
+Parse.Cloud.define("MoveToIncompleteOrders", async (request) => {
+    const { orderId } = request.params;
+  
+    // Query to find the specific order
+    const query = new Parse.Query('order');
+    query.equalTo('objectId', orderId);
+    const order = await query.first(); // Use first() since objectId is unique
+  
+    if (order) {
+      const incompleteOrders = Parse.Object.extend("incompleteOrders");
+      const incompleteOrder = new incompleteOrders();
+  
+      // Create pointers for related objects
+      const cardIdPointer = order.get("cardId");
+      const studentIdPointer = order.get("studentId");
+      const teacherIdPointer = order.get("teacherId");
+  
+      // Set the fields for the incompleteOrders table
+      incompleteOrder.set("cardId", cardIdPointer);
+      incompleteOrder.set("price", order.get("price"));
+      incompleteOrder.set("title", order.get("title"));
+      incompleteOrder.set("studentId", studentIdPointer);
+      incompleteOrder.set("teacherId", teacherIdPointer);
+      incompleteOrder.set("orderDay", order.get("orderDay"));
+  
+      try {
+        // Save the incompleteOrder
+        await incompleteOrder.save();
+  
+        // Delete the order
+        await order.destroy();
+  
+        // Return success message
+        return { status: 1, message: "Order moved to incompleteOrders and removed from orders table" };
+      } catch (error) {
+        // Error handling
+        return { status: 0, error: error.message };
+      }
+    } else {
+      // No order found
+      return { status: 0, message: "No order found with the provided ID." };
+    }
+  });
+  
+
 Parse.Cloud.define("getOrdersTeacher", async (request) => {
 
     const {userId} = request.params; // Get the current user's objectId
@@ -80,6 +226,45 @@ Parse.Cloud.define("getOrdersTeacher", async (request) => {
         title :  result.get('title'),
         created :result.get('createdAt'),
     }));
+});
+
+
+
+Parse.Cloud.define("getHistoryOrderDetails", async (request) => {
+    const { cardId } = request.params;
+    const query = new Parse.Query('HistoryOrders');
+
+    // Query the 'HistoryOrders' for rows matching the provided 'cardId'
+    query.equalTo('cardId', cardId);
+
+    try {
+        // Execute the query
+        const results = await query.find();
+        const reviews = [];
+
+        for (const order of results) {
+            const studentId = order.get('studentId'); // Assuming 'studentId' is a pointer to the 'MUser' class
+
+            // Fetch the student's name from the 'MUser' class
+            const student = await studentId.fetch();
+
+            // Append the review and student's name to the reviews array
+            reviews.push({
+                review: order.get('review'),
+                studentName: student.get('name') // Assuming 'name' is the field for student's name in 'MUser'
+            });
+        }
+
+        return {
+            success: true,
+            reviews: reviews
+        };
+    } catch (error) {
+        return {
+            success: false,
+            message: `Error fetching order details: ${error.message}`
+        };
+    }
 });
 
 
@@ -172,38 +357,103 @@ Parse.Cloud.define("CompleteOrdersTeacher", async (request) => {
 });
 
 
+
+Parse.Cloud.define("CancelOrdersStudent", async (request) => {
+    const { orderId } = request.params;
+
+    // Query to find the specific order
+    const query = new Parse.Query('order');
+    query.equalTo('objectId', orderId);
+    const order = await query.first(); // Use first() since objectId is unique
+
+    if (order) {
+        const cancelOrders = Parse.Object.extend("cancelOrders");
+        const cancelOrder = new cancelOrders();
+
+        // Create pointers for related objects
+        const cardIdPointer = order.get("cardId");
+        const studentIdPointer = order.get("studentId");
+        const teacherIdPointer = order.get("teacherId");
+
+        // Set the fields for the cancelOrders table
+        cancelOrder.set("cardId", cardIdPointer);
+        cancelOrder.set("price", order.get("price"));
+        cancelOrder.set("title", order.get("title"));
+        cancelOrder.set("studentId", studentIdPointer);
+        cancelOrder.set("teacherId", teacherIdPointer);
+        cancelOrder.set("orderDay", order.get("orderDay"));
+
+        try {
+            // Save the cancelOrder
+            await cancelOrder.save();
+
+            // Delete the order
+            await order.destroy();
+
+            // Return success message
+            return { status: 1, message: "Order cancelled and saved in cancelOrders table" };
+        } catch (error) {
+            // Error handling
+            return { status: 0, error: error.message };
+        }
+    } else {
+        // No order found
+        return { status: 0, message: "No order found with the provided ID." };
+    }
+});
+
+
+
 Parse.Cloud.define("updateOrders", async (request) => {
-    const { id, rating, review , completionPercent} = request.params;  // Destructure the parameters
+    const { id, rating, review, completionPercent } = request.params;
 
-    // Create a query for the HistoryOrders class
-    const query = new Parse.Query('HistoryOrders');
+    const HistoryOrders = Parse.Object.extend('HistoryOrders');
+    const query = new Parse.Query(HistoryOrders);
 
-    // Query the object by id
     try {
-        const order = await query.get(id); // Retrieve the specific order
-
-        // Check if order exists
+        const order = await query.get(id);
         if (!order) {
             throw new Error('Order not found');
         }
 
-        // Set the new rating and review
         order.set('rating', rating);
         order.set('review', review);
         order.set('completionConfirmation', completionPercent);
+        const updatedOrder = await order.save(null, { useMasterKey: true });
 
-        // Save the updated order
-        const updatedOrder = await order.save(null, { useMasterKey: true }); // Use master key if necessary
+        // Retrieve the objectId from the updated order
+        const cardId = updatedOrder.get('cardId');
 
-        // Return the updated order
+        // Query for other orders with the same objectId
+        const objectIdQuery = new Parse.Query(HistoryOrders);
+        objectIdQuery.equalTo('cardId', cardId);
+        const relatedOrders = await objectIdQuery.find();
+
+        // Calculate the average rating
+        const sumRating = relatedOrders.reduce((acc, cur) => acc + Number(cur.get('rating')), 0);
+        const averageRating = sumRating / relatedOrders.length;
+
+
+        // Update the 'create_gig' table with the average rating
+        const CreateGig = Parse.Object.extend('create_gig');
+        const gigQuery = new Parse.Query(CreateGig);
+        gigQuery.equalTo('objectId', cardId); // Assuming create_gig table also uses objectId to correlate
+        const gig = await gigQuery.first();
+
+        if (gig) {
+            gig.set('averageRating', averageRating);
+            await gig.save(null, { useMasterKey: true });
+        }
+
         return {
             success: true,
-            message: 'Order updated successfully',
+            message: 'Order and gig average rating updated successfully',
             data: {
                 objectId: updatedOrder.id,
                 rating: updatedOrder.get('rating'),
                 review: updatedOrder.get('review'),
-                completionConfirm: updatedOrder.get('completionConfirmation')
+                completionConfirm: updatedOrder.get('completionConfirmation'),
+                averageRating: averageRating
             }
         };
     } catch (error) {
@@ -213,3 +463,6 @@ Parse.Cloud.define("updateOrders", async (request) => {
         };
     }
 });
+
+
+

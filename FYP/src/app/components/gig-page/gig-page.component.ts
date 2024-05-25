@@ -15,7 +15,7 @@ export class GigPageComponent {
 selectedCategory: string = '';
 selectedType: string = '';
 title : string = '';
-year_Of_Experience : string = '';
+year_Of_Experience : number | undefined = undefined;
  age: number | undefined = undefined;
 skillLevel :string = '';
 // price : string = '';
@@ -30,12 +30,18 @@ fileBinaryString2: string | null = null;
 selectedFile3: File | null = null;
 fileBinaryString3: string | null = null;
 homePrice: string = '';
-Price1: string= '';
-Price2: string = '';
-Price3: string = '';
-orderDay1 : string = '';
-orderDay2 : string = '';
-orderDay3 : string = '';
+level1DescriptionCount: number | null = null;
+level1IsDescriptionLimitReached : boolean = false;
+level2DescriptionCount: number | null = null;
+level2IsDescriptionLimitReached : boolean = false;
+level3DescriptionCount: number | null = null;
+level3IsDescriptionLimitReached : boolean = false;
+Price1: number | undefined = undefined;
+Price2: number | undefined = undefined;
+Price3: number | undefined = undefined;
+orderDay1: number | undefined = undefined;
+orderDay2 : number | undefined = undefined;
+orderDay3 : number | undefined = undefined;
 
 fullTitle : string = '';
 profileId : string = '';
@@ -133,61 +139,63 @@ updateSelectedPrice(priceLevel: string, event: Event) {
 
  
 
-  async gigInfoAdd(title : string , year_Of_Experience: string  , type: string, skill: string , level: string   , level_1_Description: string  ,  level_1_Price: string  , level_2_Description: string  , level_2_Price: string  ,  level_3_Description: string  , level_3_Price: string , selectedCategory1: string, selectedSubcategory: string ,orderDay1:string,orderDay2:string,orderDay3:string ){
-    
-    // this.fullTitle = `I will ${title}`;
-    const titles= title.trim();
-    const year_Of_Experiences = year_Of_Experience.trim();
-    const level_1_Descriptions =  level_1_Description.trim();
-    const level_1_Prices = level_1_Price.trim();
-    const orderDay1s = orderDay1.trim();
-    const level_2_Descriptions =  level_2_Description.trim();
-    const level_2_Prices = level_2_Price.trim();
-    const orderDay2s = orderDay2.trim();
-    const level_3_Descriptions =  level_3_Description.trim();
-    const level_3_Prices = level_3_Price.trim();
-    const orderDay3s = orderDay3.trim();
+  async gigInfoAdd(title : string , year_Of_Experience: number , type: string, skill: string , level: string   , level_1_Description: string  ,  level_1_Price: number  , level_2_Description: string  , level_2_Price: number  ,  level_3_Description: string  , level_3_Price: number, selectedCategory1: string, selectedSubcategory: string ,orderDay1:number,orderDay2:number,orderDay3:number){
 
-    if (titles.length < 10 || titles.length > 25) {
-      alert('title must be between 15 and 30 characters long.');
+    const titles= title.trim();
+    const level_1_Descriptions =  level_1_Description.trim();
+    // const level_1_Prices = level_1_Price.trim();
+    // const orderDay1s = orderDay1.trim();
+    const level_2_Descriptions =  level_2_Description.trim();
+    // const level_2_Prices = level_2_Price.trim();
+    // const orderDay2s = orderDay2.trim();
+    const level_3_Descriptions =  level_3_Description.trim();
+    // const level_3_Prices = level_3_Price.trim();
+    // const orderDay3s = orderDay3.trim();
+
+    if (titles.length < 10 || titles.length > 30) {
+      alert('title must be between 15 and 35 characters long.');
       return;
     }
    
-    if (year_Of_Experiences.length <= -1 || year_Of_Experiences.length > 81) {
+    if (year_Of_Experience <= -1 || year_Of_Experience > 81) {
       alert('year_of_experience can not be negative or exceed 80 years');
       return;
     }
 
     if(level=='level1' || level=='' || level=='level2' || level=='level3'){
-    if(level_1_Descriptions.length <= 50 || level_1_Descriptions.length >= 100){
+    if(level_1_Descriptions.length < 50 || level_1_Descriptions.length > 100){
       alert('description in low price should be between 50 and 100 characters ');
       return;
     }
 
-    if(level_1_Prices.length <= 100 || level_1_Prices.length >= 100000){
+    if(orderDay1 < 1 || orderDay1 > 30){
+      alert('order days in low price should be between 1 and 30 days ');
+      return;
+    }
+
+    if(level_1_Price < 100 || level_1_Price > 100000){
       alert('price in low price should be between 100 and 1000000 rupees');
       return;
     }
 
-    if(orderDay1s.length <= 1 || orderDay1s.length >= 30){
-      alert('order days in low price should be between 1 and 30 days ');
-      return;
-    }
+    
   }
     if(level=='level2' || level=='level3' || level==''){
-    if(level_2_Descriptions.length <= 50 || level_2_Descriptions.length >= 100){
+    if(level_2_Descriptions.length < 50 || level_2_Descriptions.length > 100){
       alert('description in mid price should be between 50 and 100 characters ');
       return;
     }
 
-    if(level_2_Prices.length <= 100 || level_2_Prices.length >= 100000){
-      alert('price in mid price should be between 100 and 1000000 rupees');
-      return;
-    }
-    if(orderDay2s.length <= 1 || orderDay2s.length >= 30){
+    if(orderDay2<= 1 || orderDay2>= 30){
       alert('order days in mid price should be between 1 and 30 days ');
       return;
     }
+
+    if(level_2_Price < 100 || level_2_Price> 100000){
+      alert('price in mid price should be between 100 and 1000000 rupees');
+      return;
+    }
+    
   }
     if(level=='level3' || level==''){
     if(level_3_Descriptions.length <= 50 || level_3_Descriptions.length >= 100){
@@ -196,12 +204,12 @@ updateSelectedPrice(priceLevel: string, event: Event) {
     }
 
     
-    if(level_3_Prices.length <= 100 || level_3_Prices.length >= 100000){
+    if(level_3_Price < 100 || level_3_Price> 100000){
       alert('price in high price should be between 100 and 1000000 rupees');
       return;
     }
 
-    if(orderDay3s.length <= 1 || orderDay3s.length >= 30){
+    if(orderDay3< 1 || orderDay3 > 30){
       alert('order days in high price should be between 1 and 30 days ');
       return;
     }
@@ -217,7 +225,7 @@ updateSelectedPrice(priceLevel: string, event: Event) {
     //   alert('Name must be between 3 and 20 characters long.');
     //   return;
     // }
-    const result = await this.service.gig_info_add( titles , year_Of_Experiences  , type  , skill  , level  , level_1_Descriptions  ,  level_1_Prices  , level_2_Descriptions  , level_2_Prices  ,  level_3_Descriptions  , level_3_Prices , this.homePrice , selectedCategory1, selectedSubcategory , this.profileId ,this.fileBinaryString1! , this.fileBinaryString2! , this.fileBinaryString3!,orderDay1s,orderDay2s,orderDay3s );
+    const result = await this.service.gig_info_add( titles , year_Of_Experience  , type  , skill  , level  , level_1_Descriptions  ,  level_1_Price , level_2_Descriptions  , level_2_Price  ,  level_3_Descriptions  , level_3_Price , this.homePrice , selectedCategory1, selectedSubcategory , this.profileId ,this.fileBinaryString1! , this.fileBinaryString2! , this.fileBinaryString3!,orderDay1,orderDay2,orderDay3);
     if(result.status===1){
      alert('gig created successfuly')
      this.router.navigate(['/gigmanage']);
@@ -228,6 +236,11 @@ updateSelectedPrice(priceLevel: string, event: Event) {
     ;
   }
 
+
+  onDescriptionInput(value: string) {
+    this.level1DescriptionCount = value.length;
+    this.level1IsDescriptionLimitReached = this.level1DescriptionCount >= 100 ;
+  }
   submitForm() {
     const fullTitle = `I will ${this.title}`;
     // Now use fullTitle for your submission or processing logic
@@ -314,6 +327,7 @@ updateSelectedPrice(priceLevel: string, event: Event) {
         .catch(error => console.error('Error reading file as Base64 string:', error));
     }
   }
+
   
   // Method to convert Blob URL to Base64 string
   async convertBlobUrlToBase64String3(blobUrl: string): Promise<string> {

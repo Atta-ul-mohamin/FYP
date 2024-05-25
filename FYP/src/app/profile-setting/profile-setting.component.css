@@ -1,9 +1,40 @@
 .btn-light-orange {
-    color: #ffffff; /* Text color */
-    background-color: orange; /* Light Orange background color */
-    border-color: orange; /* Border color */
-}
-
-.btn-light-orange.active {
-    background-color: orange; /* Active state background color */
-}
+    color: #000000; /* Text color */
+    background-color: rgb(228, 226, 222); /* Light Orange background color */
+    border-color: rgb(222, 221, 219); /* Border color */
+  }
+  
+  .btn-light-orange.active {
+    background-color: rgb(255, 255, 255); /* Active state background color */
+  }
+  .custom-background {
+    background-image: url('/assets/images/meetings-bg.jpg'); /* Update with the correct path to your image */
+    background-size: cover; /* Ensure the image covers the full area */
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Do not repeat the image */
+   
+  }
+  .card {
+      transition: box-shadow 0.3s ease; /* Transition for shadow for a smooth effect */
+      border-radius: 1rem; /* Rounded corners for the card */
+      background-color: #ffffff; /* White background for clarity */
+    }
+    
+    .card:hover {
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15); /* Slightly larger shadow on hover for a 'raised' effect */
+    }
+    
+    .d-flex {
+      display: flex;
+      align-items: center;
+    }
+    
+    .ml-2 {
+      margin-left: 0.5rem;
+    }
+    
+    .mt-2 {
+      margin-top: 0.5rem;
+    }
+    
+  

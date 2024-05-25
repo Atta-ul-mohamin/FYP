@@ -33,11 +33,14 @@ app.get('/', (req, res) => {
     });
 
 
-app.listen(process.env.port, function() {
+app.listen(process.env.port, () => {
   console.log('parse-server-example running on port ' + process.env.port);
 });
+// httpServer.listen(process.env.port, () => {
+//   console.log(`Server running on port ${process.env.port}`);
+// });
+// ParseServer.createLiveQueryServer(httpServer);
 
-ParseServer.createLiveQueryServer(httpServer);
 
 
 // require('dotenv').config(); //include .env file(db credentials)

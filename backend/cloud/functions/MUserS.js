@@ -1,3 +1,4 @@
+
 Parse.Cloud.define("addUserStudent", async (request) => {
     const MUser = Parse.Object.extend("MUser");
     const user = new MUser(); 
@@ -20,6 +21,40 @@ Parse.Cloud.define("addUserStudent", async (request) => {
         return result;
     }
 });
+
+
+Parse.Cloud.define("update_image_student", async (request) => {
+  // Destructure the image and userId from the request parameters
+  const { image, userId } = request.params;
+
+  if (!userId || !image) {
+    throw new Error("userId and image are required.");
+  }
+
+  // Create a query for the MUser class
+  const query = new Parse.Query("MUser");
+
+  try {
+    // Use the userId to get the specific MUser object
+    const user = await query.get(userId, { useMasterKey: true });
+
+    if (!user) {
+      throw new Error(`User not found with id: ${userId}`);
+    }
+
+    // Update the image field of the MUser object
+    user.set("image", image);
+
+    // Save the updated user object back to the database
+    // Use the master key if necessary, especially if there are ACL restrictions
+    await user.save(null, { useMasterKey: true });
+
+    return { status: 1, message: "Image updated successfully." };
+  } catch (error) {
+    throw new Error(`Error updating image: ${error.message}`);
+  }
+});
+
 
 
 
@@ -88,37 +123,13 @@ Parse.Cloud.define("updateUserStudent", async (request) => {
 });
 
 
-Parse.Cloud.define("update_image_student", async (request) => {
-  // Destructure the image and userId from the request parameters
-  const { image, userId } = request.params;
 
-  if (!userId || !image) {
-    throw new Error("userId and image are required.");
-  }
 
-  // Create a query for the MUser class
-  const query = new Parse.Query("MUser");
 
-  try {
-    // Use the userId to get the specific MUser object
-    const user = await query.get(userId, { useMasterKey: true });
 
-    if (!user) {
-      throw new Error(`User not found with id: ${userId}`);
-    }
 
-    // Update the image field of the MUser object
-    user.set("image", image);
 
-    // Save the updated user object back to the database
-    // Use the master key if necessary, especially if there are ACL restrictions
-    await user.save(null, { useMasterKey: true });
 
-    return { status: 1, message: "Image updated successfully." };
-  } catch (error) {
-    throw new Error(`Error updating image: ${error.message}`);
-  }
-});
 
 
 

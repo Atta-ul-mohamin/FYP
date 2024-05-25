@@ -45,6 +45,7 @@
         image3 : result.get("image3"),
         price: result.get('homePrice'),
         title: result.get('title'),
+        averageRating: result.get('averageRating'),
         firstname: firstname,
           image: image,
          // Access the firstname field from the MUserT class
@@ -54,7 +55,51 @@
   
 
 
-
+  Parse.Cloud.define('getCardsWithCategory', async (request) => {
+    const { category, subcategory } = request.params;
+    const query = new Parse.Query('create_gig');
+    query.equalTo('selectedCategory1', category);
+    query.equalTo('selectedSubcategory', subcategory);
+  
+    try {
+      const results = await query.find({ useMasterKey: true });
+      if (results.length === 0) {
+        return { status: 0 };
+      }
+  
+      const cards = await Promise.all(results.map(async (gig) => {
+        const card = {
+          objectId: gig.id,
+          image1: gig.get('image1'),
+          title: gig.get('title'),
+          homePrice: gig.get('homePrice'),
+          averageRating: gig.get('averageRating')
+        };
+  
+        // Fetching user data from MUser table
+        const userPointer = gig.get('userId');
+        if (userPointer) {
+          const user = await userPointer.fetch();
+          card.userName = user.get('firstname');
+        }
+  
+        // Fetching profile image from profile table
+        const profilePointer = gig.get('profileId');
+        if (profilePointer) {
+          const profile = await profilePointer.fetch();
+          card.profileImage = profile.get('image');
+        }
+  
+        return card;
+      }));
+  
+      return cards;
+    } catch (error) {
+      console.error('Error fetching gigs: ', error);
+      throw new Error('Unable to fetch cards');
+    }
+  });
+  
 
 
 // In your Parse Server Cloud Code (user.js)
@@ -93,7 +138,6 @@ Parse.Cloud.define("getGigById", async (request) => {
       image1 : card.get("image1"),
       image2 : card.get("image2"),
       image3 : card.get("image3"),
-     
     };
 
     // Include user data if it exists
@@ -177,3 +221,96 @@ Parse.Cloud.define("getGigByUserId", async (request) => {
 });
 
 
+
+
+
+
+
+
+Parse.Cloud.define('getCardsForTitle', async (request) => {
+  const { title } = request.params;
+  
+  // Function to calculate similarity percentage
+  function calculateSimilarity(str1, str2) {
+    let longer = str1;
+    let shorter = str2;
+    if (str1.length < str2.length) {
+      longer = str2;
+      shorter = str1;
+    }
+    const longerLength = longer.length;
+    if (longerLength === 0) {
+      return 1.0;
+    }
+    const editDistance = getEditDistance(longer, shorter);
+    return (longerLength - editDistance) / parseFloat(longerLength);
+  }
+
+  // Function to calculate the edit distance between two strings
+  function getEditDistance(str1, str2) {
+    const costs = [];
+    for (let i = 0; i <= str1.length; i++) {
+      let lastValue = i;
+      for (let j = 0; j <= str2.length; j++) {
+        if (i === 0) {
+          costs[j] = j;
+        } else {
+          if (j > 0) {
+            let newValue = costs[j - 1];
+            if (str1.charAt(i - 1) !== str2.charAt(j - 1)) {
+              newValue = Math.min(Math.min(newValue, lastValue), costs[j]) + 1;
+            }
+            costs[j - 1] = lastValue;
+            lastValue = newValue;
+          }
+        }
+      }
+      if (i > 0) {
+        costs[str2.length] = lastValue;
+      }
+    }
+    return costs[str2.length];
+  }
+
+  // Fetch all relevant rows from the create_gig table
+  const CreateGig = Parse.Object.extend('create_gig');
+  const query = new Parse.Query(CreateGig);
+  query.include(['userId', 'profileId']);
+  const results = await query.find();
+
+  // Filter and sort rows based on the similarity percentage
+  const filteredResults = results.map(result => {
+    const gigTitle = result.get('title');
+    const similarity = calculateSimilarity(gigTitle.toLowerCase(), title.toLowerCase());
+    return {
+      objectId: result.id,
+      image1: result.get('image1'),
+      title: gigTitle,
+      homePrice: result.get('homePrice'),
+      averageRating: result.get('averageRating'),
+      userId: result.get('userId'),
+      profileId: result.get('profileId'),
+      similarity
+    };
+  }).filter(result => result.similarity >= 0.8)
+    .sort((a, b) => b.similarity - a.similarity);
+
+  // Retrieve additional information from the MUser and profile tables
+  const cards = await Promise.all(filteredResults.map(async result => {
+    const user = result.userId;
+    const profile = result.profileId;
+
+    return {
+      objectId: result.objectId,
+      image1: result.image1,
+      title: result.title,
+      homePrice: result.homePrice,
+      averageRating: result.averageRating,
+      firstname: user ? user.get('firstname') : null,
+      profileImage: profile ? profile.get('image') : null,
+      similarity: result.similarity
+    };
+  }));
+
+  return cards;
+});

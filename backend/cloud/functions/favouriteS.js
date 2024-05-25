@@ -22,6 +22,10 @@ Parse.Cloud.define("addFavourite", async (request) => {
   await favourite.save();
   return { status: 1, message: ' Added to your favourites' };
 });
+
+
+
+
 Parse.Cloud.define("getFavorites", async (request) => {
   const { userId } = request.params;
 
@@ -79,27 +83,38 @@ Parse.Cloud.define("getFavorites", async (request) => {
 
 
 // In your Parse Server cloud code (e.g., main.js)
+
 Parse.Cloud.define("removeFavorite", async (request) => {
-  const { objectId } = request.params;
-  console.log(objectId);
+  const { cardId } = request.params; // 'cardId' is expected to be the objectId of the card
+
+  // Ensure cardId is provided
+  if (!cardId) {
+    throw new Error("cardId is required");
+  }
+
+  const Card = Parse.Object.extend("create_gig"); // Assuming 'Card' is the class to which cardId points
+  const cardPointer = Card.createWithoutData(cardId);
+
   const Favourite = Parse.Object.extend("favourites");
   const query = new Parse.Query(Favourite);
+  query.equalTo("cardId", cardPointer); // Query for the favorite by the cardId pointer
 
   try {
-    // Find the favorite object by its objectId
-    const favoriteObject = await query.get(objectId, { useMasterKey: true });
+    // Attempt to find the favorite object associated with the given cardId.
+    const favoriteObject = await query.first({ useMasterKey: true });
     if (favoriteObject) {
-      // Delete the favorite object
+      // If the favorite object exists, delete it.
       await favoriteObject.destroy({ useMasterKey: true });
       return { success: true, message: "Favorite removed successfully." };
     } else {
-      throw new Error("Favorite object not found");
+      throw new Error("Favorite object not found with provided cardId");
     }
   } catch (error) {
-    console.log(error);
-    throw new Error("Error in removing favorite");
+    console.error(`Error in removing favorite: ${error}`);
+    throw new Parse.Error(Parse.Error.OBJECT_NOT_FOUND, "Error in removing favorite or favorite not found");
   }
 });
+
 
 
 

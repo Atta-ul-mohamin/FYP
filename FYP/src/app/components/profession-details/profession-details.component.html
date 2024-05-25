@@ -12,35 +12,41 @@
                   </h5>
 
                   <div class="custom-box1"  >
-                      <div  class="form-outline mb-4">
+                    <fieldset [disabled]="schoolLevel === 'no school'">
+                      <div  class="form-outline mb-4" >
                         <label class="fw-bold my-1 py-1">School Name</label>
                         <input type="text" id="f" class="form-control form-control-lg" placeholder="write full form of your school"  name="schoolName" #schoolName>
                       </div>
+                    </fieldset>
 
                       <div class="form-group mb-4">
                         <label class="fw-bold my-1 py-1">Choose Class </label>
                         <br>
-                        <div class="btn-group" data-toggle="buttons-level">
-                            <label class="btn btn-light-orange">
-                                <input type="radio" name="schoollevel" [(ngModel)]="schoolLevel" value="8 or less" #schoolClass> 8 or less
-                            </label>
-                            <label class="btn btn-light-orange">
-                                <input type="radio" name="schoollevel" [(ngModel)]="schoolLevel" value="9" #schoolClass> 9
-                            </label>
-                            <label class="btn btn-light-orange">
-                                <input type="radio" name="schoollevel" [(ngModel)]="schoolLevel" value="10" #schoolClass> 10 
-                              </label>
-                             
-                              <label class="btn btn-light-orange">
-                                <input type="radio" name="schoollevel" [(ngModel)]="schoolLevel" #schoolClass > other
-                              </label>
-                             
-                        </div>
-                    </div>
+                        <div class="btn-group" data-toggle="buttons-level-1">
                     
-                    <fieldset [disabled]="schoolLevel === '8 or less'">
+                         
+                          <!-- Other radio buttons remain the same -->
+                          <label class="btn btn-light-orange">
+                            <input type="radio" name="schoollevel" [(ngModel)]="schoolLevel" value="no school" #schoolClass> No school
+                          </label>
+                          <label class="btn btn-light-orange">
+                            <input type="radio" name="schoollevel" [(ngModel)]="schoolLevel" value="8 or less" #schoolClass> 8 or less
+                          </label>
+                          <label class="btn btn-light-orange">
+                            <input type="radio" name="schoollevel" [(ngModel)]="schoolLevel" value="9" #schoolClass> 9
+                          </label>
+                          <label class="btn btn-light-orange">
+                            <input type="radio" name="schoollevel" [(ngModel)]="schoolLevel" value="10" #schoolClass> 10
+                          </label>
+                          <label class="btn btn-light-orange">
+                            <input type="radio" name="schoollevel" [(ngModel)]="schoolLevel" value="more than 10" #schoolClass> More than 10
+                          </label>
+                        </div>
+                      </div>
+                      
+                    <fieldset [disabled]="schoolLevel === '8 or less' || schoolLevel === 'no school'">
                     <div  class="form-outline mb-4" >
-                      <label class="fw-bold my-1 py-1" >Type</label>
+                      <label class="fw-bold my-1 py-1" >Type<span style="font-size: small;  font-weight: lighter;">(other then noraml classes right its equilateral in types like O level etc)</span></label>
                       <input type="schoolname" id="f" class="form-control form-control-lg" placeholder="medical/ O level etc"  name="schoolType" #schoolType>
                     </div>
                   </fieldset>
@@ -49,7 +55,7 @@
                     <br>
                     <br>
  
-                    <fieldset [disabled]="schoolLevel === '8 or less' || schoolLevel === '9'">
+                    <fieldset [disabled]="schoolLevel === '8 or less' || schoolLevel === '9' || schoolLevel === 'no school' || schoolLevel === '10'">
                     <div class="custom-box2"  >
                       <div  class="form-outline mb-4">
                         <label class="fw-bold my-1 py-1">College Name</label>
@@ -59,7 +65,7 @@
                       <div class="form-group mb-4">
                         <label class="fw-bold my-1 py-1">Choose Class</label>
                         <br>
-                        <div class="btn-group" data-toggle="buttons-level">
+                        <div class="btn-group" data-toggle="buttons-level-2">
                             <label class="btn btn-light-orange">
                                 <input type="radio" name="collegelevel"  [(ngModel)]="collegelevel" value="11" #collegeClass> 11
                             </label>
@@ -67,13 +73,13 @@
                                 <input type="radio" name="collegelevel"  [(ngModel)]="collegelevel" value="12" #collegeClass> 12
                             </label>
                             <label class="btn btn-light-orange">
-                              <input type="radio" name="schoollevel" [(ngModel)]="schoolLevel" value="other" #collegeClass> other
+                              <input type="radio" name="collegelevel" [(ngModel)]="collegelevel" value="more than 12" #collegeClass> more than 12
                             </label>
                         </div>
                     </div>
 
                     <div  class="form-outline mb-4">
-                      <label class="fw-bold my-1 py-1">Type</label>
+                      <label class="fw-bold my-1 py-1">Type <span style="font-size: small;  font-weight: lighter;">(other then noraml classes right its equilateral in types like A level etc)</span></label>
                       <input type="text" id="f" class="form-control form-control-lg" placeholder="pre-medical / A level etc"  name="collegeType" #collegeType>
                     </div>
 
@@ -83,7 +89,7 @@
                    <br>
                    <br>
 
-                   <fieldset [disabled]="schoolLevel === '8 or less' || schoolLevel === '9' || collegelevel === '11'">
+                   <fieldset [disabled]="schoolLevel === '8 or less' || schoolLevel === '9' || collegelevel === '11' || schoolLevel === 'no school' || schoolLevel === '10' || collegelevel === '12'">
                     <div class="custom-box3"  >
                       <div  class="form-outline mb-4">
                         <label class="fw-bold my-1 py-1">University Name</label>
@@ -112,15 +118,7 @@
                       <label class="fw-bold my-1 py-1">hobbies</label>
                       <input type="text" id="f" class="form-control form-control-lg" placeholder="like reading , swimming etc"  name="hobbies" #hobbies>
                     </div>
-
-
-                      <div class="form-outline mb-4">
-                        <label class="fw-bold my-1 py-1">Skills Certificate</label>
-                        <input type="file" id="skillsCertificate" accept=".pdf" name="skillsCertificate" #skillsCertificate>
-                       
-                      </div>
-                      
-                   
+                                        
                     </div>
                     
                  

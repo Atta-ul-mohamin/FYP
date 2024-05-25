@@ -40,6 +40,7 @@
           return {
             id: student.id,
             name: student.get("name"),
+            image : student.get("image")
             // other fields you want to include
           };
         });
@@ -105,12 +106,12 @@
       
         // Use a compound query to find if a conversation already exists between the two users
         const query1 = new Parse.Query(Conversation);
-        query1.equalTo("participant1", { "__type": "Pointer", "className": "MUserT", "objectId": senderId });
-        query1.equalTo("participant2", { "__type": "Pointer", "className": "MUser", "objectId": receiverId });
+        query1.equalTo("participant1", { "__type": "Pointer", "className": "MUser", "objectId": senderId });
+        query1.equalTo("participant2", { "__type": "Pointer", "className": "MUserT", "objectId": receiverId });
       
         const query2 = new Parse.Query(Conversation);
-        query2.equalTo("participant1", { "__type": "Pointer", "className": "MUser", "objectId": receiverId });
-        query2.equalTo("participant2", { "__type": "Pointer", "className": "MUserT", "objectId": senderId });
+        query2.equalTo("participant1", { "__type": "Pointer", "className": "MUserT", "objectId": receiverId });
+        query2.equalTo("participant2", { "__type": "Pointer", "className": "MUser", "objectId": senderId });
       
         const mainQuery = Parse.Query.or(query1, query2);
         let conversation = await mainQuery.first();
@@ -118,14 +119,16 @@
         if (!conversation) {
           // Create a new conversation if one does not exist
           conversation = new Conversation();
-          conversation.set("participant1", { "__type": "Pointer", "className": "MUserT", "objectId": senderId });
-          conversation.set("participant2", { "__type": "Pointer", "className": "MUser", "objectId": receiverId });
+          conversation.set("participant1", { "__type": "Pointer", "className": "MUser", "objectId": receiverId });
+          conversation.set("participant2", { "__type": "Pointer", "className": "MUserT", "objectId": senderId });
           await conversation.save();
         }
       
         return conversation;
       }
 
+
+     
 
 
 Parse.Cloud.define("getConversationIDTeacher", async (request) => {

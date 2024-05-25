@@ -26,7 +26,7 @@ export class ParseService {
    }
 
    // In ParseService
-async submitProfile(phone: number, gender: string, age: number, location: string, language: string, description: string, binaryString: string) {
+async submitProfile(phone: number, gender: string, age: number, location: string, language: string[], description: string, binaryString: string , cnic: number, cnicImage:string) {
   // Assuming binaryString needs to be converted or handled according to your backend requirements
   const params = {
     phone,
@@ -35,7 +35,9 @@ async submitProfile(phone: number, gender: string, age: number, location: string
     location,
     language,
     description,
-    binaryString, // Pass the binary string
+    binaryString, 
+    cnic,
+    cnicImage,// Pass the binary string
     userId: this.currentUser.objectId
   };
 
@@ -94,20 +96,17 @@ async updateCurrentUserEmail(email: string) {
   
   
 
-   async update_submit_profile( profileId : string, teacherid: string ,phone:string, gender:string,age:number,location:string,language:string,description:string,stringImage:string){
-   
-    const params = { profileId,teacherid,phone,gender,age,location,language, description ,stringImage ,userId :this.currentUser.objectId}
-     const result = await Parse.Cloud.run("update_profileuser",params)
-     return result;
+   async update_submit_profile( profileId : string, teacherid: string ,phone:number, gender:string,age:number,location:string,language:string[],description:string,stringImage:string , cnic:number , cnicImage:string){
+   const params = { profileId,teacherid,phone,gender,age,location,language, description ,stringImage ,userId :this.currentUser.objectId,cnic, cnicImage}
+   const result = await Parse.Cloud.run("update_profileuser",params)
+   return result;
    }
   
    async submit_education_proffesion(schoolName: string , schoolClass : string , schoolType : string , collegeName : string , collegeClass : string , collegeType : string , universityName: string , universityDegree: string  , skills : string , hobbies : string){
-
     const params = {schoolName,schoolClass , schoolType , collegeName , collegeClass , collegeType, universityName, universityDegree , skills, hobbies,userId :this.currentUser.objectId}
     const result = await Parse.Cloud.run("education_proffesion",params)
     console.log(result)
     return result
-    
    }
 
    async update_submit_education_proffesion(professionId:string,schoolName: string , schoolClass : string , schoolType : string , collegeName : string , collegeClass : string , collegeType : string , universityName: string , universityDegree: string  , skills : string , hobbies : string){
@@ -120,7 +119,7 @@ async updateCurrentUserEmail(email: string) {
    }
 
 
-   async gig_info_add(title : string , year_Of_Experience: string  , type: string, skillLevel: string , level: string   , level_1_Description: string  ,  level_1_Price: string  , level_2_Description: string  , level_2_Price: string  ,  level_3_Description: string  , level_3_Price: string , homePrice:string , selectedCategory1: string, selectedSubcategory: string , profileId : string  , image1:string , image2:string, image3:string ,orderDay1:string,orderDay2:string,orderDay3:string){
+   async gig_info_add(title : string , year_Of_Experience: number  , type: string, skillLevel: string , level: string   , level_1_Description: string  ,  level_1_Price:number , level_2_Description: string  , level_2_Price:number   ,  level_3_Description: string  , level_3_Price: number  , homePrice:string , selectedCategory1: string, selectedSubcategory: string , profileId : string  , image1:string , image2:string, image3:string ,orderDay1:number,orderDay2:number,orderDay3:number){
     const params = {title , year_Of_Experience  , type, skillLevel , level  , level_1_Description  ,  level_1_Price, level_2_Description , level_2_Price  ,  level_3_Description , level_3_Price , homePrice, selectedCategory1 , selectedSubcategory, profileId ,userId :this.currentUser.objectId  , image1,image2,image3,orderDay1,orderDay2,orderDay3 };
     console.log(title);
     console.log(this.currentUser.objectId);

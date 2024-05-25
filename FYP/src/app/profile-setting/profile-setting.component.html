@@ -1,105 +1,125 @@
-<section style="background-color: #d3d3d3 mar" >
-    <div class="container my-5 py-5 h-100">
-        <div class="row d-flex justify-content-center align-items-center h-100">
-            <div class="col col-xl-6">
-                <div class="card" style="border-radius: 1rem">
-                    <div class="row g-0">
-                        
-                        <div class="col-md-6 col-lg-12  d-flex align-items-center">
-                            <div class="card-body p-4 p-lg-5 text-black">
-                                <form>
-                                    <h5 class="fw-normal mb-3 pb-3 fs-1" style="letter-spacing: 1px">
-                                        Personal Detail
-                                    </h5>
-                                   
-                                  
-                                      
-                                    <div *ngIf="pictur" class="image-container d-flex justify-content-center">
-                                        <img [src]="pictur | safeResourceUrl" class="rounded-circle" alt="Profile Image" style="height: 20vh; width: 10vw; border-radius: 1rem;">
-                                    </div>
-
-
-
-                                    <br>
-                                    <br>
-
-                                    <div  *ngIf="pass!=='null'" class="form-outline mb-4">
-                                        <label class="fw-bold my-1 py-1">Profile Picture</label>
-                                        <input type="file" (change)="onFileChanged($event)" class="form-control form-control-lg">
-                                      </div>
-                                    
-                                    <div  class="form-outline mb-4">
-                                        <label class="fw-bold my-1 py-1">Phone number</label>
-                                        <input type="text"  class="form-control form-control-lg" [(ngModel)]="phone" placeholder="like 03001234567"  name="phoneNumber" />
-                                      </div>
-
-
-                                      <div class="form-group mb-4">
-                                        <label class="fw-bold my-1 py-1">Choose gender </label>
-                                        <br>
-                                      <div class="btn-group" data-toggle="buttons-level">
-                                        <label class="btn btn-light-orange">
-                                            <input type="radio" name="gender" [(ngModel)]="selectedgender"  value="male"  > male
-                                        </label>
-                                         <label class="btn btn-light-orange">
-                                            <input type="radio" name="gender" [(ngModel)]="selectedgender" value="female"> female
-                                        </label>
-                                        <label class="btn btn-light-orange">
-                                            <input type="radio" name="gender" [(ngModel)]="selectedgender" value="non-binary" > non-binary 
-                                          </label> 
-                                        </div>   
-                                    </div>
-
-                                    <div  class="form-outline mb-4">
-                                        <label class="fw-bold my-1 py-1">Your age</label>
-                                        <input type="phonenumber" id="f" class="form-control form-control-lg" [(ngModel)]="age"  name="yourage" />
-                                      </div>
-
-                                      <div class="form-outline mb-4">
-                                        <label class="fw-bold my-1 py-1">Location</label>
-                                        <input type="text" id="location" class="form-control form-control-lg"  placeholder="Click to fetch your current location" name="location" (click)="getLocation()" [(ngModel)]="userLocation" >
-                                      </div>
-                                      
-
-                                    <div  class="form-outline mb-4">
-                                        <label class="fw-bold my-1 py-1">Languages spoken</label>
-                                        <input type="language"  class="form-control form-control-lg" placeholder="urdu,english etc"  name="language"  [(ngModel)]="language" >
-                                      </div>
-
-                                      <div class="form-outline mb-4">
-                                        <label  class="fw-bold my-1 py-1">Your Description (optional)</label>
-                                        <textarea class="form-control form-control-lg" name="languagesSpoken" placeholder="" rows="4" [(ngModel)]="description"> </textarea>
-                                      </div>
-                                      
-                                 
-                                  
-                                    <br>
-                                    <br>
-                          
-                                  
-
-                                    <div class="pt-1 mb-4">
-                                        <button class="btn btn-dark btn-lg btn-block" 
-                                        (click)="submit_profile( phone ,selectedgender ,age ?? 0 , userLocation ,language  ,description )">
-                                        
-                                                Edit
-                                        </button>
-                                         
-                                        <button class="btn btn-dark btn-lg btn-block " 
-                                        (click)="deleteProfile(teacherID)">
-                                        
-                                                Delete
-                                        </button>
-
-
-
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
+<section class="custom-background card">
+    <div class="container-xl px-4 mt-4">
+      <hr class="mt-0 mb-4">
+      <div class="row">
+        <div class="col-xl-8 offset-xl-2">
+          <!-- Account details card -->
+          <div class="card mb-4">
+            <div class="card-header">Edit Profile Details</div>
+            <div class="card-body">
+              <form>
+                <!-- Profile picture card -->
+              
+                <div>
+                  <div class="card-body text-center">
+                    <!-- Profile picture image -->
+                    
+    
+                    <div *ngIf="fileBinaryString" class="image-container d-flex justify-content-center">
+                      <img [src]="fileBinaryString | safeResourceUrl" class="rounded-circle" alt="Profile Image" style="height: 40vh; width: 20vw; border-radius: 1rem;">
+                  </div>
+                  <div *ngIf="!fileBinaryString" class="image-container d-flex justify-content-center">
+                    <img [src]="pictur | safeResourceUrl" class="rounded-circle" alt="Profile Image" style="height: 40vh; width: 20vw; border-radius: 1rem;">
                 </div>
+                    
+                    <div  class="form-outline mb-4">
+                      <label class="fw-bold my-1 py-1">Profile Picture</label>
+                      <input type="file" (change)="onFileChanged($event)" class="form-control form-control-lg">
+                    </div>
+                    <!-- Profile picture help block -->
+                    <div class="small font-italic text-muted mb-4">JPG or PNG no larger than 5 MB</div>
+                  </div>
+                </div>
+  
+                <div class="form-outline mb-4">
+                  <label class="fw-bold my-1 py-1">CNIC</label>
+                  <input type="number" id="cnic" class="form-control form-control-lg" placeholder="e.g., 32403-9279439-5" [(ngModel)]="cnic" name="cnics">
+                </div>
+                <div *ngIf="!fileBinaryString1" class="image-container d-flex justify-content-center">
+                  <img [src]="cnicImage | safeResourceUrl" class="reactangle" alt="Profile Image" style="height: 25vh; width: 25vw; border-radius: 1rem;">
+              </div>
+              <div *ngIf="fileBinaryString1" class="image-container d-flex justify-content-center">
+                <img [src]="fileBinaryString1 | safeResourceUrl" class="reactangle" alt="Profile Image" style="height: 25vh; width: 25vw; border-radius: 1rem;">
             </div>
+  
+  
+                <div class="form-outline mb-4">
+                  <label class="fw-bold my-1 py-1">CNIC image</label>
+                  <input type="file" (change)="onFileChanged1($event)" class="form-control form-control-lg">
+                </div>
+  
+                <div class="form-outline mb-4">
+                  <label class="fw-bold my-1 py-1">Phone number</label>
+                  <div class="input-group">
+                    <span class="input-group-text">+92</span>
+                    <input type="number" id="phone" class="form-control form-control-lg" placeholder="e.g., 3001234567" [(ngModel)]="phone" name="phoneNumber">
+                  </div>
+                </div>
+  
+                <div class="form-outline mb-4">
+                  <label class="fw-bold my-1 py-1">Your age</label>
+                  <input type="number" id="age" class="form-control form-control-lg" [(ngModel)]="age" name="age">
+                </div>
+  
+                <div class="form-outline mb-4">
+                  <label class="fw-bold my-1 py-1">Location</label>
+                  <input type="text" id="location" class="form-control form-control-lg" placeholder="Click to fetch your current location" name="location" (click)="getLocation()" [(ngModel)]="userLocation" #location>
+                </div>
+  
+                <div class="form-outline mb-4">
+                  <label class="fw-bold my-1 py-1">Languages spoken</label>
+                  <div class="d-flex">
+                    <!-- Dropdown for selecting languages -->
+                    <select class="form-control form-control-lg" [(ngModel)]="selectedLanguage" (change)="addLanguage()" name="languageSelect">
+                      <option value="" disabled [selected]="selectedLanguage === ''">Select a language</option>
+                      <option *ngFor="let lang of availableLanguages" [value]="lang">{{ lang }}</option>
+                    </select>
+                    <!-- List of selected languages -->
+                    <div class="form-control form-control-lg ml-2">
+                      <span  *ngFor="let lang of selectedLanguages; let i = index">
+                        {{ lang }}<span *ngIf="i < selectedLanguages.length - 1">, </span>
+                      </span>
+                    </div>
+                    <div class="form-control form-control-lg ml-2">
+                        <input [(ngModel)]="language" name="languages" readonly>
+                      </div>
+                  </div>
+                  <button type="button" class="btn btn-secondary mt-2" (click)="resetLanguages()">Reset Languages</button>
+                </div>
+  
+                <div class="form-outline mb-4">
+                  <label class="fw-bold my-1 py-1">Your Description</label>
+                  <textarea class="form-control form-control-lg" name="description" placeholder="" rows="4" [(ngModel)]="descriptions" #description (input)="onDescriptionInput(description.value)"></textarea>
+                  <div *ngIf="descriptionCount !== null" class="text-muted">{{ descriptionCount }}/greater than 99 and less than 251 words</div>
+                </div>
+  
+                <div class="row gx-3 mb-3">
+                  <!-- Form Group (phone number)-->
+                  <div class="col-md-6">
+                    <label class="small mb-1" for="inputPhone">Select Gender</label>
+                    <div class="btn-group" data-toggle="buttons">
+                      <label class="btn btn-light-orange">
+                        <input type="radio" name="gender" [(ngModel)]="selectedgender" value="male" #gender> Male
+                      </label>
+                      <label class="btn btn-light-orange">
+                        <input type="radio" name="gender" [(ngModel)]="selectedgender" value="female" #gender> Female
+                      </label>
+                      <label class="btn btn-light-orange">
+                        <input type="radio" name="gender" [(ngModel)]="selectedgender" value="non-binary" #gender> Non-binary
+                      </label>
+                    </div>
+                  </div>
+                </div>
+  
+                <!-- Save changes button -->
+                <div class="pt-1 mb-4">
+                  <button class="btn btn-dark btn-lg btn-block" type="button" (click)="submit_profile(phone??0, selectedgender, age??0, userLocation, selectedLanguages, description.value , cnic??0 )">Edit</button>
+                </div>
+              </form>
+            </div>
+          </div>
         </div>
+      </div>
     </div>
-</section>
+  </section>
+  

@@ -222,3 +222,62 @@ Parse.Cloud.define("addUserTeacher", async (request) => {
           };
         }
       });
+
+
+
+      Parse.Cloud.define("onLoginGoogle", async (request) => {
+        const { name ,email , pass } = request.params;
+ 
+        
+        const query = new Parse.Query("MUserT");
+        query.equalTo("email", email);
+        const user = await query.first();
+        if(!user)
+        {
+          const MUserT = Parse.Object.extend("MUserT");
+          const users = new MUserT();
+          users.set("firstname", name);
+          users.set("email", email);
+          users.set("password", pass);
+          const result = await users.save();
+          return{ result , status:10};
+        }
+        const querys = new Parse.Query("MUserT");
+        querys.equalTo("email", email);
+        const userss = await query.first();
+    
+        if (userss) {
+            // Initialize queries for profile and profession
+            const profileQuery = new Parse.Query("profile");
+            const professionQuery = new Parse.Query("profession");
+            console.log(user);
+            // Set queries to check for pointer to the MUserT object
+            profileQuery.equalTo("userId", user.id); // Assuming MUserTPtr is the pointer field in Profile
+            professionQuery.equalTo("userId", user.id); // Assuming MUserTPtr is the pointer field in Profession
+    
+            // Execute both queries concurrently
+            const [profile, profession] = await Promise.all([profileQuery.first(), professionQuery.first()]);
+    
+            // Determine the presence of MUserT in profile and profession
+            if (profile && profession) {
+                // Present in both
+                return { status: 2, firstname: user.get('firstname'), email : user.get('email') , objectId: user.id,pass:user.get('password') };
+            } 
+            else if (profile && !profession) {
+                // Present only in profile
+                return { status: 3, firstname: user.get('firstname'),email : user.get('email'), objectId: user.id , pass:user.get('password')};
+            } 
+            else if (!profile && profession) {
+              // Present only in profile
+              return { status: 5, firstname: user.get('firstname'),email : user.get('email'), objectId: user.id , pass:user.get('password')};
+          } 
+            else if (!profile && !profession) {
+                // Not present in both
+                return { status: 4, firstname: user.get('firstname'),email : user.get('email'), objectId: user.id , pass:user.get('password')};
+            }
+        } else {
+            console.log('error 2');
+            // Login failed. You can return an error message.
+            return { status: 0 };
+        }
+    });

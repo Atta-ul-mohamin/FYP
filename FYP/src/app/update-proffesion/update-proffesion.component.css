@@ -25,3 +25,10 @@
     padding: 20px; /* Add padding for spacing inside the box */
     border-radius: 10px;
 }
+.custom-background {
+    background-image: url('/assets/images/meetings-bg.jpg'); /* Update with the correct path to your image */
+    background-size: cover; /* Ensure the image covers the full area */
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Do not repeat the image */
+   
+  }
