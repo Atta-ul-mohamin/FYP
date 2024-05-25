@@ -41,13 +41,12 @@ export class SignupComponent {
     }
 
     // Validate the password complexity
-    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,}$/;
+    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d!@#$%^&*()_+`~{}\[\]:;"'<>,.?\/\\\-]{8,}$/;
 
     if (!passwordRegex.test(password)) {
-      alert('Password must be at least 8 characters long, include numbers, alphabets, at least one uppercase letter');
+      alert('Password must be at least 8 characters long, include at least one uppercase letter, one lowercase letter, and one number. Special characters are optional.');
       return;
     }
-  
     // Check if the checkbox is checked
     if (!termsCheckbox.checked) {
       alert('Please agree to the terms and conditions before signing up.');
