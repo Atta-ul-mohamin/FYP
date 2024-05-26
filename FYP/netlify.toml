@@ -1,3 +1,6 @@
 [build]
   command = "npm install -g @angular/cli && npm install && ng build --output-path=www --prod"
   publish = "www"
+
+[build.environment]
+  NODE_VERSION = "14" # Or your required Node.js version
