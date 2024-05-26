@@ -1,6 +1,5 @@
 [build]
-  command = "npm install && ng build --output-path=www "
+  command = "npm run prebuild && ng build --output-path=www --prod"
   publish = "www"
-
 [build.environment]
   NODE_VERSION = "v20.11.0"  # Or your required Node.js version
