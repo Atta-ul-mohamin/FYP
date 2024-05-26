@@ -1,0 +1,5 @@
+[build]
+  command = "npm install -g @angular/cli && ng build"
+  publish = "dist/your-project-name"
+
+# Add any additional settings below if needed
