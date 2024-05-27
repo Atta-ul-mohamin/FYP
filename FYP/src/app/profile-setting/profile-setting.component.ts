@@ -12,7 +12,8 @@ import { Router } from '@angular/router';
   })
 export class ProfileSettingComponent  {
   // Initialize the userLocation variable
-  
+  userChecked : any;
+  userBoolean: boolean =false;
   teacherID : string = '';
   availableLanguages: string[] = ['Urdu', 'English', 'Punjabi', 'Saraiki', 'Sindhi', 'Balochi', 'Arabi', 'Pushto'];
   selectedLanguages: string[] = [];
@@ -40,6 +41,10 @@ export class ProfileSettingComponent  {
  
   ngOnInit() {
     this.teacherID = this.route.snapshot.paramMap.get('id') as string;
+    this.userChecked = this.service.user.status;
+    if(this.userChecked==2){
+      this.userBoolean=true;
+    }
     this.pass= this.service.user.pass;
     console.log(this.pass);
     this.fetchProfileData();
@@ -104,6 +109,11 @@ export class ProfileSettingComponent  {
       console.error('Geolocation is not supported by this browser.');
     }
   }
+
+
+
+
+  
 
   
     

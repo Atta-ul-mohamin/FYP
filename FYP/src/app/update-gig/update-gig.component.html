@@ -1,4 +1,4 @@
-<section style="background-color: #d3d3d3;">
+<section *ngIf="userBoolean" style="background-color: #d3d3d3;">
   <div class="container my-5 py-5 h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
       <div class="col col-xl-6">
@@ -24,9 +24,54 @@
         
                   <div class="form-outline mb-4">
                     <label class="fw-bold my-1 py-1">Year Of Experience</label>
-                    <input type="text" id="yearOfExperience" class="form-control form-control-lg" name="yearofexperience" [(ngModel)]="year_Of_Experience">
+                    <input type="number" id="yearOfExperience" class="form-control form-control-lg" name="yearofexperience" [(ngModel)]="year_Of_Experience">
                   </div>
 
+
+                  <div class="form-group mb-4">
+                    <label class="fw-bold my-1 py-1">Upload Photos</label>
+                    <div   class="form-outline mb-4">
+
+                      <div *ngIf="!fileBinaryString1" class="image-container d-flex justify-content-center">
+                        <img [src]="image1 | safeResourceUrl" class="reactangle" alt="Profile Image" style="height: 25vh; width: 25vw; border-radius: 1rem;">
+                    </div>
+                    <div *ngIf="fileBinaryString1" class="image-container d-flex justify-content-center">
+                      <img [src]="fileBinaryString1 | safeResourceUrl" class="reactangle" alt="Profile Image" style="height: 25vh; width: 25vw; border-radius: 1rem;">
+                  </div>
+                    <br>
+        
+                      <input type="file" (change)="onFileChanged1($event)" class="form-control form-control-lg">
+                      <span title="This is the main image for your card. And it will be shown to
+the students first after clicking the card rest of the images 
+and also main image will be shown to student." style="cursor: help; text-decoration: underline; " class="fw-bold">
+                        (main image)
+                      </span>
+                    </div>
+                   <br>
+                   <div *ngIf="fileBinaryString2" class="image-container d-flex justify-content-center">
+                    <img [src]="fileBinaryString2 | safeResourceUrl" class="reactangle" alt="Profile Image" style="height: 25vh; width: 25vw; border-radius: 1rem;">
+                </div>
+                    <div  *ngIf="!fileBinaryString1"class="image-container d-flex justify-content-center">
+                      <img [src]="image2 | safeResourceUrl" class="reactangle" alt="Profile Image" style="height: 25vh; width: 25vw; border-radius: 1rem;">
+                  </div>
+                  <br>
+                    <div  class="form-outline mb-4">
+                      <input type="file" (change)="onFileChanged2($event)" class="form-control form-control-lg">
+                    </div>
+                    <br>
+                    <div *ngIf="fileBinaryString3" class="image-container d-flex justify-content-center">
+                      <img [src]="fileBinaryString3 | safeResourceUrl" class="reactangle" alt="Profile Image" style="height: 25vh; width: 25vw; border-radius: 1rem;">
+                  </div>
+                  <div *ngIf="!fileBinaryString1" class="image-container d-flex justify-content-center">
+                    <img [src]="image3| safeResourceUrl" class="reactangle" alt="Profile Image" style="height: 25vh; width: 25vw; border-radius: 1rem;">
+                </div>
+                  <br>
+                    <div   class="form-outline mb-4">
+                      <input type="file" (change)="onFileChanged3($event)" class="form-control form-control-lg">
+                    </div>
+                    <small class="form-text text-muted">Upload up to 3 photos related to your gig.</small>
+                  </div>
+                  
 
                   <div class="custom-box1">
                   <div class="row">
@@ -127,7 +172,7 @@
 
                       <div class="form-outline mb-4">
                         <label for="languagesSpoken" class="fw-bold my-1 py-1">Days to place order</label>
-                        <input type="schoolname" id="f" class="form-control form-control-lg" placeholder=""
+                        <input type="number" id="f" class="form-control form-control-lg" placeholder=""
                           name="priceLevel1" [(ngModel)]="orderDay1" >
                         <br>
                         <hr class="hr">
@@ -135,7 +180,7 @@
 
                       <div class="form-outline mb-4">
                         <label class="fw-bold my-1 py-1">Price</label>
-                        <input type="schoolname" id="f" class="form-control form-control-lg" placeholder=""
+                        <input type="number" id="f" class="form-control form-control-lg" placeholder=""
                           name="order1" [(ngModel)]="level_1_Price"  >
                       </div>
 
@@ -174,7 +219,7 @@
 
                       <div class="form-outline mb-4">
                         <label for="languagesSpoken" class="fw-bold my-1 py-1">Days to place order</label>
-                        <input type="schoolname" id="f" class="form-control form-control-lg" placeholder=""
+                        <input type="number" id="f" class="form-control form-control-lg" placeholder=""
                           name="order2" [(ngModel)]="orderDay2" #order_2_day>
                         <br>
                         <hr class="hr">
@@ -182,7 +227,7 @@
 
                       <div class="form-outline mb-4">
                         <label class="fw-bold my-1 py-1">Price</label>
-                        <input type="schoolname" id="f" class="form-control form-control-lg" placeholder=""
+                        <input type="number" id="f" class="form-control form-control-lg" placeholder=""
                           name="priceLevel2" [(ngModel)]="level_2_Price">
                       </div>
 
@@ -217,7 +262,7 @@
 
                       <div class="form-outline mb-4">
                         <label for="languagesSpoken" class="fw-bold my-1 py-1">Days to place order</label>
-                        <input type="schoolname" id="f" class="form-control form-control-lg" placeholder=""
+                        <input type="number" id="f" class="form-control form-control-lg" placeholder=""
                           name="order3" [(ngModel)]="orderDay3" #order_3_day>
                         <br>
                         <hr class="hr">
@@ -225,7 +270,7 @@
 
                       <div class="form-outline mb-4">
                         <label for="f" class="fw-bold my-1 py-1">Price</label>
-                        <input type="text" id="f" class="form-control form-control-lg" placeholder="Enter price level"
+                        <input type="number" id="f" class="form-control form-control-lg" placeholder="Enter price level"
                           name="priceLevel3"[(ngModel)]="level_3_Price">
                         <!-- Additional checkbox input -->
                         <br>
@@ -269,3 +314,19 @@
     </div>
   </div>
 </section>
+
+
+<div *ngIf="!userBoolean" class="container  mx-auto  ">
+ 
+  <div class="row gx-4 gx-lg-5 align-items-center my-5 ">
+    
+        <div class="vh-100 d-flex align-items-center justify-content-center">
+          <div class="text-center">
+              <h2 class="font-weight-light">"SkillMentor allowed me to make a living without leaving home!"</h2>
+              <p class="my-3">you are not sign up. click below to sign up</p>
+              <a class="btn btn-outline-secondary btn-lg mt-2" [routerLink]="['/signup']">Sign up</a>
+          </div>
+      </div>
+      
+  </div>
+ </div>

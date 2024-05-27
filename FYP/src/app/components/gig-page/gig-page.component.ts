@@ -14,7 +14,10 @@ export class GigPageComponent {
 [x: string]: any;
 selectedCategory: string = '';
 selectedType: string = '';
+userChecked : any;
+userBoolean: boolean =false;
 title : string = '';
+
 year_Of_Experience : number | undefined = undefined;
  age: number | undefined = undefined;
 skillLevel :string = '';
@@ -85,16 +88,22 @@ selectedSubcategory: string = '';
 
   ngOnInit() {
     this.teacherId = this.service.user.objectId;
+    this.userChecked = this.service.user.status;
+    if(this.userChecked==2){
+      this.userBoolean=true;
+    }
     this.fetchProfileData();
+    console.log(this.userBoolean);
+    console.log(this.userChecked);
   }
 
- 
+
 
 
   async fetchProfileData() {
     try {
       const result = await this.service.getProfileById(this.teacherId);
-      
+    
       if (result.status === 1) {
        this.profileId = result.data.objectId;
        
@@ -107,6 +116,7 @@ selectedSubcategory: string = '';
     }
     }
 
+  
  
   onCategoryChange() {
     const category = this.categoriesWithSub.find(cat => cat.category === this.selectedCategory1);
@@ -140,7 +150,7 @@ updateSelectedPrice(priceLevel: string, event: Event) {
  
 
   async gigInfoAdd(title : string , year_Of_Experience: number , type: string, skill: string , level: string   , level_1_Description: string  ,  level_1_Price: number  , level_2_Description: string  , level_2_Price: number  ,  level_3_Description: string  , level_3_Price: number, selectedCategory1: string, selectedSubcategory: string ,orderDay1:number,orderDay2:number,orderDay3:number){
-
+    this.fullTitle = `I do ${title}`;
     const titles= title.trim();
     const level_1_Descriptions =  level_1_Description.trim();
     // const level_1_Prices = level_1_Price.trim();

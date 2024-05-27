@@ -1,4 +1,4 @@
-  <section class="custom-background card">
+  <section *ngIf="userBoolean" class="custom-background card">
   <div class="container my-5 py-5 h-100" >
     <div class="row d-flex justify-content-center align-items-center h-100">
       <div class="col col-xl-10"  >
@@ -147,6 +147,22 @@
   </div>
 </section>
 
+
+<div *ngIf="!userBoolean" class="container  mx-auto  ">
+ 
+  <div class="row gx-4 gx-lg-5 align-items-center my-5 ">
+    
+        <div class="vh-100 d-flex align-items-center justify-content-center">
+          <div class="text-center">
+              <h2 class="font-weight-light">"SkillMentor allowed me to make a living without leaving home!"</h2>
+              <p class="my-3">you are not sign up. click below to sign up</p>
+              <a class="btn btn-outline-secondary btn-lg mt-2" [routerLink]="['/signup']">Sign up</a>
+          </div>
+      </div>
+      
+  </div>
+ </div>
+
                   
 
 
@@ -163,31 +179,3 @@
 
 
 
-<!-- 
-
-<div class="form-outline mb-4">
-  <label class="fw-bold my-1 py-1" for="categorySelect">Choose Category</label>
-
-    <select class="form-select form-control form-control-lg"
-            [(ngModel)]="selectedCategory"
-            (ngModelChange)="onCategoryChange($event)"
-            name="categorySelect">
-      <option value="" disabled selected>Choose Category...</option>
-      <option value="education">education</option>
-      <option value="medical">medical</option>
-      <option value="mechanic">mechanic</option>
-    </select>
-  </div>
-  
-    <div *ngIf="selectedCategory === 'education'" class="form-outline mb-4">
-      <label class="fw-bold my-1 py-1" for="educationSelect">Education Level</label>
-      <select class="form-select form-control form-control-lg"
-              [(ngModel)]="selectedEducationLevel"
-              (ngModelChange)="onEducationLevelChange($event)"
-              name="educationSelect">
-        <option value="" disabled selected>Choose Education Level...</option>
-        <option value="matric">Matric</option>
-        <option value="fsc">FSC</option>
-        <option value="university">University</option>
-      </select>
-    </div> -->

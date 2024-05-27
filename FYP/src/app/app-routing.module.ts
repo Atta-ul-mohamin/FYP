@@ -85,7 +85,6 @@ component:UpdateProffesionComponent
 
   {path:"",
   component:HomeComponent
-
   },
   {path:"gigmanage",
   component:GigManageComponent

@@ -36,5 +36,29 @@
     .mt-2 {
       margin-top: 0.5rem;
     }
+
+
+    
+  body {
+    background: #ffffff;
+    margin: 0; /* Remove default margin */
+    overflow-x: hidden; /* Prevent horizontal scroll */
+  }
+  
+  /* Fullscreen video background setup */
+  
+  .vh-100 {
+    height: 100vh; /* Full height of the viewport */
+  }
+  
+  .text-center {
+    width: auto; 
+    padding: 20px; /* Adequate padding */
+    background: rgba(255, 255, 255, 0.8); /* Optional: Visibility enhancement */
+    border-radius: 10px; 
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1); 
+  }
+
+
     
   

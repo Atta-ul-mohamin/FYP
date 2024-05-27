@@ -23,6 +23,8 @@ export class UpdateProffesionComponent  {
   skillss : string = '';
   hobbiess : string = '';
   professionId : string = '';
+  userChecked : any;
+  userBoolean: boolean =false;
 
   constructor(
     private service: ParseService,
@@ -34,6 +36,10 @@ export class UpdateProffesionComponent  {
 
   ngOnInit() {
     this.teacherID = this.route.snapshot.paramMap.get('id') as string;
+    this.userChecked = this.service.user.status;
+    if(this.userChecked==2){
+      this.userBoolean=true;
+    }
     this.fetchProffesionData();
   }
 
@@ -69,6 +75,13 @@ export class UpdateProffesionComponent  {
           
      
     }
+
+  
+ 
+ 
+
+
+
 
 
 

@@ -48,6 +48,19 @@ async submitProfile(phone: number, gender: string, age: number, location: string
 }
 
 
+logout() {
+  // Clear user from local storage and reset currentUser
+  localStorage.removeItem(this.USER_KEY);
+  this.currentUser = null;
+  // Optionally, you can call Parse's logout method if needed
+  Parse.User.logOut();
+}
+
+async getHomeData(teacherId:string){
+ const params={teacherId};
+ const response = await Parse.Cloud.run("getHomeData",params)
+ return response;
+}
 
   
 
@@ -128,8 +141,8 @@ async updateCurrentUserEmail(email: string) {
     return result;
    }
 
-   async update_gig_info_add(gigId : string ,title : string , year_Of_Experience: string  , type: string, skillLevel: string , level: string   , level_1_Description: string  ,  level_1_Price: string  , level_2_Description: string  , level_2_Price: string  ,  level_3_Description: string  , level_3_Price: string , homePrice:string , selectedCategory1: string, selectedSubcategory: string ,orderDay1:string,orderDay2:string,orderDay3:string){
-    const params = {gigId ,title , year_Of_Experience  , type, skillLevel , level  , level_1_Description  ,  level_1_Price, level_2_Description , level_2_Price  ,  level_3_Description , level_3_Price , homePrice, selectedCategory1 , selectedSubcategory, userId :this.currentUser.objectId,orderDay1,orderDay2,orderDay3  };
+   async update_gig_info_add(gigId : string ,title : string , year_Of_Experience: string  , type: string, skillLevel: string , level: string   , level_1_Description: string  ,  level_1_Price: string  , level_2_Description: string  , level_2_Price: string  ,  level_3_Description: string  , level_3_Price: string , homePrice:number , selectedCategory1: string, selectedSubcategory: string ,orderDay1:string,orderDay2:string,orderDay3:string , image1:string , image2:string , image3:string){
+    const params = {gigId ,title , year_Of_Experience  , type, skillLevel , level  , level_1_Description  ,  level_1_Price, level_2_Description , level_2_Price  ,  level_3_Description , level_3_Price , homePrice, selectedCategory1 , selectedSubcategory, userId :this.currentUser.objectId,orderDay1,orderDay2,orderDay3,image1,image2,image3  };
     console.log(title);
     console.log(this.currentUser.objectId);
     console.log(this.currentUser);

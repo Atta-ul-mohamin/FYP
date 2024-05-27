@@ -23,7 +23,8 @@ export class ProfileComponent implements OnInit{
   cnic: number | undefined = undefined;
   phone: number | undefined = undefined;
   age: number | undefined = undefined;
-  
+  userChecked : any;
+  userBoolean: boolean =false;
   descriptionCount: number | null = null;
   isDescriptionLimitReached: boolean = false;
   selectedFile: File | null = null;
@@ -44,6 +45,12 @@ export class ProfileComponent implements OnInit{
 
     this.pass= this.service.user.pass;
     console.log(this.pass);
+      this.userChecked = this.service.user.status;
+      if(this.userChecked==2){
+        this.userBoolean=true;
+      }
+      
+    
   }
 
   //yaha par jo parse service lagana he yaha ae ga or authentication b

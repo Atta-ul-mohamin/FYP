@@ -11,9 +11,17 @@ export class UpdateGigComponent implements OnInit {
   [x: string]: any;
  gigId : string = '';
  title: string = '';
+ selectedFile1: File | null = null;
+fileBinaryString1: string ='';
+selectedFile2: File | null = null;
+fileBinaryString2: string ='';
+selectedFile3: File | null = null;
+fileBinaryString3: string ='';
  fullTitle : string = '';
  cardId: string = '';
  cardName: string = '';
+ userChecked : any;
+userBoolean: boolean =false;
  level_1_Price : string = '';
  level_2_Price : string = '';
  level_3_Price : string = '';
@@ -27,11 +35,14 @@ orderDay3 : string = '';
  selectedPrice1: boolean= false;
 selectedPrice2: boolean = false;
 selectedPrice3: boolean = false;
-homePrice: string = '';
+homePrice: number=0;
  selectedLevel: string = '';
  skillLevel : string = '';
  selectedType : string = '';
  selectedCategory1 : string = '';
+ image1: string='';
+ image2:string='';
+ image3:string='';
 
 
  selectedSubcategory :  string = '';
@@ -53,8 +64,24 @@ filteredSubcategories: string[] = [];
 
   ngOnInit() {
     this.gigId = this.route.snapshot.paramMap.get('id') as string;
+    this.userChecked = this.service.user.status;
+    if(this.userChecked==2){
+      this.userBoolean=true;
+    }
     this.fetchGigData();
+
   }
+
+
+  
+  
+
+
+ 
+
+
+
+
 
   async fetchGigData() {
     
@@ -84,6 +111,9 @@ filteredSubcategories: string[] = [];
         this.orderDay1 = result.data.orderDay1,
         this.orderDay2 = result.data.orderDay2,
         this.orderDay3 =  result.data.orderDay3
+        this.image1=result.data.image1;
+        this.image2=result.data.image2;
+        this.image3=result.data.image3;
         console.log(this.orderDay2,"ok",this.orderDay3,"ok",this.orderDay1),
         this.onCategoryChange();
         setTimeout(() => {
@@ -134,17 +164,29 @@ filteredSubcategories: string[] = [];
         // Assuming level_1_Price, level_2_Price, and level_3_Price hold the price values
         this.homePrice = this[`level_${priceLevel.charAt(priceLevel.length - 1)}_Price`];
       } else {
-        this.homePrice = ''; // Consider what should happen if a price is deselected
+        this.homePrice = 0; // Consider what should happen if a price is deselected
       }
     }
+
+
+
     
 
     async gigInfoAdd(title : string , year_Of_Experience: string  , type: string, skill: string , level: string   , level_1_Description: string  ,  level_1_Price: string  , level_2_Description: string  , level_2_Price: string  ,  level_3_Description: string  , level_3_Price: string , selectedCategory1: string, selectedSubcategory: string  ,orderDay1:string,orderDay2:string,orderDay3:string){
-      this.fullTitle = `I will ${title}`;
+      this.fullTitle = `I do ${title}`;
 
       
+      if(!this.fileBinaryString1){
+        this.fileBinaryString1=this.image1;
+      }
+      if(!this.fileBinaryString2){
+        this.fileBinaryString2=this.image2;
+      }
+      if(!this.fileBinaryString3){
+        this.fileBinaryString3=this.image3;
+      }
       
-      const result = await this.service.update_gig_info_add( this.gigId,this.fullTitle , year_Of_Experience  , type  , skill  , level  , level_1_Description  ,  level_1_Price  , level_2_Description  , level_2_Price  ,  level_3_Description  , level_3_Price , this.homePrice , selectedCategory1, selectedSubcategory,orderDay1,orderDay2,orderDay3);
+      const result = await this.service.update_gig_info_add( this.gigId,title , year_Of_Experience  , type  , skill  , level  , level_1_Description  ,  level_1_Price  , level_2_Description  , level_2_Price  ,  level_3_Description  , level_3_Price , this.homePrice , selectedCategory1, selectedSubcategory,orderDay1,orderDay2,orderDay3,this.fileBinaryString1, this.fileBinaryString2, this.fileBinaryString3);
 
       if(result.status===1){
        alert('gig edit successfuly')
@@ -160,6 +202,104 @@ filteredSubcategories: string[] = [];
       // Now use fullTitle for your submission or processing logic
     }
 
+
+    onFileChanged1(event: Event) {
+      const input = event.target as HTMLInputElement;
+      if (!input.files || input.files.length === 0) {
+        this.selectedFile1 = null;
+        this.fileBinaryString1 ;
+      } else {
+        this.selectedFile1 = input.files[0];
+        const blobUrl = URL.createObjectURL(this.selectedFile1);
+        this.convertBlobUrlToBase64String1(blobUrl)
+          .then(base64String => {
+            this.fileBinaryString1 = base64String; // Store Base64 string
+            console.log('Generated Base64 String:', this.fileBinaryString1.substring(0, 50) + '...');
+          })
+          .catch(error => console.error('Error reading file as Base64 string:', error));
+      }
+    }
+    
+    // Method to convert Blob URL to Base64 string
+    async convertBlobUrlToBase64String1(blobUrl: string): Promise<string> {
+      const response = await fetch(blobUrl);
+      const blob = await response.blob();
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onloadend = () => {
+          const base64String = reader.result; // This is a Base64 string
+          resolve(base64String as string);
+        };
+        reader.onerror = reject;
+        reader.readAsDataURL(blob); // Changed to readAsDataURL for Base64
+      });
+    }
+  
+    onFileChanged2(event: Event) {
+      const input = event.target as HTMLInputElement;
+      if (!input.files || input.files.length === 0) {
+        this.selectedFile2 = null;
+        this.fileBinaryString2 ;
+      } else {
+        this.selectedFile2 = input.files[0];
+        const blobUrl = URL.createObjectURL(this.selectedFile2);
+        this.convertBlobUrlToBase64String2(blobUrl)
+          .then(base64String => {
+            this.fileBinaryString2 = base64String; // Store Base64 string
+            console.log('Generated Base64 String:', this.fileBinaryString2.substring(0, 50) + '...');
+          })
+          .catch(error => console.error('Error reading file as Base64 string:', error));
+      }
+    }
+    
+    // Method to convert Blob URL to Base64 string
+    async convertBlobUrlToBase64String2(blobUrl: string): Promise<string> {
+      const response = await fetch(blobUrl);
+      const blob = await response.blob();
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onloadend = () => {
+          const base64String = reader.result; // This is a Base64 string
+          resolve(base64String as string);
+        };
+        reader.onerror = reject;
+        reader.readAsDataURL(blob); // Changed to readAsDataURL for Base64
+      });
+    }
+  
+    onFileChanged3(event: Event) {
+      const input = event.target as HTMLInputElement;
+      if (!input.files || input.files.length === 0) {
+        this.selectedFile3 = null;
+        this.fileBinaryString3 ;
+      } else {
+        this.selectedFile3 = input.files[0];
+        const blobUrl = URL.createObjectURL(this.selectedFile3);
+        this.convertBlobUrlToBase64String3(blobUrl)
+          .then(base64String => {
+            this.fileBinaryString3 = base64String; // Store Base64 string
+            console.log('Generated Base64 String:', this.fileBinaryString3.substring(0, 50) + '...');
+          })
+          .catch(error => console.error('Error reading file as Base64 string:', error));
+      }
+    }
+  
+    
+    // Method to convert Blob URL to Base64 string
+    async convertBlobUrlToBase64String3(blobUrl: string): Promise<string> {
+      const response = await fetch(blobUrl);
+      const blob = await response.blob();
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onloadend = () => {
+          const base64String = reader.result; // This is a Base64 string
+          resolve(base64String as string);
+        };
+        reader.onerror = reject;
+        reader.readAsDataURL(blob); // Changed to readAsDataURL for Base64
+      });
+    }
+  
   }
 
 

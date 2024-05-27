@@ -1,4 +1,4 @@
-import { Component, ElementRef, AfterViewInit } from '@angular/core';
+import { Component, ElementRef} from '@angular/core';
 import { Router } from '@angular/router';
 import { ParseService } from 'src/app/services/parse.service';
 import { AuthService } from 'src/app/services/auth.service';
@@ -13,6 +13,8 @@ export class ProfessionDetailsComponent {
 
   selectedCategory: string = '';
   schoolName: string = '';
+  userChecked : any;
+userBoolean: boolean =false;
   schoolLevel: string = '';
   collegelevel: string = '';
   field: string = '';
@@ -23,10 +25,22 @@ export class ProfessionDetailsComponent {
     private authService: AuthService,
     private router: Router,
     private el: ElementRef
+  
   ) { }
   onCategoryChange(category: string) {
     this.selectedCategory = category;
   }
+
+
+  ngOnInit() {
+    this.userChecked = this.service.user.status;
+    if(this.userChecked==2){
+      this.userBoolean=true;
+    }
+  }
+
+ 
+
 
 
 

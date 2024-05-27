@@ -1,5 +1,4 @@
 import { Component, OnInit, inject } from '@angular/core';
-import { Router } from 'express';
 import { AuthService } from 'src/app/services/auth.service';
 import { ParseService } from 'src/app/services/parse.service';
 
@@ -16,6 +15,10 @@ export class HomeAfterLoginComponent implements OnInit {
   name : string ='';
   email:string ='';
   picture:string='';
+  orderCount : string =''; 
+  historyOrderCount : string ='';
+  totalPrice : string ='';
+  averageRating : string = '';
   
 
   user: any;
@@ -25,8 +28,8 @@ export class HomeAfterLoginComponent implements OnInit {
 
   constructor(private service: ParseService, private authService: AuthService,) {
     const userJson = sessionStorage.getItem("loggedInUser") || '{}';
-    const users = JSON.parse(userJson);
 
+    const users = JSON.parse(userJson);
     this.name = users.name;
     this.picture = users.picture;
     this.email = users.email;
@@ -39,7 +42,7 @@ export class HomeAfterLoginComponent implements OnInit {
       console.log(this.isAuthenticated);
     });
     this.teacherId = this.service.user.objectId;
-    
+    this.getHomeData();
     console.log(this.teacherId);
     this.fetchProfileData();
 
@@ -55,6 +58,13 @@ export class HomeAfterLoginComponent implements OnInit {
   }
 
 
+  async getHomeData(){
+    const result = await this.service.getHomeData(this.teacherId);
+   this.orderCount= result.orderCount 
+   this.historyOrderCount= result.historyOrderCount
+   this.totalPrice= result.totalPrice
+   this.averageRating= result.averageRating
+  }
 
    signOutGoogle(){
     sessionStorage.removeItem("loggedInUser");
