@@ -9,7 +9,7 @@ export class ParseService {
   private readonly USER_KEY = 'currentUser';
   constructor(private http: HttpClient) {
     Parse.initialize('myAppId', 'myMasterKey');
-    (Parse as any).serverURL = 'http://localhost:1336/parse';
+    (Parse as any).serverURL = 'https://fyp-teachers-backed.onrender.com';
 
         // Retrieve the user from local storage on service initialization
         const storedUser = localStorage.getItem(this.USER_KEY);
