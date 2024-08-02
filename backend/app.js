@@ -1,41 +1,38 @@
 
-require('dotenv').config(); //include .env file(db credentials)
+require('dotenv').config(); // Include .env file for environment variables
 const express = require('express');
-const ParseServer = require('parse-server').ParseServer;
-const app = express();
-const httpServer = require('http').createServer(app);
-const router = express.Router()
-
+const { ParseServer } = require('parse-server');
 const cors = require('cors');
+const app = express();
 
-
-const api = ParseServer({
-    databaseURI:  process.env.databaseURI,
-    cloud: __dirname + '/cloud/main.js', // Absolute path to your Cloud Code
-    appId: process.env.appId,
-    masterKey: process.env.masterKey, 
-    serverURL: process.env.serverURL,
-    enableAnonymousUsers: true,
-    allowClientClassCreation: true,
-    liveQuery: {
-      classNames: ['favourites'] // Specify the classes for which you want to enable LiveQuery
-  },
+// Setup Parse Server with environment variables
+const api = new ParseServer({
+  databaseURI: process.env.databaseURI,
+  cloud: process.env.cloudPath, // Use environment variable for cloud code path
+  appId: process.env.appId,
+  masterKey: process.env.masterKey,
+  serverURL: process.env.serverURL,
+  enableAnonymousUsers: true,
+  allowClientClassCreation: true,
 });
 
+// Enable CORS for all routes
 app.use(cors());
 
-
-
+// Mount the Parse API server at /parse
 app.use('/parse', api);
 
+// Basic route to check server status
 app.get('/', (req, res) => {
-        res.send("RUNNING!!!");
-    });
-
-
-app.listen(process.env.port, () => {
-  console.log('parse-server-example running on port ' + process.env.port);
+  res.send("RUNNING!!!");
 });
+
+// Start the server
+const port = process.env.port || 1336;
+app.listen(port, () => {
+  console.log(`parse-server-example running on port ${port}`);
+});
+
 // httpServer.listen(process.env.port, () => {
 //   console.log(`Server running on port ${process.env.port}`);
 // });
